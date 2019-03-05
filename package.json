@@ -1,8 +1,0 @@
-{
-  "name": "labspt2-workout-tracker",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/Lambda-School-Labs/labspt2-workout-tracker.git",
-  "author": "Levi Appenfelder <levi.appenfelder@gmail.com>",
-  "license": "MIT"
-}
