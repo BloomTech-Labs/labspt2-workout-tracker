@@ -5,15 +5,25 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 //import Reducers from './reducers/reducers
 
-const store = createStore(/*reducers here*/);
+//const store = createStore(/*reducers here*/);
 
 ReactDOM.render(
-    <Provider store = {store}>
-        <App />
-    </Provider>, document.getElementById('root'));
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById('root')
+);
+
+//<Provider store={store}>
+//<Router>
+//  <App />
+//</Router>
+//</Provider>,
+//document.getElementById('root')
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
