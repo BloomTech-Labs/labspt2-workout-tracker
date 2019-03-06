@@ -6,7 +6,7 @@ class LandingPage extends Component {
     return (
       <div>
         <h1>Landing Page</h1>
-        <button onClick={this.props.auth.login}>Sign In</button>
+        <button onClick={this.props.auth.login}>Sign In/Sign Up</button>
       </div>
     );
   }

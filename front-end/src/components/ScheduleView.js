@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class ScheduleView extends Component {
+export default class ScheduleView extends Component {
   render() {
     return (
       <div>
@@ -10,7 +10,3 @@ class ScheduleView extends Component {
     );
   }
 }
-
-const mapStateToProps = () => ({});
-
-export default connect(mapStateToProps)(ScheduleView);
