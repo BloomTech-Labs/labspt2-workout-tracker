@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import './styles/SettingsView.sass';
 
+// import { connect } from 'react-redux';
+import logo from '../images/workout-logo.svg';
 class SettingsView extends Component {
   render() {
     return (
-      <div>
-        <h1>Settings View</h1>
+      <div className="Main">
+        <img src={logo} />
+        <a>Home</a>
+        <p> ⬣ </p>
+        <h1>Settings</h1>
+
       </div>
     );
   }
@@ -13,4 +19,6 @@ class SettingsView extends Component {
 
 const mapStateToProps = () => ({});
 
-export default connect(mapStateToProps)(SettingsView);
+// export default connect(mapStateToProps)(SettingsView);
+
+export default SettingsView;
