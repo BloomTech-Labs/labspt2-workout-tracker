@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './styles/App.scss';
 import LandingPage from './components/LandingPage';
 import Callback from './components/Callback';
 import ScheduleView from './components/ScheduleView';
-import NotFound from './components/NotFound';
 
 class App extends Component {
   render() {
@@ -14,7 +13,6 @@ class App extends Component {
       return (
         <div>
           <div className="App">
-            <NavLink to="/callback" className="nav-link" />
             <Route exact path="/" component={LandingPage} />
             <Route path="/schedule" component={ScheduleView} />
             <Route path="/callback" component={Callback} />
@@ -25,8 +23,8 @@ class App extends Component {
       return (
         <div>
           <div className="App">
-            <NavLink to="/callback" className="nav-link" />
-            <Route path="/notfound" component={NotFound} />
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/callback" component={Callback} />
           </div>
         </div>
       );
