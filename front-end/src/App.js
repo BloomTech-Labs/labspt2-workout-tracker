@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 
-import SettingsView from './components/SettingsView.js';
+import LandingPage from './components/LandingPage.js';
 
 class App extends Component {
   render() {
-    return <SettingsView />;
+    return <LandingPage />;
   }
 }
 

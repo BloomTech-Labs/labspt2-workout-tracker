@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './styles/LandingPage.sass';
+import logo from '../images/workout-logo.svg';
+
 class LandingPage extends Component {
   render() {
     return (
-      <div>
-        <h1>Landing Page</h1>
+      <div className='login'>
+        <img src={logo} />
+        <div className='login-buttons'>
+        <a> Sign Up </a>
+        <a> Sign In </a>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = () => ({});
+// const mapStateToProps = () => ({});
 
-export default connect(mapStateToProps)(LandingPage);
+// export default connect(mapStateToProps)(LandingPage);
+
+export default LandingPage;
