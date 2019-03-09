@@ -1,0 +1,27 @@
+@import mixins.sass
+
+div
+    display: grid
+    justify-items: end
+    margin-top: 5px
+    .login
+        display: grid
+        width: 250px;
+        grid-template-columns: repeat(2, 1fr)
+        align-items: end
+        justify-content: center
+        img 
+            width: 50px
+        .login-buttons
+            background-color: $border
+            grid-template-columns: repeat(2, 1fr)
+            clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+            padding-left: 10px
+
+            a
+                @include login()
+            a:hover
+                color: black
+
+
+
