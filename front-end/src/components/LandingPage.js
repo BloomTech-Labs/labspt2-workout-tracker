@@ -7,11 +7,11 @@ import logo from '../images/workout-logo.svg';
 class LandingPage extends Component {
   render() {
     return (
-      <div className='login'>
+      <div className="login">
         <img src={logo} />
-        <div className='login-buttons'>
-        <a> Sign Up </a>
-        <a> Sign In </a>
+        <div className="login-buttons">
+          <a> Sign Up </a>
+          <a> Sign In </a>
         </div>
       </div>
     );
