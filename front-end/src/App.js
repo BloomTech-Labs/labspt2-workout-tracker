@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -6,31 +6,30 @@ import './styles/App.scss';
 import LandingPage from './components/LandingPage';
 import Callback from './components/Callback';
 import ScheduleView from './components/ScheduleView';
+import WorkoutsView from './components/WorkoutsView';
+import ProgressView from './components/ProgressView';
+import BillingView from './components/BillingView';
+import SettingsView from './components/SettingsView';
 
-class App extends Component {
-  render() {
-    if (this.props.auth.isAuthenticated()) {
-      return (
-        <div>
-          <div className="App">
-            <Route exact path="/" component={LandingPage} />
-            <Route path="/schedule" component={ScheduleView} />
-            <Route path="/callback" component={Callback} />
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <div className="App">
-            <Route exact path="/" component={LandingPage} />
-            <Route path="/callback" component={Callback} />
-          </div>
-        </div>
-      );
-    }
-  }
-}
+const renderRoutes = ({ auth: { isAuthenticated } }) => {
+  return (
+    isAuthenticated() && [
+      <Route path="/schedule" component={ScheduleView} />,
+      <Route path="/workouts" component={WorkoutsView} />,
+      <Route path="/progress" component={ProgressView} />,
+      <Route path="/billing" component={BillingView} />,
+      <Route path="/settings" component={SettingsView} />
+    ]
+  );
+};
+
+const App = props => (
+  <div className="App">
+    <Route exact path="/" component={LandingPage} />
+    {renderRoutes(props)}
+    <Route path="/callback" component={Callback} />
+  </div>
+);
 
 const mapStateToProps = state => {
   return {
