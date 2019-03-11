@@ -8,7 +8,9 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'emmanuel-prado.auth0.com',
     clientID: 'Zpuq9UPOz8gy2hl01i43htzcUxVME4de',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri:
+      'https://workout-tracker-pt2.netlify.com/callback' ||
+      'http://localhost:3000/callback',
     audience: 'https://emmanuel-prado.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid'
