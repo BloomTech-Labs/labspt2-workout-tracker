@@ -2,26 +2,49 @@
 
 div
     display: grid
-    justify-items: end
-    margin-top: 5px
+    align-items: center
+    justify-items: center
     .login
         display: grid
-        width: 250px;
-        grid-template-columns: repeat(2, 1fr)
+        grid-template-columns: repeat(10, 1fr)
         align-items: end
-        justify-content: center
+        justify-items: start
         img 
-            width: 50px
-        .login-buttons
-            background-color: $border
-            grid-template-columns: repeat(2, 1fr)
-            clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
-            padding-left: 10px
+            width: 60%
+            margin-top: 50px
+            grid-column: 3 / span 4
+            grid-row: 1 / span 1
+            z-index: 1
 
+
+
+        .login-buttons
+            display: grid
+            justify-items: center
+            align-items: end
+            background-color: $window
+            grid-column: 4 / span 2
+            grid-row: 1 / span 1
+
+            grid-template-rows: repeat(2, 1fr)
+            clip-path: polygon(10% 0, 75% 0%, 55% 100%, 5% 100%);
+            margin: 15px
+            width: 250%
             a
                 @include login()
-            a:hover
-                color: black
+
+        
+    .login:hover
+        .login-buttons
+            background-color: $border
+            transition: background-color 1s;
+            justify-items: center
+
+            a
+                color: white
+                transition: color 1s;
+                
+ 
 
 
 
