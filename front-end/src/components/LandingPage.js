@@ -10,8 +10,8 @@ class LandingPage extends Component {
       <div className="login">
         <img src={logo} />
         <div className="login-buttons">
-          <a> Sign Up </a>
-          <a> Sign In </a>
+          <a className='signup'> Sign Up </a>
+          <a className='signin'> Sign In </a>
         </div>
       </div>
     );
