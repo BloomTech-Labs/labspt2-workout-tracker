@@ -4,15 +4,15 @@ import auth0 from 'auth0-js';
 const LOGIN_SUCCESS_PAGE = '/schedule';
 const LOGIN_FAILURE_PAGE = '/';
 
-const DEPLOYED = 'https://workout-tracker-pt2.netlify.com/callback';
-const LOCAL = 'http://localhost:3000/callback';
-const TESTING = 'https://testing-testing.netlify.com/callback';
+const DEPLOYED = 'https://workout-tracker-pt2.netlify.com';
+const LOCAL = 'http://localhost:3000';
+const TESTING = 'https://testing-testing.netlify.com';
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'emmanuel-prado.auth0.com',
     clientID: 'Zpuq9UPOz8gy2hl01i43htzcUxVME4de',
-    redirectUri: `https://${DEPLOYED}/callback`,
+    redirectUri: `${TESTING}/callback`,
     audience: 'https://emmanuel-prado.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid'
