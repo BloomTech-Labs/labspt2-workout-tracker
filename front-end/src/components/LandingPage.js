@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import './styles/LandingPage.sass';
 import logo from '../images/workout-logo.svg';
+
+
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class LandingPage extends Component {
   render() {
@@ -21,4 +23,5 @@ const mapStateToProps = state => {
   };
 };
 
-export default LandingPage;
+export default connect(mapStateToProps)(LandingPage);
+
