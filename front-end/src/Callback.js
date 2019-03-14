@@ -5,7 +5,7 @@ import auth from './Auth';
 class Callback extends Component {
   async componentDidMount() {
     await auth.handleAuthentication();
-    this.props.history.replace('/');
+    this.props.history.replace('/schedule');
   }
 
   render() {

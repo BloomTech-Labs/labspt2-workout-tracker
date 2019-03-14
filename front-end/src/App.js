@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
 
+import auth from './Auth';
 import './components/styles/App.scss';
 import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
@@ -18,6 +18,11 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <Route exact path="/" component={LandingPage} />
+
+        {auth.isAuthenticated() && [
+          <Route path="/schedule" component={ScheduleView} />
+        ]}
+
         <Route exact path="/callback" component={Callback} />
       </div>
     );
