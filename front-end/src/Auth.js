@@ -10,7 +10,7 @@ class Auth {
     this.auth0 = new auth0.WebAuth({
       domain: 'emmanuel-prado.auth0.com',
       clientID: 'Zpuq9UPOz8gy2hl01i43htzcUxVME4de',
-      redirectUri: `${TESTING}/callback`,
+      redirectUri: `${DEPLOYED}/callback`,
       audience: 'https://emmanuel-prado.auth0.com/userinfo',
       responseType: 'id_token',
       scope: 'openid profile'
