@@ -4,6 +4,7 @@ import auth0 from 'auth0-js';
 const LOGIN_SUCCESS_PAGE = '/schedule';
 const LOGIN_FAILURE_PAGE = '/';
 
+// change variable on redirectUri accordingly!
 const DEPLOYED = 'https://workout-tracker-pt2.netlify.com';
 const LOCAL = 'http://localhost:3000';
 const TESTING = 'https://testing-testing.netlify.com';
