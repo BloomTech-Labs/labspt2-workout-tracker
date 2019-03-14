@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './styles/SettingsView.sass';
-import logo from './logo.svg';
 
 // import { connect } from 'react-redux';
 import logo from '../images/workout-logo.svg';
@@ -12,7 +11,6 @@ class SettingsView extends Component {
         <a>Home</a>
         <p> ⬣ </p>
         <h1>Settings</h1>
-
       </div>
     );
   }
