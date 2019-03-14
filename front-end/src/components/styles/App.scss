@@ -13,7 +13,7 @@
 h1 {
   // @include button(1.5rem, black,$window, 30px )
   // @include button(1.5rem, $border,white, 30px )
-  @include button(1.5rem, white, $border, 30px);
+  // @include button(1.5rem, white, $border, 30px);
 }
 p {
   font-family: Tahoma, Verdana, sans-serif;
