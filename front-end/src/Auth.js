@@ -1,10 +1,6 @@
-/* eslint no-restricted-globals: 0 */
 import auth0 from 'auth0-js';
 
-const LOGIN_SUCCESS_PAGE = '/schedule';
-const LOGIN_FAILURE_PAGE = '/';
-
-// change variable on redirectUri accordingly!
+// change variable on redirectUri accordingly, LOCAL if you are working off localhost:3000, and DEPLOYED if you are ready to make a pull request!
 const DEPLOYED = 'https://workout-tracker-pt2.netlify.com';
 const LOCAL = 'http://localhost:3000';
 const TESTING = 'https://testing-testing.netlify.com';
