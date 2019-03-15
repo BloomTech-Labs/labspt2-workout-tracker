@@ -1,55 +1,68 @@
-/* eslint no-restricted-globals: 0 */
 import auth0 from 'auth0-js';
 
-const LOGIN_SUCCESS_PAGE = '/schedule';
-const LOGIN_FAILURE_PAGE = '/';
-
-// change variable on redirectUri accordingly!
+// change variable on redirectUri accordingly, LOCAL if you are working off localhost:3000, and DEPLOYED if you are ready to make a pull request!
 const DEPLOYED = 'https://workout-tracker-pt2.netlify.com';
 const LOCAL = 'http://localhost:3000';
 const TESTING = 'https://testing-testing.netlify.com';
 
-export default class Auth {
-  auth0 = new auth0.WebAuth({
-    domain: 'emmanuel-prado.auth0.com',
-    clientID: 'Zpuq9UPOz8gy2hl01i43htzcUxVME4de',
-    redirectUri: `${DEPLOYED}/callback`,
-    audience: 'https://emmanuel-prado.auth0.com/userinfo',
-    responseType: 'token id_token',
-    scope: 'openid'
-  });
-
-  login = () => {
-    this.auth0.authorize();
-  };
-
-  handleAuthentication = () => {
-    this.auth0.parseHash((err, authResults) => {
-      if (authResults && authResults.accessToken && authResults.idToken) {
-        let expiresAt = JSON.stringify(
-          authResults.expiresIn * 1000 + new Date().getTime()
-        );
-        localStorage.setItem('access_token', authResults.accessToken);
-        localStorage.setItem('id_token', authResults.idToken);
-        localStorage.setItem('expires_at', expiresAt);
-        location.hash = '';
-        location.pathname = LOGIN_SUCCESS_PAGE;
-      } else if (err) {
-        location.pathname = LOGIN_FAILURE_PAGE;
-        console.log(err);
-      }
+class Auth {
+  constructor() {
+    this.auth0 = new auth0.WebAuth({
+      domain: 'emmanuel-prado.auth0.com',
+      clientID: 'Zpuq9UPOz8gy2hl01i43htzcUxVME4de',
+      redirectUri: `${DEPLOYED}/callback`,
+      audience: 'https://emmanuel-prado.auth0.com/userinfo',
+      responseType: 'id_token',
+      scope: 'openid profile'
     });
-  };
 
-  isAuthenticated = () => {
-    let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    return new Date().getTime() < expiresAt;
-  };
+    this.getProfile = this.getProfile.bind(this);
+    this.handleAuthentication = this.handleAuthentication.bind(this);
+    this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+  }
 
-  logout = () => {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
-    location.pathname = LOGIN_FAILURE_PAGE;
-  };
+  getProfile() {
+    return this.profile;
+  }
+
+  getIdToken() {
+    return this.idToken;
+  }
+
+  isAuthenticated() {
+    return new Date().getTime() < this.expiresAt;
+  }
+
+  login() {
+    this.auth0.authorize();
+  }
+
+  handleAuthentication() {
+    return new Promise((resolve, reject) => {
+      this.auth0.parseHash((err, authResult) => {
+        if (err) return reject(err);
+        if (!authResult || !authResult.idToken) {
+          return reject(err);
+        }
+        this.idToken = authResult.idToken;
+        this.profile = authResult.idTokenPayload;
+        // set the time that the id token will expire at
+        this.expiresAt = authResult.idTokenPayload.exp * 1000;
+        resolve();
+      });
+    });
+  }
+
+  logout() {
+    // clear id token, profile, and expiration
+    this.idToken = null;
+    this.profile = null;
+    this.expiresAt = null;
+  }
 }
+
+const auth = new Auth();
+
+export default auth;

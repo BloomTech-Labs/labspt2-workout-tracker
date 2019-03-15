@@ -1,40 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import './components/styles/App.scss';
+import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
-import Callback from './components/Callback';
+import Callback from './Callback';
 import ScheduleView from './components/ScheduleView';
 import WorkoutsView from './components/WorkoutsView';
 import ProgressView from './components/ProgressView';
 import BillingView from './components/BillingView';
 import SettingsView from './components/SettingsView';
+import SecuredRoute from './components/SecuredRoute';
 
-const renderRoutes = ({ auth: { isAuthenticated } }) => {
-  return (
-    isAuthenticated() && [
-      <Route path="/schedule" component={ScheduleView} />,
-      <Route path="/workouts" component={WorkoutsView} />,
-      <Route path="/progress" component={ProgressView} />,
-      <Route path="/billing" component={BillingView} />,
-      <Route path="/settings" component={SettingsView} />
-    ]
-  );
-};
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <NavBar />
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/callback" component={Callback} />
+        <SecuredRoute path="/schedule" component={ScheduleView} />
+        <SecuredRoute path="/workouts" component={WorkoutsView} />
+        <SecuredRoute path="/progress" component={ProgressView} />
+        <SecuredRoute path="/billing" component={BillingView} />
+        <SecuredRoute path="/settings" component={SettingsView} />
+      </div>
+    );
+  }
+}
 
-const App = props => (
-  <div className="App">
-    <Route exact path="/" component={LandingPage} />
-    {renderRoutes(props)}
-    <Route path="/callback" component={Callback} />
-  </div>
-);
-
-const mapStateToProps = state => {
-  return {
-    auth: state.auth
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;

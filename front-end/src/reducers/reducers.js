@@ -1,6 +1,4 @@
-import Auth from '../Auth';
-
-const auth = new Auth();
+import auth from '../Auth';
 
 const initialState = {
   auth
