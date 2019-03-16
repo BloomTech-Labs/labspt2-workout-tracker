@@ -21,6 +21,7 @@ import 'fullcalendar';
                   center: 'title',
                   right: 'month,agendaWeek,agendaDay'
               },
+              width: 1000,
               editable: true,
               droppable: true, // this allows things to be dropped onto the calendar
               drop: function() {
