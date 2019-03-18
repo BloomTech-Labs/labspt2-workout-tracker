@@ -17,10 +17,13 @@ import 'fullcalendar';
     componentDidMount() {
       $('#calendar').fullCalendar({
               header: {
-                  left: 'prev,next today',
+                  left: 'prevYear,prev,next,nextYear today',
                   center: 'title',
-                  right: 'month,agendaWeek,agendaDay'
+                  right: 'month,agendaWeek,agendaDay,list'
               },
+              
+              aspectRatio: 1.4,
+              
               editable: true,
               droppable: true, // this allows things to be dropped onto the calendar
               drop: function() {
@@ -31,6 +34,7 @@ import 'fullcalendar';
                   }
               }
       })
+
     }
   }
 
