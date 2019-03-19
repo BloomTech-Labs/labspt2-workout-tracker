@@ -14,7 +14,7 @@ server.use(cors(corsOptions));
 //custom middleware
 
 function checkForResource(req, res, resource) {
-  if (resource.length > 0) {
+  if (resource.length) {
     res.status(200).json(resource);
   } else {
     res

@@ -1,52 +1,42 @@
 // Update with your config settings.
 
+require("dotenv").config();
+
+const localPgConnection = {
+  host: "127.0.0.1",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: "testdb",
+  charset: "utf8"
+};
+
+const dbConnection = process.env.DATABASE_URL || localPgConnection;
+
 module.exports = {
   development: {
     client: "pg",
-    connection: {
-      host: "127.0.0.1",
-      user: "me",
-      password: "password",
-      database: "testdb",
-      charset: "utf8"
-    },
+    connection: localPgConnection,
     migrations: {
+      tableName: "knex_migrations",
       directory: "./data/migrations"
     },
     seeds: {
       directory: "./data/seeds"
     }
   },
-
-  staging: {
-    client: "postgresql",
-    connection: {
-      database: "my_db",
-      user: "username",
-      password: "password"
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: "knex_migrations"
-    }
-  },
-
   production: {
-    client: "postgresql",
-    connection: {
-      database: "my_db",
-      user: "username",
-      password: "password"
-    },
+    client: "pg",
+    connection: dbConnection,
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: "knex_migrations"
+      tableName: "knex_migrations",
+      directory: "./data/migrations"
+    },
+    seeds: {
+      directory: "./data/seeds"
     }
   }
 };
