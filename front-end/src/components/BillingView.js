@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CheckoutForm from './CheckoutForm';
 import { Elements, StripeProvider } from 'react-stripe-elements';
+
+import './styles/BillingView.scss';
 
 const BillingView = () => (
   <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
