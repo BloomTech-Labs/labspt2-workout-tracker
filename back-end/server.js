@@ -1,15 +1,17 @@
-const express = require("express");
-const cors = require("cors");
-const db = require("./data/dbConfig.js");
+const express = require('express');
+const cors = require('cors');
+const db = require('./data/dbConfig.js');
+const stripe = require('stripe')('sk_test_vUV2Q6vSUhL4aTpoYVNFHHCb00mmhjNqOl');
 
 const server = express();
 const corsOptions = {
   credentials: true,
-  origin: "https://workout-tracker-pt2.netlify.com/"
+  origin: 'https://workout-tracker-pt2.netlify.com/'
 };
 
 server.use(express.json());
 server.use(cors(corsOptions));
+server.use(require('body-parser').text());
 
 //custom middleware
 
@@ -19,25 +21,41 @@ function checkForResource(req, res, resource) {
   } else {
     res
       .status(404)
-      .json({ message: "The resource does not exist or is currently empty." });
+      .json({ message: 'The resource does not exist or is currently empty.' });
   }
 }
 
-server.get("/", (req, res) => {
-  res.send({ message: "working so far" });
+server.get('/', (req, res) => {
+  res.send({ message: 'working so far' });
 });
 
-server.get("/api/users", (req, res) => {
-  db("users")
+server.get('/api/users', (req, res) => {
+  db('users')
     .then(users => {
       checkForResource(req, res, users);
     })
     .catch(err => {
-      console.log("error", err);
+      console.log('error', err);
       res
         .status(500)
-        .json({ error: "The users information could not be retrieved." });
+        .json({ error: 'The users information could not be retrieved.' });
     });
+});
+
+// POST request handler for the stripe charge:
+server.post('/charge', async (req, res) => {
+  try {
+    let { status } = await stripe.charges.create({
+      amount: 2000,
+      currency: 'usd',
+      description: 'An example charge',
+      source: req.body
+    });
+
+    res.json({ status });
+  } catch (err) {
+    res.status(500).end();
+  }
 });
 
 module.exports = server;
