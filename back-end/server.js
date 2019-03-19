@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./data/dbConfig.js');
+const stripe = require('stripe')('sk_test_vUV2Q6vSUhL4aTpoYVNFHHCb00mmhjNqOl');
 
 const server = express();
 const corsOptions = {
@@ -10,6 +11,7 @@ const corsOptions = {
 
 server.use(express.json());
 server.use(cors(corsOptions));
+server.use(require('body-parser').text());
 
 //custom middleware
 
@@ -40,7 +42,6 @@ server.get('/api/users', (req, res) => {
     });
 });
 
-
 server.get('/api/users/:id', (req, res) => {
   const { id } = req.params;
   db('users')
@@ -52,6 +53,7 @@ server.get('/api/users/:id', (req, res) => {
       res
         .status(500)
         .json({ error: 'The specified user could not be retrieved' });
+    });
 });
 server.get('/api/users/:id/workouts', (req, res) => {
   db('workouts')
@@ -65,8 +67,22 @@ server.get('/api/users/:id/workouts', (req, res) => {
       res
         .status(500)
         .json({ error: 'The workout information could not be retrieved.' });
-
+    });
+});
+// POST request handler for the stripe charge:
+server.post('/charge', async (req, res) => {
+  try {
+    let { status } = await stripe.charges.create({
+      amount: 2000,
+      currency: 'usd',
+      description: 'An example charge',
+      source: req.body
     });
 
+    res.json({ status });
+  } catch (err) {
+    res.status(500).end();
+  }
+});
 
 module.exports = server;
