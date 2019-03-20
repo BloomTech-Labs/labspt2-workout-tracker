@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { CardElement, injectStripe } from 'react-stripe-elements';
 
 class CheckoutForm extends Component {
