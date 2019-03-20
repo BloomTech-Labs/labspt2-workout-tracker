@@ -27,7 +27,6 @@
     "test": "react-scripts test --verbose",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://workout-tracker-pt2.herokuapp.com/",
   "eslintConfig": {
     "extends": "react-app"
   },
