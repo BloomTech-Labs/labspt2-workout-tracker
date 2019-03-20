@@ -11,16 +11,16 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCHING:
-      return Object.assign({}, state, {fetching: true});
+      return Object.assign({}, state, { fetching: true });
     case FETCHED:
       return Object.assign({}, state, {
         users: [...state.users, ...action.payload],
-        fetching: false,
+        fetching: false
       });
     case FETCHING_ERROR:
       return Object.assign({}, state, {
         fetching: false,
-        error: "Error fetching user info"
+        error: 'Error fetching user info'
       });
     default:
       return state;
