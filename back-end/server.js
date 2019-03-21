@@ -40,6 +40,19 @@ server.get('/api/users', (req, res) => {
     });
 });
 
+
+server.get('/api/users/:id', (req, res) => {
+  const { id } = req.params;
+  db('users')
+    .where('id', id)
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'The specified user could not be retrieved' });
+});
 server.get('/api/users/:id/workouts', (req, res) => {
   db('workouts')
     .select()
@@ -52,7 +65,8 @@ server.get('/api/users/:id/workouts', (req, res) => {
       res
         .status(500)
         .json({ error: 'The workout information could not be retrieved.' });
+
     });
-});
+
 
 module.exports = server;
