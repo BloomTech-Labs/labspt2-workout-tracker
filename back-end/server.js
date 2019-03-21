@@ -33,7 +33,6 @@ server.get('/api/users', (req, res) => {
       checkForResource(req, res, users);
     })
     .catch(err => {
-      console.log('error', err);
       res
         .status(500)
         .json({ error: 'The users information could not be retrieved.' });

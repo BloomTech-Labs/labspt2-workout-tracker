@@ -12,12 +12,10 @@ export const getUsers = () => {
     dispatch({ type: FETCHING });
     promise
       .then(response => {
-        console.log('IN THE ACTION' + response.data);
         dispatch({ type: FETCHED, payload: response.data });
       })
       .catch(err => {
-        console.log(err);
-        dispatch({ type: FETCHING_ERROR });
+        dispatch({ type: FETCHING_ERROR, payload: err });
       });
   };
 };
