@@ -33,9 +33,25 @@ server.get('/api/users', (req, res) => {
       checkForResource(req, res, users);
     })
     .catch(err => {
+      console.log('error', err);
       res
         .status(500)
         .json({ error: 'The users information could not be retrieved.' });
+    });
+});
+
+server.get('/api/users/:id/workouts', (req, res) => {
+  db('workouts')
+    .select()
+    .where('id', id)
+    .then(workouts => {
+      res.status(200).json(workouts);
+    })
+    .catch(err => {
+      console.log('error', err);
+      res
+        .status(500)
+        .json({ error: 'The workout information could not be retrieved.' });
     });
 });
 
