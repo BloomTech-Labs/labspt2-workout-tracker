@@ -4,15 +4,30 @@ const db = require('./data/dbConfig.js');
 const stripe = require('stripe')('sk_test_vUV2Q6vSUhL4aTpoYVNFHHCb00mmhjNqOl');
 
 const server = express();
+
+const whitelist = ["https://workout-tracker-pt2.netlify.com/"];
 const corsOptions = {
   credentials: true,
+<<<<<<< HEAD
   origin: 'https://workout-tracker-pt2.netlify.com/'
+=======
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+>>>>>>> configured dynamic cors origins
 };
 
 server.use(express.json());
 server.use(cors(corsOptions));
+<<<<<<< HEAD
 server.use(require('body-parser').text());
 
+=======
+>>>>>>> configured dynamic cors origins
 //custom middleware
 
 function checkForResource(req, res, resource) {
