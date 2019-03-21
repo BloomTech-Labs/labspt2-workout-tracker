@@ -15,7 +15,25 @@ import 'fullcalendar';
       return <div id="calendar"></div>;
     }
     componentDidMount() {
-      $('#calendar').fullCalendar({
+
+      let cal = $('#calendar').fullCalendar({
+
+        events: [ // put the array in the `events` property
+        {
+          title  : 'Arms',
+          start  : '2019-02-01'
+        },
+        {
+          title  : 'Legs',
+          start  : '2019-03-05',
+          end    : '2019-03-07'
+        },
+        {
+          title  : 'Core',
+          start  : '2019-01-09T12:30:00',
+        }
+      ],
+
               header: {
                   left: 'prevYear,prev,next,nextYear today',
                   center: 'title',
@@ -36,7 +54,9 @@ import 'fullcalendar';
       })
 
     }
+    
   }
-
-
   export default Calendar
+
+
+  
