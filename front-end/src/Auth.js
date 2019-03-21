@@ -1,19 +1,19 @@
-import auth0 from 'auth0-js';
+import auth0 from "auth0-js";
 
 // change variable on redirectUri accordingly, LOCAL if you are working off localhost:3000, and DEPLOYED if you are ready to make a pull request!
-const DEPLOYED = 'https://workout-tracker-pt2.netlify.com';
-const LOCAL = 'http://localhost:3000';
-const TESTING = 'https://testing-testing.netlify.com';
+const DEPLOYED = "https://workout-tracker-pt2.netlify.com";
+const LOCAL = "http://localhost:3000";
+const TESTING = "https://testing-testing.netlify.com";
 
 class Auth {
   constructor() {
     this.auth0 = new auth0.WebAuth({
-      domain: 'emmanuel-prado.auth0.com',
-      clientID: 'Zpuq9UPOz8gy2hl01i43htzcUxVME4de',
+      domain: "emmanuel-prado.auth0.com",
+      clientID: "Zpuq9UPOz8gy2hl01i43htzcUxVME4de",
       redirectUri: `${DEPLOYED}/callback`,
-      audience: 'https://emmanuel-prado.auth0.com/userinfo',
-      responseType: 'id_token',
-      scope: 'openid profile'
+      audience: "https://emmanuel-prado.auth0.com/userinfo",
+      responseType: "id_token",
+      scope: "openid profile"
     });
 
     this.getProfile = this.getProfile.bind(this);
