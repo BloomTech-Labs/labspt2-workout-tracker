@@ -6,8 +6,7 @@ export const FETCHING_ERROR = "FETCHING_ERROR";
 
 export const getUsers = () => {
   const promise = axios.get(
-    //remember to set the url below to "http://localhost:4000/api/users when testing locally
-    "https://workout-tracker-pt2.herokuapp.com/api/users"
+    'https://workout-tracker-pt2.herokuapp.com/api/users'
   );
   return dispatch => {
     dispatch({ type: FETCHING });
