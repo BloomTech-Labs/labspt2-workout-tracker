@@ -23,6 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "debug": "react-scripts --inspect-brk start --runInBand --no-cache",
     "build": "react-scripts build",
     "test": "react-scripts test --verbose",
     "eject": "react-scripts eject"
