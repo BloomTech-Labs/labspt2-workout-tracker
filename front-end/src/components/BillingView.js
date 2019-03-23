@@ -1,18 +1,13 @@
 import React from 'react';
-import CheckoutForm from './CheckoutForm';
-import { Elements, StripeProvider } from 'react-stripe-elements';
+import StripeBtn from './StripeBtn';
 
 import './styles/BillingView.scss';
 
 const BillingView = () => (
-  <StripeProvider apiKey="pk_test_Gju9VkToEjZsO1RhYkIXmApE00zNqTr7sN">
-    <div className="example">
-      <h1>React Stripe Elements</h1>
-      <Elements>
-        <CheckoutForm />
-      </Elements>
-    </div>
-  </StripeProvider>
+  <div className="example">
+    <h1>Stripe Checkout</h1>
+    <StripeBtn />
+  </div>
 );
 
 export default BillingView;
