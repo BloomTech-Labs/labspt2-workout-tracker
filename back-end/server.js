@@ -84,9 +84,9 @@ server.get('/api/users/:id/workouts', (req, res) => {
 server.post('/charge', async (req, res) => {
   try {
     let { status } = await stripe.charges.create({
-      amount: 2000,
+      amount: 1250, //$1.25
       currency: 'usd',
-      description: 'An example charge',
+      description: 'An example charge for a gold user',
       source: req.body
     });
 
