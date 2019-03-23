@@ -1,7 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./data/dbConfig.js');
-const stripe = require('stripe')('sk_test_vUV2Q6vSUhL4aTpoYVNFHHCb00mmhjNqOl');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+const configureRoutes = require('./routes');
+
+dotenv.config();
 
 const server = express();
 
@@ -9,6 +13,7 @@ const whitelist = [
   'https://workout-tracker-pt2.netlify.com',
   'http://localhost:3000'
 ];
+
 const corsOptions = {
   credentials: true,
   origin: function(origin, callback) {
@@ -20,9 +25,9 @@ const corsOptions = {
   }
 };
 
+configureRoutes(server);
 server.use(express.json());
 server.use(cors(corsOptions));
-server.use(require('body-parser').text());
 
 //custom middleware
 
@@ -79,21 +84,6 @@ server.get('/api/users/:id/workouts', (req, res) => {
         .status(500)
         .json({ error: 'The workout information could not be retrieved.' });
     });
-});
-// POST request handler for the stripe charge:
-server.post('/charge', async (req, res) => {
-  try {
-    let { status } = await stripe.charges.create({
-      amount: 1250, //$1.25
-      currency: 'usd',
-      description: 'An example charge for a gold user',
-      source: req.body
-    });
-
-    res.json({ status });
-  } catch (err) {
-    res.status(500).end();
-  }
 });
 
 module.exports = server;
