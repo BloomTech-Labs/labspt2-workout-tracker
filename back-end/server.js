@@ -3,7 +3,8 @@ const cors = require('cors');
 const db = require('./data/dbConfig.js');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const configureRoutes = require('./routes');
+
+const configureRoutes = require('./routes/index');
 
 dotenv.config();
 
@@ -25,7 +26,6 @@ const corsOptions = {
   }
 };
 
-configureRoutes(server);
 server.use(express.json());
 server.use(cors(corsOptions));
 
@@ -44,6 +44,8 @@ function checkForResource(req, res, resource) {
 server.get('/', (req, res) => {
   res.send({ message: 'working so far' });
 });
+
+configureRoutes(server);
 
 server.get('/api/users', (req, res) => {
   db('users')
@@ -71,6 +73,7 @@ server.get('/api/users/:id', (req, res) => {
         .json({ error: 'The specified user could not be retrieved' });
     });
 });
+
 server.get('/api/users/:id/workouts', (req, res) => {
   db('workouts')
     .select()

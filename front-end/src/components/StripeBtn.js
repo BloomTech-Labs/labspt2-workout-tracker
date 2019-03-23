@@ -12,7 +12,7 @@ const stripeBtn = () => {
       token: token
     };
     axios
-      .post('http://localhost:4000/payment', body)
+      .post('https://workout-tracker-pt2.herokuapp.com/api/payment', body)
       .then(response => {
         console.log(response);
         alert('Payment Success');
