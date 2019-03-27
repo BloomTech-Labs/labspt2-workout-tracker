@@ -40,14 +40,17 @@ import 'fullcalendar';
         }
       ],
 
+
+
               header: {
                   left: 'prevYear,prev,next,nextYear today',
                   center: 'title',
                   right: 'month,agendaWeek,agendaDay,list'
               },
               
-              aspectRatio: 1.4,
-              
+              aspectRatio: 1.75,
+              height: 1100,
+
               editable: true,
               droppable: true, // this allows things to be dropped onto the calendar
   
