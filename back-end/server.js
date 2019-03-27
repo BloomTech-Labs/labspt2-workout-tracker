@@ -104,4 +104,19 @@ server.get('/api/users/:id/progress', (req, res) => {
     });
 });
 
+server.get('/api/users/:id/excercises', (req, res) => {
+  db('excercises')
+    .select()
+    .where('id', id)
+    .then(excercises => {
+      res.status(200).json(excercises);
+    })
+    .catch(err => {
+      console.log('error', err);
+      res
+        .status(500)
+        .json({ error: 'The excercises information could not be retrieved.' });
+    });
+});
+
 module.exports = server;
