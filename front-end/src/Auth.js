@@ -8,11 +8,11 @@ const TESTING = 'https://testing-testing.netlify.com';
 class Auth {
   constructor() {
     this.auth0 = new auth0.WebAuth({
-      domain: 'emmanuel-prado.auth0.com',
-      clientID: 'Zpuq9UPOz8gy2hl01i43htzcUxVME4de',
+      domain: 'workout-tracker-pt2.auth0.com',
+      clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO',
       redirectUri: `${DEPLOYED}/callback`,
-      audience: 'https://emmanuel-prado.auth0.com/userinfo',
-      responseType: 'id_token',
+      audience: 'https://workout-tracker-pt2.auth0.com/userinfo',
+      responseType: 'token id_token',
       scope: 'openid profile'
     });
 
@@ -31,6 +31,10 @@ class Auth {
     return this.idToken;
   }
 
+  getAccessToken() {
+    return this.accessToken;
+  }
+
   isAuthenticated() {
     return new Date().getTime() < this.expiresAt;
   }
@@ -46,6 +50,7 @@ class Auth {
         if (!authResult || !authResult.idToken) {
           return reject(err);
         }
+        this.accessToken = authResult.accessToken;
         this.idToken = authResult.idToken;
         this.profile = authResult.idTokenPayload;
         // set the time that the id token will expire at
@@ -56,7 +61,8 @@ class Auth {
   }
 
   logout() {
-    // clear id token, profile, and expiration
+    // clears accessToken, id token, profile, and expiration
+    this.accessToken = null;
     this.idToken = null;
     this.profile = null;
     this.expiresAt = null;
