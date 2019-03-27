@@ -89,4 +89,19 @@ server.get('/api/users/:id/workouts', (req, res) => {
     });
 });
 
+server.get('/api/users/:id/progress', (req, res) => {
+  db('progress')
+    .select()
+    .where('id', id)
+    .then(progress => {
+      res.status(200).json(progress);
+    })
+    .catch(err => {
+      console.log('error', err);
+      res
+        .status(500)
+        .json({ error: 'The progress information could not be retrieved.' });
+    });
+});
+
 module.exports = server;
