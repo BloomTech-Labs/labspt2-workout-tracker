@@ -3,7 +3,7 @@
 
 #calendar {
   transform-origin: 10% 0.1%;
-  transform: scale(0.7)
+  transform: scale(0.68)
 }
 div {
   margin: 0;
@@ -1591,12 +1591,10 @@ be a descendant of the grid when it is being dragged.
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  background-image: linear-gradient(white , #E7E7E7);
+
 }
 
-.fc-unthemed .fc-list-empty {
-  /* theme will provide own background */
-  background-color: #eee;
-}
 
 
 span.fc-time {
