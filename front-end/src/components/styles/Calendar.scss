@@ -1,7 +1,10 @@
 
 @import 'variables.sass';
 
-
+#calendar {
+  transform-origin: 10% 0.1%;
+  transform: scale(0.68)
+}
 div {
   margin: 0;
   width: 1280px;
@@ -19,7 +22,7 @@ div {
 
 body .fc {
   /* extra precedence to overcome jqui */
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 /* Colors
@@ -130,7 +133,6 @@ body .fc {
 .fc-state-hover {
   color: #333333;
   text-decoration: none;
-  background-position: 0 -15px;
   -webkit-transition: background-position 0.1s linear;
   -moz-transition: background-position 0.1s linear;
   -o-transition: background-position 0.1s linear;
@@ -402,22 +404,23 @@ temporary rendered events).
   /* for resize handle and other inner positioning */
   display: block;
   /* make the <a> tag block */
-  font-size: 0.85em;
-  line-height: 1.3;
+  font-size: 1.25em;
+  line-height: 1.5;
   border-radius: 3px;
-  border: 1px solid #3a87ad;
+  border: 1px solid blue;
   /* default BORDER color */
 }
 
 .fc-event,
 .fc-event-dot {
-  background-color: #3a87ad;
+  background-color: yellow;
   /* default BACKGROUND color */
 }
 
 .fc-event,
 .fc-event:hover {
   color: #fff;
+  
   /* default TEXT color */
   text-decoration: none;
   /* if <a> has an href */
@@ -426,6 +429,7 @@ temporary rendered events).
 .fc-event[href],
 .fc-event.fc-draggable {
   cursor: pointer;
+  
   /* give events with links and draggable events a hand mouse pointer */
 }
 
@@ -445,12 +449,14 @@ temporary rendered events).
 .fc-event .fc-content {
   position: relative;
   z-index: 2;
+  
 }
 
 /* resizer (cursor AND touch devices) */
 .fc-event .fc-resizer {
   position: absolute;
   z-index: 4;
+  
 }
 
 /* resizer (touch devices) */
@@ -462,6 +468,7 @@ temporary rendered events).
 .fc-event.fc-selected .fc-resizer {
   /* only show when hovering or selected (with touch) */
   display: block;
+  
 }
 
 /* hit area */
@@ -483,11 +490,14 @@ temporary rendered events).
 --------------------------------------------------------------------------------------------------*/
 .fc-event.fc-selected {
   z-index: 9999 !important;
+  
   /* overcomes inline z-index */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .fc-event.fc-selected.fc-dragging {
+  background-color: tomato;
+
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
 
@@ -524,6 +534,7 @@ temporary rendered events).
   /* replace the border with padding */
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  
 }
 
 /* resizer (cursor AND touch devices) */
@@ -532,6 +543,7 @@ temporary rendered events).
 .fc-rtl .fc-h-event .fc-end-resizer {
   cursor: w-resize;
   left: -1px;
+  
   /* overcome border */
 }
 
@@ -549,6 +561,7 @@ temporary rendered events).
   top: -1px;
   /* overcome top border */
   bottom: -1px;
+  
   /* overcome bottom border */
 }
 
@@ -863,7 +876,7 @@ NOTE: use percentage font sizes or else old IE chokes
 /* TimeGrid axis running down the side (for both the all-day area and the slot area)
 --------------------------------------------------------------------------------------------------*/
 .ui-widget td.fc-axis {
-  font-weight: normal;
+  font-weight: bold;
   /* overcome bold */
 }
 
@@ -946,7 +959,7 @@ NOTE: use percentage font sizes or else old IE chokes
   display: grid;
   grid-template-columns: repeat(3, 475px);
   text-align: center;
-  margin-top: 100px;
+  margin-top: 50px;
   width: 1280px;
 
 }
@@ -1055,11 +1068,12 @@ NOTE: use percentage font sizes or else old IE chokes
 .fc-basicDay-view .fc-content-skeleton {
   /* there may be week numbers in these views, so no padding-top */
   padding-bottom: 1em;
+  
   /* ensure a space at bottom of cell for user selecting/clicking */
 }
 
 .fc-basic-view .fc-body .fc-row {
-  min-height: 4em;
+  min-height: 5em;
   /* ensure that all rows are at least this tall */
 }
 
@@ -1080,7 +1094,7 @@ NOTE: use percentage font sizes or else old IE chokes
 .fc-day-number {
   margin-right: 10px;
   font-size: 1.5rem;
-  margin-bottom: 100px;
+  margin-bottom: 65px;
   color: $border;
 }
 
@@ -1144,7 +1158,10 @@ NOTE: use percentage font sizes or else old IE chokes
 }
 
 .fc-agenda-view .fc-day-grid .fc-row {
-  min-height: 3em;
+  min-height: 5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: blue;
   /* all-day section will never get shorter than this */
 }
 
@@ -1168,6 +1185,8 @@ NOTE: use percentage font sizes or else old IE chokes
 
 .fc-rtl .fc-axis {
   text-align: left;
+  width:100px;
+
 }
 
 /* TimeGrid Structure
@@ -1247,8 +1266,12 @@ NOTE: use percentage font sizes or else old IE chokes
 /* TimeGrid Slats (lines that run horizontally)
 --------------------------------------------------------------------------------------------------*/
 .fc-time-grid .fc-slats td {
-  height: 15em;
+  height: 5rem;
   border-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: blue;
+
   /* each cell is responsible for its top border */
 }
 
@@ -1275,7 +1298,7 @@ NOTE: use percentage font sizes or else old IE chokes
 --------------------------------------------------------------------------------------------------*/
 .fc-ltr .fc-time-grid .fc-event-container {
   /* space on the sides of events for LTR (default) */
-  margin: 0 2.5% 0 2px;
+  margin: 0 2.5% 0 20px;
 }
 
 .fc-rtl .fc-time-grid .fc-event-container {
@@ -1460,6 +1483,8 @@ be a descendant of the grid when it is being dragged.
   display: inline-block;
   width: 10px;
   height: 10px;
+  align-items: center;
+  background-color: blue;
   border-radius: 5px;
 }
 
@@ -1566,9 +1591,36 @@ be a descendant of the grid when it is being dragged.
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  background-image: linear-gradient(white , #E7E7E7);
+
 }
 
-.fc-unthemed .fc-list-empty {
-  /* theme will provide own background */
-  background-color: #eee;
+
+
+span.fc-time {
+  margin-left: 1%;
+  display: inline-block;
+  width: 75px;
+}
+
+span.fc-title {
+  display: inline-block;
+  width: 75px;
+}
+
+div.fc-content {
+  display: inline-block;
+}
+
+tr {
+  margin-bottom: 40px;
+}
+
+span {
+  padding: 0; 
+}
+
+td.fc-widget-content {
+  padding: 0; 
+
 }
