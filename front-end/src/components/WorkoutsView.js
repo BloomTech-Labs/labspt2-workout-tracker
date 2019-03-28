@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import WorkoutsForm from './WorkoutsForm';
 
-export default class WorkoutsView extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Workouts View</h1>
-      </div>
-    );
-  }
-}
+const WorkoutsView = () => (
+  <div>
+    <h1>Workouts View</h1>
+    <WorkoutsForm />
+  </div>
+);
+
+export default WorkoutsView;
