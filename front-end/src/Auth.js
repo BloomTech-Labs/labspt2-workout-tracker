@@ -15,7 +15,7 @@ class Auth {
       domain: "workout-tracker-pt2.auth0.com",
       clientID: "hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO",
       redirectUri: `${DEPLOYED}/callback`,
-      audience: "https://workout-tracker-pt2.herokuapp.com",
+      audience: "https://workout-tracker-pt2.herokuapp.com/",
       responseType: "token id_token",
       scope: "openid profile"
     });
@@ -70,6 +70,7 @@ class Auth {
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
+      console.log(authResult);
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
