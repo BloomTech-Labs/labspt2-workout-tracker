@@ -1,11 +1,10 @@
-import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import auth from '../Auth';
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
+import auth from "../Auth";
 
 function NavBar(props) {
   const logout = () => {
     auth.logout();
-    props.history.replace('/');
   };
 
   return (
