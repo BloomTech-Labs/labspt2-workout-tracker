@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
-import './components/styles/index.scss';
+import './components/styles/index.sass';
 import App from './App';
 import Reducers from './reducers/reducers';
 
