@@ -14,11 +14,7 @@ class Auth {
     this.auth0 = new auth0.WebAuth({
       domain: 'workout-tracker-pt2.auth0.com',
       clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO',
-<<<<<<< HEAD
       redirectUri: `${DEPLOYED}/callback`,
-=======
-      redirectUri: `${LOCAL}/callback`,
->>>>>>> created new component called WorkoutsDropDowns
       audience: 'https://workout-tracker-pt2.herokuapp.com/',
       responseType: 'token id_token',
       scope: 'openid profile'
@@ -99,11 +95,7 @@ class Auth {
     //Make sure to change LOCAL to DEPLOYED!
 
     this.auth0.logout({
-<<<<<<< HEAD
       returnTo: `${DEPLOYED}`,
-=======
-      returnTo: `${LOCAL}`,
->>>>>>> created new component called WorkoutsDropDowns
       clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO'
     });
   }
