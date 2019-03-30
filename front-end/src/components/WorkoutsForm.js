@@ -27,21 +27,24 @@ export default class WorkoutsForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.submitHandler} className="workouts-form">
-        <h5>Workout Creator:</h5>
-        <input type="text" name="title" placeholder="Title" />
-        <select>
-          <option value="category">Arms</option>
-          <option value="category">Legs</option>
-          <option value="category">Cardio</option>
-          <option value="category">Add Category</option>
-        </select>
-        <input type="text" name="name" placeholder="Workout Name" />
-        <input type="text" name="weight" placeholder="Weight" />
-        <input type="text" name="sets" placeholder="Sets" />
-        <input type="text" name="reps" placeholder="Reps" />
-        <button type="text">Submit</button>
-      </form>
+      <div className="workouts-form">
+        <form onSubmit={this.submitHandler}>
+          <h5>Workout Creator:</h5>
+          <input type="text" name="title" placeholder="Title" />
+          <select>
+            <option value="category">Arms</option>
+            <option value="category">Legs</option>
+            <option value="category">Cardio</option>
+            <option value="category">Abs</option>
+            <option value="category">Add Category</option>
+          </select>
+          <input type="text" name="name" placeholder="Workout Name" />
+          <input type="text" name="weight" placeholder="Weight" />
+          <input type="text" name="sets" placeholder="Sets" />
+          <input type="text" name="reps" placeholder="Reps" />
+          <button type="text">Submit</button>
+        </form>
+      </div>
     );
   }
 }
