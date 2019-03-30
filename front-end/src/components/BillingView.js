@@ -1,7 +1,7 @@
 import React from 'react';
 import StripeBtn from './StripeBtn';
 
-import './styles/BillingView.scss';
+import './styles/BillingView.sass';
 
 const BillingView = () => (
   <div className="example">

@@ -1,14 +1,37 @@
 @import variables.sass
+@import mixins.sass
+
+
+.form-container
+    @include form-container-dm()
 
 
 h1
-    color: $main
-    transform: skew(-25deg)
-    font-family: Tahoma, Verdana, sans-serif
-    font-size: $headingsize
-    font-weight: bold
+    @include heading-dm()
+
 
 p
-    text-align: left
-    font-size: $paragraphsize
-    width: 50%
+    @include paragraph-dm()
+
+
+
+
+
+form
+    width: 100%
+
+input
+    @include form-input-dm()
+
+button
+    @include button-dm()
+
+
+button:hover
+    @include hovered-button-dm()
+
+
+
+
+
+
