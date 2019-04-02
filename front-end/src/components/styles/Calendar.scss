@@ -2,12 +2,13 @@
 @import 'variables.sass';
 
 #calendar {
-  transform-origin: 10% 0.1%;
-  transform: scale(0.68)
+  transform-origin: 10% 15%;
+  transform: scale(0.58);
+  width: 100%;
 }
 div {
   margin: 0;
-  width: 1280px;
+  width: 100%;
 }
 
 
@@ -104,7 +105,7 @@ body .fc {
   background-color: $dark-gray;
   border-color: #e6e6e6 #e6e6e6 #bfbfbf;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  color: yellow;
+  color: $secondary-color;
 
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
@@ -119,7 +120,7 @@ body .fc {
 }
 
 .fc-state-hover {
-  color: #333333;
+  color: $main-background;
   text-decoration: none;
   -webkit-transition: background-position 0.1s linear;
   -moz-transition: background-position 0.1s linear;
@@ -171,12 +172,14 @@ previous button's border...
 
 .fc-popover .fc-header {
   /* TODO: be more consistent with fc-head/fc-body */
-  padding: 2px 4px;
   
 }
 
 .fc-popover .fc-header .fc-title {
-  margin: 0 2px;
+  margin: 5px 5px;
+  font-size: 1.5rem;
+  color: $main-background;
+  width: 100%;
 }
 
 .fc-popover .fc-header .fc-close {
@@ -281,7 +284,7 @@ a[data-goto]:hover {
   /* extra precedence to overcome themes w/ .ui-widget-content forcing a 1px border */
   /* no visible border by default. but make available if need be (scrollbar width compensation) */
   border-style: solid;
-
+  width: 99%;
   border-width: 0;
 }
 
@@ -395,6 +398,7 @@ temporary rendered events).
   position: relative;
   /* for resize handle and other inner positioning */
   display: block;
+  width: 100%;
   /* make the <a> tag block */
   font-size: 1.25em;
   line-height: 1.5;
@@ -648,13 +652,12 @@ tr:first-child > td > .fc-day-grid-event {
 /* "more" link that represents hidden events */
 a.fc-more {
   margin: 1px 3px;
-  font-size: 0.85em;
+  font-size: 1.25rem;
   cursor: pointer;
   text-decoration: none;
 }
 
 a.fc-more:hover {
-  color: white;
 
   text-decoration: underline;
 }
@@ -676,6 +679,8 @@ a.fc-more:hover {
 }
 
 .fc-more-popover .fc-event-container {
+  background-color: $dark-gray;
+  width: 100%;
   padding: 10px;
 }
 
@@ -722,18 +727,17 @@ TODO: more distinction between this file and common.css
   font-size: 1.5rem;
 }
 
-.fc-unthemed .fc-popover {
-  background-color: #fff;
-}
+
 
 .fc-unthemed .fc-divider,
 .fc-unthemed .fc-popover .fc-header,
 .fc-unthemed .fc-list-heading td {
-  background: #eee;
+  background: $darker-gray;
+  width: 60%;
 }
 
 .fc-unthemed .fc-popover .fc-header .fc-close {
-  color: #666;
+  color: $secondary-color;
 }
 
 .fc-unthemed td.fc-today {
@@ -828,13 +832,16 @@ NOTE: use percentage font sizes or else old IE chokes
 /* Popover
 --------------------------------------------------------------------------------------------------*/
 .fc-unthemed .fc-popover {
-  border-width: 1px;
+  border-width: 2px;
+  width: 35%;
   border-style: solid;
 }
 
 .fc-unthemed .fc-popover .fc-header .fc-close {
-  font-size: 0.9em;
-  margin-top: 2px;
+  font-size: 1.5rem;
+  margin-top: 5px;
+  margin-left: 5px;
+
 }
 
 /* List View
@@ -879,6 +886,7 @@ NOTE: use percentage font sizes or else old IE chokes
 --------------------------------------------------------------------------------------------------*/
 .fc-time-grid .fc-slats .ui-widget-content {
   background: none;
+  
   /* see through to fc-bg */
 }
 
@@ -956,7 +964,7 @@ NOTE: use percentage font sizes or else old IE chokes
   grid-template-columns: repeat(3, 475px);
   text-align: center;
   margin-top: 50px;
-  width: 1280px;
+  width: 100%;
 
 }
 
@@ -974,8 +982,9 @@ NOTE: use percentage font sizes or else old IE chokes
   float: left;
   display: flex;
   grid-column: 3;
+  align-items: flex-end;
   grid-row: 1;
-  width: 320px;
+  width: 85%;
   margin-bottom: 1em;
 
 }
@@ -1019,6 +1028,8 @@ NOTE: use percentage font sizes or else old IE chokes
 /* button layering (for border precedence) */
 .fc-toolbar button {
   position: relative;
+  font-size: 1.5rem;
+
 }
 
 .fc-toolbar .fc-state-hover,
@@ -1227,6 +1238,7 @@ NOTE: use percentage font sizes or else old IE chokes
   top: 0;
   left: 0;
   right: 0;
+  
 }
 
 /* divs within a cell within the fc-content-skeleton */
@@ -1258,6 +1270,7 @@ NOTE: use percentage font sizes or else old IE chokes
   /* also is fc-event-container */
   position: relative;
   z-index: 6;
+  
 }
 
 /* TimeGrid Slats (lines that run horizontally)
@@ -1268,7 +1281,7 @@ NOTE: use percentage font sizes or else old IE chokes
   font-size: 1.5rem;
   font-weight: bold;
   color: $secondary-color;
-
+  
   /* each cell is responsible for its top border */
 }
 
@@ -1295,7 +1308,7 @@ NOTE: use percentage font sizes or else old IE chokes
 --------------------------------------------------------------------------------------------------*/
 .fc-ltr .fc-time-grid .fc-event-container {
   /* space on the sides of events for LTR (default) */
-  margin: 0 2.5% 0 20px;
+  margin: 0;
 }
 
 .fc-rtl .fc-time-grid .fc-event-container {
@@ -1402,7 +1415,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .fc-time-grid-event.fc-short .fc-title {
-  font-size: 0.85em;
+  font-size: 1.5em;
   /* make the title text the same size as the time */
   padding: 0;
   /* undo padding from above */
@@ -1518,6 +1531,8 @@ be a descendant of the grid when it is being dragged.
 /* day headings with the list */
 .fc-list-heading {
   border-bottom-width: 1px;
+  color: $main-background;
+  font-size: 2rem;
 }
 
 .fc-list-heading td {
@@ -1533,6 +1548,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .fc-rtl .fc-list-heading-main {
+  
   float: right;
 }
 
@@ -1550,7 +1566,7 @@ be a descendant of the grid when it is being dragged.
 .fc-list-item-time {
   color: $secondary-color;
   white-space: nowrap;
-  width: 1px;
+  font-size: 1.5rem;
 }
 
 /* make the dot closer to the event title */
@@ -1565,6 +1581,8 @@ be a descendant of the grid when it is being dragged.
 .fc-list-item-title a {
   /* every event title cell has an <a> tag */
   text-decoration: none;
+  font-size: 1.5rem;
+
 }
 
 .fc-list-item-title a[href]:hover {
@@ -1607,11 +1625,14 @@ span.fc-time {
 
 span.fc-title {
   display: inline-block;
-  width: 75px;
+  width: 100%;
+  font-size: 1.5rem;
+
 }
 
 div.fc-content {
   display: inline-block;
+  width: 100%;
 }
 
 tr {
@@ -1635,3 +1656,8 @@ td.fc-widget-content:hover {
 }
 
 
+.fc-unthemed .fc-popover {
+  background-color: $darker-gray;
+  border: 2px solid $primary-color;
+  width: 25%;
+}

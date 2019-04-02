@@ -13,6 +13,7 @@ import BillingView from "./components/BillingView";
 import SettingsView from "./components/SettingsView";
 import SecuredRoute from "./components/SecuredRoute";
 
+
 class App extends Component {
   componentDidMount() {
     const { renewSession } = auth;
