@@ -92,7 +92,7 @@ class Auth {
 
     localStorage.removeItem('isLoggedIn');
 
-    //Make sure to change LOCAL to DEPLOYED!
+    //Make sure to change LOCAL to DEPLOYED before merging to MASTER!
 
     this.auth0.logout({
       returnTo: `${DEPLOYED}`,

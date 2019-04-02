@@ -2,10 +2,11 @@ export const categoryDefaults = [
   { categoryName: 'Arms' },
   { categoryName: 'Legs' },
   { categoryName: 'Cardio' },
+  { categoryName: 'Abs' },
   { categoryName: 'Rest' }
 ];
 
-export const excerciseDefaults = [
+export const exerciseDefaults = [
   {
     categoryName: 'Arms',
     subCategories: ['Biceps'],
@@ -168,6 +169,30 @@ export const excerciseDefaults = [
     tips: `Don't bring your front foot directly in line with your back foot. Don't pop your front heel. Keep your body right and straight, don't droop.`,
     reps: '1',
     sets: '1',
+    weight: 'Bodyweight'
+  },
+  {
+    categoryName: 'Abs',
+    subCategories: ['Abs'],
+    exerciseName: 'Crunches',
+    difficultyLevel: ['Beginner', 'Intermediate'],
+    description: `The crunch is one of the most popular abdominal exercises. It primarily works the rectus abdominis muscle and also works the obliques.`,
+    instructions: `Lay down on your back a soft surface, the feet are on the floor. Ask a partner or use some other help (barbell, etc.) to keep them fixed, your hands are behind your head. From this position move your upper body up till your head or elbows touch your knees. Do this movement by rolling up your back.`,
+    tips: `Breathe in through your nose, and out the mouth. Start slow and gradually increase your speed until you hit a maintainable pace. Aim for endurance, not speed.`,
+    reps: '10-12',
+    sets: '3',
+    weight: 'Bodyweight'
+  },
+  {
+    categoryName: 'Abs',
+    subCategories: ['Abs'],
+    exerciseName: 'Sit-ups',
+    difficultyLevel: ['Beginner', 'Intermediate'],
+    description: `The sit-up (or curl-up) is an abdominal endurance training exercise to strengthen and tone the abdominal muscles.`,
+    instructions: `Sit on a mat, your calves are resting on a bench, the knees make a right angle. Hold your hands behind your neck. Go now up with a rolling movement of your back, you should feel how the individual vertebrae lose contact with the mat. At the highest point, contract your abs as much as you can and hold there for 2 sec. Go now down, unrolling your back.`,
+    tips: `Get someone to hold your feet`,
+    reps: '12-16',
+    sets: '3',
     weight: 'Bodyweight'
   }
 ];
