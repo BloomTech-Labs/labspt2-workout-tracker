@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
 import auth from './Auth';
-import './components/styles/App.scss';
+import './components/styles/App.sass';
 import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
 import Callback from './Callback';
@@ -12,7 +12,6 @@ import ProgressView from './components/ProgressView';
 import BillingView from './components/BillingView';
 import SettingsView from './components/SettingsView';
 import SecuredRoute from './components/SecuredRoute';
-
 
 class App extends Component {
   componentDidMount() {
