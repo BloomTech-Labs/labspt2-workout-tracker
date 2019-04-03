@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getUsers } from '../actions/actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getUsers } from "../actions/actions";
 
 class ProgressView extends Component {
   componentDidMount() {
@@ -26,7 +26,6 @@ class ProgressView extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     users: state.users,
     error: state.error,
