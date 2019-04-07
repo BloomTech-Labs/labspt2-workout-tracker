@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUsers } from "../actions/actions";
+import './styles/ProgressView.sass';
 
 class ProgressView extends Component {
   componentDidMount() {
@@ -9,9 +10,27 @@ class ProgressView extends Component {
 
   render() {
     return (
-      <div>
+      <div className="progressView">
         <h1>Progress View</h1>
-        {this.props.fetchingUsers ? (
+        <div className="formBox">
+          <form className="progressForm">
+            <h5>{Date}</h5>
+            <input className="inputTop" type="text" name="weight" placeholder="Weight" />
+            <input type="text" name="hips" placeholder="Hips" />
+            <input className="inputMiddle" type="text" name="waist" placeholder="Waist" />
+            <input type="text" name="rArm" placeholder="(R) Arm" />
+            <input className="inputLower" type="text" name="lArm" placeholder="(L) Arm" />
+            <input type="text" name="rLeg" placeholder="(R) Leg" />
+            <input className="inputBottom" type="text" name="lLeg" placeholder="(L) Leg" />
+            <button type="text">Submit Progress</button>
+          </form>
+          <div className="rightSide">
+            <h1>test</h1>
+          </div>
+        </div>
+        
+
+        {/* {this.props.fetchingUsers ? (
           <h3>Loading...</h3>
         ) : (
           <div>
@@ -19,7 +38,7 @@ class ProgressView extends Component {
               return <div key={user.id}>{user.email}</div>;
             })}
           </div>
-        )}
+        )} */}
       </div>
     );
   }
