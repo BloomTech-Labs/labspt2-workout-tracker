@@ -19,7 +19,8 @@ export const exerciseDefaults = [
     tips: `Fluid movements with no pauses at the top or bottom, don't swing the arms`,
     reps: '5-15',
     sets: '3',
-    weight: '5-10 lb'
+    weight: '5-10 lb',
+    img: 'http://www.burnthefatinnercircle.com/members/images/1683.jpg'
   },
   {
     categoryName: 'Arms',
