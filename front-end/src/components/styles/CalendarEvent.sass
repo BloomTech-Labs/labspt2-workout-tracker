@@ -1,0 +1,48 @@
+@import variables.sass
+@import mixins.sass
+
+.event-container
+    display: flex;
+    flex-direction: column
+    align-items: center
+    box-sizing: border-box
+    background-color: $dark-gray
+    width: 100%
+    margin: 5%
+    padding: 2.5%
+    border: 2px solid $primary-color
+
+
+h1
+    @include heading-dm()
+
+
+p
+    @include paragraph-dm()
+    font-size: 2rem
+
+
+
+
+
+form
+    width: 100%
+
+input
+    @include form-input-dm()
+
+button
+    @include button-dm()
+
+
+button:hover
+    @include hovered-button-dm()
+    font-size: 1rem
+    
+
+@media (max-width: 1024px)
+    h1
+        font-size: 1rem
+    p
+        font-size: 1.5rem
+

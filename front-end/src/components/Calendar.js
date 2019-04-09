@@ -54,7 +54,7 @@ import 'fullcalendar';
               },
               
               aspectRatio: 1.75,
-              height: 1100,
+              height: 800,
 
               editable: true,
               droppable: true, // this allows things to be dropped onto the calendar
