@@ -25,7 +25,17 @@ class ProgressView extends Component {
             <button type="text">Submit Progress</button>
           </form>
           <div className="rightSide">
-            <h1>test</h1>
+            <div>
+              <h3>{/*XX pounds or inches*/}</h3>
+              <h3>Weight lost since:</h3>
+              <h3>{/*date*/}</h3>
+            </div>
+            <div>
+              <h3>{/*XX pounds or inches*/}</h3>
+              <h3>Inches lost since:</h3>
+              <h3>{/*date*/}</h3>
+            </div>
+
           </div>
         </div>
         
