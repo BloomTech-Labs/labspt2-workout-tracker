@@ -1,14 +1,15 @@
 .events-container
-    display: flex;
-    flex-direction: column
-    align-items: center
-    box-sizing: border-box
-    width: 35%
+    @include component-container-dm()
+
+
+@media (max-width: 1024px)
+    .events-container
+        width: 80%
+
 
 @media (max-width: 750px)
     .events-container
-        width: 80%
-    
+            width: 100%
 
 
 

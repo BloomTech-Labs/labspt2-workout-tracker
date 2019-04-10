@@ -31,6 +31,7 @@ class App extends Component {
         <SecuredRoute path="/progress" component={ProgressView} />
         <SecuredRoute path="/billing" component={BillingView} />
         <SecuredRoute path="/settings" component={SettingsView} />
+        <ScheduleView />
       </div>
     );
   }

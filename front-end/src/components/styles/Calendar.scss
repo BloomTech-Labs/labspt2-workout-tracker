@@ -1677,14 +1677,6 @@ td.fc-widget-content:hover {
 @media (max-width: 1024px) {
   #calendar {
     margin: 0;
-    width: 150%;
-    transform: scale(0.9)
-  }
-}
-
-@media (max-width: 750px) {
-  #calendar {
-    margin: 0;
     width: 125%;
     transform: scale(0.75)
   }
