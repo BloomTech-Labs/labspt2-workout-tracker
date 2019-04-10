@@ -74,10 +74,29 @@ server.get("/api/users", checkJwt, (req, res) => {
       db("categories as c")
         .join("users as u", "u.id", "c.userId")
         .select("c.id", "c.categoryName")
-        .where("c.userId", id.id)
+        .whereIn("c.userId", [1, id.id])
+        .pluck("c.id")
         .then(categories => {
           console.log(categories);
-          checkForResource(req, res, categories);
+          db("exercises as e")
+            .join("categories as c", "c.id", "e.categoryId")
+            .select(
+              "e.id as excerciseId",
+              "e.exerciseName as exercise",
+              "c.id as categoryId",
+              "c.categoryName as category"
+            )
+            .whereIn("e.categoryId", categories)
+            .then(exercises => {
+              console.log(exercises);
+              checkForResource(req, res, exercises);
+            })
+            .catch(err => {
+              console.log("error", err);
+              res.status(500).json({
+                error: "The exercise information could not be retrieved."
+              });
+            });
         })
         .catch(err => {
           console.log("error", err);
@@ -103,15 +122,38 @@ server.post("/api/users", checkJwt, (req, res) => {
     .insert(user)
     .then(id => {
       console.log(id);
-      db("users")
-        .then(users => {
-          res.status(201).json(users);
+      db("categories as c")
+        .join("users as u", "u.id", "c.userId")
+        .select("c.id", "c.categoryName")
+        .whereIn("c.userId", [1, id[0]])
+        .pluck("c.id")
+        .then(categories => {
+          console.log(categories);
+          db("exercises as e")
+            .join("categories as c", "c.id", "e.categoryId")
+            .select(
+              "e.id",
+              "e.exerciseName as exercise",
+              "c.id",
+              "c.categoryName as category"
+            )
+            .whereIn("e.categoryId", categories)
+            .then(exercises => {
+              console.log(exercises);
+              checkForResource(req, res, exercises);
+            })
+            .catch(err => {
+              console.log("error", err);
+              res.status(500).json({
+                error: "The exercise information could not be retrieved."
+              });
+            });
         })
         .catch(err => {
           console.log("error", err);
-          res
-            .status(500)
-            .json({ error: "The users information could not be retrieved." });
+          res.status(500).json({
+            error: "The categories information could not be retrieved."
+          });
         });
     })
     .catch(err => {
@@ -139,7 +181,7 @@ server.post("/api/categories", checkJwt, (req, res) => {
           db("categories as c")
             .join("users as u", "u.id", "c.userId")
             .select("c.id", "c.categoryName")
-            .where("c.userId", userId[0])
+            .whereIn("c.userId", [1, userId[0]])
             .then(categories => {
               checkForResource(req, res, categories);
             })
@@ -165,12 +207,76 @@ server.post("/api/categories", checkJwt, (req, res) => {
     });
 });
 
+//ENDPOINT TO POST A NEW EXERCISE
+
+server.post("/api/exercises", checkJwt, (req, res) => {
+  const { exerciseName, reps, weight, sets, categoryId } = req.body;
+  //query user table to get user w req.user.sub
+  db("users")
+    .select("id")
+    .where("user_id", req.user.sub)
+    .first()
+    .then(id => {
+      db("exercises")
+        .returning("categoryId")
+        .insert({
+          exerciseName: exerciseName,
+          reps: reps,
+          weight: weight,
+          sets: sets,
+          categoryId: categoryId,
+          userId: id.id
+        })
+        .then(categoryId => {
+          db("categories as c")
+            .select("c.id", "c.categoryName")
+            .where("c.id", categoryId[0])
+            .first()
+            .then(category => {
+              console.log(category);
+              db("exercises as e")
+                .join("categories as c", "c.id", "e.categoryId")
+                .select(
+                  "e.id as excerciseId",
+                  "e.exerciseName as exercise",
+                  "c.id as categoryId",
+                  "c.categoryName as category"
+                )
+                .where("e.categoryId", category.id)
+                .then(exercises => {
+                  console.log(exercises);
+                  checkForResource(req, res, exercises);
+                })
+                .catch(err => {
+                  console.log("error", err);
+                  res.status(500).json({
+                    error: "The exercise information could not be retrieved."
+                  });
+                });
+            })
+            .catch(err => {
+              console.log("error", err);
+              res.status(500).json({
+                error: "The categories information could not be retrieved."
+              });
+            });
+        });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: "The specified user info could not be retrieved" });
+    });
+});
+
+//WARNING, FOLLOWING ENDPOINT FOR TEST PURPOSES ONLY: GET ALL USERS CATEGORIES AND EXERCISES BY ID
+
 server.get("/api/:id/categories", checkJwt, (req, res) => {
   const { id } = req.params;
   db("categories as c")
     .join("users as u", "u.id", "c.userId")
     .select("c.id", "c.categoryName")
-    .where("c.userId", id)
+    .whereIn("c.userId", [1, id])
     .pluck("c.id")
     .then(categories => {
       console.log(categories);
@@ -201,6 +307,8 @@ server.get("/api/:id/categories", checkJwt, (req, res) => {
         .json({ error: "The categories information could not be retrieved." });
     });
 });
+
+//ENDPOINTS BELOW NOT YET FUNCTIONAL AND/OR REDUNDANT
 
 server.get("/api/users/:id/workouts", (req, res) => {
   db("workouts")
