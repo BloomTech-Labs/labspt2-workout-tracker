@@ -34,6 +34,7 @@ class ProgressView extends Component {
               <h3>{/*XX pounds or inches*/}</h3>
               <h3>Inches lost since:</h3>
               <h3>{/*date*/}</h3>
+              
             </div>
 
           </div>
