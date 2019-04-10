@@ -1,22 +1,27 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('exercises', table => {
+  return knex.schema.createTable("exercises", table => {
     table.increments();
+    table.string("exerciseName").notNullable();
+    table.string("reps").notNullable();
+    table.string("weight").notNullable();
+    table.string("sets").notNullable();
     table
-      .string('exerciseName')
+      .integer("categoryId")
+      .unsigned()
       .notNullable()
-      .unique();
-    table.string('reps').notNullable();
-    table.string('weight').notNullable();
-    table.string('sets').notNullable();
-    table.integer('category_id').unsigned();
-
+      .references("id")
+      .inTable("categories");
     table
-      .foreign('category_id')
-      .references('id')
-      .inTable('categories');
+      .integer("userId")
+      .unsigned()
+      .notNullable()
+      .references("id")
+      .inTable("users");
+    table.timestamp("created_at").defaultTo(knex.fn.now());
+    table.timestamp("updated_at").defaultTo(knex.fn.now());
   });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('exercises');
+  return knex.schema.dropTableIfExists("exercises");
 };
