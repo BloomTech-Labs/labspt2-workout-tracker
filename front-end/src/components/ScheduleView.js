@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Calendar from './Calendar.js'
+import CalendarEvents from './CalendarEvents.js'
 
-import './styles/Schedule.sass'
+import './styles/ScheduleView.sass'
 import './styles/Calendar.scss'
 
 class ScheduleView extends Component {
   render() {
     return (
-      <div>
-        <button onClick={this.props.auth.logout}>Logout</button>
-        <h1>Schedule View</h1>
+      <div className='main'>
+        {/* <button onClick={this.props.auth.logout}>Logout</button> */}
         <Calendar />
+        <CalendarEvents />
       </div>
     );
   }
@@ -24,4 +25,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ScheduleView);
+// export default connect(mapStateToProps)(ScheduleView);
+
+export default ScheduleView;

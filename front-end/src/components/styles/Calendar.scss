@@ -2,9 +2,8 @@
 @import 'variables.sass';
 
 #calendar {
-  transform-origin: 10% 15%;
-  transform: scale(0.58);
-  width: 100%;
+  width: 80%;
+  margin: 5% 2.5%
 }
 div {
   margin: 0;
@@ -73,6 +72,8 @@ body .fc {
 .fc-state-default {
   /* non-theme */
   border: 1px solid;
+  font-size: 0.5rem;
+
 }
 
 .fc-state-default.fc-corner-left {
@@ -106,6 +107,8 @@ body .fc {
   border-color: #e6e6e6 #e6e6e6 #bfbfbf;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   color: $secondary-color;
+  font-size: 0.5rem;
+
 
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
@@ -116,7 +119,7 @@ body .fc {
 .fc-state-active,
 .fc-state-disabled {
   color: white;
-  background-color: $primary-color;
+  background-color: $third-color;
 }
 
 .fc-state-hover {
@@ -145,7 +148,9 @@ body .fc {
 /* Buttons Groups
 --------------------------------------------------------------------------------------------------*/
 .fc-button-group {
-  display: inline-block;
+  display: flex;
+  font-size: 0.5rem;
+
 }
 
 /*
@@ -177,7 +182,7 @@ previous button's border...
 
 .fc-popover .fc-header .fc-title {
   margin: 5px 5px;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: $main-background;
   width: 100%;
 }
@@ -493,7 +498,7 @@ temporary rendered events).
 }
 
 .fc-event.fc-selected.fc-dragging {
-  background-color: tomato;
+  background-color: $third-color;
 
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
@@ -722,9 +727,9 @@ TODO: more distinction between this file and common.css
 }
 
 .fc-head {
-  background-color: $primary-color;
+  background-color: $third-color;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 
@@ -741,7 +746,7 @@ TODO: more distinction between this file and common.css
 }
 
 .fc-unthemed td.fc-today {
-  background: $primary-color;
+  background: $third-color;
 }
 
 .fc-unthemed .fc-disabled-day {
@@ -961,7 +966,7 @@ NOTE: use percentage font sizes or else old IE chokes
 --------------------------------------------------------------------------------------------------*/
 .fc-toolbar {
   display: grid;
-  grid-template-columns: repeat(3, 475px);
+  grid-template-columns: repeat(5, 1fr);
   text-align: center;
   margin-top: 50px;
   width: 100%;
@@ -981,10 +986,10 @@ NOTE: use percentage font sizes or else old IE chokes
 .fc-toolbar .fc-left {
   float: left;
   display: flex;
-  grid-column: 3;
+  grid-column: 5;
   align-items: flex-end;
   grid-row: 1;
-  width: 85%;
+  width: 100%;
   margin-bottom: 1em;
 
 }
@@ -994,17 +999,20 @@ NOTE: use percentage font sizes or else old IE chokes
   display: flex;
   margin-bottom: 1em;
   grid-row: 1;
-  grid-column: 2;
+  grid-column: 3;
 
 
 }
 
 .fc-toolbar .fc-center {
   display: grid;
-  grid-column: 1;
+  grid-column-start: 1;
+  grid-column-end: 3;
+
   grid-row: 1;
 
 }
+
 
 /* the things within each left/right/center section */
 .fc .fc-toolbar > * > * {
@@ -1022,13 +1030,14 @@ NOTE: use percentage font sizes or else old IE chokes
 /* title text */
 .fc-toolbar h2 {
   color: $secondary-color;
+  font-size: 1.5rem;
   margin: 0;
 }
 
 /* button layering (for border precedence) */
 .fc-toolbar button {
   position: relative;
-  font-size: 1.5rem;
+  font-size: 1rem;
 
 }
 
@@ -1101,7 +1110,7 @@ NOTE: use percentage font sizes or else old IE chokes
 
 .fc-day-number {
   margin-right: 10px;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 65px;
   color: $secondary-color;
 }
@@ -1415,7 +1424,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .fc-time-grid-event.fc-short .fc-title {
-  font-size: 1.5em;
+  font-size: 1.25em;
   /* make the title text the same size as the time */
   padding: 0;
   /* undo padding from above */
@@ -1581,7 +1590,7 @@ be a descendant of the grid when it is being dragged.
 .fc-list-item-title a {
   /* every event title cell has an <a> tag */
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 0.5rem;
 
 }
 
@@ -1621,12 +1630,15 @@ span.fc-time {
   margin-left: 1%;
   display: inline-block;
   width: 75px;
+  font-size: 1rem;
+
 }
 
 span.fc-title {
   display: inline-block;
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  margin-right: 5px;
 
 }
 
@@ -1650,14 +1662,30 @@ td.fc-widget-content {
 }
 
 td.fc-widget-content:hover {
-  color: $main-background;
-  padding: 0; 
+  // color: $third-color;
+  // padding: 0; 
 
 }
 
 
 .fc-unthemed .fc-popover {
   background-color: $darker-gray;
-  border: 2px solid $primary-color;
+  border: 2px solid $third-color;
   width: 25%;
+}
+
+@media (max-width: 1024px) {
+  #calendar {
+    margin: 0;
+    width: 150%;
+    transform: scale(0.9)
+  }
+}
+
+@media (max-width: 750px) {
+  #calendar {
+    margin: 0;
+    width: 125%;
+    transform: scale(0.75)
+  }
 }

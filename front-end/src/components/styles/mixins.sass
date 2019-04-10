@@ -1,6 +1,11 @@
 
 @import variables.sass
 
+=phone()
+  @media (max-width: 750px)
+    @content
+
+
 =input($width, $fc) 
   width: $width
   color: black
@@ -50,7 +55,7 @@
   font-size: $heading-size
   font-weight: bold
   margin-bottom: 25px
-  color: yellow
+  color: $secondary-color
   letter-spacing: 0.1rem
 
 =form-container-dm()
@@ -83,9 +88,10 @@
 
 =hovered-button-dm()
   width: 60%
-  background-color: $primary-color
+  background-color: $third-color
   font-size: $heading-size
   margin-top: 10px;
   border: 0.5px solid black
   color: white
   font-family: Verdana, Tahoma, sans-serif
+

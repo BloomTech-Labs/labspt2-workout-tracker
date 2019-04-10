@@ -15,6 +15,7 @@ class ProgressView extends Component {
         <div className="formBox">
           <form className="progressForm">
             <h5>{Date}</h5>
+
             <input className="inputTop" type="text" name="weight" placeholder="Weight" />
             <input type="text" name="hips" placeholder="Hips" />
             <input className="inputMiddle" type="text" name="waist" placeholder="Waist" />
@@ -40,6 +41,7 @@ class ProgressView extends Component {
           </div>
         </div>
         
+
 
         {/* {this.props.fetchingUsers ? (
           <h3>Loading...</h3>
