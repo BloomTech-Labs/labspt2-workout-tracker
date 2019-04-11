@@ -11,7 +11,7 @@ const LOCAL = "http://localhost:3333";
 export const getUsers = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${LOCAL}/api/users`, { headers });
+  const promise = axios.get(`${DEPLOYED}/api/users`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
