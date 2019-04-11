@@ -1,52 +1,54 @@
 ## Basic Style
 
-
 ![Main](../../images/Main-Form-Style.png)
 
-___
-___
+---
 
-```This is how I envision the big picture layout.```
+---
 
-___
-___
+`This is how I envision the big picture layout.`
 
-#### **.App** ```The overarching div```
+---
 
-  * #### **.main** ```The main div of each webpage```
+---
 
-    * #### **.events-container** ```The div that houses all of the associated subparts of a component```
+#### **.App** `The overarching div`
 
-      * #### **.form-container** ```The most basic div that houses all of the individual elements```
+- #### **.main** `The main div of each webpage`
 
-___
-___
+  - #### **.events-container** `The div that houses all of the associated subparts of a component`
 
+    - #### **.form-container** `The most basic div that houses all of the individual elements`
+
+---
+
+---
 
 ![Main](../../images/Main-Container-Style.png)
 
-___
-___
+---
+
+---
 
 ### Main Page Container For Dark Mode
 
-#### **.main** ####
+#### **.main**
 
- 
-  * #### **@include main-dm('flex-direction')** ####
+- #### **@include main-dm('flex-direction')**
 
-    * #### **display: flex** ####
+  - #### **display: flex**
 
-    * #### **flex-direction: row** ####
+  - #### **flex-direction: row**
 
-    * #### **padding: 2.5%** ####
+  - #### **padding: 2.5%**
 
-    * #### **justify-content: center** ####
+  - #### **justify-content: center**
 
-    * #### **width: 100%** ####
-  
-___
-___
+  - #### **width: 100%**
+
+---
+
+---
 
 ### .events-container
 
@@ -58,11 +60,12 @@ ___
     * box-sizing: border-box
     * width: 35%
 
-___
-___
+---
+
+---
 
        <div className='form-container'>
-         
+
           <h1> {this.props.changeDate(this.props.months, this.props.date)} </h1>
 
           <form>
@@ -78,18 +81,21 @@ ___
 
         </div>
 
-___
-___
+---
+
+---
+
 ![Main](../../images/Main-Form-Container-Style.png)
 
-____
-____
+---
+
+---
 
 ### Main Form Container For Dark Mode
 
-#### **.form-container** ####
+#### **.form-container**
 
-  * @include form-container-dm()
+- @include form-container-dm()
 
 
     * #### **display: flex** ####
@@ -114,88 +120,89 @@ ____
 
     * #### **border: 2px solid $primary-color (#FF1010)** ####
 
+---
 
-
-____
-____
+---
 
 ![Main](../../images/Heading-Style.png)
 
-____
-____
+---
 
-### Heading Style For Dark Mode 
+---
 
-#### **h1** ####
+### Heading Style For Dark Mode
 
-  * #### **@include heading-dm()** ####
+#### **h1**
 
-    * #### **font-family: Verdana, Tahoma, <br/> sans-serif** ####
+- #### **@include heading-dm()**
 
-    * #### **align-self: flex-start** ####
+  - #### **font-family: Verdana, Tahoma, <br/> sans-serif**
 
-    * #### **font-size: $heading-size (1.5rem)** ####
+  - #### **align-self: flex-start**
 
-    * #### **font-weight: bold** ####
+  - #### **font-size: \$heading-size (1.5rem)**
 
-    *  #### **color: $secondary-color (#FFBF00)** ####
+  - #### **font-weight: bold**
 
-    * #### **letter-spacing: 0.1rem** ####
+  - #### **color: \$secondary-color (#FFBF00)**
 
-    * #### **margin: 10px 5% 10px 5%** #### 
+  - #### **letter-spacing: 0.1rem**
 
-____
-____
+  - #### **margin: 10px 5% 10px 5%**
 
+---
+
+---
 
 ### Form Style For Dark Mode
 
+#### **form**
 
-#### **form** ####
-    
-   * #### **width: 100%** ####
+- #### **width: 100%**
 
-___
-___
+---
+
+---
 
 ![Main](../../images/Label-Style.png)
 
-____
-____
+---
+
+---
 
 ### Label Style For Dark Mode
 
-#### **label** ####
+#### **label**
 
-  * #### **@include label-dm()** ####
+- #### **@include label-dm()**
 
-    *  #### **display: flex** ####
-    *  #### **font-size: $paragraph-size (1.25rem)** ####
-    *  #### **color: $main-background (white)** ####
-    *  #### **font-family: Tahoma, Verdana, <br/> sans-serif** ####
-    *  #### **font-weight: bold** ####
-    *  #### **letter-spacing: 0.1rem** ####
-    *  #### **margin: 10px 5% 10px 5%** ####
+  - #### **display: flex**
+  - #### **font-size: \$paragraph-size (1.25rem)**
+  - #### **color: \$main-background (white)**
+  - #### **font-family: Tahoma, Verdana, <br/> sans-serif**
+  - #### **font-weight: bold**
+  - #### **letter-spacing: 0.1rem**
+  - #### **margin: 10px 5% 10px 5%**
 
+---
 
-
-___
-___
+---
 
 ![Main](../../images/Form-Input-Style.png)
 
-____
-____
+---
+
+---
 
 ### Input Style For Dark Mode
 
-#### **input[type=text]** ####
+#### **input[type=text]**
 
-   * #### **@include form-input-dm()** ####
+- #### **@include form-input-dm()**
 
 
-      * #### **background-color: $darker-gray (#313131)** ####
-        
+      * #### **background-color: $background-gray (#313131)** ####
+
       * #### **font-size: $heading-size (1.5rem)** ####
 
       * #### **color: $main-background (white)** ####
@@ -206,100 +213,98 @@ ____
 
       * #### **border: 0.5px solid $text-color (black)** ####
 
-  ____
-  ____
+---
+
+---
 
 ![Main](../../images/Form-Input-Focus-Style.png)
 
-___
-___
+---
 
-#### **input[type=text]:focus** ####
+---
 
-  * #### **@include form-input-focus-dm()** ####
+#### **input[type=text]:focus**
 
-    * #### **border: 1px solid $secondary-color (#FFBF00)** ####
+- #### **@include form-input-focus-dm()**
 
-    * #### **outline: 0;** ####
+  - #### **border: 1px solid \$secondary-color (#FFBF00)**
 
-    * #### **box-shadow: 0px 0px 2px 2px $primary-color (#FF1010)** ####
+  - #### **outline: 0;**
 
-___
-___
+  - #### **box-shadow: 0px 0px 2px 2px \$primary-color (#FF1010)**
+
+---
+
+---
 
 ![Main](../../images/Button-Style.png)
 
-____
-____
+---
+
+---
 
 ### Button Style For Dark Mode
 
-#### **button** ####
+#### **button**
 
-* #### **@include button-dm()** ####
+- #### **@include button-dm()**
 
-  * #### **width: 80%** ####
+  - #### **width: 80%**
 
-  * #### **background-color: $text-color** ####
+  - #### **background-color: \$text-color**
 
-  * #### **font-size: $heading-size (1.5rem)** ####
+  - #### **font-size: \$heading-size (1.5rem)**
 
-  * #### **color: $main-background (white)** ####
+  - #### **color: \$main-background (white)**
 
+* #### **margin-top: 10px**
 
-  * #### **margin-top: 10px** ####
+* #### **margin-bottom: 10px**
 
-  * #### **margin-bottom: 10px** ####
+- #### **border: 0.5px solid \$text-color (black)**
 
+- #### **font-family: Verdana, Tahoma, <br/>sans-serif**
 
-  * #### **border: 0.5px solid $text-color (black)** ####
+- #### **-webkit-clip-path: polygon(95% 0%, 100% 50%, 95% 100%, 5% 100%, 0 50%, 5% 0)**
 
-  * #### **font-family: Verdana, Tahoma, <br/>sans-serif** ####
+- #### **clip-path: polygon(95% 0%, 100% 50%, 95% 100%, 5% 100%, 0 50%, 5% 0)**
 
-  * #### **-webkit-clip-path: polygon(95% 0%, 100% 50%, 95% 100%, 5% 100%, 0 50%, 5% 0)** ####
+---
 
-  * #### **clip-path: polygon(95% 0%, 100% 50%, 95% 100%, 5% 100%, 0 50%, 5% 0)** ####
-
-____
-____
+---
 
 ![Main](../../images/Hovered-Button-Style.png)
 
-____
-____
+---
 
-#### **.submit:hover** ####
+---
 
+#### **.submit:hover**
 
-* #### **@include hovered-button-dm()**
+- #### **@include hovered-button-dm()**
 
-  * #### **background-color: $third-color** ####
+  - #### **background-color: \$third-color**
 
+---
 
-____
-____
+---
 
 ![Main](../../images/Label-Style.png)
 
-___
-___
+---
 
+---
 
 ### Text Style For Dark Mode
 
-#### **p** ####
+#### **p**
 
+- #### **@include paragraph-dm()**
 
-* #### **@include paragraph-dm()** ####
-
-    *  #### **font-size: $paragraph-size (1.25rem)** ####
-    *  #### **color: $main-background (white)** ####
-    *  #### **font-family: Tahoma, Verdana, <br/> sans-serif** ####
-    *  #### **font-weight: bold** ####
-    *  #### **letter-spacing: 0.1rem** ####
-    *  #### **margin: 10px 5% 10px 5%** ####
-    * #### **align-self: flex-start**
-
-
-
-
+  - #### **font-size: \$paragraph-size (1.25rem)**
+  - #### **color: \$main-background (white)**
+  - #### **font-family: Tahoma, Verdana, <br/> sans-serif**
+  - #### **font-weight: bold**
+  - #### **letter-spacing: 0.1rem**
+  - #### **margin: 10px 5% 10px 5%**
+  - #### **align-self: flex-start**

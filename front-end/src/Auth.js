@@ -1,9 +1,9 @@
-import auth0 from "auth0-js";
+import auth0 from 'auth0-js';
 
 // change variable on redirectUri accordingly, LOCAL if you are working off localhost:3000, and DEPLOYED if you are ready to make a pull request!
-const DEPLOYED = "https://workout-tracker-pt2.netlify.com";
-const LOCAL = "http://localhost:3000";
-const TESTING = "https://testing-testing.netlify.com";
+const DEPLOYED = 'https://workout-tracker-pt2.netlify.com';
+const LOCAL = 'http://localhost:3000';
+const TESTING = 'https://testing-testing.netlify.com';
 
 class Auth {
   accessToken;
@@ -12,12 +12,12 @@ class Auth {
 
   constructor() {
     this.auth0 = new auth0.WebAuth({
-      domain: "workout-tracker-pt2.auth0.com",
-      clientID: "hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO",
+      domain: 'workout-tracker-pt2.auth0.com',
+      clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO',
       redirectUri: `${DEPLOYED}/callback`,
-      audience: "https://workout-tracker-pt2.herokuapp.com/",
-      responseType: "token id_token",
-      scope: "openid profile"
+      audience: 'https://workout-tracker-pt2.herokuapp.com/',
+      responseType: 'token id_token',
+      scope: 'openid profile'
     });
 
     this.getProfile = this.getProfile.bind(this);
@@ -60,7 +60,7 @@ class Auth {
   }
 
   setSession(authResult) {
-    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem('isLoggedIn', 'true');
     let expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
@@ -89,13 +89,13 @@ class Auth {
     this.profile = null;
     this.expiresAt = 0;
 
-    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem('isLoggedIn');
 
     //Make sure to change LOCAL to DEPLOYED before merging to MASTER!
 
     this.auth0.logout({
       returnTo: `${DEPLOYED}`,
-      clientID: "hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO"
+      clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO'
     });
   }
 
