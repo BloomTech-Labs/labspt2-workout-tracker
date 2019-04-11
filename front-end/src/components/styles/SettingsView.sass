@@ -1,18 +1,13 @@
+
 @import 'variables.sass'
 @import 'mixins.sass'
 
+.main
+    @include main-dm(colun) 
+    justify-content: flex-start
 
+@media (max-width: 1024px)
+    justify-content: center
 
-.Main 
-  margin: 150px auto
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-
-input
-  font-size: 1.2rem
-  width: 300px
-  height: 30px
-  
-
+@media (max-width: 750px)
+    justify-content: center
