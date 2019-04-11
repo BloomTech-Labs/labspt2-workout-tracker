@@ -5,12 +5,9 @@
 
 
 .main
-    display: flex
-    flex-direction: row
-    padding: 2.5%
-    justify-content: center
-    width: 100%
-@media (max-width: 750px)
+    @include main-dm(row)
+    
+@media (max-width: 1024px)
     .main
         flex-direction: column
 
