@@ -10,7 +10,7 @@ import './styles/Calendar.scss'
 class ScheduleView extends Component {
   render() {
     return (
-      <div className='main'>
+      <div className='main schedule-view'>
         {/* <button onClick={this.props.auth.logout}>Logout</button> */}
         <Calendar />
         <CalendarEvents />

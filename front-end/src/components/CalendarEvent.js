@@ -13,7 +13,7 @@ class CalendarEvent extends Component {
             <input type="text"></input>
             <label>Password</label>
             <input type="text"></input>
-        </form>
+          </form>
 
         <button className='submit'>Submit</button>
         
