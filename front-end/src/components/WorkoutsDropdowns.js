@@ -16,7 +16,7 @@ export default class WorkoutsDropdowns extends Component {
       return exercises.categoryName === category;
     });
     const filteredExerciseNames = filteredExercises.map(exerciseType => (
-      <p className="drop-downs">{exerciseType.exerciseName}</p>
+      <p className="drop-down">{exerciseType.exerciseName}</p>
     ));
     return filteredExerciseNames;
   };
