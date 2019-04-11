@@ -15,16 +15,34 @@ class ProgressView extends Component {
         <div className="formBox">
           <form className="progressForm">
             <h5>{Date}</h5>
-            <input type="text" name="weight" placeholder="Weight" /><br />
+
+            <input className="inputTop" type="text" name="weight" placeholder="Weight" />
             <input type="text" name="hips" placeholder="Hips" />
-            <input type="text" name="waist" placeholder="Waist" /><br />
+            <input className="inputMiddle" type="text" name="waist" placeholder="Waist" />
             <input type="text" name="rArm" placeholder="(R) Arm" />
-            <input type="text" name="lArm" placeholder="(L) Arm" /><br />
+            <input className="inputLower" type="text" name="lArm" placeholder="(L) Arm" />
             <input type="text" name="rLeg" placeholder="(R) Leg" />
-            <input type="text" name="lLeg" placeholder="(L) Leg" /><br />
+            <input className="inputBottom" type="text" name="lLeg" placeholder="(L) Leg" />
             <button type="text">Submit Progress</button>
           </form>
+          <div className="rightSide">
+            <div>
+              <h3>{/*XX pounds or inches*/}</h3>
+              <h3>Weight lost since:</h3>
+              <h3>{/*date*/}</h3>
+            </div>
+            <div>
+              <h3>{/*XX pounds or inches*/}</h3>
+              <h3>Inches lost since:</h3>
+              <h3>{/*date*/}</h3>
+              
+            </div>
+
+          </div>
         </div>
+        
+
+
         {/* {this.props.fetchingUsers ? (
           <h3>Loading...</h3>
         ) : (
