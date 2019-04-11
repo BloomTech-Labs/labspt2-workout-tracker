@@ -5,7 +5,7 @@ import WorkoutsDropdowns from '../components/WorkoutsDropdowns';
 import '../components/styles/WorkoutsView.sass';
 
 const WorkoutsView = () => (
-  <div className="workouts-view">
+  <div className="main workouts-view">
     <WorkoutsForm />
     <WorkoutsDropdowns />
   </div>

@@ -1,15 +1,13 @@
-
 @import 'variables.sass';
 
 #calendar {
   width: 80%;
-  margin: 5% 2.5%
+  margin: 5% 2.5%;
 }
 div {
   margin: 0;
   width: 100%;
 }
-
 
 .fc {
   direction: ltr;
@@ -73,7 +71,6 @@ body .fc {
   /* non-theme */
   border: 1px solid;
   font-size: 0.5rem;
-
 }
 
 .fc-state-default.fc-corner-left {
@@ -108,7 +105,6 @@ body .fc {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   color: $secondary-color;
   font-size: 0.5rem;
-
 
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
@@ -150,7 +146,6 @@ body .fc {
 .fc-button-group {
   display: flex;
   font-size: 0.5rem;
-
 }
 
 /*
@@ -177,7 +172,6 @@ previous button's border...
 
 .fc-popover .fc-header {
   /* TODO: be more consistent with fc-head/fc-body */
-  
 }
 
 .fc-popover .fc-header .fc-title {
@@ -301,7 +295,6 @@ a[data-goto]:hover {
   /* no bottom borders on rows */
   border-bottom: 0 hidden transparent;
   border: 1px solid white;
-
 }
 
 .fc-row:first-child table {
@@ -421,7 +414,7 @@ temporary rendered events).
 .fc-event,
 .fc-event:hover {
   color: #fff;
-  
+
   /* default TEXT color */
   text-decoration: none;
   /* if <a> has an href */
@@ -430,7 +423,7 @@ temporary rendered events).
 .fc-event[href],
 .fc-event.fc-draggable {
   cursor: pointer;
-  
+
   /* give events with links and draggable events a hand mouse pointer */
 }
 
@@ -451,14 +444,12 @@ temporary rendered events).
   position: relative;
   z-index: 2;
   color: black;
-  
 }
 
 /* resizer (cursor AND touch devices) */
 .fc-event .fc-resizer {
   position: absolute;
   z-index: 4;
-  
 }
 
 /* resizer (touch devices) */
@@ -470,7 +461,6 @@ temporary rendered events).
 .fc-event.fc-selected .fc-resizer {
   /* only show when hovering or selected (with touch) */
   display: block;
-  
 }
 
 /* hit area */
@@ -492,7 +482,7 @@ temporary rendered events).
 --------------------------------------------------------------------------------------------------*/
 .fc-event.fc-selected {
   z-index: 9999 !important;
-  
+
   /* overcomes inline z-index */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -536,7 +526,6 @@ temporary rendered events).
   /* replace the border with padding */
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  
 }
 
 /* resizer (cursor AND touch devices) */
@@ -545,7 +534,7 @@ temporary rendered events).
 .fc-rtl .fc-h-event .fc-end-resizer {
   cursor: w-resize;
   left: -1px;
-  
+
   /* overcome border */
 }
 
@@ -563,7 +552,7 @@ temporary rendered events).
   top: -1px;
   /* overcome top border */
   bottom: -1px;
-  
+
   /* overcome bottom border */
 }
 
@@ -663,7 +652,6 @@ a.fc-more {
 }
 
 a.fc-more:hover {
-
   text-decoration: underline;
 }
 
@@ -732,12 +720,10 @@ TODO: more distinction between this file and common.css
   font-size: 1.25rem;
 }
 
-
-
 .fc-unthemed .fc-divider,
 .fc-unthemed .fc-popover .fc-header,
 .fc-unthemed .fc-list-heading td {
-  background: $darker-gray;
+  background: $background-gray;
   width: 60%;
 }
 
@@ -846,7 +832,6 @@ NOTE: use percentage font sizes or else old IE chokes
   font-size: 1.5rem;
   margin-top: 5px;
   margin-left: 5px;
-
 }
 
 /* List View
@@ -891,7 +876,7 @@ NOTE: use percentage font sizes or else old IE chokes
 --------------------------------------------------------------------------------------------------*/
 .fc-time-grid .fc-slats .ui-widget-content {
   background: none;
-  
+
   /* see through to fc-bg */
 }
 
@@ -970,17 +955,14 @@ NOTE: use percentage font sizes or else old IE chokes
   text-align: center;
   margin-top: 50px;
   width: 100%;
-
 }
 
 .fc-toolbar.fc-header-toolbar {
   margin-bottom: 1em;
-
 }
 
 .fc-toolbar.fc-footer-toolbar {
   margin-top: 1em;
-  
 }
 
 .fc-toolbar .fc-left {
@@ -991,7 +973,6 @@ NOTE: use percentage font sizes or else old IE chokes
   grid-row: 1;
   width: 100%;
   margin-bottom: 1em;
-
 }
 
 .fc-toolbar .fc-right {
@@ -1000,8 +981,6 @@ NOTE: use percentage font sizes or else old IE chokes
   margin-bottom: 1em;
   grid-row: 1;
   grid-column: 3;
-
-
 }
 
 .fc-toolbar .fc-center {
@@ -1010,9 +989,7 @@ NOTE: use percentage font sizes or else old IE chokes
   grid-column-end: 3;
 
   grid-row: 1;
-
 }
-
 
 /* the things within each left/right/center section */
 .fc .fc-toolbar > * > * {
@@ -1038,7 +1015,6 @@ NOTE: use percentage font sizes or else old IE chokes
 .fc-toolbar button {
   position: relative;
   font-size: 1rem;
-
 }
 
 .fc-toolbar .fc-state-hover,
@@ -1085,7 +1061,7 @@ NOTE: use percentage font sizes or else old IE chokes
 .fc-basicDay-view .fc-content-skeleton {
   /* there may be week numbers in these views, so no padding-top */
   padding-bottom: 1em;
-  
+
   /* ensure a space at bottom of cell for user selecting/clicking */
 }
 
@@ -1202,8 +1178,7 @@ NOTE: use percentage font sizes or else old IE chokes
 
 .fc-rtl .fc-axis {
   text-align: left;
-  width:100px;
-
+  width: 100px;
 }
 
 /* TimeGrid Structure
@@ -1247,7 +1222,6 @@ NOTE: use percentage font sizes or else old IE chokes
   top: 0;
   left: 0;
   right: 0;
-  
 }
 
 /* divs within a cell within the fc-content-skeleton */
@@ -1279,7 +1253,6 @@ NOTE: use percentage font sizes or else old IE chokes
   /* also is fc-event-container */
   position: relative;
   z-index: 6;
-  
 }
 
 /* TimeGrid Slats (lines that run horizontally)
@@ -1290,7 +1263,7 @@ NOTE: use percentage font sizes or else old IE chokes
   font-size: 1.5rem;
   font-weight: bold;
   color: $secondary-color;
-  
+
   /* each cell is responsible for its top border */
 }
 
@@ -1529,7 +1502,7 @@ be a descendant of the grid when it is being dragged.
 
 .fc-list-table td {
   border-width: 1px 0 0;
-  
+
   padding: 8px 14px;
 }
 
@@ -1557,7 +1530,6 @@ be a descendant of the grid when it is being dragged.
 }
 
 .fc-rtl .fc-list-heading-main {
-  
   float: right;
 }
 
@@ -1591,13 +1563,11 @@ be a descendant of the grid when it is being dragged.
   /* every event title cell has an <a> tag */
   text-decoration: none;
   font-size: 0.5rem;
-
 }
 
 .fc-list-item-title a[href]:hover {
   /* hover effect only on titles with hrefs */
   text-decoration: underline;
-  
 }
 
 /* message when no events */
@@ -1621,17 +1591,13 @@ be a descendant of the grid when it is being dragged.
   text-align: center;
   background-color: $dark-gray;
   color: $secondary-color;
-
 }
-
-
 
 span.fc-time {
   margin-left: 1%;
   display: inline-block;
   width: 75px;
   font-size: 1rem;
-
 }
 
 span.fc-title {
@@ -1639,7 +1605,6 @@ span.fc-title {
   width: 100%;
   font-size: 1rem;
   margin-right: 5px;
-
 }
 
 div.fc-content {
@@ -1652,24 +1617,21 @@ tr {
 }
 
 span {
-  padding: 0; 
+  padding: 0;
 }
 
 td.fc-widget-content {
-  color:$secondary-color;
-  padding: 0; 
-
+  color: $secondary-color;
+  padding: 0;
 }
 
 td.fc-widget-content:hover {
   // color: $third-color;
-  // padding: 0; 
-
+  // padding: 0;
 }
 
-
 .fc-unthemed .fc-popover {
-  background-color: $darker-gray;
+  background-color: $background-gray;
   border: 2px solid $third-color;
   width: 25%;
 }
@@ -1678,6 +1640,6 @@ td.fc-widget-content:hover {
   #calendar {
     margin: 0;
     width: 125%;
-    transform: scale(0.75)
+    transform: scale(0.75);
   }
 }
