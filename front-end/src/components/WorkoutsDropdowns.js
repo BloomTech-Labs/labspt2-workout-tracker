@@ -28,12 +28,21 @@ class WorkoutsDropdowns extends Component {
   };
 
   render() {
+    const { data } = this.props;
+
     return (
       <div className="workouts-dropdowns">
         {['Arms', 'Legs', 'Cardio', 'Abs'].map(type => {
           return (
             <Collapsible trigger={type}>
               {this.renderExerciseNames(type)}
+            </Collapsible>
+          );
+        })}
+        {data.map(data => {
+          return (
+            <Collapsible trigger={data.category || data.categoryName}>
+              <p className="drop-down">{data.exercise}</p>
             </Collapsible>
           );
         })}

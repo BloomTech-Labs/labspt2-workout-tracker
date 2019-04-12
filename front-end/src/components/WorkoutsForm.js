@@ -13,16 +13,6 @@ class WorkoutsForm extends Component {
     selectedCategoryID: ''
   };
 
-  /*  componentDidMount() {
-    this.props.getData();
-  } */
-
-  /* componentDidUpdate(prevProps) {
-    if (prevProps.data.length !== this.props.data.length) {
-      this.props.getData();
-    }
-  } */
-
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -47,7 +37,6 @@ class WorkoutsForm extends Component {
 
   render() {
     const { data } = this.props;
-    console.log('data:', data);
 
     return (
       <div className="form-container workouts-form">
