@@ -23,3 +23,39 @@ export const getData = () => {
       });
   };
 };
+
+export const postCategory = categoryName => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.post(`${DEPLOYED}/api/categories`, categoryName, {
+    headers
+  });
+  return dispatch => {
+    dispatch({ type: FETCHING });
+    promise
+      .then(response => {
+        dispatch({ type: FETCHED, payload: response.data });
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_ERROR, payload: err });
+      });
+  };
+};
+
+export const postExercise = exerciseBody => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.post(`${DEPLOYED}/api/exercises`, exerciseBody, {
+    headers
+  });
+  return dispatch => {
+    dispatch({ type: FETCHING });
+    promise
+      .then(response => {
+        dispatch({ type: FETCHED, payload: response.data });
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_ERROR, payload: err });
+      });
+  };
+};

@@ -164,6 +164,37 @@ server.post("/api/users", checkJwt, (req, res) => {
     });
 });
 
+// ENDPOINT TO GET CATEGORIES
+
+server.get("/api/categories", checkJwt, (req, res) => {
+  db("users")
+    .select("id")
+    .where("user_id", req.user.sub)
+    .first()
+    .then(id => {
+      console.log(id);
+      db("categories as c")
+        .join("users as u", "u.id", "c.userId")
+        .select("c.id", "c.categoryName")
+        .whereIn("c.userId", [1, id.id])
+        .pluck("c.id")
+        .then(categories => {
+          checkForResource(req, res, categories);
+        })
+        .catch(err => {
+          console.log("error", err);
+          res.status(500).json({
+            error: "The categories information could not be retrieved."
+          });
+        });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: "The specified user info could not be retrieved" });
+    });
+});
+
 //ENDPOINT TO POST A NEW CATEGORY
 
 server.post("/api/categories", checkJwt, (req, res) => {
