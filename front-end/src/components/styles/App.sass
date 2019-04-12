@@ -15,17 +15,80 @@
   background-color: $background-gray
   margin: 0 auto
 
+.form-container
+    @include form-container-dm()
 
-h1 
-  // @include button(1.5rem, black,$light-gray, 30px )
-  // @include button(1.5rem, $primary-color,white, 30px )
-  // @include button(1.5rem, white, $primary-color, 30px)
-
-p 
-  font-family: Tahoma, Verdana, sans-serif
-  font-size: $paragraph-size
-
+.main
+    @include main-dm(row)
+    
+h1
+    @include heading-dm()
 
 
+p
+    @include paragraph-dm()
+
+label
+    @include label-dm()
 
 
+
+form
+    width: 100%
+
+input[type=text]
+    @include form-input-dm()
+
+input[type=text]:focus
+    @include form-input-focus-dm()
+
+
+
+.submit
+    @include button-dm()
+
+
+
+
+.submit:hover
+    @include hovered-button-dm()
+
+.component-container
+    @include component-container-dm()
+
+
+
+
+@media (max-width: 1024px)
+
+  .main
+    flex-direction: column
+
+  .component-container
+    width: 80%
+
+  input[type=text]
+    width: 100%
+    font-size: 2rem
+    
+  label
+    font-size: 2rem
+
+
+@media (max-width: 750px)
+
+  .main
+    flex-direction: column
+
+  .component-container
+    width: 100%
+
+  input[type=text]
+    width: 100%
+    font-size: 3rem
+    
+  label
+    font-size: 3rem
+
+    .form-container
+    align-self: center
