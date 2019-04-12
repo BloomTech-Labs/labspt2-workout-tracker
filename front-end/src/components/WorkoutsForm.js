@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
+import { getData } from '../actions/actions';
+import { connect } from 'react-redux';
 
-export default class WorkoutsForm extends Component {
+class WorkoutsForm extends Component {
   state = {
     title: '',
     name: '',
     weight: '',
     sets: '',
-    reps: ''
+    reps: '',
+    category: '',
+    data: this.props.data
   };
+
+  componentDidMount() {
+    this.props.getData();
+  }
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -15,30 +23,37 @@ export default class WorkoutsForm extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    const newWorkout = {
+    const newExercise = {
       title: this.state.title,
       name: this.state.name,
       weight: this.state.weight,
       sets: this.state.sets,
       reps: this.state.reps
     };
-    //this.props.postWorkout(newWorkout) <-- Functionally will be added soon
+    const newCategory = {
+      category: this.state.category
+    };
+    this.props.postCategory(newCategory);
   };
 
   render() {
+    const { data } = this.props;
+    const filteredData = data.map(data => {
+      return data['category'];
+    });
+
     return (
       <div className="form-container workouts-form">
         <form onSubmit={this.submitHandler}>
           <label>Workout Creator:</label>
-          <input type="text" name="title" placeholder="Title" />
+          <input type="text" name="title" placeholder="Workout Title" />
           <select>
-            <option value="category">Arms</option>
-            <option value="category">Legs</option>
-            <option value="category">Cardio</option>
-            <option value="category">Abs</option>
+            {filteredData.map(category => {
+              return <option value="category">{category}</option>;
+            })}
           </select>
           <input type="text" name="category" placeholder="Add Category" />
-          <input type="text" name="name" placeholder="Workout Name" />
+          <input type="text" name="name" placeholder="Exercise Name" />
           <input type="text" name="weight" placeholder="Weight" />
           <input type="text" name="sets" placeholder="Sets" />
           <input type="text" name="reps" placeholder="Reps" />
@@ -48,3 +63,16 @@ export default class WorkoutsForm extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    data: state.data,
+    error: state.error,
+    fetchingUsers: state.fetching
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getData }
+)(WorkoutsForm);

@@ -6,8 +6,7 @@ import Collapsible from 'react-collapsible';
 
 class WorkoutsDropdowns extends Component {
   state = {
-    exercises: exerciseDefaults,
-    data: this.props.data
+    exercises: exerciseDefaults
   };
 
   componentDidMount() {
