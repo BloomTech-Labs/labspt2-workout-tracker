@@ -1,11 +1,11 @@
-import auth from "../Auth";
-import { FETCHED, FETCHING, FETCHING_ERROR } from "../actions/actions";
+import auth from '../Auth';
+import { FETCHED, FETCHING, FETCHING_ERROR } from '../actions/actions';
 
 const initialState = {
   auth,
-  users: [],
+  data: [],
   fetching: false,
-  error: ""
+  error: ''
 };
 
 export default (state = initialState, action) => {
@@ -14,13 +14,13 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, { fetching: true });
     case FETCHED:
       return Object.assign({}, state, {
-        users: [...action.payload],
+        data: [...action.payload],
         fetching: false
       });
     case FETCHING_ERROR:
       return Object.assign({}, state, {
         fetching: false,
-        error: "Error fetching user info"
+        error: 'Error fetching user info'
       });
     default:
       return state;
