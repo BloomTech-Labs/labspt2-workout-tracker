@@ -4,9 +4,8 @@ import React from 'react';
 function Card(props) {
   return (
     <div className="main card">
-      <div>{props.exercise.exerciseName}</div>
-      <div>{props.exercise.difficultyLevel}</div>
-      <div>{props.exercise.categoryName}</div>
+      <div>{props.details.title}</div>
+      <div>{props.details.details}</div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import logo from '../images/workout-logo.svg';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Coverflow from 'react-coverflow';
-import { exerciseDefaults } from '../defaults/index';
+import { appDetails } from '../defaults/index';
 import Card from './CarouselCard';
 
 class LandingPage extends Component {
@@ -33,8 +33,8 @@ class LandingPage extends Component {
             }
           }}
         >
-          {exerciseDefaults.slice(0, 6).map(i => {
-            return <Card exercise={i} key={i} />;
+          {appDetails.map(i => {
+            return <Card details={i} key={i} />;
           })}
         </Coverflow>
       </div>
