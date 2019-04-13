@@ -10,11 +10,20 @@ class WorkoutsForm extends Component {
     sets: '',
     reps: '',
     category: '',
-    selectedCategoryID: ''
+    selectedCategoryID: '',
+    grabbedCategory: null
   };
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  selectChange = e => {
+    document.getElementById('myText').value = e.target.value;
+  };
+
+  onClick = (grabbedCategory, e) => {
+    this.setState({ grabbedCategory: e.target.value });
   };
 
   submitHandler = e => {
@@ -37,27 +46,23 @@ class WorkoutsForm extends Component {
 
   render() {
     const { data } = this.props;
+    const { grabbedCategory } = this.state;
 
     return (
       <div className="form-container workouts-form">
         <form onSubmit={this.submitHandler}>
           <label>Workout Creator:</label>
           <input type="text" name="title" placeholder="Workout Title" />
-          <select>
-            {data.map(category => {
+          <select name="" onChange={this.selectChange}>
+            {data.map(data => {
               return (
-                <option value="category">
-                  {category.category || category.categoryName}
+                <option value={grabbedCategory} onClick={this.onClick}>
+                  {data.category || data.categoryName}
                 </option>
               );
             })}
           </select>
-          <input
-            type="text"
-            name="category"
-            onChange={this.changeHandler}
-            placeholder="Add Category"
-          />
+          <input id="myText" type="text" placeholder="Add Category" />
           <input type="text" name="name" placeholder="Exercise Name" />
           <input type="text" name="weight" placeholder="Weight" />
           <input type="text" name="sets" placeholder="Sets" />

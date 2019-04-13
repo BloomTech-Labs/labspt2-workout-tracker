@@ -21,10 +21,10 @@ class WorkoutsDropdowns extends Component {
     const filteredExercises = exercises.filter(exercises => {
       return exercises.categoryName === category;
     });
-    const filteredExerciseNames = filteredExercises.map(exerciseType => (
+    const mappedExerciseNames = filteredExercises.map(exerciseType => (
       <p className="drop-down">{exerciseType.exerciseName}</p>
     ));
-    return filteredExerciseNames;
+    return mappedExerciseNames;
   };
 
   render() {
