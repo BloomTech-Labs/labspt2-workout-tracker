@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { exerciseDefaults } from '../defaults/index';
+import { getData } from '../actions/actions';
+import { connect } from 'react-redux';
 import Collapsible from 'react-collapsible';
 
-export default class WorkoutsDropdowns extends Component {
+class WorkoutsDropdowns extends Component {
   state = {
     exercises: exerciseDefaults
   };
+
+  componentDidMount() {
+    this.props.getData();
+  }
 
   // takes in a categoryName as a callback
   // if you want to know what categoryNames we have available
@@ -15,13 +21,15 @@ export default class WorkoutsDropdowns extends Component {
     const filteredExercises = exercises.filter(exercises => {
       return exercises.categoryName === category;
     });
-    const filteredExerciseNames = filteredExercises.map(exerciseType => (
+    const mappedExerciseNames = filteredExercises.map(exerciseType => (
       <p className="drop-down">{exerciseType.exerciseName}</p>
     ));
-    return filteredExerciseNames;
+    return mappedExerciseNames;
   };
 
   render() {
+    const { data } = this.props;
+
     return (
       <div className="workouts-dropdowns">
         {['Arms', 'Legs', 'Cardio', 'Abs'].map(type => {
@@ -31,7 +39,27 @@ export default class WorkoutsDropdowns extends Component {
             </Collapsible>
           );
         })}
+        {data.map(data => {
+          return (
+            <Collapsible trigger={data.category || data.categoryName}>
+              <p className="drop-down">{data.exercise}</p>
+            </Collapsible>
+          );
+        })}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    data: state.data,
+    error: state.error,
+    fetchingUsers: state.fetching
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getData }
+)(WorkoutsDropdowns);

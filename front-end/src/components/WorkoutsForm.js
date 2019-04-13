@@ -1,44 +1,69 @@
 import React, { Component } from 'react';
+import { getData, postCategory, postExercise } from '../actions/actions';
+import { connect } from 'react-redux';
 
-export default class WorkoutsForm extends Component {
+class WorkoutsForm extends Component {
   state = {
     title: '',
     name: '',
     weight: '',
     sets: '',
-    reps: ''
+    reps: '',
+    category: '',
+    selectedCategoryID: '',
+    grabbedCategory: null
   };
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  selectChange = e => {
+    document.getElementById('myText').value = e.target.value;
+  };
+
+  onClick = (grabbedCategory, e) => {
+    this.setState({ grabbedCategory: e.target.value });
+  };
+
   submitHandler = e => {
     e.preventDefault();
-    const newWorkout = {
+    const newExercise = {
+      selectedCategoryID: this.state.selectedCategoryID,
       title: this.state.title,
       name: this.state.name,
       weight: this.state.weight,
       sets: this.state.sets,
       reps: this.state.reps
     };
-    //this.props.postWorkout(newWorkout) <-- Functionally will be added soon
+    const newCategory = {
+      categoryName: this.state.category
+    };
+    this.props.postCategory(newCategory);
+    const createdCategory = this.props.data[this.props.data.length - 1];
+    this.props.postExercise(newExercise.selectedCategoryID || createdCategory);
   };
 
   render() {
+    const { data } = this.props;
+    const { grabbedCategory } = this.state;
+
     return (
       <div className="form-container workouts-form">
         <form onSubmit={this.submitHandler}>
           <label>Workout Creator:</label>
-          <input type="text" name="title" placeholder="Title" />
-          <select>
-            <option value="category">Arms</option>
-            <option value="category">Legs</option>
-            <option value="category">Cardio</option>
-            <option value="category">Abs</option>
+          <input type="text" name="title" placeholder="Workout Title" />
+          <select name="" onChange={this.selectChange}>
+            {data.map(data => {
+              return (
+                <option value={grabbedCategory} onClick={this.onClick}>
+                  {data.category || data.categoryName}
+                </option>
+              );
+            })}
           </select>
-          <input type="text" name="category" placeholder="Add Category" />
-          <input type="text" name="name" placeholder="Workout Name" />
+          <input id="myText" type="text" placeholder="Add Category" />
+          <input type="text" name="name" placeholder="Exercise Name" />
           <input type="text" name="weight" placeholder="Weight" />
           <input type="text" name="sets" placeholder="Sets" />
           <input type="text" name="reps" placeholder="Reps" />
@@ -48,3 +73,17 @@ export default class WorkoutsForm extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  console.log('state:', state);
+  return {
+    data: state.data,
+    error: state.error,
+    fetchingUsers: state.fetching
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getData, postCategory, postExercise }
+)(WorkoutsForm);
