@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { getUsers } from "../actions/actions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getData } from '../actions/actions';
 import './styles/ProgressView.sass';
 
 class ProgressView extends Component {
   componentDidMount() {
-    this.props.getUsers();
+    this.props.getData();
   }
 
   render() {
@@ -16,13 +16,33 @@ class ProgressView extends Component {
           <form className="progressForm">
             <h5>{Date}</h5>
 
-            <input className="inputTop" type="text" name="weight" placeholder="Weight" />
+            <input
+              className="inputTop"
+              type="text"
+              name="weight"
+              placeholder="Weight"
+            />
             <input type="text" name="hips" placeholder="Hips" />
-            <input className="inputMiddle" type="text" name="waist" placeholder="Waist" />
+            <input
+              className="inputMiddle"
+              type="text"
+              name="waist"
+              placeholder="Waist"
+            />
             <input type="text" name="rArm" placeholder="(R) Arm" />
-            <input className="inputLower" type="text" name="lArm" placeholder="(L) Arm" />
+            <input
+              className="inputLower"
+              type="text"
+              name="lArm"
+              placeholder="(L) Arm"
+            />
             <input type="text" name="rLeg" placeholder="(R) Leg" />
-            <input className="inputBottom" type="text" name="lLeg" placeholder="(L) Leg" />
+            <input
+              className="inputBottom"
+              type="text"
+              name="lLeg"
+              placeholder="(L) Leg"
+            />
             <button type="text">Submit Progress</button>
           </form>
           <div className="rightSide">
@@ -35,13 +55,9 @@ class ProgressView extends Component {
               <h3>{/*XX pounds or inches*/}</h3>
               <h3>Inches lost since:</h3>
               <h3>{/*date*/}</h3>
-              
             </div>
-
           </div>
         </div>
-        
-
 
         {/* {this.props.fetchingUsers ? (
           <h3>Loading...</h3>
@@ -59,7 +75,7 @@ class ProgressView extends Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.users,
+    data: state.data,
     error: state.error,
     fetchingUsers: state.fetching
   };
@@ -67,5 +83,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUsers }
+  { getData }
 )(ProgressView);

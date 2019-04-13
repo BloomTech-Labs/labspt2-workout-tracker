@@ -4,7 +4,7 @@ import logo from '../images/workout-logo.svg';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Coverflow from 'react-coverflow';
-import { exerciseDefaults } from '../defaults/index';
+import { appDetails } from '../defaults/index';
 import Card from './CarouselCard';
 
 class LandingPage extends Component {
@@ -18,15 +18,23 @@ class LandingPage extends Component {
           </button>
         </div>
         <Coverflow
-          width={750}
-          height={480}
           displayQuantityOfSide={2}
           navigation={false}
           enableHeading={false}
           infiniteScroll={true}
+          media={{
+            '@media (max-width: 900px)': {
+              width: '600px',
+              height: '300px'
+            },
+            '@media (min-width: 900px)': {
+              width: '1024px',
+              height: '600px'
+            }
+          }}
         >
-          {exerciseDefaults.slice(0, 6).map(i => {
-            return <Card exercise={i} key={i} />;
+          {appDetails.map(i => {
+            return <Card details={i} key={i} />;
           })}
         </Coverflow>
       </div>
