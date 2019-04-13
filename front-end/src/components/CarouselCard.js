@@ -3,11 +3,9 @@ import React from 'react';
 
 function Card(props) {
   return (
-    <div alt="exercise" to="/workouts" >
-      <div>{props.exercise.exerciseName}</div>
-      <img src={props.exercise.img} />
-      <div>{props.exercise.difficultyLevel}</div>
-      <div>{props.exercise.categoryName}</div>
+    <div className="main card">
+      <div>{props.details.title}</div>
+      <div>{props.details.details}</div>
     </div>
   );
 }

@@ -6,6 +6,35 @@ export const categoryDefaults = [
   { categoryName: 'Rest' }
 ];
 
+export const appDetails = [
+  {
+    title: 'Schedule Workouts!',
+    details:
+      'Schedule a workout to be completed in the future on the Calendar page!'
+  },
+  {
+    title: 'Go Premium!',
+    details: 'Pay us and your muscles will grow at least twice as fast!'
+  },
+  {
+    title: 'Create your own workouts and routines!',
+    details: 'Get creative with your workouts!'
+  },
+  {
+    title: 'Check your progress!',
+    details: 'Keep track of your progress on the Progress page.'
+  },
+  {
+    title: 'Settings!',
+    details: "Change your email! That's helpful, right?"
+  },
+  {
+    title: 'Not happy with this product?',
+    details:
+      'Contact Emmanuel on github at https://github.com/Emmanium to air your grievences!'
+  }
+];
+
 export const exerciseDefaults = [
   {
     categoryName: 'Arms',
