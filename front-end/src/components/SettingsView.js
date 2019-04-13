@@ -6,7 +6,6 @@ import SettingsViewForm from './SettingsViewForm.js';
 //import logo from '../images/workout-logo.svg';
 class SettingsView extends Component {
   render() {
-   let lol = document.getElementById('cool')
 
     return (
       <div className='main'>
@@ -16,8 +15,17 @@ class SettingsView extends Component {
   }
 }
 
-//const mapStateToProps = () => ({});
+const mapStateToProps = state => {
+  return {
+    users: state.users,
+    error: state.error,
+    fetchingUsers: state.fetching
+  };
+};
 
-// export default connect(mapStateToProps)(SettingsView);
+// export default connect(
+//   mapStateToProps,
+//   { getUsers }
+// )(SettingsView);
 
 export default SettingsView;
