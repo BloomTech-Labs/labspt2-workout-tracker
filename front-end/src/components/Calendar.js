@@ -20,8 +20,8 @@ class Calendar extends React.Component {
         // put the array in the `events` property
         {
           title: "Arms",
-          start: "2019-04-12T13:30:00",
-          end: "2019-04-12T14:30:00",
+          start: "2019-04-12T24:30:00",
+          end: "2019-04-12T01:30:00",
           allDay: false
         },
         {
@@ -49,7 +49,7 @@ class Calendar extends React.Component {
       },
 
       aspectRatio: 1.75,
-      height: 1100,
+      height: 1000,
 
       editable: true,
       droppable: true // this allows things to be dropped onto the calendar

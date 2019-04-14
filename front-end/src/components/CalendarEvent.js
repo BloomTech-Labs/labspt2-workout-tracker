@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
 import './styles/CalendarEvent.sass'
+import Collapsible from 'react-collapsible';
+import Checkbox from './Checkbox.jsx'
+import EventGroup from './EventGroup.js'
+
 class CalendarEvent extends Component {
 
   
+  
     render() {
-        
+      let testgroup = ['head','fingers','knees','toes']
+      console.log(this.props.eventGroup[0]["category"])
       return (
-        <div className='form-container'>
-          <h1> {this.props.changeDate(this.props.months, this.props.date)} </h1>
+        <div className='form-container' className='schedule-form'>
+        <h1>{this.props.scheduleDay}</h1>
           <form>
-            <label>Name</label>
+            <label className='schedule-title'>{this.props.eventGroup[0]["category"]}</label>
             <div>
-
+            <Collapsible className='schedulelaps' trigger={'↓'}>
+            <div>
+              {this.props.eventGroup.map(item => {
+                return <EventGroup changeTime={this.props.changeTime} item={item} />
+              })}
+            </div>
+            </Collapsible>
             </div>
           </form>        
         </div>
@@ -20,3 +32,6 @@ class CalendarEvent extends Component {
   }
 
   export default CalendarEvent
+
+
+  

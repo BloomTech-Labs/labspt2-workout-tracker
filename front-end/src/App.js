@@ -22,6 +22,7 @@ class App extends Component {
     }
   }
   render() {
+    console.log(auth)
     return (
       <div className="App">
         <NavBar />

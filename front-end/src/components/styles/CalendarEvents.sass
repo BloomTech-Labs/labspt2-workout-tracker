@@ -1,7 +1,30 @@
 
 
+@import mixins.sass
+
+@import variables.sass
 
 
 
 
+.schedule-title
+    margin: 0
+.event-check
+    display: flex
+    flex-direction: row
+    width: 100%
+    justify-content: flex-start
 
+.events-container
+    
+    display: flex
+    margin: 250px 0% 10px 1.5%;
+    flex-direction: column
+    align-items: flex-end
+    width: 40%
+
+@media (max-width: 1024px)
+    .events-container
+        align-items: center
+        width: 100%
+        margin: 0%;

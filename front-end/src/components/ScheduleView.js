@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import Calendar from './Calendar.js'
 import CalendarEvents from './CalendarEvents.js'
 
+
 import './styles/ScheduleView.sass'
-import './styles/Calendar.scss'
 
 class ScheduleView extends Component {
   render() {
