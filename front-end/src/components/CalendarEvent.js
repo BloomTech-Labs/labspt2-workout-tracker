@@ -20,7 +20,7 @@ class CalendarEvent extends Component {
             <Collapsible className='schedulelaps' trigger={'↓'}>
             <div>
               {this.props.eventGroup.map(item => {
-                return <EventGroup changeTime={this.props.changeTime} item={item} />
+                return <EventGroup changeTime={this.props.changeTime} key={item["id"]} item={item} />
               })}
             </div>
             </Collapsible>
