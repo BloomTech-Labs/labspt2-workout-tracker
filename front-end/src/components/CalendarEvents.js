@@ -52,6 +52,14 @@ class CalendarEvents extends Component {
                 end: '2019-12-12T23:30:00',
                 allDay: false,
                 category: 'Entire Body'
+              },
+              {
+                id: 6,
+                title  : 'G',
+                start: '2019-12-12T23:30:00',
+                end: '2019-12-12T23:30:00',
+                allDay: false,
+                category: 'Entire Body'
               }],
               
               months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']

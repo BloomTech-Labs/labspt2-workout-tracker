@@ -49,7 +49,7 @@ export const exerciseDefaults = [
     reps: '5-15',
     sets: '3',
     weight: '5-10 lb',
-    img: 'http://www.burnthefatinnercircle.com/members/images/1683.jpg'
+    img: '//www.burnthefatinnercircle.com/members/images/1683.jpg'
   },
   {
     categoryName: 'Arms',

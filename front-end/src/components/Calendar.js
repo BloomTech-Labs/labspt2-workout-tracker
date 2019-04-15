@@ -5,6 +5,8 @@ import "./styles/Calendar.scss";
 
 import $ from "jquery";
 import "fullcalendar";
+import interactionPlugin from '@fullcalendar/interaction';
+
 
 /*
  * A simple React component
@@ -19,24 +21,60 @@ class Calendar extends React.Component {
       events: [
         // put the array in the `events` property
         {
+          id: 1,
           title: "Arms",
           start: "2019-04-12T24:30:00",
           end: "2019-04-12T01:30:00",
           allDay: false
         },
         {
+          id: 2,
+
           title: "Legs",
           start: "2019-04-12T15:30:00",
           end: "2019-04-12T16:30:00",
           allDay: false
         },
         {
+          id: 3,
+
           title: "Core",
           start: "2019-04-12T20:30:00",
           end: "2019-04-12T21:30:00",
           allDay: false
         }
       ],
+      selectable: true,
+      plugins: [ interactionPlugin ],
+      dayClick: function(date) {
+        console.log(date["events"])
+       
+
+        $(this).css('background-color', 'red');
+
+      },
+
+      eventClick: function(eO) {
+        
+        $('#calendar').fullCalendar('removeEvents', eO["id"]);
+
+
+
+
+      },
+
+
+      eventClick: function(eO) {
+        
+
+        console.log(eO["title"])
+    
+
+
+
+    },
+
+
 
       eventLimit: true, // for all non-TimeGrid views
 
