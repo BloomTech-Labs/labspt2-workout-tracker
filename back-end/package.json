@@ -4,6 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "auth0": "^2.16.0",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
@@ -12,8 +14,10 @@
     "jwks-rsa": "^1.4.0",
     "knex": "^0.16.3",
     "pg": "^7.8.1",
+    "request": "^2.88.0",
     "sqlite3": "^4.0.6",
-    "stripe": "^6.28.0"
+    "stripe": "^6.28.0",
+    "superagent": "^5.0.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
