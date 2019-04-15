@@ -118,11 +118,9 @@ class CalendarEvents extends Component {
 
       return (
         <div className="events-container">
-    
-            {/* {Object.entries(byDate).map(event => {
-              console.log(event["0"])
-                return <CalendarEvent scheduleDay={event["0"]} eventGroup={event["1"]} months={this.state.months} changeTime={this.changeTime} key={event["0"]} />
-            })} */}
+            {this.state.events.map(event => {
+                return "hello"
+            })}
         </div>
       );
     }
