@@ -37,6 +37,7 @@ class Calendar extends React.Component {
           allDay: false
         }
       ],
+      selectable: true,
 
       eventLimit: true, // for all non-TimeGrid views
 
