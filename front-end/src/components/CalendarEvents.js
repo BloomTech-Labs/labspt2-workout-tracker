@@ -3,59 +3,138 @@ import './styles/CalendarEvents.sass'
 
 import CalendarEvent from './CalendarEvent'
 
+
+
 class CalendarEvents extends Component {
     constructor(props) {
         super(props);
         this.state = {
             events: [ {
                 id: 1,
-                title  : 'Arms',
-                start: '2019-11-21T13:30:00',
-                end: '2019-03-12T14:30:00',
+                title  : 'Curls',
+                start: '2019-11-21T10:15:00',
+                end: '2019-11-12T10:30:00',
                 allDay: false,
+                category: 'Arms'
               },
               {
                 id: 2,
-                title  : 'Legs',
-                start: '2019-03-12T15:30:00',
-                end: '2019-03-12T16:30:00',
+                title  : 'Run',
+                start: '2019-03-12T21:30:00',
+                end: '2019-03-12T21:30:00',
                 allDay: false,
-      
+                category: 'Legs'
+
+              },
+              {
+                id: 4,
+                title  : 'Situps',
+                start: '2019-03-12T04:30:00',
+                end: '2019-03-12T04:30:00',
+                allDay: false,
+                category: 'Core'
+
               },
               {
                 id: 3,
-                title  : 'Core',
-                start: '2019-03-12T20:30:00',
-                end: '2019-03-12T21:30:00',
+                title  : 'Crunches',
+                start: '2019-03-12T09:30:00',
+                end: '2019-03-12T09:30:00',
                 allDay: false,
+                category: 'Core'
+              },
+              {
+                id: 5,
+                title  : 'Moon-Lifts',
+                start: '2019-12-12T23:30:00',
+                end: '2019-12-12T23:30:00',
+                allDay: false,
+                category: 'Entire Body'
+              },
+              {
+                id: 6,
+                title  : 'Bluebells',
+                start: '2019-01-19T09:30:00',
+                end: '2019-01-19T09:30:00',
+                allDay: false,
+                category: 'Hands'
+              },
+              {
+                id: 7,
+                title  : 'Toenail Biters',
+                start: '2019-10-26T20:15:00',
+                end: '2019-10-26T20:15:00',
+                allDay: false,
+                category: 'Neck'
+              },
+              {
+                id: 8,
+                title  : 'Sweats',
+                start: '2019-01-19T09:30:00',
+                end: '2019-01-19T09:30:00',
+                allDay: false,
+                category: 'Forehead'
               }],
+              
               months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
         
         }
     }
         
-    changeDate(arr, day) {
-        let eDate = day;
-      let strMonth = eDate[0]
-      if (eDate[1] !== '/') {
-        strMonth = eDate.substring(0,2);
-      }
-      for (let i = 0; i<arr.length ; i++) {
-          if ( Number(strMonth) === i+1) {
-             eDate = eDate.replace(strMonth, arr[i])
+    // changeDate(arr, day) {
+    //     let eDate = day;
+        
+    //   let strMonth = eDate[0]
+    //   if (eDate[1] !== '/') {
+    //     strMonth = eDate.substring(0,2);
+    //   }
+    //   for (let i = 0; i<arr.length ; i++) {
+    //       if ( Number(strMonth) === i+1) {
+    //          eDate = eDate.replace(strMonth, arr[i])
+    //       }
+    //   }
+    //   eDate = eDate.replace ('/', ' ')
+    //   console.log(eDate)
+    //   return eDate.replace ('/', ', ')
+    //   }
+      
+      changeTime(h) {
+          let whole = h.substring(11,16)
+          let hour = h.substring(11,16);
+          let timecap = ' am'
+          if (parseInt(hour)>12 && parseInt(hour) !== 24) {
+            timecap = ' pm'
           }
+          if (parseInt(hour)>12) {
+            hour=hour.replace(hour, parseInt(hour)-12)
+            whole = whole.replace(whole.substring(0,2), hour) + timecap
+          }
+          else {
+            hour=hour.replace(hour, parseInt(hour))
+            whole = whole.replace(whole.substring(0,2), hour) + timecap
+          }
+          return whole
       }
-      eDate = eDate.replace ('/', ' ')
-      return eDate.replace ('/', ', ')
-      }
+
     render() {
+
+      let byDate = new Object()
+     
+      this.state.events.map(event => {
+        byDate[event.start.substring(0,10)] = []
+      })
+
+      for (let property in byDate) {
+        byDate[property] = this.state.events.filter( event => {return event.start.substring(0,10) === property})
+      }
+
 
       return (
         <div className="events-container">
-            {this.state.events.map(event => {
-            console.log(event.start)
-                return <CalendarEvent months={this.state.months} changeDate={this.changeDate} key={event.id} date={new Date(event.start.substr(0,10)).toLocaleDateString()} title={event.title} />
+            {Object.entries(byDate).map(event => {
+              console.log(event["0"])
+                return <CalendarEvent scheduleDay={event["0"]} eventGroup={event["1"]} months={this.state.months} changeTime={this.changeTime} key={event["0"]} />
             })}
         </div>
       );
