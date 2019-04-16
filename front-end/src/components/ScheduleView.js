@@ -13,7 +13,7 @@ class ScheduleView extends Component {
       <div className='main schedule-view'>
         {/* <button onClick={this.props.auth.logout}>Logout</button> */}
         <Calendar />
-        <CalendarEvents />
+        <CalendarEvents className='events' />
       </div>
     );
   }
