@@ -362,6 +362,54 @@ server.post("/api/exercises", checkJwt, (req, res) => {
     });
 });
 
+//ENDPOINT TO POST A NEW PROGRESS NOTE
+
+server.post("/api/notes", checkJwt, (req, res) => {
+  const { weight, waist, arms } = req.body;
+  db("users")
+    .select("id")
+    .where("user_id", req.user.sub)
+    .first()
+    .then(id => {
+      db("notes")
+        .returning("userId")
+        .insert({
+          weight: weight,
+          waist: waist,
+          arms: arms,
+          userId: id.id
+        })
+        .then(userId => {
+          console.log(userId);
+          db("notes as n")
+            .join("users as u", "u.id", "n.userId")
+            .select("n.id", "n.weight", "n.waist", "n.arms")
+            .where("n.userId", userId[0])
+            .then(notes => {
+              checkForResource(req, res, notes);
+            })
+            .catch(err => {
+              console.log("error", err);
+              res.status(500).json({
+                error: "The notes information could not be retrieved."
+              });
+            });
+        })
+        .catch(err => {
+          console.log("error", err);
+          res
+            .status(500)
+            .json({ error: "The notes information could not be retrieved." });
+        });
+    })
+    .catch(err => {
+      console.log("error", err);
+      res.status(500).json({
+        error: "The notes information could not be retrieved."
+      });
+    });
+});
+
 //WARNING, FOLLOWING ENDPOINT FOR TEST PURPOSES ONLY: GET ALL USERS CATEGORIES AND EXERCISES BY ID
 
 server.get("/api/:id/categories", checkJwt, (req, res) => {

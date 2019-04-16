@@ -55,18 +55,18 @@ class SettingsViewForm extends Component {
     return (
       <div className="form-container">
         <form>
-          <label>Email:</label>
+          <label>Update Email:</label>
           <input
             onChange={this.inputHandler}
             type="text"
-            placeholder="email@email.com"
+            placeholder="Enter new email"
             value={this.state.email}
             data-property="email"
           />
           <button type="text" onClick={this.submitHandlerEmail}>
             Save
           </button>
-          <label>New Username:</label>
+          <label>Update Username:</label>
           <input
             onChange={this.inputHandler}
             type="text"
@@ -81,7 +81,7 @@ class SettingsViewForm extends Component {
           <Checkbox />
           <label className="container">Texts?</label>
           <Checkbox />
-          <label>New Password:</label>
+          <label>Update Password:</label>
           <input
             onChange={this.inputHandler}
             type="text"
@@ -99,9 +99,8 @@ class SettingsViewForm extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state:", state);
   return {
-    data: state.data,
+    userdata: state.userdata,
     error: state.error
   };
 };

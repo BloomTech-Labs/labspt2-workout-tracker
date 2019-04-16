@@ -3,6 +3,8 @@ import auth from "../Auth";
 
 export const FETCHED = "FETCHED";
 export const FETCHING = "FETCHING";
+export const FETCHED_USERINFO = "FETCHED_USERINFO";
+export const FETCHING_USERINFO = "FETCHING_USERINFO";
 export const FETCHING_ERROR = "FETCHING_ERROR";
 
 const DEPLOYED = "https://workout-tracker-pt2.herokuapp.com";
@@ -67,10 +69,10 @@ export const updateUser = userUpdates => {
     headers
   });
   return dispatch => {
-    dispatch({ type: FETCHING });
+    dispatch({ type: FETCHING_USERINFO });
     promise
       .then(response => {
-        dispatch({ type: FETCHED, payload: response.data });
+        dispatch({ type: FETCHED_USERINFO, payload: JSON.parse(response.data.text)});
       })
       .catch(err => {
         dispatch({ type: FETCHING_ERROR, payload: err });
