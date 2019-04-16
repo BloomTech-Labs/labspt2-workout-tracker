@@ -6,6 +6,9 @@ import "./styles/Calendar.scss";
 import $ from "jquery";
 import "fullcalendar";
 
+import CalendarEvents from './CalendarEvents'
+
+
 /*
  * A simple React component
  */
@@ -37,6 +40,22 @@ class Calendar extends React.Component {
           allDay: false
         }
       ],
+      selectable: true,
+
+      dayClick: function(info) {
+        alert(`this is ${info}`)
+      },
+
+      eventClick: function(event){
+           if (event.title === 'Core') {
+             $('#calendar').fullCalendar('removeEvents',event._id)
+            }
+            else {    event.title = "CLICKED!";
+
+            $('#calendar').fullCalendar('updateEvent', event);
+        
+        }
+        },
 
       eventLimit: true, // for all non-TimeGrid views
 
