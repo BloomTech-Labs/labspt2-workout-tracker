@@ -15,6 +15,7 @@ class WorkoutsForm extends Component {
   };
 
   changeHandler = e => {
+    console.log('event value:', e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -39,6 +40,7 @@ class WorkoutsForm extends Component {
     const newCategory = {
       categoryName: this.state.category
     };
+    console.log('new category:', newCategory);
     this.props.postCategory(newCategory);
     const createdCategory = this.props.data[this.props.data.length - 1];
     this.props.postExercise(newExercise.selectedCategoryID || createdCategory);
@@ -62,7 +64,13 @@ class WorkoutsForm extends Component {
               );
             })}
           </select>
-          <input id="myText" type="text" placeholder="Add Category" />
+          <input
+            id="myText"
+            type="text"
+            name="category"
+            onChange={this.changeHandler}
+            placeholder="Add Category"
+          />
           <input type="text" name="name" placeholder="Exercise Name" />
           <input type="text" name="weight" placeholder="Weight" />
           <input type="text" name="sets" placeholder="Sets" />
