@@ -35,7 +35,9 @@ function NavBar(props) {
             Settings
           </Link>
           <div>
-            <label className="mr-2 text-white">{auth.getProfile().name}</label>
+            <label className="mr-2 text-white">
+              {auth.getProfile().nickname}
+            </label>
             <button
               className="btn btn-dark"
               onClick={() => {
