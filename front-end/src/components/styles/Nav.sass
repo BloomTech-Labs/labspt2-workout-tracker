@@ -66,15 +66,49 @@ nav
     .signin
         justify-items: center
         color: white
-    .signout
-        justify-items: center
-        color: white
-
     img
         transform: rotateY(180deg)	
         transition: transform 1s;
+
+.logout:hover
+    .signout
+        justify-items: center
+        color: white
+    img
+        transform: rotateY(180deg)	
+        transition: transform 1s;
+        
 
 .active
     border-bottom: 1px solid $secondary-color
     box-shadow: 0 0 0 6px $background-gray, 0 4px 0 5px $secondary-color;
     color: white
+
+@media (max-width: 1024px)
+    nav 
+        flex-direction: column
+        justify-content: center
+        align-items: flex-start
+        margin-left: 50px
+        a
+            font-size: 4rem
+            margin: 10px 0
+        a:hover
+            text-decoration: none
+            color: $main-background
+            font-size: 4rem
+            margin: 0
+        .logout
+            display: flex
+            align-items: flex-end
+            justify-items: center
+            width: 50%
+            .signout
+                font-size: 2.5rem
+
+
+@media (max-width: 750px)
+    nav 
+        align-items: center
+        margin-left: 0
+
