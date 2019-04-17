@@ -1,0 +1,50 @@
+@import 'variables'
+@import 'mixins'
+
+
+
+nav
+    width: 80%
+    a
+        color: $secondary-color
+    .login
+        display: grid
+        grid-template-columns: repeat(20, 1fr)
+        grid-template-rows: repeat(5, 1fr)
+
+        align-items: end
+        justify-items: center
+        width: 100%
+        margin-right: 0
+
+        img 
+            margin-top: 50px
+            grid-column: 1 / span 2
+            grid-row: 1 / span 5
+            z-index: 1
+
+
+
+        .login-logout
+            display: flex
+            justify-items: flex-end
+            align-items: center
+            background-color: $light-gray
+            grid-column: 10 / span 10
+            grid-row: 1 / span 5
+            padding: 20px
+            margin-bottom: 0
+            clip-path: polygon(12% 0, 60% 0%, 50% 100%, 12% 100%);
+            width: 100%
+ 
+
+    
+.login:hover
+    .login-logout
+        background-color: $primary-color
+        transition: background-color 1s;
+        justify-items: center
+
+        a
+            color: white
+            transition: color 1s;

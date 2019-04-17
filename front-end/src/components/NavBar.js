@@ -1,6 +1,9 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import auth from "../Auth";
+import './styles/Nav.sass';
+import logo from '../images/workout-logo.svg';
+
 
 function NavBar(props) {
   const logout = () => {
@@ -8,30 +11,33 @@ function NavBar(props) {
   };
 
   return (
-    <nav className="navbar navbar-dark bg-primary fixed-top">
-      <Link className="navbar-brand" to="/">
-        Home
+    <nav>
+      <Link className="" to="/">
+        <a> Home </a>
       </Link>
       {!auth.isAuthenticated() && (
-        <button className="btn btn-dark" onClick={auth.login}>
-          Sign In
-        </button>
+         <div className="login">
+          <img src={logo} alt="logo" />
+          <button className="login-logout" onClick={auth.login}>
+            Sign In/Sign Up
+          </button>
+        </div>
       )}
       {auth.isAuthenticated() && (
         <>
-          <Link className="navbar-brand" to="/schedule">
-            Your Calender
+          <Link to="/schedule">
+            <a>Your Calender</a>
           </Link>
-          <Link className="navbar-brand" to="/workouts">
+          <Link  to="/workouts">
             Workout Creator
           </Link>
-          <Link className="navbar-brand" to="/progress">
+          <Link  to="/progress">
             Progress Notes
           </Link>
-          <Link className="navbar-brand" to="/billing">
+          <Link to="/billing">
             Billing
           </Link>
-          <Link className="navbar-brand" to="/settings">
+          <Link to="/settings">
             Settings
           </Link>
           <div>

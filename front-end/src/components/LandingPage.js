@@ -11,12 +11,6 @@ class LandingPage extends Component {
   render() {
     return (
       <div>
-        <div className="login">
-          <img src={logo} alt="logo" />
-          <button className="login-buttons" onClick={this.props.auth.login}>
-            Sign In/Sign Up
-          </button>
-        </div>
         <Coverflow
           displayQuantityOfSide={2}
           navigation={false}
