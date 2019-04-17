@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getData } from '../actions/actions';
-import Notes from './components/Notes';
+import { postNote } from '../actions/actions';
+import { defaultNotes } from '../defaults/index';
+import NotesContainer from './NotesContainer';
 import './styles/ProgressView.sass';
 
 class ProgressView extends Component {
@@ -10,50 +11,55 @@ class ProgressView extends Component {
     this.state = {
       weight: null,
       waist: null,
-      arms: null
+      arms: null,
+      notes: defaultNotes
     };
   }
   componentDidMount() {
     // this.props.getData();
   }
 
-  onChange = () => {};
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  postNote = e => {
+    e.preventDefault();
+    const { weight, waist, arms } = this.state;
+    this.props.postNote({ weight, waist, arms });
+    this.setState({ weight: '', waist: '', arms: '' });
+  };
 
   render() {
     return (
       <div className="main progress-view">
-        <form className="form-container">
+        <form className="form-container" onSubmit={this.postNote}>
           <input
             name="weight"
             text="name"
             onChange={this.onChange}
-            value={''}
+            value={this.state.weight}
             placeholder="Weight"
           />
           <input
-            name="hips"
+            name="waist"
             text="name"
             onChange={this.onChange}
-            value={''}
-            placeholder="Hips"
+            value={this.state.waist}
+            placeholder="Waist"
           />
           <input
             name="arms"
             text="name"
             onChange={this.onChange}
-            value={''}
+            value={this.state.arms}
             placeholder="Arms"
-          />
-          <input
-            name="legs"
-            text="name"
-            onChange={this.onChange}
-            value={''}
-            placeholder="Legs"
           />
           <button className="submit">Submit</button>
         </form>
-        <div className="events-container notes-container" />
+        <div className="events-container notes-container">
+          <NotesContainer />
+        </div>
       </div>
 
       /* {this.props.fetchingUsers ? (
@@ -71,7 +77,7 @@ class ProgressView extends Component {
 
 const mapStateToProps = state => {
   return {
-    notes: state.notes,
+    data: state.data,
     error: state.error,
     fetchingUsers: state.fetching
   };

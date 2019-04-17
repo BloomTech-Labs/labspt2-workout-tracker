@@ -1,10 +1,4 @@
-export const categoryDefaults = [
-  { categoryName: 'Arms' },
-  { categoryName: 'Legs' },
-  { categoryName: 'Cardio' },
-  { categoryName: 'Abs' },
-  { categoryName: 'Rest' }
-];
+export const defaultNotes = [{ weight: 23, waist: 23, arms: 23, legs: 12 }];
 
 export const appDetails = [
   {
