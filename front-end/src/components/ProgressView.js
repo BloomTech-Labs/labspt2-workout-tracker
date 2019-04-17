@@ -1,11 +1,19 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getData } from '../actions/actions';
-import './styles/ProgressView.sass';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { postNote } from "../actions/actions";
+import "./styles/ProgressView.sass";
 
 class ProgressView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      weight: null,
+      waist: null,
+      arms: null
+    };
+  }
   componentDidMount() {
-    this.props.getData();
+    // this.props.getData();
   }
 
   render() {
@@ -75,7 +83,7 @@ class ProgressView extends Component {
 
 const mapStateToProps = state => {
   return {
-    data: state.data,
+    notes: state.notes,
     error: state.error,
     fetchingUsers: state.fetching
   };
@@ -83,5 +91,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getData }
+  { postNote }
 )(ProgressView);

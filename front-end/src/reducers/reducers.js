@@ -4,6 +4,8 @@ import {
   FETCHING,
   FETCHING_USERINFO,
   FETCHED_USERINFO,
+  FETCHING_NOTES,
+  FETCHED_NOTES,
   FETCHING_ERROR
 } from "../actions/actions";
 
@@ -11,6 +13,7 @@ const initialState = {
   auth,
   data: [],
   userdata: [],
+  notes: [],
   fetching: false,
   error: ""
 };
@@ -29,6 +32,13 @@ export default (state = initialState, action) => {
     case FETCHED_USERINFO:
       return Object.assign({}, state, {
         userdata: [action.payload],
+        fetching: false
+      });
+    case FETCHING_NOTES:
+      return Object.assign({}, state, { fetching: true });
+    case FETCHED_NOTES:
+      return Object.assign({}, state, {
+        notes: [action.payload],
         fetching: false
       });
     case FETCHING_ERROR:
