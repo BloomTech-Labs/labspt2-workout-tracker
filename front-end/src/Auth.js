@@ -12,12 +12,12 @@ class Auth {
 
   constructor() {
     this.auth0 = new auth0.WebAuth({
-      domain: "workout-tracker-pt2.auth0.com",
-      clientID: "hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO",
-      redirectUri: `${DEPLOYED}/callback`,
-      audience: "https://workout-tracker-pt2.herokuapp.com/",
-      responseType: "token id_token",
-      scope: "openid profile"
+      domain: 'workout-tracker-pt2.auth0.com',
+      clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO',
+      redirectUri: `${LOCAL}/callback`,
+      audience: 'https://workout-tracker-pt2.herokuapp.com/',
+      responseType: 'token id_token',
+      scope: 'openid profile'
     });
 
     this.getProfile = this.getProfile.bind(this);
@@ -94,8 +94,8 @@ class Auth {
     //Make sure to change LOCAL to DEPLOYED before merging to MASTER!
 
     this.auth0.logout({
-      returnTo: `${DEPLOYED}`,
-      clientID: "hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO"
+      returnTo: `${LOCAL}`,
+      clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO'
     });
   }
 

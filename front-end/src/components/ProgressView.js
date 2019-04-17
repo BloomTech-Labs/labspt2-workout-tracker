@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { postNote } from "../actions/actions";
-import "./styles/ProgressView.sass";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getData } from '../actions/actions';
+import Notes from './components/Notes';
+import './styles/ProgressView.sass';
 
 class ProgressView extends Component {
   constructor(props) {
@@ -16,58 +17,46 @@ class ProgressView extends Component {
     // this.props.getData();
   }
 
+  onChange = () => {};
+
   render() {
     return (
-      <div className="progressView">
-        <h1>Progress View</h1>
-        <div className="formBox">
-          <form className="progressForm">
-            <h5>{Date}</h5>
+      <div className="main progress-view">
+        <form className="form-container">
+          <input
+            name="weight"
+            text="name"
+            onChange={this.onChange}
+            value={''}
+            placeholder="Weight"
+          />
+          <input
+            name="hips"
+            text="name"
+            onChange={this.onChange}
+            value={''}
+            placeholder="Hips"
+          />
+          <input
+            name="arms"
+            text="name"
+            onChange={this.onChange}
+            value={''}
+            placeholder="Arms"
+          />
+          <input
+            name="legs"
+            text="name"
+            onChange={this.onChange}
+            value={''}
+            placeholder="Legs"
+          />
+          <button className="submit">Submit</button>
+        </form>
+        <div className="events-container notes-container" />
+      </div>
 
-            <input
-              className="inputTop"
-              type="text"
-              name="weight"
-              placeholder="Weight"
-            />
-            <input type="text" name="hips" placeholder="Hips" />
-            <input
-              className="inputMiddle"
-              type="text"
-              name="waist"
-              placeholder="Waist"
-            />
-            <input type="text" name="rArm" placeholder="(R) Arm" />
-            <input
-              className="inputLower"
-              type="text"
-              name="lArm"
-              placeholder="(L) Arm"
-            />
-            <input type="text" name="rLeg" placeholder="(R) Leg" />
-            <input
-              className="inputBottom"
-              type="text"
-              name="lLeg"
-              placeholder="(L) Leg"
-            />
-            <button type="text">Submit Progress</button>
-          </form>
-          <div className="rightSide">
-            <div>
-              <h3>{/*XX pounds or inches*/}</h3>
-              <h3>Weight lost since:</h3>
-              <h3>{/*date*/}</h3>
-            </div>
-            <div>
-              <h3>{/*XX pounds or inches*/}</h3>
-              <h3>Inches lost since:</h3>
-              <h3>{/*date*/}</h3>
-            </div>
-          </div>
-        </div>
-
-        {/* {this.props.fetchingUsers ? (
+      /* {this.props.fetchingUsers ? (
           <h3>Loading...</h3>
         ) : (
           <div>
@@ -75,8 +64,7 @@ class ProgressView extends Component {
               return <div key={user.id}>{user.email}</div>;
             })}
           </div>
-        )} */}
-      </div>
+        )} */
     );
   }
 }
