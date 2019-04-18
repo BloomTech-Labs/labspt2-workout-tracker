@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { defaultNotes } from '../defaults/index';
 import './styles/NotesContainer.sass';
+import styles from './styles/custom-styling.css';
 import Modal from 'react-responsive-modal';
+import CustomModal from './CustomModal';
 import axios from 'axios';
 
 class NotesContainer extends Component {
   state = {
-    notes: defaultNotes,
-    open: false
+    notes: defaultNotes
   };
 
   /*   componentDidMount() {
@@ -20,12 +21,6 @@ class NotesContainer extends Component {
     return alert('This is a place holder function');
   };
 
-  onOpenModal = () => {
-    this.setState({ open: !this.state.open });
-  };
-
-  Delete = () => {};
-
   render() {
     return (
       <div className="notes-container">
@@ -35,18 +30,7 @@ class NotesContainer extends Component {
             <div className="note" key={i}>
               <div>
                 <p onClick={this.placeholder}>Edit</p>
-                <p onClick={this.onOpenModal}>Delete</p>
-                <Modal
-                  styles={{
-                    className: 'note'
-                  }}
-                  open={this.state.open}
-                  onClose={this.onOpenModal}
-                >
-                  <p>Are you sure you would like to delete this note?</p>
-                  <p>Yes</p>
-                  <p onClick={this.onOpenModal}>No</p>
-                </Modal>
+                <CustomModal />
               </div>
               <p>Weight: {i.weight}</p>
               <p>Waist: {i.waist}</p>
