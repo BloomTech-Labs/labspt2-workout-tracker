@@ -1,4 +1,13 @@
-export const defaultNotes = [{ weight: 23, waist: 23, arms: 23, legs: 12 }];
+export const defaultNotes = [
+  { weight: 23, waist: 23, arms: 23, legs: 12 },
+  { weight: 23, waist: 23, arms: 23, legs: 12 },
+  { weight: 23, waist: 23, arms: 23, legs: 12 },
+  { weight: 23, waist: 23, arms: 23, legs: 12 },
+  { weight: 23, waist: 23, arms: 23, legs: 12 },
+  { weight: 23, waist: 23, arms: 23, legs: 12 },
+  { weight: 23, waist: 23, arms: 23, legs: 12 },
+  { weight: 23, waist: 23, arms: 23, legs: 12 }
+];
 
 export const appDetails = [
   {

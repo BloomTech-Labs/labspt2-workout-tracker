@@ -33,7 +33,7 @@ class ProgressView extends Component {
   render() {
     return (
       <div className="main progress-view">
-        <form className="form-container" onSubmit={this.postNote}>
+        <form className="form-container progress-form" onSubmit={this.postNote}>
           <input
             name="weight"
             text="name"
@@ -57,9 +57,7 @@ class ProgressView extends Component {
           />
           <button className="submit">Submit</button>
         </form>
-        <div className="events-container notes-container">
-          <NotesContainer />
-        </div>
+        <NotesContainer />
       </div>
 
       /* {this.props.fetchingUsers ? (

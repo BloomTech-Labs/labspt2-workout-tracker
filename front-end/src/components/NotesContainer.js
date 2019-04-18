@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { defaultNotes } from '../defaults/index';
+import './styles/NotesContainer.sass';
 
 class NotesContainer extends Component {
   state = {
@@ -13,7 +14,20 @@ class NotesContainer extends Component {
   } */
 
   render() {
-    return <div>Note</div>;
+    return (
+      <div className="notes-container">
+        {this.state.notes.map(i => {
+          return (
+            <div className="note">
+              <p>Weight: {i.weight}</p>
+              <p>Waist: {i.waist}</p>
+              <p>Arms: {i.arms}</p>
+              <p>Legs: {i.legs}</p>
+            </div>
+          );
+        })}
+      </div>
+    );
   }
 }
 
