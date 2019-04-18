@@ -102,17 +102,3 @@ export const updateUser = userUpdates => {
       });
   };
 };
-
-export const getEvents = () => {
-
-  return (dispatch) => {
-        dispatch ({type: GATHERING})
-        axios.get('http://localhost:3333/smurfs')
-        .then(response => {
-          dispatch({type: SUCCESS, smurfs: response.data})})
-        .catch(err => {
-          dispatch({type: ERROR, errorMessage: 'Smurfs are almost extinct! This Smurf village has population 0, try another village!'})
-        })
-  }
-
-}

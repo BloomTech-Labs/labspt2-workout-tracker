@@ -9,14 +9,72 @@ class CalendarEvents extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: [ {
-                id: 1,
-                title  : 'Curls',
-                start: '2019-11-21T10:15:00',
-                end: '2019-11-12T10:30:00',
-                allDay: false,
-                category: 'Arms'
-              }],
+          events: [ {
+            id: 1,
+            title  : 'Curls',
+            start: '2019-11-21T10:15:00',
+            end: '2019-11-12T10:30:00',
+            allDay: false,
+            category: 'Arms'
+          },
+          {
+            id: 2,
+            title  : 'Run',
+            start: '2019-03-12T21:30:00',
+            end: '2019-03-12T21:30:00',
+            allDay: false,
+            category: 'Legs'
+        
+          },
+          {
+            id: 4,
+            title  : 'Situps',
+            start: '2019-03-12T04:30:00',
+            end: '2019-03-12T04:30:00',
+            allDay: false,
+            category: 'Core'
+        
+          },
+          {
+            id: 3,
+            title  : 'Crunches',
+            start: '2019-03-12T09:30:00',
+            end: '2019-03-12T09:30:00',
+            allDay: false,
+            category: 'Core'
+          },
+          {
+            id: 5,
+            title  : 'Moon-Lifts',
+            start: '2019-12-12T23:30:00',
+            end: '2019-12-12T23:30:00',
+            allDay: false,
+            category: 'Entire Body'
+          },
+          {
+            id: 6,
+            title  : 'Bluebells',
+            start: '2019-01-19T09:30:00',
+            end: '2019-01-19T09:30:00',
+            allDay: false,
+            category: 'Hands'
+          },
+          {
+            id: 7,
+            title  : 'Toenail Biters',
+            start: '2019-10-26T20:15:00',
+            end: '2019-10-26T20:15:00',
+            allDay: false,
+            category: 'Neck'
+          },
+          {
+            id: 8,
+            title  : 'Sweats',
+            start: '2019-01-19T09:30:00',
+            end: '2019-01-19T09:30:00',
+            allDay: false,
+            category: 'Forehead'
+          }],
               
               months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -71,11 +129,12 @@ class CalendarEvents extends Component {
         byDate[property] = this.state.events.filter( event => {return event.start.substring(0,10) === property})
       }
 
+      console.log(byDate)
+
 
       return (
         <div className="events-container">
             {Object.entries(byDate).map(event => {
-              console.log(event["0"])
                 return <CalendarEvent scheduleDay={event["0"]} eventGroup={event["1"]} months={this.state.months} changeTime={this.changeTime} key={event["0"]} />
             })}
         </div>

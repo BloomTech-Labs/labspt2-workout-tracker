@@ -94,7 +94,7 @@ class Auth {
     //Make sure to change LOCAL to DEPLOYED before merging to MASTER!
 
     this.auth0.logout({
-      returnTo: `${DEPLOYED}`,
+      returnTo: `${Depl}`,
       clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO'
     });
   }
