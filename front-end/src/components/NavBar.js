@@ -1,6 +1,9 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import auth from "../Auth";
+import './styles/Nav.sass';
+import logo from '../images/workout-logo.svg';
+
 
 function NavBar(props) {
   const logout = () => {
@@ -8,45 +11,49 @@ function NavBar(props) {
   };
 
   return (
-    <nav className="navbar navbar-dark bg-primary fixed-top">
-      <Link className="navbar-brand" to="/">
-        Home
-      </Link>
+    <nav>
+      {/* <Link className="" to="/">
+        <a> Home </a>
+      </Link> */}
       {!auth.isAuthenticated() && (
-        <button className="btn btn-dark" onClick={auth.login}>
-          Sign In
-        </button>
+         <div className="login">
+          <img src={logo} alt="logo" />
+          <button className="signin" onClick={auth.login}>
+            Sign In<br/>
+            Sign Up
+
+          </button>
+        </div>
       )}
       {auth.isAuthenticated() && (
         <>
-          <Link className="navbar-brand" to="/schedule">
-            Your Calender
-          </Link>
-          <Link className="navbar-brand" to="/workouts">
-            Workout Creator
-          </Link>
-          <Link className="navbar-brand" to="/progress">
-            Progress Notes
-          </Link>
-          <Link className="navbar-brand" to="/billing">
-            Billing
-          </Link>
-          <Link className="navbar-brand" to="/settings">
-            Settings
-          </Link>
-          <div>
-            <label className="mr-2 text-white">
-              {auth.getProfile().nickname}
-            </label>
-            <button
-              className="btn btn-dark"
+         <div className="logout">
+          <img src={logo} alt="logo" />
+          <button
+              className="signout"
               onClick={() => {
                 logout();
               }}
             >
-              Sign Out
+              Sign Out<br/>
+              {auth.getProfile().nickname}
             </button>
-          </div>
+             </div>
+          <NavLink activeClassName="active" to="/schedule">
+            <a>Your Calender</a>
+          </NavLink>
+          <NavLink activeClassName="active"  to="/workouts">
+            Workout Creator
+          </NavLink>
+          <NavLink activeClassName="active"  to="/progress">
+            Progress Notes
+          </NavLink>
+          <NavLink activeClassName="active" to="/billing">
+            Billing
+          </NavLink>
+          <NavLink activeClassName="active" to="/settings">
+            Settings
+          </NavLink>
         </>
       )}
     </nav>
