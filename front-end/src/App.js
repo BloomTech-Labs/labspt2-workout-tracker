@@ -25,13 +25,14 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <Route exact path="/" component={LandingPage} />
+        {/* <Route exact path="/" component={LandingPage} />
         <Route exact path="/callback" component={Callback} />
         <SecuredRoute path="/schedule" component={ScheduleView} />
         <SecuredRoute path="/workouts" component={WorkoutsView} />
         <SecuredRoute path="/progress" component={ProgressView} />
         <SecuredRoute path="/billing" component={BillingView} />
-        <SecuredRoute path="/settings" component={SettingsView} />
+        <SecuredRoute path="/settings" component={SettingsView} /> */}
+        <ScheduleView />
       </div>
     );
   }

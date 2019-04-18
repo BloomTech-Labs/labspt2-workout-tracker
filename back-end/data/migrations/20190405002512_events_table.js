@@ -13,8 +13,15 @@ exports.up = function(knex, Promise) {
       .notNullable()
       .references("id")
       .inTable("categories");
-    table.date("date").notNullable();
-    table.json("exercises");
+    table
+      .string("category")
+      .notNullable()
+      .references("categoryName")
+      .inTable("categories");
+    table.date("start").notNullable();
+    table.date("end")
+    table.boolean("allDay").notNullable();
+    table.string("title").notNullable();
   });
 };
 
