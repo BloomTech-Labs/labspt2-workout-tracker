@@ -13,7 +13,88 @@ class CalendarEvents extends Component {
     constructor(props) {
         super(props);
         this.state = {
- 
+            events: [ {
+                id: 1,
+                title  : 'Curls',
+                start: '2019-11-21T10:15:00',
+                end: '2019-11-12T10:30:00',
+                allDay: false,
+                category: 'Arms',
+                exercises: ['A', 'B']
+              },
+              {
+                id: 2,
+                title  : 'Run',
+                start: '2019-03-12T21:30:00',
+                end: '2019-03-12T21:30:00',
+                allDay: false,
+                category: 'Arms',
+                exercises: ['C', 'D']
+
+              },
+              {
+                id: 4,
+                title  : 'Situps',
+                start: '2019-03-12T04:30:00',
+                end: '2019-03-12T04:30:00',
+                allDay: false,
+                category: 'Arms',
+                exercises: ['E', 'F']
+
+
+              },
+              {
+                id: 3,
+                title  : 'Crunches',
+                start: '2019-03-12T09:30:00',
+                end: '2019-03-12T09:30:00',
+                allDay: false,
+                category: 'Arms',
+                exercises: ['Bicept Curls', 'Tricept Pulldowns']
+
+              },
+              {
+                id: 5,
+                title  : 'Moon-Lifts',
+                start: '2019-12-12T23:30:00',
+                end: '2019-12-12T23:30:00',
+                allDay: false,
+                category: 'Arms',
+                exercises: ['Bicept Curls', 'Tricept Pulldowns']
+
+              },
+              {
+                id: 6,
+                title  : 'Bluebells',
+                start: '2019-01-19T09:30:00',
+                end: '2019-01-19T09:30:00',
+                allDay: false,
+                category: 'Arms',
+                exercises: ['Bicept Curls', 'Tricept Pulldowns']
+
+              },
+              {
+                id: 7,
+                title  : 'Toenail Biters',
+                start: '2019-10-26T20:15:00',
+                end: '2019-10-26T20:15:00',
+                allDay: false,
+                category: 'Neck',
+                exercises: ['Bicept Curls', 'Tricept Pulldowns']
+
+              },
+              {
+                id: 8,
+                title  : 'Sweats',
+                start: '2019-01-19T09:30:00',
+                end: '2019-01-19T09:30:00',
+                allDay: false,
+                category: 'Forehead',
+                exercises: ['Sweats', 'Headaches', 'Face Plants']
+
+              }]
+              
+        
         }
     }
         
@@ -52,10 +133,9 @@ class CalendarEvents extends Component {
 
 
       return (
-        <div className="component-container events-container">
-            {Object.entries(byDate).map((event,index) => {
-
-                return <CalendarEvent scheduleDay={event["0"]} eventGroup={event["1"]} key={event["0"]+index} />
+        <div className="events-container">
+            {Object.entries(byDate).map(event => {
+                return <CalendarEvent scheduleDay={event["0"]} eventGroup={event["1"]} key={event["0"]} />
             })}
         </div>
       );
