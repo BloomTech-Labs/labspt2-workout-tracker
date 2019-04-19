@@ -17,8 +17,8 @@ class EventGroup extends Component {
         <div className='event-check'>
         <Checkbox />
         <div className="scheduled">
-        {/* <p>{moment(this.props.time).format("h:mm a")}</p>
-        <p>{this.props.item}</p> */}
+        <p>{moment(this.props.time).format("h:mm a")}</p>
+        <p>{this.props.item}</p>
         </div>
         </div>
         </div>

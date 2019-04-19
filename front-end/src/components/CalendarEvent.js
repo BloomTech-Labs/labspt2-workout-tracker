@@ -12,18 +12,9 @@ class CalendarEvent extends Component {
   
   
     render() {
-      let exercisePool = new Object()
-     
-      this.props.eventGroup.map(obj => {
-        exercisePool[obj.title] = []
-      })
-
-      for (let property in exercisePool) {
-        exercisePool[property] = this.props.eventGroup.filter( event => {return event.title === property})
-      }
-
-
-      console.log(exercisePool)
+      let exercisePool = []
+      this.props.eventGroup.map(obj => {exercisePool.push(obj.exercises)})
+      let totalExercises = [].concat(...exercisePool);
 
 
       return (
@@ -35,8 +26,7 @@ class CalendarEvent extends Component {
             <div>
             <Collapsible className='schedule-collapse' trigger={'↓'}>
             <div>
-              {Object.entries(exercisePool).map(item => {
-                console.log(item)
+              {totalExercises.map(item => {
                 return <EventGroup changeTime={this.props.changeTime} cat={this.props.eventGroup[0]["category"]} time={this.props.eventGroup[0]["start"]} item={item} />
               })}
             </div>

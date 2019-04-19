@@ -11,7 +11,7 @@ class CalendarEvents extends Component {
         this.state = {
             events: [ {
                 id: 1,
-                title  : 'Curls',
+                title  : 'Situps',
                 start: '2019-11-21T10:15:00',
                 end: '2019-11-12T10:30:00',
                 allDay: false,
@@ -20,7 +20,7 @@ class CalendarEvents extends Component {
               },
               {
                 id: 2,
-                title  : 'Run',
+                title  : 'Situps',
                 start: '2019-03-12T21:30:00',
                 end: '2019-03-12T21:30:00',
                 allDay: false,
@@ -52,8 +52,8 @@ class CalendarEvents extends Component {
               {
                 id: 5,
                 title  : 'Moon-Lifts',
-                start: '2019-12-12T23:30:00',
-                end: '2019-12-12T23:30:00',
+                start: '2019-01-01T09:30:00',
+                end: '2019-01-01T09:30:00',
                 allDay: false,
                 category: 'Arms',
                 exercises: ['Bicept Curls', 'Tricept Pulldowns']
@@ -62,8 +62,8 @@ class CalendarEvents extends Component {
               {
                 id: 6,
                 title  : 'Bluebells',
-                start: '2019-01-19T09:30:00',
-                end: '2019-01-19T09:30:00',
+                start: '2019-01-01T09:30:00',
+                end: '2019-01-01T09:30:00',
                 allDay: false,
                 category: 'Arms',
                 exercises: ['Bicept Curls', 'Tricept Pulldowns']
@@ -72,8 +72,8 @@ class CalendarEvents extends Component {
               {
                 id: 7,
                 title  : 'Toenail Biters',
-                start: '2019-10-26T20:15:00',
-                end: '2019-10-26T20:15:00',
+                start: '2019-01-01T09:30:00',
+                end: '2019-01-01T09:30:00',
                 allDay: false,
                 category: 'Neck',
                 exercises: ['Bicept Curls', 'Tricept Pulldowns']
@@ -82,8 +82,8 @@ class CalendarEvents extends Component {
               {
                 id: 8,
                 title  : 'Sweats',
-                start: '2019-01-19T09:30:00',
-                end: '2019-01-19T09:30:00',
+                start: '2019-01-01T09:30:00',
+                end: '2019-01-01T09:30:00',
                 allDay: false,
                 category: 'Forehead',
                 exercises: ['Sweats', 'Headaches', 'Face Plants']
