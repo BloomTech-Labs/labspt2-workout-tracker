@@ -15,7 +15,8 @@ class CalendarEvents extends Component {
                 start: '2019-11-21T10:15:00',
                 end: '2019-11-12T10:30:00',
                 allDay: false,
-                category: 'Arms'
+                category: 'Arms',
+                exercises: ['A', 'B']
               },
               {
                 id: 2,
@@ -23,7 +24,8 @@ class CalendarEvents extends Component {
                 start: '2019-03-12T21:30:00',
                 end: '2019-03-12T21:30:00',
                 allDay: false,
-                category: 'Legs'
+                category: 'Arms',
+                exercises: ['C', 'D']
 
               },
               {
@@ -32,7 +34,9 @@ class CalendarEvents extends Component {
                 start: '2019-03-12T04:30:00',
                 end: '2019-03-12T04:30:00',
                 allDay: false,
-                category: 'Core'
+                category: 'Arms',
+                exercises: ['E', 'F']
+
 
               },
               {
@@ -41,7 +45,9 @@ class CalendarEvents extends Component {
                 start: '2019-03-12T09:30:00',
                 end: '2019-03-12T09:30:00',
                 allDay: false,
-                category: 'Core'
+                category: 'Arms',
+                exercises: ['Bicept Curls', 'Tricept Pulldowns']
+
               },
               {
                 id: 5,
@@ -49,7 +55,9 @@ class CalendarEvents extends Component {
                 start: '2019-12-12T23:30:00',
                 end: '2019-12-12T23:30:00',
                 allDay: false,
-                category: 'Entire Body'
+                category: 'Arms',
+                exercises: ['Bicept Curls', 'Tricept Pulldowns']
+
               },
               {
                 id: 6,
@@ -57,7 +65,9 @@ class CalendarEvents extends Component {
                 start: '2019-01-19T09:30:00',
                 end: '2019-01-19T09:30:00',
                 allDay: false,
-                category: 'Hands'
+                category: 'Arms',
+                exercises: ['Bicept Curls', 'Tricept Pulldowns']
+
               },
               {
                 id: 7,
@@ -65,7 +75,9 @@ class CalendarEvents extends Component {
                 start: '2019-10-26T20:15:00',
                 end: '2019-10-26T20:15:00',
                 allDay: false,
-                category: 'Neck'
+                category: 'Neck',
+                exercises: ['Bicept Curls', 'Tricept Pulldowns']
+
               },
               {
                 id: 8,
@@ -73,11 +85,11 @@ class CalendarEvents extends Component {
                 start: '2019-01-19T09:30:00',
                 end: '2019-01-19T09:30:00',
                 allDay: false,
-                category: 'Forehead'
-              }],
-              
-              months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                category: 'Forehead',
+                exercises: ['Sweats', 'Headaches', 'Face Plants']
 
+              }]
+              
         
         }
     }
@@ -99,23 +111,7 @@ class CalendarEvents extends Component {
     //   return eDate.replace ('/', ', ')
     //   }
       
-      changeTime(h) {
-          let whole = h.substring(11,16)
-          let hour = h.substring(11,16);
-          let timecap = ' am'
-          if (parseInt(hour)>12 && parseInt(hour) !== 24) {
-            timecap = ' pm'
-          }
-          if (parseInt(hour)>12) {
-            hour=hour.replace(hour, parseInt(hour)-12)
-            whole = whole.replace(whole.substring(0,2), hour) + timecap
-          }
-          else {
-            hour=hour.replace(hour, parseInt(hour))
-            whole = whole.replace(whole.substring(0,2), hour) + timecap
-          }
-          return whole
-      }
+
 
     render() {
 
@@ -133,8 +129,7 @@ class CalendarEvents extends Component {
       return (
         <div className="events-container">
             {Object.entries(byDate).map(event => {
-              console.log(event["0"])
-                return <CalendarEvent scheduleDay={event["0"]} eventGroup={event["1"]} months={this.state.months} changeTime={this.changeTime} key={event["0"]} />
+                return <CalendarEvent scheduleDay={event["0"]} eventGroup={event["1"]} key={event["0"]} />
             })}
         </div>
       );

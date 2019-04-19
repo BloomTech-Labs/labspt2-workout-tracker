@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from "moment";
+
 
 import Checkbox from './Checkbox.jsx'
 
@@ -14,9 +16,10 @@ class EventGroup extends Component {
         <h1 className='cat'>{this.props.item["category"]}</h1>
         <div className='event-check'>
         <Checkbox />
-        <p>{this.props.changeTime(this.props.item["start"])}</p>
-
-        <p>{this.props.item["title"]}</p>
+        <div className="scheduled">
+        {/* <p>{moment(this.props.time).format("h:mm a")}</p>
+        <p>{this.props.item}</p> */}
+        </div>
         </div>
         </div>
     );
