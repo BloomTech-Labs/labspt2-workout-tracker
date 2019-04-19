@@ -12,13 +12,9 @@ class CalendarEvent extends Component {
   
   
     render() {
-      let exercisePool = []
-      this.props.eventGroup.map(obj => {exercisePool.push(obj.exercises)})
-      let totalExercises = [].concat(...exercisePool);
-
-
+      let testgroup = ['head','fingers','knees','toes']
+      console.log(this.props.eventGroup[0]["category"])
       return (
-
         <div className='form-container' className='schedule-form'>
         <h1 className="date-heading">{moment(`${this.props.scheduleDay}`).format("dddd, MMMM Do, YYYY")}</h1>
           <form>
@@ -26,8 +22,9 @@ class CalendarEvent extends Component {
             <div>
             <Collapsible className='schedule-collapse' trigger={'↓'}>
             <div>
-              {totalExercises.map(item => {
-                return <EventGroup changeTime={this.props.changeTime} cat={this.props.eventGroup[0]["category"]} time={this.props.eventGroup[0]["start"]} item={item} />
+              {this.props.eventGroup[0]['exercises'].map(item => {
+                console.log(item)
+                return <EventGroup changeTime={this.props.changeTime} item={item} />
               })}
             </div>
             </Collapsible>

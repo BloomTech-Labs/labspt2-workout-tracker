@@ -21,10 +21,10 @@ class CalendarEvents extends Component {
               {
                 id: 2,
                 title  : 'Situps',
-                start: '2019-03-12T21:30:00',
-                end: '2019-03-12T21:30:00',
+                start: '2019-03-11T21:30:00',
+                end: '2019-03-11T21:30:00',
                 allDay: false,
-                category: 'Arms',
+                category: 'Legs',
                 exercises: ['C', 'D']
 
               },
@@ -34,7 +34,7 @@ class CalendarEvents extends Component {
                 start: '2019-03-12T04:30:00',
                 end: '2019-03-12T04:30:00',
                 allDay: false,
-                category: 'Arms',
+                category: 'Tongue',
                 exercises: ['E', 'F']
 
 
@@ -42,10 +42,10 @@ class CalendarEvents extends Component {
               {
                 id: 3,
                 title  : 'Crunches',
-                start: '2019-03-12T09:30:00',
-                end: '2019-03-12T09:30:00',
+                start: '2019-03-13T09:30:00',
+                end: '2019-03-13T09:30:00',
                 allDay: false,
-                category: 'Arms',
+                category: 'Toes',
                 exercises: ['Bicept Curls', 'Tricept Pulldowns']
 
               },
@@ -55,25 +55,25 @@ class CalendarEvents extends Component {
                 start: '2019-01-01T09:30:00',
                 end: '2019-01-01T09:30:00',
                 allDay: false,
-                category: 'Arms',
-                exercises: ['Bicept Curls', 'Tricept Pulldowns']
+                category: 'Fingers',
+                exercises: ['Bicept Curls', 'Tricept Pulldowns', 'Extensions']
 
               },
               {
                 id: 6,
                 title  : 'Bluebells',
-                start: '2019-01-01T09:30:00',
-                end: '2019-01-01T09:30:00',
+                start: '2019-01-02T09:30:00',
+                end: '2019-01-02T09:30:00',
                 allDay: false,
-                category: 'Arms',
+                category: 'Pecks',
                 exercises: ['Bicept Curls', 'Tricept Pulldowns']
 
               },
               {
                 id: 7,
                 title  : 'Toenail Biters',
-                start: '2019-01-01T09:30:00',
-                end: '2019-01-01T09:30:00',
+                start: '2019-01-03T09:30:00',
+                end: '2019-01-03T09:30:00',
                 allDay: false,
                 category: 'Neck',
                 exercises: ['Bicept Curls', 'Tricept Pulldowns']
@@ -82,8 +82,8 @@ class CalendarEvents extends Component {
               {
                 id: 8,
                 title  : 'Sweats',
-                start: '2019-01-01T09:30:00',
-                end: '2019-01-01T09:30:00',
+                start: '2019-01-04T09:30:00',
+                end: '2019-01-04T09:30:00',
                 allDay: false,
                 category: 'Forehead',
                 exercises: ['Sweats', 'Headaches', 'Face Plants']
