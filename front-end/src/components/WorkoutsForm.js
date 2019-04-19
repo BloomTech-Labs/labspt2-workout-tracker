@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 
 class WorkoutsForm extends Component {
   state = {
-    title: '',
-    name: '',
+    exerciseName: '',
+    reps: '',
     weight: '',
     sets: '',
-    reps: '',
-    category: '',
+    categoryId: '',
     selectedCategoryID: '',
     grabbedCategory: null
   };
@@ -31,11 +30,11 @@ class WorkoutsForm extends Component {
     e.preventDefault();
     const newExercise = {
       selectedCategoryID: this.state.selectedCategoryID,
-      title: this.state.title,
-      name: this.state.name,
+      exerciseName: this.state.exerciseName,
+      reps: this.state.reps,
       weight: this.state.weight,
       sets: this.state.sets,
-      reps: this.state.reps
+      categoryId: this.state.categoryId,
     };
     const newCategory = {
       categoryName: this.state.category
@@ -54,7 +53,7 @@ class WorkoutsForm extends Component {
       <div className="form-container workouts-form">
         <form onSubmit={this.submitHandler}>
           <label>Workout Creator:</label>
-          <input type="text" name="title" placeholder="Workout Title" />
+          
           <select name="" onChange={this.selectChange}>
             {data.map(data => {
               return (
@@ -71,7 +70,7 @@ class WorkoutsForm extends Component {
             onChange={this.changeHandler}
             placeholder="Add Category"
           />
-          <input type="text" name="name" placeholder="Exercise Name" />
+          <input type="text" name="exerciseName" placeholder="Exercise Name" />
           <input type="text" name="weight" placeholder="Weight" />
           <input type="text" name="sets" placeholder="Sets" />
           <input type="text" name="reps" placeholder="Reps" />
