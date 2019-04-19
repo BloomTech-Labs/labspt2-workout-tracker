@@ -11,31 +11,28 @@ class CalendarEvents extends Component {
         this.state = {
             events: [ {
                 id: 1,
-                title  : 'Situps',
+                title  : 'Arms',
                 start: '2019-11-21T10:15:00',
                 end: '2019-11-12T10:30:00',
                 allDay: false,
-                category: 'Arms',
                 exercises: ['A', 'B']
               },
               {
                 id: 2,
-                title  : 'Situps',
+                title  : 'Legs',
                 start: '2019-03-11T21:30:00',
                 end: '2019-03-11T21:30:00',
                 allDay: false,
-                category: 'Legs',
-                exercises: ['C', 'D']
+                exercises: ['C', 'D', 'E', 'F', 'G']
 
               },
               {
                 id: 4,
-                title  : 'Situps',
+                title  : 'Tongue',
                 start: '2019-03-12T04:30:00',
                 end: '2019-03-12T04:30:00',
                 allDay: false,
-                category: 'Tongue',
-                exercises: ['E', 'F']
+                exercises: ['H']
 
 
               },
@@ -45,27 +42,24 @@ class CalendarEvents extends Component {
                 start: '2019-03-13T09:30:00',
                 end: '2019-03-13T09:30:00',
                 allDay: false,
-                category: 'Toes',
                 exercises: ['Bicept Curls', 'Tricept Pulldowns']
 
               },
               {
                 id: 5,
-                title  : 'Moon-Lifts',
+                title  : 'Hams',
                 start: '2019-01-01T09:30:00',
-                end: '2019-01-01T09:30:00',
+                end: '2019-01-01T010:30:00',
                 allDay: false,
-                category: 'Fingers',
-                exercises: ['Bicept Curls', 'Tricept Pulldowns', 'Extensions']
+                exercises: ['Lifts','Extensions']
 
               },
               {
                 id: 6,
-                title  : 'Bluebells',
-                start: '2019-01-02T09:30:00',
-                end: '2019-01-02T09:30:00',
+                title  : 'Glutes',
+                start: '2019-01-01T10:45:00',
+                end: '2019-01-01T11:45:00',
                 allDay: false,
-                category: 'Pecks',
                 exercises: ['Bicept Curls', 'Tricept Pulldowns']
 
               },
@@ -75,7 +69,6 @@ class CalendarEvents extends Component {
                 start: '2019-01-03T09:30:00',
                 end: '2019-01-03T09:30:00',
                 allDay: false,
-                category: 'Neck',
                 exercises: ['Bicept Curls', 'Tricept Pulldowns']
 
               },
@@ -85,7 +78,6 @@ class CalendarEvents extends Component {
                 start: '2019-01-04T09:30:00',
                 end: '2019-01-04T09:30:00',
                 allDay: false,
-                category: 'Forehead',
                 exercises: ['Sweats', 'Headaches', 'Face Plants']
 
               }]
@@ -126,9 +118,11 @@ class CalendarEvents extends Component {
       }
 
 
+
       return (
         <div className="events-container">
             {Object.entries(byDate).map(event => {
+
                 return <CalendarEvent scheduleDay={event["0"]} eventGroup={event["1"]} key={event["0"]} />
             })}
         </div>
