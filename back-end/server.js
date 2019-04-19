@@ -226,6 +226,25 @@ server.post("/api/users", checkJwt, (req, res) => {
     });
 });
 
+//ENDPOINT TO GET USER FROM DB
+
+server.get("/api/userid", checkJwt, (req, res) => {
+  db("users")
+    .select("id")
+    .where("user_id", req.user.sub)
+    .first()
+    .then(id => {
+      console.log(id.id);
+      res.status(200).json(id.id);
+    })
+    .catch(err => {
+      console.log("error", err);
+      res
+        .status(500)
+        .json({ error: "The specified user info could not be retrieved" });
+    });
+});
+
 // ENDPOINT TO GET CATEGORIES
 
 server.get("/api/categories", checkJwt, (req, res) => {
