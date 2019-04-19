@@ -7,6 +7,10 @@ export default class CustomModal extends React.Component {
     open: false
   };
 
+  deleteNote = () => {
+    //this.props.deleteNote();
+  };
+
   toggleModal = () => {
     this.setState({ open: !this.state.open });
   };
@@ -28,7 +32,7 @@ export default class CustomModal extends React.Component {
           }}
         >
           <h1>Are you sure you want to delete this note?</h1>
-          <button onClick={this.toggleModal}>Yes</button>
+          <button onClick={this.deleteNote}>Yes</button>
           <button onClick={this.toggleModal}>No</button>
         </Modal>
       </div>

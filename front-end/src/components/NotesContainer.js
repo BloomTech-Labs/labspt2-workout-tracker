@@ -25,17 +25,17 @@ class NotesContainer extends Component {
     return (
       <div className="notes-container">
         <div />
-        {this.state.notes.map(i => {
+        {this.state.notes.map(note => {
           return (
-            <div className="note" key={i}>
+            <div className="note" key={note.id}>
               <div>
                 <p onClick={this.placeholder}>Edit</p>
                 <CustomModal />
               </div>
-              <p>Weight: {i.weight}</p>
-              <p>Waist: {i.waist}</p>
-              <p>Arms: {i.arms}</p>
-              <p>Legs: {i.legs}</p>
+              <p>Weight: {note.weight}</p>
+              <p>Waist: {note.waist}</p>
+              <p>Arms: {note.arms}</p>
+              <p>Legs: {note.legs}</p>
             </div>
           );
         })}

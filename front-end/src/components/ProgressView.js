@@ -38,21 +38,18 @@ class ProgressView extends Component {
             name="weight"
             text="name"
             onChange={this.onChange}
-            value={this.state.weight}
             placeholder="Weight"
           />
           <input
             name="waist"
             text="name"
             onChange={this.onChange}
-            value={this.state.waist}
             placeholder="Waist"
           />
           <input
             name="arms"
             text="name"
             onChange={this.onChange}
-            value={this.state.arms}
             placeholder="Arms"
           />
           <button className="submit">Submit</button>

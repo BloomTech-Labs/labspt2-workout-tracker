@@ -1,12 +1,12 @@
 export const defaultNotes = [
-  { weight: 23, waist: 23, arms: 23, legs: 12 },
-  { weight: 23, waist: 23, arms: 23, legs: 12 },
-  { weight: 23, waist: 23, arms: 23, legs: 12 },
-  { weight: 23, waist: 23, arms: 23, legs: 12 },
-  { weight: 23, waist: 23, arms: 23, legs: 12 },
-  { weight: 23, waist: 23, arms: 23, legs: 12 },
-  { weight: 23, waist: 23, arms: 23, legs: 12 },
-  { weight: 23, waist: 23, arms: 23, legs: 12 }
+  { id: 1, weight: 23, waist: 23, arms: 23, legs: 12 },
+  { id: 2, weight: 23, waist: 23, arms: 23, legs: 12 },
+  { id: 3, weight: 23, waist: 23, arms: 23, legs: 12 },
+  { id: 4, weight: 23, waist: 23, arms: 23, legs: 12 },
+  { id: 5, weight: 23, waist: 23, arms: 23, legs: 12 },
+  { id: 6, weight: 23, waist: 23, arms: 23, legs: 12 },
+  { id: 7, weight: 23, waist: 23, arms: 23, legs: 12 },
+  { id: 8, weight: 23, waist: 23, arms: 23, legs: 12 }
 ];
 
 export const appDetails = [
