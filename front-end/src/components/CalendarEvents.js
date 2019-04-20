@@ -121,9 +121,9 @@ class CalendarEvents extends Component {
 
       return (
         <div className="events-container">
-            {Object.entries(byDate).map(event => {
+            {Object.entries(byDate).map((event,index) => {
 
-                return <CalendarEvent scheduleDay={event["0"]} eventGroup={event["1"]} key={event["0"]} />
+                return <CalendarEvent scheduleDay={event["0"]} eventGroup={event["1"]} key={event["0"]+index} />
             })}
         </div>
       );

@@ -22,10 +22,10 @@ class EventGroup extends Component {
         </div>
         <div className="scheduled">
 
-       <p>{this.props.exercises.map(exercise => {
-          return <EventItem category={this.props.category} exercise={exercise} />
+       {this.props.exercises.map((exercise,index) => {
+          return <EventItem key={exercise+index} category={this.props.category} exercise={exercise} />
 
-       })}</p>
+       })}
         </div>
         </div>
         </div>

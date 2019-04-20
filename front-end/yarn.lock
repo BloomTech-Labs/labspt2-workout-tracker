@@ -892,6 +892,45 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@fullcalendar/core@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/core/-/core-4.0.2.tgz#59ef822ba0c4bda60609d8b2d9f71bee8875505b"
+  integrity sha512-5DBjqoQretok6L0GNpcqkr0HnCNDzRH0REWJDeTTyHGi62V+8MC3IqZkpmDrFITTkIyDrvf8GHl3WhTI0bjYPQ==
+
+"@fullcalendar/daygrid@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/daygrid/-/daygrid-4.0.1.tgz#383bfd51dd55bbec2ccc90926e9dbdf710aa3789"
+  integrity sha512-nKFFKgTm5eijOukD6pjsQSLlsBoMrKuHXc00zaHaMWSeJndGHxtseR8oeHOnclNNScMKLXLNZthzEduSqqyuRw==
+
+"@fullcalendar/interaction@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/interaction/-/interaction-4.0.2.tgz#8459f3d89f9e0e56405e35c25513edf573e5a096"
+  integrity sha512-AlOkSmeVI7fDGIGlbaqxHRXxL38SDEMUv6BW/2Cvu8eC7JsrshsHhCIAJE4N17M0RnTTkRwUjtroLZqnkPCHhg==
+
+"@fullcalendar/list@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/list/-/list-4.0.1.tgz#97b81ff98d2547bb317047c513903cd0fc0883ef"
+  integrity sha512-m8H9P908WzDX9nmhr1rnxrl2VHGIQMgouFxaOdinukUtQt3h4nT51aoaRnT9lVKG7mPEyMDHI+M3mKXShl1g6g==
+
+"@fullcalendar/moment@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/moment/-/moment-4.0.1.tgz#39df41de4f81c68b62ea06359cfdb8127ecd1e92"
+  integrity sha512-1saWNA2ITXOXiU93QxtQnXXTxUE1nSHLSiBN1fMz0rdDJBwg5t3x5dFpv0bTJ6l9/q4vVfD5U6WhAONz0UKaXQ==
+
+"@fullcalendar/react@^4.0.2-beta":
+  version "4.0.2-beta"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/react/-/react-4.0.2-beta.tgz#9f7e8517110fe1023a80f324f6af27d3f2b0be82"
+  integrity sha512-ZhhjsUfDxg14pluTi0pt0vvRrrTv2rISnSN8IWNqU8sWt4ctpG8KEPP1TukfHfTXYloTBuxkR44P4Fe2Y7ar6A==
+  dependencies:
+    "@fullcalendar/core" "^4.0.2"
+
+"@fullcalendar/timegrid@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/timegrid/-/timegrid-4.0.1.tgz#26454567a256af70b2aa6dae7f6351d0c0a92a32"
+  integrity sha512-gCtQ+xjVY5K3TV8o05KuAE9pCizoRIk/pCOueSkkQG8eSOFud34/LMB9OOQKb/yOQcMHx9UXEpup+xodEJC5ow==
+  dependencies:
+    "@fullcalendar/daygrid" "^4.0.1"
+
 "@jest/types@^24.7.0":
   version "24.7.0"
   resolved "https://registry.yarnpkg.com/@jest/types/-/types-24.7.0.tgz#c4ec8d1828cdf23234d9b4ee31f5482a3f04f48b"
