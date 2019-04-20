@@ -3,6 +3,7 @@ import './styles/CalendarEvent.sass'
 import Collapsible from 'react-collapsible';
 import Checkbox from './Checkbox.jsx'
 import EventGroup from './EventGroup.js'
+import moment from "moment";
 
 class CalendarEvent extends Component {
 
@@ -11,18 +12,15 @@ class CalendarEvent extends Component {
   
   
     render() {
-      let testgroup = ['head','fingers','knees','toes']
-      console.log(this.props.eventGroup[0]["category"])
       return (
         <div className='form-container' className='schedule-form'>
-        <h1>{this.props.scheduleDay}</h1>
+        <h1 className="date-heading">{moment(`${this.props.scheduleDay}`).format("ddd, MMM Do")}</h1>
           <form>
-            <label className='schedule-title'>{this.props.eventGroup[0]["category"]}</label>
             <div>
             <Collapsible className='schedule-collapse' trigger={'↓'}>
             <div>
               {this.props.eventGroup.map(item => {
-                return <EventGroup changeTime={this.props.changeTime} item={item} />
+                return <EventGroup changeTime={this.props.changeTime} time={this.props.scheduleDay} time={item["start"]}  category={this.props.category} exercises={item["exercises"]} title={item["title"]} />
               })}
             </div>
             </Collapsible>

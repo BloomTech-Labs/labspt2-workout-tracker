@@ -5,6 +5,8 @@ import "./styles/Calendar.scss";
 
 import $ from "jquery";
 import "fullcalendar";
+import moment from "moment";
+
 
 import CalendarEvents from './CalendarEvents'
 
@@ -15,9 +17,14 @@ import CalendarEvents from './CalendarEvents'
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
+    this.state={
+      dateClicked: false
+    }
   }
+  
 
   componentDidMount() {
+
     let cal = $("#calendar").fullCalendar({
       events: [
         // put the array in the `events` property
@@ -43,7 +50,9 @@ class Calendar extends React.Component {
       selectable: true,
 
       dayClick: function(info) {
-        alert(`this is ${info}`)
+          // this.setState({dateClicked: true})
+          console.log(this.state)
+        
       },
 
       eventClick: function(event){
