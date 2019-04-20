@@ -17,7 +17,11 @@ import CalendarEvents from './CalendarEvents'
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
+    this.state={
+      dateClicked: false
+    }
   }
+  
 
   componentDidMount() {
 
@@ -46,11 +50,9 @@ class Calendar extends React.Component {
       selectable: true,
 
       dayClick: function(info) {
-        let date = moment(`${info}`).add(1,'days').format("dddd, MMMM Do, YYYY")
-
-        console.log(date)
+          // this.setState({dateClicked: true})
+          console.log(this.state)
         
-        alert(`this is ${date}`)
       },
 
       eventClick: function(event){

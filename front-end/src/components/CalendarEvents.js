@@ -13,22 +13,22 @@ class CalendarEvents extends Component {
                 id: 1,
                 title  : 'Arms',
                 start: '2019-11-21T10:15:00',
-                end: '2019-11-12T10:30:00',
+                end: '2019-11-21T10:30:00',
                 allDay: false,
                 exercises: ['A', 'B']
               },
               {
                 id: 2,
                 title  : 'Legs',
-                start: '2019-03-11T21:30:00',
-                end: '2019-03-11T21:30:00',
+                start: '2019-11-21T11:15:00',
+                end: '2019-11-21T11:30:00',
                 allDay: false,
                 exercises: ['C', 'D', 'E', 'F', 'G']
 
               },
               {
                 id: 4,
-                title  : 'Tongue',
+                title  : 'Core',
                 start: '2019-03-12T04:30:00',
                 end: '2019-03-12T04:30:00',
                 allDay: false,
@@ -38,7 +38,7 @@ class CalendarEvents extends Component {
               },
               {
                 id: 3,
-                title  : 'Crunches',
+                title  : 'Cardio',
                 start: '2019-03-13T09:30:00',
                 end: '2019-03-13T09:30:00',
                 allDay: false,
@@ -47,16 +47,16 @@ class CalendarEvents extends Component {
               },
               {
                 id: 5,
-                title  : 'Hams',
+                title  : 'Shoulders',
                 start: '2019-01-01T09:30:00',
                 end: '2019-01-01T010:30:00',
                 allDay: false,
-                exercises: ['Lifts','Extensions']
+                exercises: ['Lifts (2 sets) 10 reps','Extensions']
 
               },
               {
                 id: 6,
-                title  : 'Glutes',
+                title  : 'Chest',
                 start: '2019-01-01T10:45:00',
                 end: '2019-01-01T11:45:00',
                 allDay: false,
@@ -65,7 +65,7 @@ class CalendarEvents extends Component {
               },
               {
                 id: 7,
-                title  : 'Toenail Biters',
+                title  : 'Back',
                 start: '2019-01-03T09:30:00',
                 end: '2019-01-03T09:30:00',
                 allDay: false,
@@ -74,7 +74,7 @@ class CalendarEvents extends Component {
               },
               {
                 id: 8,
-                title  : 'Sweats',
+                title  : 'Abs',
                 start: '2019-01-04T09:30:00',
                 end: '2019-01-04T09:30:00',
                 allDay: false,
