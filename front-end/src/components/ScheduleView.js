@@ -3,17 +3,22 @@ import { connect } from 'react-redux';
 
 import Calendar from './Calendar.js'
 import CalendarEvents from './CalendarEvents.js'
+import WorkoutsForm from './WorkoutsForm'
 
 import './styles/ScheduleView.sass'
 import './styles/Calendar.scss'
 
 class ScheduleView extends Component {
   render() {
+    let ScheduledEvents = <CalendarEvents className='events' />
+    if (this.props.dateClicked){
+      ScheduledEvents = <WorkoutsForm />
+    }
     return (
-      <div className='main schedule-view'>
+      <div className='main scheduleView'>
         {/* <button onClick={this.props.auth.logout}>Logout</button> */}
         <Calendar />
-        <CalendarEvents className='events' />
+        {ScheduledEvents}
       </div>
     );
   }
@@ -21,10 +26,15 @@ class ScheduleView extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    events: state.events,
+    dateClicked: state.dateClicked
   };
 };
 
 // export default connect(mapStateToProps)(ScheduleView);
 
-export default ScheduleView;
+
+export default connect(
+  mapStateToProps
+)(ScheduleView);

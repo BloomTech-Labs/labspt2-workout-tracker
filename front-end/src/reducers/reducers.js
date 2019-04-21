@@ -6,7 +6,8 @@ import {
   FETCHED_USERINFO,
   FETCHING_NOTES,
   FETCHED_NOTES,
-  FETCHING_ERROR
+  FETCHING_ERROR,
+  DATE_CLICKED
 } from "../actions/actions";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   data: [],
   userdata: [],
   notes: [],
+  dateClicked: null,
   events: [ {
     id: 1,
     title  : 'Arms',
@@ -119,6 +121,11 @@ export default (state = initialState, action) => {
         fetching: false,
         error: "Error fetching user info"
       });
+    case DATE_CLICKED:
+      return Object.assign({}, state, {
+        dateClicked: action.payload
+      })
+
       // case FETCHING_EVENTS:
       // return Object.assign({}, state, { fetching: true });
       // case FETCHED_EVENTS:

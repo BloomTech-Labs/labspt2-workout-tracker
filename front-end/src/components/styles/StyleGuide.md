@@ -16,7 +16,7 @@
 
 - #### **.main** `The main div of each webpage`
 
-  - #### **.events-container** `The div that houses all of the associated subparts of a component`
+  - #### **.component-container** `The div that houses smaller components`
 
     - #### **.form-container** `The most basic div that houses all of the individual elements`
 

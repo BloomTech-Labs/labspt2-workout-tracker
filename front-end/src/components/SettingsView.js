@@ -8,7 +8,7 @@ class SettingsView extends Component {
   render() {
 
     return (
-      <div className='main'>
+      <div className='main settingsView'>
         <SettingsViewForm />
       </div>
     );

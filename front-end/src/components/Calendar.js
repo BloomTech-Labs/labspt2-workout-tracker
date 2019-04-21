@@ -96,6 +96,11 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import "@fullcalendar/core/main.css";
+import {clickedDate} from "../actions/actions.js"
+import listWeek from "@fullcalendar/list"
+
+import './styles/Calendar.scss'
+
 
 // import "./styles.css";
 
@@ -109,8 +114,6 @@ class Calendar extends React.Component {
 
 
   state = {
-    eventClicked: false,
-    dateClicked: false,
 
     calendarWeekends: true,
     calendarEvents: [
@@ -141,27 +144,18 @@ class Calendar extends React.Component {
     console.log(this.state.eventClicked)
   };
 
-  handleDateClick = (info) => {
-    this.setState({dateClicked:true})
-
-    if (this.state.dateClicked===true) {
-      this.setState({calendarEvents: [...this.state.calendarEvents,      {
-                  title: "Core",
-                  start: "2019-04-20T20:30:00",
-                  end: "2019-04-20T21:30:00",
-                  allDay: false
-                }]})
-    }
+  handleDateClick = ({date}) => {
+    this.props.clickedDate(date)
   };
 
   render() {
     return (
       <div className="demo-app">
-        <div className="demo-app-top">
+        {/* <div className="demo-app-top">
           <button onClick={this.toggleWeekends}>toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast}>go to a date in the past</button>
           &nbsp; (also, click a date/time to add an event)
-        </div>
+        </div> */}
         <div className="demo-app-calendar">
           <FullCalendar
             defaultView="dayGridMonth"
@@ -182,6 +176,7 @@ class Calendar extends React.Component {
             eventLimit={true} // for all non-TimeGrid views
             eventLimit={2}
             aspectRatio={1}
+            height={1100}
           />
         </div>
       </div>
@@ -206,11 +201,11 @@ class Calendar extends React.Component {
 const mapStateToProps = state => {
   return {
     users: state.users,
-    error: state.error,
-    events: state.events
+    events: state.events,
+    dateClicked: state.dateClicked
   };
 };
 
 export default connect(
-  mapStateToProps
+  mapStateToProps, {clickedDate}
 )(Calendar);

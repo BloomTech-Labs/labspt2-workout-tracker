@@ -115,7 +115,7 @@ body .fc {
 .fc-state-active,
 .fc-state-disabled {
   color: white;
-  background-color: $third-color;
+  background-color: red;
 }
 
 .fc-state-hover {
@@ -345,7 +345,6 @@ temporary rendered events).
 .fc-row .fc-content-skeleton {
   position: relative;
   z-index: 4;
-  padding-bottom: 2px;
   /* matches the space above the events */
 }
 
@@ -441,7 +440,6 @@ temporary rendered events).
 }
 
 .fc-event .fc-content {
-  position: relative;
   z-index: 2;
   color: black;
 }
@@ -645,7 +643,6 @@ tr:first-child > td > .fc-day-grid-event {
 --------------------------------------------------------------------------------------------------*/
 /* "more" link that represents hidden events */
 a.fc-more {
-  margin: 1px 3px;
   font-size: 1.25rem;
   cursor: pointer;
   text-decoration: none;
@@ -732,12 +729,11 @@ TODO: more distinction between this file and common.css
 }
 
 .fc-unthemed td.fc-today {
-  background: $third-color;
+  background-color: $third-color;
 }
 
 .fc-unthemed .fc-disabled-day {
-  background: #d7d7d7;
-  opacity: 0.3;
+  background-color: $third-color;
 }
 
 /* Icons (inline elements with styled text that mock arrow icons)
@@ -843,7 +839,7 @@ NOTE: use percentage font sizes or else old IE chokes
 /* Colors
 --------------------------------------------------------------------------------------------------*/
 .ui-widget .fc-disabled-day {
-  background-image: none;
+  background-color: yellow;
 }
 
 /* Popover
@@ -1015,6 +1011,8 @@ NOTE: use percentage font sizes or else old IE chokes
 .fc-toolbar button {
   position: relative;
   font-size: 1rem;
+  background-color: $dark-gray;
+  color: $secondary-color
 }
 
 .fc-toolbar .fc-state-hover,
@@ -1085,9 +1083,10 @@ NOTE: use percentage font sizes or else old IE chokes
 /* week and day number styling */
 
 .fc-day-number {
-  margin-right: 10px;
   font-size: 1.25rem;
-  margin-bottom: 65px;
+  margin: 15px;
+  margin-bottom: 150px;
+
   color: $secondary-color;
 }
 
@@ -1613,7 +1612,7 @@ div.fc-content {
 }
 
 tr {
-  margin-bottom: 40px;
+  margin-bottom: 0px;
 }
 
 span {
