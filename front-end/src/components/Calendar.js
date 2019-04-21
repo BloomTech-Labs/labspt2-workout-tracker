@@ -1,5 +1,5 @@
 // import React, { Component } from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 
 // import "./styles/Calendar.scss";
 
@@ -104,7 +104,7 @@ import "@fullcalendar/core/main.css";
 // import "@fullcalendar/daygrid/main.css";
 // import "@fullcalendar/timegrid/main.css";
 
-export default class Calendar extends React.Component {
+class Calendar extends React.Component {
   calendarComponentRef = React.createRef();
 
 
@@ -202,3 +202,15 @@ export default class Calendar extends React.Component {
 
   
 }
+
+const mapStateToProps = state => {
+  return {
+    users: state.users,
+    error: state.error,
+    events: state.events
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(Calendar);

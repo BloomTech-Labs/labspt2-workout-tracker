@@ -102,3 +102,19 @@ export const updateUser = userUpdates => {
       });
   };
 };
+
+// export const getEvents = () => {
+//   const { getAccessToken } = auth;
+//   const headers = { Authorization: `Bearer ${getAccessToken()}` };
+//   const promise = axios.get(`${DEPLOYED}/api/users`, { headers });
+//   return dispatch => {
+//     dispatch({ type: FETCHING });
+//     promise
+//       .then(response => {
+//         dispatch({ type: FETCHED, payload: response.data });
+//       })
+//       .catch(err => {
+//         dispatch({ type: FETCHING_ERROR, payload: err });
+//       });
+//   };
+// };
