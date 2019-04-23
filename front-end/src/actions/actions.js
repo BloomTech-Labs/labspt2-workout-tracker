@@ -3,13 +3,16 @@ import auth from "../Auth";
 
 export const FETCHED = "FETCHED";
 export const FETCHING = "FETCHING";
+export const FETCHED_USERDATA = "FETCHED_USERDATA";
+export const FETCHING_USERDATA = "FETCHING_USERDATA";
+export const FETCHED_USERID = "FETCHED_USERID";
+export const FETCHING_USERID = "FETCHING_USERID";
 export const FETCHED_USERINFO = "FETCHED_USERINFO";
 export const FETCHING_USERINFO = "FETCHING_USERINFO";
 export const FETCHED_NOTES = "FETCHED_NOTES";
 export const FETCHING_NOTES = "FETCHING_NOTES";
 export const FETCHING_ERROR = "FETCHING_ERROR";
 export const DATE_CLICKED = "DATE_CLICKED";
-
 
 const DEPLOYED = "https://workout-tracker-pt2.herokuapp.com";
 const LOCAL = "http://localhost:3333";
@@ -26,6 +29,44 @@ export const getData = () => {
       })
       .catch(err => {
         dispatch({ type: FETCHING_ERROR, payload: err });
+      });
+  };
+};
+
+export const getUserId = () => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.get(`${DEPLOYED}/api/userid`, { headers });
+  return dispatch => {
+    dispatch({ type: FETCHING });
+    promise
+      .then(response => {
+        dispatch({ type: FETCHED_USERID, payload: response.data });
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_USERID, payload: err });
+      });
+  };
+};
+
+export const postUser = () => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.post(
+    `${DEPLOYED}/api/users`,
+    {},
+    {
+      headers
+    }
+  );
+  return dispatch => {
+    dispatch({ type: FETCHING });
+    promise
+      .then(response => {
+        dispatch({ type: FETCHED_USERDATA, payload: response.data });
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_USERDATA, payload: err });
       });
   };
 };
@@ -105,11 +146,11 @@ export const updateUser = userUpdates => {
   };
 };
 
-export const clickedDate = (date) => {
+export const clickedDate = date => {
   return dispatch => {
     dispatch({
       type: DATE_CLICKED,
-      payload: date,
-     });
-  }
+      payload: date
+    });
+  };
 };

@@ -176,53 +176,191 @@ server.get("/api/users", checkJwt, (req, res) => {
 
 //ENDPOINT TO CREATE A USER
 
+// server.post("/api/users", checkJwt, (req, res) => {
+//   req.body.user_id = req.user.sub;
+//   const user = req.body;
+//   db("users")
+//     .returning("id")
+//     .insert(user)
+//     .then(id => {
+//       console.log(id);
+//       db("categories as c")
+//         .join("users as u", "u.id", "c.userId")
+//         .select("c.id", "c.categoryName")
+//         .whereIn("c.userId", [1, id[0]])
+//         .pluck("c.id")
+//         .then(categories => {
+//           console.log(categories);
+//           db("exercises as e")
+//             .join("categories as c", "c.id", "e.categoryId")
+//             .select(
+//               "e.id",
+//               "e.exerciseName as exercise",
+//               "c.id",
+//               "c.categoryName as category"
+//             )
+//             .whereIn("e.categoryId", categories)
+//             .then(exercises => {
+//               console.log(exercises);
+//               checkForResource(req, res, exercises);
+//             })
+//             .catch(err => {
+//               console.log("error", err);
+//               res.status(500).json({
+//                 error: "The exercise information could not be retrieved."
+//               });
+//             });
+//         })
+//         .catch(err => {
+//           console.log("error", err);
+//           res.status(500).json({
+//             error: "The categories information could not be retrieved."
+//           });
+//         });
+//     })
+//     .catch(err => {
+//       console.log("error", err);
+//       res.status(500).json({
+//         error: "There was an error saving the user to the database."
+//       });
+//     });
+// });
+
+//ENDPOINT TO CREATE A USER V2
+
 server.post("/api/users", checkJwt, (req, res) => {
   req.body.user_id = req.user.sub;
   const user = req.body;
   db("users")
-    .returning("id")
-    .insert(user)
-    .then(id => {
-      console.log(id);
-      db("categories as c")
-        .join("users as u", "u.id", "c.userId")
-        .select("c.id", "c.categoryName")
-        .whereIn("c.userId", [1, id[0]])
-        .pluck("c.id")
-        .then(categories => {
-          console.log(categories);
-          db("exercises as e")
-            .join("categories as c", "c.id", "e.categoryId")
-            .select(
-              "e.id",
-              "e.exerciseName as exercise",
-              "c.id",
-              "c.categoryName as category"
-            )
-            .whereIn("e.categoryId", categories)
-            .then(exercises => {
-              console.log(exercises);
-              checkForResource(req, res, exercises);
-            })
-            .catch(err => {
-              console.log("error", err);
-              res.status(500).json({
-                error: "The exercise information could not be retrieved."
+    .select("id")
+    .where("user_id", req.user.sub)
+    .then(rows => {
+      if (rows.length === 0) {
+        console.log("this is the row");
+        console.log(rows);
+        console.log("this is the user");
+        console.log(user);
+        db("users")
+          .returning("id")
+          .insert(user)
+          .then(id => {
+            console.log("this is the id");
+            console.log(id);
+            db("categories as c")
+              .join("users as u", "u.id", "c.userId")
+              .select("c.id", "c.categoryName")
+              .whereIn("c.userId", [1, id[0]])
+              .pluck("c.id")
+              .then(categories => {
+                db("exercises as e")
+                  .join("categories as c", "c.id", "e.categoryId")
+                  .select(
+                    "e.id",
+                    "e.exerciseName as exercise",
+                    "c.id",
+                    "c.categoryName as category"
+                  )
+                  .whereIn("e.categoryId", categories)
+                  .then(exercises => {
+                    checkForResource(req, res, exercises);
+                  })
+                  .catch(err => {
+                    console.log("error", err);
+                    res.status(500).json({
+                      error: "The exercise information could not be retrieved."
+                    });
+                  });
+              })
+              .catch(err => {
+                console.log("error", err);
+                res.status(500).json({
+                  error: "The categories information could not be retrieved."
+                });
               });
+          })
+          .catch(err => {
+            console.log("error", err);
+            res.status(500).json({
+              error: "There was an error saving the user to the database."
             });
-        })
-        .catch(err => {
-          console.log("error", err);
-          res.status(500).json({
-            error: "The categories information could not be retrieved."
           });
-        });
+      } else {
+        db("users")
+          .select("id")
+          .where("user_id", req.user.sub)
+          .first()
+          .then(id => {
+            console.log(id);
+            db("categories as c")
+              .join("users as u", "u.id", "c.userId")
+              .select("c.id", "c.categoryName")
+              .whereIn("c.userId", [1, id.id])
+              .pluck("c.id")
+              .then(categories => {
+                console.log(categories);
+                db("exercises as e")
+                  .join("categories as c", "c.id", "e.categoryId")
+                  .select(
+                    "e.id as excerciseId",
+                    "e.exerciseName as exercise",
+                    "c.id as categoryId",
+                    "c.categoryName as category"
+                  )
+                  .whereIn("e.categoryId", categories)
+                  .then(exercises => {
+                    console.log(exercises);
+                    checkForResource(req, res, exercises);
+                  })
+                  .catch(err => {
+                    console.log("error", err);
+                    res.status(500).json({
+                      error: "The exercise information could not be retrieved."
+                    });
+                  });
+              })
+              .catch(err => {
+                console.log("error", err);
+                res.status(500).json({
+                  error: "The categories information could not be retrieved."
+                });
+              });
+          })
+          .catch(err => {
+            res.status(500).json({
+              error: "The specified user info could not be retrieved"
+            });
+          });
+      }
     })
     .catch(err => {
       console.log("error", err);
-      res.status(500).json({
-        error: "There was an error saving the user to the database."
-      });
+      res
+        .status(500)
+        .json({ error: "The specified user info could not be retrieved" });
+    });
+});
+
+//ENDPOINT TO GET USER FROM DB
+
+server.get("/api/userid", checkJwt, (req, res) => {
+  db("users")
+    .select("id")
+    .where("user_id", req.user.sub)
+    .first()
+    .then(id => {
+      if (!id) {
+        console.log("null");
+      } else {
+        console.log(id.id);
+        res.status(200).json(id.id);
+      }
+    })
+    .catch(err => {
+      console.log("error", err);
+      console.log(id.id);
+      res
+        .status(500)
+        .json({ error: "The specified user info could not be retrieved" });
     });
 });
 

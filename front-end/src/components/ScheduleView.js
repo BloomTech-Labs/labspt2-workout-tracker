@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import auth from "../Auth";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import Calendar from './Calendar.js'
-import CalendarEvents from './CalendarEvents.js'
-import WorkoutsForm from './WorkoutsForm'
+import Calendar from "./Calendar.js";
+import CalendarEvents from "./CalendarEvents.js";
+import WorkoutsForm from "./WorkoutsForm";
 
-import './styles/ScheduleView.sass'
-import './styles/Calendar.scss'
+import "./styles/ScheduleView.sass";
+import "./styles/Calendar.scss";
 
 class ScheduleView extends Component {
   render() {
-    let ScheduledEvents = <CalendarEvents className='events' />
-    if (this.props.dateClicked){
-      ScheduledEvents = <WorkoutsForm />
+    let ScheduledEvents = <CalendarEvents className="events" />;
+    if (this.props.dateClicked) {
+      ScheduledEvents = <WorkoutsForm />;
     }
     return (
-      <div className='main scheduleView'>
+      <div className="main scheduleView">
         {/* <button onClick={this.props.auth.logout}>Logout</button> */}
         <Calendar />
         {ScheduledEvents}
@@ -34,7 +35,4 @@ const mapStateToProps = state => {
 
 // export default connect(mapStateToProps)(ScheduleView);
 
-
-export default connect(
-  mapStateToProps
-)(ScheduleView);
+export default connect(mapStateToProps)(ScheduleView);
