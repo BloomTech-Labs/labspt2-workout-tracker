@@ -4,7 +4,7 @@ import StripeBtn from './StripeBtn';
 import './styles/BillingView.sass';
 
 const BillingView = () => (
-  <div className="main billing-view">
+  <div className="main billingView">
     <h1>Stripe Checkout</h1>
     <StripeBtn />
   </div>
