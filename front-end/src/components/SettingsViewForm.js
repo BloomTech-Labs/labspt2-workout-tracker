@@ -61,7 +61,6 @@ class SettingsViewForm extends Component {
             onChange={this.inputHandler}
             type="text"
             placeholder="Enter new email"
-            value={this.state.email}
             data-property="email"
           />
           <button type="text" onClick={this.submitHandlerEmail}>
@@ -72,7 +71,6 @@ class SettingsViewForm extends Component {
             onChange={this.inputHandler}
             type="text"
             placeholder="Enter new username"
-            value={this.state.username}
             data-property="username"
           />
           <button type="text" onClick={this.submitHandlerUsername}>
@@ -87,7 +85,6 @@ class SettingsViewForm extends Component {
             onChange={this.inputHandler}
             type="text"
             placeholder="Enter new password"
-            value={this.state.newpass}
             data-property="newpass"
           />
           <button type="text" onClick={this.submitHandlerPassword}>

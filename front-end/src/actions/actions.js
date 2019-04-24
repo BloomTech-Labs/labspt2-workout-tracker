@@ -1,5 +1,5 @@
-import axios from "axios";
-import auth from "../Auth";
+import axios from 'axios';
+import auth from '../Auth';
 
 export const FETCHED = "FETCHED";
 export const FETCHING = "FETCHING";
@@ -14,8 +14,9 @@ export const FETCHING_NOTES = "FETCHING_NOTES";
 export const FETCHING_ERROR = "FETCHING_ERROR";
 export const DATE_CLICKED = "DATE_CLICKED";
 
-const DEPLOYED = "https://workout-tracker-pt2.herokuapp.com";
-const LOCAL = "http://localhost:3333";
+
+const DEPLOYED = 'https://workout-tracker-pt2.herokuapp.com';
+const LOCAL = 'http://localhost:3333';
 
 export const getData = () => {
   const { getAccessToken } = auth;
@@ -113,6 +114,22 @@ export const postNote = noteBody => {
   const promise = axios.post(`${DEPLOYED}/api/notes`, noteBody, {
     headers
   });
+  return dispatch => {
+    dispatch({ type: FETCHING_NOTES });
+    promise
+      .then(response => {
+        dispatch({ type: FETCHED_NOTES, payload: response.data });
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_ERROR, payload: err });
+      });
+  };
+};
+
+export const getNotes = () => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.get(`${DEPLOYED}/api/notes`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_NOTES });
     promise
