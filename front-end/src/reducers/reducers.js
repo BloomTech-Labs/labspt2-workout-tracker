@@ -160,7 +160,6 @@ const initialState = {
     categoryId: 1,
     userId: 2
   }],
-  userid: null,
   fetching: false,
   dateClicked: false,
   error: ""
