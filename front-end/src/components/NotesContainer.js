@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { defaultNotes } from '../defaults/index';
+import { getNotes } from '../actions/actions';
 import './styles/NotesContainer.sass';
 import styles from './styles/custom-styling.css';
 import Modal from 'react-responsive-modal';
@@ -12,10 +13,10 @@ class NotesContainer extends Component {
     notes: defaultNotes
   };
 
-  /*   componentDidMount() {
+  componentDidMount() {
     this.props.getNotes();
-    this.setState({ notes: [...this.props.getNotes] });
-  } */
+    this.setState({ notes: [...this.props.notes] });
+  };
 
   placeholder = () => {
     return alert('This is a place holder function');
@@ -25,7 +26,7 @@ class NotesContainer extends Component {
     return (
       <div className="notes-container">
         <div />
-        {this.state.notes.map(note => {
+        {this.props.notes.map(note => {
           return (
             <div className="note" key={note.id}>
               <div>
@@ -48,8 +49,9 @@ const mapStateToProps = state => {
   return {
     data: state.data,
     error: state.error,
-    fetchingUsers: state.fetching
+    fetchingUsers: state.fetching,
+    notes: state.notes
   };
 };
 
-export default connect(mapStateToProps)(NotesContainer);
+export default connect(mapStateToProps, { getNotes })(NotesContainer);

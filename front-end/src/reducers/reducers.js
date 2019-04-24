@@ -127,7 +127,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, { fetching: true });
     case FETCHED_NOTES:
       return Object.assign({}, state, {
-        notes: [action.payload],
+        notes: action.payload,
         fetching: false
       });
     case FETCHING_ERROR:

@@ -111,9 +111,25 @@ export const postExercise = exerciseBody => {
 export const postNote = noteBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${LOCAL}/api/notes`, noteBody, {
+  const promise = axios.post(`${DEPLOYED}/api/notes`, noteBody, {
     headers
   });
+  return dispatch => {
+    dispatch({ type: FETCHING_NOTES });
+    promise
+      .then(response => {
+        dispatch({ type: FETCHED_NOTES, payload: response.data });
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_ERROR, payload: err });
+      });
+  };
+};
+
+export const getNotes = () => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.get(`${DEPLOYED}/api/notes`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_NOTES });
     promise
