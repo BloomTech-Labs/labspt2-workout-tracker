@@ -88,6 +88,42 @@ const initialState = {
     exercises: ['Sweats', 'Headaches', 'Face Plants']
 
   }],
+  categories: [
+  { id: 1, categoryName: "Glutes", userId: 1 },
+  { id: 2, categoryName: "Arms", userId: 1 },
+  { id: 3, categoryName: "Legs", userId: 1 },],
+  exercises: [  {
+    exerciseName: "Lunges",
+    reps: "6",
+    weight: "150 lbs",
+    sets: "4",
+    categoryId: 1,
+    userId: 1
+  },
+  {
+    exerciseName: "Bicep Curls",
+    reps: "5",
+    weight: "100 lbs",
+    sets: "5",
+    categoryId: 2,
+    userId: 1
+  },
+  {
+    exerciseName: "Preacher Curls",
+    reps: "4",
+    weight: "100 lbs",
+    sets: "4",
+    categoryId: 2,
+    userId: 1
+  },
+  {
+    exerciseName: "Blast Off",
+    reps: "4",
+    weight: "100 lbs",
+    sets: "4",
+    categoryId: 3,
+    userId: 1
+  }],
   fetching: false,
   dateClicked: false,
   error: ""

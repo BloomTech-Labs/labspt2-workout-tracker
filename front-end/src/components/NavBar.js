@@ -40,7 +40,7 @@ function NavBar(props) {
             </button>
              </div>
           <NavLink activeClassName="active" to="/schedule">
-            <a>Your Calender</a>
+            Your Calender
           </NavLink>
           <NavLink activeClassName="active"  to="/workouts">
             Workout Creator
