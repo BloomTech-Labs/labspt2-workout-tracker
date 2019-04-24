@@ -2,8 +2,12 @@ import auth from "../Auth";
 import {
   FETCHED,
   FETCHING,
+  FETCHING_USERDATA,
+  FETCHED_USERDATA,
   FETCHING_USERINFO,
   FETCHED_USERINFO,
+  FETCHING_USERID,
+  FETCHED_USERID,
   FETCHING_NOTES,
   FETCHED_NOTES,
   FETCHING_ERROR,
@@ -13,6 +17,7 @@ import {
 const initialState = {
   auth,
   data: [],
+  userinfo: [],
   userdata: [],
   notes: [],
   dateClicked: null,
@@ -124,6 +129,7 @@ const initialState = {
     categoryId: 3,
     userId: 1
   }],
+  userid: null,
   fetching: false,
   dateClicked: false,
   error: ""
@@ -138,18 +144,32 @@ export default (state = initialState, action) => {
         data: [...action.payload],
         fetching: false
       });
+    case FETCHING_USERDATA:
+      return Object.assign({}, state, { fetching: true });
+    case FETCHED_USERDATA:
+      return Object.assign({}, state, {
+        userdata: [action.payload],
+        fetching: false
+      });
+    case FETCHING_USERID:
+      return Object.assign({}, state, { fetching: true });
+    case FETCHED_USERID:
+      return Object.assign({}, state, {
+        userid: action.payload,
+        fetching: false
+      });
     case FETCHING_USERINFO:
       return Object.assign({}, state, { fetching: true });
     case FETCHED_USERINFO:
       return Object.assign({}, state, {
-        userdata: [action.payload],
+        userinfo: [action.payload],
         fetching: false
       });
     case FETCHING_NOTES:
       return Object.assign({}, state, { fetching: true });
     case FETCHED_NOTES:
       return Object.assign({}, state, {
-        notes: [action.payload],
+        notes: action.payload,
         fetching: false
       });
     case FETCHING_ERROR:
@@ -160,21 +180,21 @@ export default (state = initialState, action) => {
     case DATE_CLICKED:
       return Object.assign({}, state, {
         dateClicked: action.payload
-      })
+      });
 
-      // case FETCHING_EVENTS:
-      // return Object.assign({}, state, { fetching: true });
-      // case FETCHED_EVENTS:
-      // return Object.assign({}, state, {
-      //   events: [action.payload],
-      //   fetching: false
-      // });
-      // case FETCHING_EVENTS_ERROR:
-      // return Object.assign({}, state, {
-      //   fetching: false,
-      //   error: "Error fetching event info"
-      // });
-   
+    // case FETCHING_EVENTS:
+    // return Object.assign({}, state, { fetching: true });
+    // case FETCHED_EVENTS:
+    // return Object.assign({}, state, {
+    //   events: [action.payload],
+    //   fetching: false
+    // });
+    // case FETCHING_EVENTS_ERROR:
+    // return Object.assign({}, state, {
+    //   fetching: false,
+    //   error: "Error fetching event info"
+    // });
+
     default:
       return state;
   }

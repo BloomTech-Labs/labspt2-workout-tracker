@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { postUser } from "./actions/actions";
 import auth from "./Auth";
 
 class Callback extends Component {
   async componentDidMount() {
-    await auth.handleAuthentication();
-    this.props.history.push("/schedule");
+    try {
+      await auth.handleAuthentication();
+      await this.props.postUser();
+      this.props.history.push("/schedule");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
@@ -13,4 +20,9 @@ class Callback extends Component {
   }
 }
 
-export default withRouter(Callback);
+export default withRouter(
+  connect(
+    null,
+    { postUser }
+  )(Callback)
+);
