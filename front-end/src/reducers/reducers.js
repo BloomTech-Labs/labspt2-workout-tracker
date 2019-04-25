@@ -1,4 +1,4 @@
-import auth from "../Auth";
+import auth from '../Auth';
 import {
   FETCHED,
   FETCHING,
@@ -17,8 +17,9 @@ import {
   FETCHING_ERROR,
   DATE_CLICKED,
   EVENTSFORM_CLOSED,
-  EVENT_SCHEDULED
-} from "../actions/actions";
+  EVENT_SCHEDULED,
+  FETCHED_PREMIUM
+} from '../actions/actions';
 
 const initialState = {
   auth,
@@ -157,7 +158,8 @@ const initialState = {
   ],
   fetching: false,
   dateClicked: false,
-  error: ""
+  error: '',
+  premium: ''
 };
 
 export default (state = initialState, action) => {
@@ -172,10 +174,15 @@ export default (state = initialState, action) => {
     case FETCHING_USERDATA:
       return Object.assign({}, state, { fetching: true });
     case FETCHED_USERDATA:
-      return Object.assign({}, state, {
-        userdata: [action.payload],
-        fetching: false
-      });
+      return Object.assign(
+        {},
+        state,
+        {
+          userdata: [action.payload],
+          fetching: false
+        },
+        console.log('IN THE FETCHED USERDATA', action)
+      );
     case FETCHING_USERID:
       return Object.assign({}, state, { fetching: true });
     case FETCHED_USERID:
@@ -214,7 +221,7 @@ export default (state = initialState, action) => {
     case FETCHING_ERROR:
       return Object.assign({}, state, {
         fetching: false,
-        error: "Error fetching user info"
+        error: 'Error fetching user info'
       });
     case DATE_CLICKED:
       return Object.assign({}, state, {
@@ -228,6 +235,15 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         events: action.payload
       });
+    case FETCHED_PREMIUM:
+      return Object.assign(
+        {},
+        state,
+        {
+          premium: action.payload
+        },
+        console.log('Welcome to premium!')
+      );
 
     // case FETCHING_EVENTS:
     // return Object.assign({}, state, { fetching: true });
