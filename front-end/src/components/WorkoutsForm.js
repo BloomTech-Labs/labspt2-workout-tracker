@@ -16,7 +16,7 @@ class WorkoutsForm extends Component {
 
   changeHandler = e => {
     console.log('event value:', e.target.value);
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value, categoryId: null });
   };
 
   selectChange = e => {
