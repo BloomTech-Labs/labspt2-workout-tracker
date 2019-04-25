@@ -22,7 +22,7 @@ const LOCAL = 'http://localhost:3333';
 export const getData = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/users`, { headers });
+  const promise = axios.get(`${LOCAL}/api/users`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
@@ -38,7 +38,7 @@ export const getData = () => {
 export const getUserId = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/userid`, { headers });
+  const promise = axios.get(`${LOCAL}/api/userid`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
@@ -76,7 +76,7 @@ export const postUser = () => {
 export const postCategory = categoryName => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/categories`, categoryName, {
+  const promise = axios.post(`${LOCAL}/api/categories`, categoryName, {
     headers
   });
   return dispatch => {
@@ -94,7 +94,7 @@ export const postCategory = categoryName => {
 export const postExercise = exerciseBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/exercises`, exerciseBody, {
+  const promise = axios.post(`${LOCAL}/api/exercises`, exerciseBody, {
     headers
   });
   return dispatch => {
