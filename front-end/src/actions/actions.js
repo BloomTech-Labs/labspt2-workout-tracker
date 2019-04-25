@@ -217,7 +217,7 @@ export const getPremium = getPremium => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
   const promise = axios.post(
-    `${LOCAL}/api/users`,
+    `${DEPLOYED}/api/users`,
     { premium: getPremium },
     {
       headers
