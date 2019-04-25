@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import logo from '../images/workout-logo.svg';
+import { getPremium } from '../actions/actions';
 
 const stripeBtn = () => {
   const publishableKey = 'pk_test_Gju9VkToEjZsO1RhYkIXmApE00zNqTr7sN';
@@ -14,13 +15,15 @@ const stripeBtn = () => {
     axios
       .post('https://workout-tracker-pt2.herokuapp.com/api/payment', body)
       .then(response => {
-        console.log(response);
+        console.log('AXIOS RESPONSE', response);
         alert('Payment Success');
       })
       .catch(error => {
         console.log('Payment Error: ', error);
         alert('Payment Error');
       });
+    console.log('made it this far');
+    getPremium(true);
   };
   return (
     <StripeCheckout
