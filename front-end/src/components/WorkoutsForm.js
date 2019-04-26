@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { getData, postCategory, postExercise } from '../actions/actions';
+import {
+  getData,
+  postCategory,
+  postExercise,
+  getCategories
+} from '../actions/actions';
 import { connect } from 'react-redux';
 
 class WorkoutsForm extends Component {
@@ -8,11 +13,25 @@ class WorkoutsForm extends Component {
     reps: '',
     weight: '',
     sets: '',
-    categoryId: this.props.categories[0].id,
-    category: this.props.categories[0].categoryName,
+    categoryId: null,
+    category: '',
     selectedCategoryID: '',
-    grabbedCategory: null
+    grabbedCategory: null,
+    categories: []
   };
+
+  async componentDidMount() {
+    try {
+      await this.props.getCategories();
+      await this.setState({
+        categoryId: this.props.categories[0].id,
+        category: this.props.categories[0].categoryName,
+        categories: this.props.categories
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value, categoryId: null });
@@ -55,7 +74,8 @@ class WorkoutsForm extends Component {
     const createdCategory = this.props.categories[
       this.props.categories.length - 1
     ].id;
-
+    console.log('createdCategory in submitHandler:', createdCategory);
+    console.log('createdCategory in submitHandler:', createdCategory);
     console.log('newExercise body in submitHandler:', newExercise);
 
     this.props.postExercise(newExercise.categoryId || createdCategory);
@@ -64,6 +84,8 @@ class WorkoutsForm extends Component {
   render() {
     const { data } = this.props;
     const { grabbedCategory } = this.state;
+    const { categories } = this.props;
+    console.log('category props in render:', categories);
 
     return (
       <div className="form-container workouts-form">
@@ -74,6 +96,7 @@ class WorkoutsForm extends Component {
             {this.props.categories.map(category => {
               return (
                 <option
+                  key={category.id}
                   value={category.categoryName}
                   categoryId={category.id}
                   onClick={this.onClick}
@@ -134,5 +157,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getData, postCategory, postExercise }
+  { getData, postCategory, postExercise, getCategories }
 )(WorkoutsForm);

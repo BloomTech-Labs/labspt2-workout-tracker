@@ -1,5 +1,5 @@
-import axios from 'axios';
-import auth from '../Auth';
+import axios from "axios";
+import auth from "../Auth";
 
 export const FETCHED = "FETCHED";
 export const FETCHING = "FETCHING";
@@ -11,13 +11,17 @@ export const FETCHED_USERINFO = "FETCHED_USERINFO";
 export const FETCHING_USERINFO = "FETCHING_USERINFO";
 export const FETCHED_NOTES = "FETCHED_NOTES";
 export const FETCHING_NOTES = "FETCHING_NOTES";
+export const FETCHED_CATEGORIES = "FETCHED_CATEGORIES";
+export const FETCHING_CATEGORIES = "FETCHING_CATEGORIES";
+export const FETCHED_EXERCISES = "FETCHED_EXERCISES";
+export const FETCHING_EXERCISES = "FETCHING_EXERCISES";
 export const FETCHING_ERROR = "FETCHING_ERROR";
 export const DATE_CLICKED = "DATE_CLICKED";
-export const EVENTSFORM_CLOSED = "EVENTSFORM_CLOSED"
-export const EVENT_SCHEDULED = "EVENT_SCHEDULED"
+export const EVENTSFORM_CLOSED = "EVENTSFORM_CLOSED";
+export const EVENT_SCHEDULED = "EVENT_SCHEDULED";
 
-const DEPLOYED = 'https://workout-tracker-pt2.herokuapp.com';
-const LOCAL = 'http://localhost:3333';
+const DEPLOYED = "https://workout-tracker-pt2.herokuapp.com";
+const LOCAL = "http://localhost:3333";
 
 export const getData = () => {
   const { getAccessToken } = auth;
@@ -112,7 +116,7 @@ export const postExercise = exerciseBody => {
 export const postNote = noteBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/notes`, noteBody, {
+  const promise = axios.post(`${LOCAL}/api/notes`, noteBody, {
     headers
   });
   return dispatch => {
@@ -130,7 +134,7 @@ export const postNote = noteBody => {
 export const getNotes = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/notes`, { headers });
+  const promise = axios.get(`${LOCAL}/api/notes`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_NOTES });
     promise
@@ -143,10 +147,26 @@ export const getNotes = () => {
   };
 };
 
+export const getCategories = () => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.get(`${LOCAL}/api/categories`, { headers });
+  return dispatch => {
+    dispatch({ type: FETCHING_CATEGORIES });
+    promise
+      .then(response => {
+        dispatch({ type: FETCHED_CATEGORIES, payload: response.data });
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_ERROR, payload: err });
+      });
+  };
+};
+
 export const updateUser = userUpdates => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.patch(`${DEPLOYED}/userupdate`, userUpdates, {
+  const promise = axios.patch(`${LOCAL}/userupdate`, userUpdates, {
     headers
   });
   return dispatch => {
@@ -178,17 +198,15 @@ export const closedEventForm = () => {
     dispatch({
       type: EVENTSFORM_CLOSED,
       payload: null
-
     });
   };
 };
 
-export const eventScheduled = (events) => {
+export const eventScheduled = events => {
   return dispatch => {
     dispatch({
       type: EVENT_SCHEDULED,
       payload: events
-
     });
   };
 };

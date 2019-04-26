@@ -10,6 +10,10 @@ import {
   FETCHED_USERID,
   FETCHING_NOTES,
   FETCHED_NOTES,
+  FETCHED_CATEGORIES,
+  FETCHING_CATEGORIES,
+  FETCHED_EXERCISES,
+  FETCHING_EXERCISES,
   FETCHING_ERROR,
   DATE_CLICKED,
   EVENTSFORM_CLOSED,
@@ -23,13 +27,98 @@ const initialState = {
   userdata: [],
   notes: [],
   dateClicked: null,
-  events: [ {
-    id: 1,
-    title  : 'Arms',
-    start: '2019-11-21T10:15:00',
-    end: '2019-11-21T10:30:00',
-    allDay: false,
-    exercises: [{
+  events: [
+    {
+      id: 1,
+      title: "Arms",
+      start: "2019-11-21T10:15:00",
+      end: "2019-11-21T10:30:00",
+      allDay: false,
+      exercises: [
+        {
+          exerciseName: "Lunges",
+          checked: false,
+          reps: "6",
+          weight: "150 lbs",
+          sets: "4",
+          categoryId: 2,
+          userId: 1
+        },
+        {
+          exerciseName: "Bicep Curls",
+          checked: false,
+          reps: "5",
+          weight: "100 lbs",
+          sets: "5",
+          categoryId: 2,
+          userId: 1
+        }
+      ]
+    },
+    {
+      id: 2,
+      title: "Legs",
+      start: "2019-11-21T11:15:00",
+      end: "2019-11-21T11:30:00",
+      allDay: false,
+      exercises: ["C", "D", "E", "F", "G"]
+    },
+    {
+      id: 4,
+      title: "Core",
+      start: "2019-03-12T04:30:00",
+      end: "2019-03-12T04:30:00",
+      allDay: false,
+      exercises: ["H"]
+    },
+    {
+      id: 3,
+      title: "Cardio",
+      start: "2019-03-13T09:30:00",
+      end: "2019-03-13T09:30:00",
+      allDay: false,
+      exercises: ["Bicept Curls", "Tricept Pulldowns"]
+    },
+    {
+      id: 5,
+      title: "Shoulders",
+      start: "2019-01-01T09:30:00",
+      end: "2019-01-01T010:30:00",
+      allDay: false,
+      exercises: ["Lifts (2 sets) 10 reps", "Extensions"]
+    },
+    {
+      id: 6,
+      title: "Chest",
+      start: "2019-01-01T10:45:00",
+      end: "2019-01-01T11:45:00",
+      allDay: false,
+      exercises: ["Bicept Curls", "Tricept Pulldowns"]
+    },
+    {
+      id: 7,
+      title: "Back",
+      start: "2019-01-03T09:30:00",
+      end: "2019-01-03T09:30:00",
+      allDay: false,
+      exercises: ["Bicept Curls", "Tricept Pulldowns"]
+    },
+    {
+      id: 8,
+      title: "Abs",
+      start: "2019-01-04T09:30:00",
+      end: "2019-01-04T09:30:00",
+      allDay: false,
+      exercises: ["Sweats", "Headaches", "Face Plants"]
+    }
+  ],
+  categories: [
+    { id: 1, categoryName: "Glutes", userId: 1 },
+    { id: 2, categoryName: "Arms", userId: 1 },
+    { id: 3, categoryName: "Legs", userId: 1 }
+  ],
+  exercises: [
+    {
       exerciseName: "Lunges",
       checked: false,
       reps: "6",
@@ -46,120 +135,26 @@ const initialState = {
       sets: "5",
       categoryId: 2,
       userId: 1
-    }]
-  },
-  {
-    id: 2,
-    title  : 'Legs',
-    start: '2019-11-21T11:15:00',
-    end: '2019-11-21T11:30:00',
-    allDay: false,
-    exercises: ['C', 'D', 'E', 'F', 'G']
-
-  },
-  {
-    id: 4,
-    title  : 'Core',
-    start: '2019-03-12T04:30:00',
-    end: '2019-03-12T04:30:00',
-    allDay: false,
-    exercises: ['H']
-
-
-  },
-  {
-    id: 3,
-    title  : 'Cardio',
-    start: '2019-03-13T09:30:00',
-    end: '2019-03-13T09:30:00',
-    allDay: false,
-    exercises: ['Bicept Curls', 'Tricept Pulldowns']
-
-  },
-  {
-    id: 5,
-    title  : 'Shoulders',
-    start: '2019-01-01T09:30:00',
-    end: '2019-01-01T010:30:00',
-    allDay: false,
-    exercises: ['Lifts (2 sets) 10 reps','Extensions']
-
-  },
-  {
-    id: 6,
-    title  : 'Chest',
-    start: '2019-01-01T10:45:00',
-    end: '2019-01-01T11:45:00',
-    allDay: false,
-    exercises: ['Bicept Curls', 'Tricept Pulldowns']
-
-  },
-  {
-    id: 7,
-    title  : 'Back',
-    start: '2019-01-03T09:30:00',
-    end: '2019-01-03T09:30:00',
-    allDay: false,
-    exercises: ['Bicept Curls', 'Tricept Pulldowns']
-
-  },
-  {
-    id: 8,
-    title  : 'Abs',
-    start: '2019-04-03T07:30:00',
-    end: '2019-04-03T08:30:00',
-    allDay: false,
-    exercises: ['Sweats', 'Headaches', 'Face Plants']
-
-  }],
-  categories: [
-  { id: 1, categoryName: "Glutes", userId: 1 },
-  { id: 2, categoryName: "Arms", userId: 1 },
-  { id: 3, categoryName: "Legs", userId: 1 },],
-  exercises: [  {
-    exerciseName: "Lunges",
-    checked: false,
-    reps: "6",
-    weight: "150 lbs",
-    sets: "4",
-    categoryId: 2,
-    userId: 1
-  },
-  {
-    exerciseName: "Bicep Curls",
-    checked: false,
-    reps: "5",
-    weight: "100 lbs",
-    sets: "5",
-    categoryId: 2,
-    userId: 1
-  },
-  {
-    exerciseName: "Preacher Curls",
-    checked: false,
-    reps: "4",
-    weight: "100 lbs",
-    sets: "4",
-    categoryId: 3,
-    userId: 1
-  },
-  {
-    exerciseName: "Blast Off",
-    checked: false,
-    reps: "4",
-    weight: "100 lbs",
-    sets: "4",
-    categoryId: 2,
-    userId: 1
-  },  {
-    exerciseName: "Blast Off",
-    checked: false,
-    reps: "4",
-    weight: "100 lbs",
-    sets: "4",
-    categoryId: 1,
-    userId: 2
-  }],
+    },
+    {
+      exerciseName: "Preacher Curls",
+      checked: false,
+      reps: "4",
+      weight: "100 lbs",
+      sets: "4",
+      categoryId: 2,
+      userId: 1
+    },
+    {
+      exerciseName: "Blast Off",
+      checked: false,
+      reps: "4",
+      weight: "100 lbs",
+      sets: "4",
+      categoryId: 2,
+      userId: 1
+    }
+  ],
   fetching: false,
   dateClicked: false,
   error: ""
@@ -202,6 +197,20 @@ export default (state = initialState, action) => {
         notes: action.payload,
         fetching: false
       });
+    case FETCHING_CATEGORIES:
+      return Object.assign({}, state, { fetching: true });
+    case FETCHED_CATEGORIES:
+      return Object.assign({}, state, {
+        categories: action.payload,
+        fetching: false
+      });
+    case FETCHING_EXERCISES:
+      return Object.assign({}, state, { fetching: true });
+    case FETCHED_EXERCISES:
+      return Object.assign({}, state, {
+        exercises: action.payload,
+        fetching: false
+      });
     case FETCHING_ERROR:
       return Object.assign({}, state, {
         fetching: false,
@@ -212,9 +221,9 @@ export default (state = initialState, action) => {
         dateClicked: action.payload
       });
     case EVENTSFORM_CLOSED:
-    return Object.assign({}, state, {
-      dateClicked: null
-    });
+      return Object.assign({}, state, {
+        dateClicked: null
+      });
     case EVENT_SCHEDULED:
       return Object.assign({}, state, {
         events: action.payload

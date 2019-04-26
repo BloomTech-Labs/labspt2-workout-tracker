@@ -358,10 +358,11 @@ server.get('/api/categories', checkJwt, (req, res) => {
     .first()
     .then(id => {
       db('categories as c')
+        .orderBy('id')
         .join('users as u', 'u.id', 'c.userId')
         .select('c.id', 'c.categoryName')
         .whereIn('c.userId', [1, id.id])
-        .pluck('c.id')
+        //.pluck('c.id')
         .then(categories => {
           checkForResource(req, res, categories);
         })
