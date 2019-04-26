@@ -8,7 +8,7 @@ import LandingPage from "./components/LandingPage";
 import Callback from "./Callback";
 import ScheduleView from "./components/ScheduleView";
 import WorkoutsView from "./containers/WorkoutsView";
-import ProgressView from "./containers/ProgressView";
+import ProgressView from "./components/ProgressView";
 import BillingView from "./components/BillingView";
 import SettingsView from "./components/SettingsView";
 import SecuredRoute from "./components/SecuredRoute";
@@ -17,7 +17,7 @@ class App extends Component {
   componentDidMount() {
     const { renewSession } = auth;
     if (localStorage.getItem("isLoggedIn") === "true") {
-      console.log(auth.getAccessToken());
+      console.log("auth in App.js:", auth.getAccessToken());
       renewSession();
     }
   }

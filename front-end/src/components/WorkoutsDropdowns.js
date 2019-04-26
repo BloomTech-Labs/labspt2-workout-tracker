@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { exerciseDefaults } from '../defaults/index';
-import { getData } from '../actions/actions';
+import { getData, postCategory, postExercise } from '../actions/actions';
 import { connect } from 'react-redux';
 import Collapsible from 'react-collapsible';
 
@@ -54,6 +54,8 @@ class WorkoutsDropdowns extends Component {
 const mapStateToProps = state => {
   return {
     data: state.data,
+    categories: state.categories,
+    exercises: state.exercises,
     error: state.error,
     fetchingUsers: state.fetching
   };
@@ -61,5 +63,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getData }
+  { getData, postCategory, postExercise }
 )(WorkoutsDropdowns);

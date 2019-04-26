@@ -15,14 +15,17 @@ class WorkoutsForm extends Component {
   };
 
   changeHandler = e => {
-    console.log('event value:', e.target.value);
     this.setState({ [e.target.name]: e.target.value, categoryId: null });
   };
 
   selectChange = e => {
     document.getElementById('myText').value = e.target.value;
-    this.setState({ category: e.target.options[e.target.selectedIndex].value, categoryId: Number(e.target.options[e.target.selectedIndex].getAttribute("categoryId")) });
-
+    this.setState({
+      category: e.target.options[e.target.selectedIndex].value,
+      categoryId: Number(
+        e.target.options[e.target.selectedIndex].getAttribute('categoryId')
+      )
+    });
   };
 
   onClick = (grabbedCategory, e) => {
@@ -36,17 +39,24 @@ class WorkoutsForm extends Component {
       reps: this.state.reps,
       weight: this.state.weight,
       sets: this.state.sets,
-      categoryId: this.state.categoryId,
+      categoryId: this.state.categoryId
     };
     const newCategory = {
       categoryName: this.state.category
     };
-    console.log('new category:', newCategory);
+    console.log('newCategory body in submitHandler:', newCategory);
     this.props.postCategory(newCategory);
 
-    console.log(this.props.categories);
+    console.log(
+      'this.props.categories in submitHandler:',
+      this.props.categories
+    );
 
-    const createdCategory = this.props.categories[this.props.categories.length - 1].id;
+    const createdCategory = this.props.categories[
+      this.props.categories.length - 1
+    ].id;
+
+    console.log('newExercise body in submitHandler:', newExercise);
 
     this.props.postExercise(newExercise.categoryId || createdCategory);
   };
@@ -59,11 +69,15 @@ class WorkoutsForm extends Component {
       <div className="form-container workouts-form">
         <form onSubmit={this.submitHandler}>
           <label>Workout Creator:</label>
-          
+
           <select name="" onChange={this.selectChange}>
-            {this.props.categories.map((category) => {
+            {this.props.categories.map(category => {
               return (
-                <option value={category.categoryName} categoryId={category.id} onClick={this.onClick}>
+                <option
+                  value={category.categoryName}
+                  categoryId={category.id}
+                  onClick={this.onClick}
+                >
                   {category.categoryName}
                 </option>
               );
@@ -76,10 +90,30 @@ class WorkoutsForm extends Component {
             onChange={this.changeHandler}
             placeholder="Add Category"
           />
-          <input onChange={this.changeHandler} type="text" name="exerciseName" placeholder="Exercise Name" />
-          <input onChange={this.changeHandler} type="text" name="weight" placeholder="Weight" />
-          <input onChange={this.changeHandler} type="text" name="sets" placeholder="Sets" />
-          <input onChange={this.changeHandler} type="text" name="reps" placeholder="Reps" />
+          <input
+            onChange={this.changeHandler}
+            type="text"
+            name="exerciseName"
+            placeholder="Exercise Name"
+          />
+          <input
+            onChange={this.changeHandler}
+            type="text"
+            name="weight"
+            placeholder="Weight"
+          />
+          <input
+            onChange={this.changeHandler}
+            type="text"
+            name="sets"
+            placeholder="Sets"
+          />
+          <input
+            onChange={this.changeHandler}
+            type="text"
+            name="reps"
+            placeholder="Reps"
+          />
           <button type="text">Submit</button>
         </form>
       </div>
@@ -91,10 +125,10 @@ const mapStateToProps = state => {
   console.log('state:', state);
   return {
     data: state.data,
-    error: state.error,
-    fetchingUsers: state.fetching,
     categories: state.categories,
-    exercises: state.exercises
+    exercises: state.exercises,
+    error: state.error,
+    fetchingUsers: state.fetching
   };
 };
 
