@@ -11,7 +11,8 @@ import {
   FETCHING_NOTES,
   FETCHED_NOTES,
   FETCHING_ERROR,
-  DATE_CLICKED
+  DATE_CLICKED,
+  EVENTSFORM_CLOSED
 } from "../actions/actions";
 
 const initialState = {
@@ -181,6 +182,10 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         dateClicked: action.payload
       });
+    case EVENTSFORM_CLOSED:
+    return Object.assign({}, state, {
+      dateClicked: null
+    });
 
     // case FETCHING_EVENTS:
     // return Object.assign({}, state, { fetching: true });

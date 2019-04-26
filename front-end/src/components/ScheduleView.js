@@ -10,6 +10,9 @@ import "./styles/ScheduleView.sass";
 import "./styles/Calendar.scss";
 
 class ScheduleView extends Component {
+
+
+
   render() {
     let ScheduledEvents = ''
     if (this.props.dateClicked){

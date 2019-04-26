@@ -3,6 +3,8 @@ import { getData, postCategory, postExercise } from '../actions/actions';
 import { connect } from 'react-redux';
 import './styles/ScheduleForm.sass';
 import Checkbox from './Checkbox.jsx'
+import {closedEventForm} from "../actions/actions.js"
+
 
 
 class ScheduleForm extends Component {
@@ -10,6 +12,11 @@ class ScheduleForm extends Component {
     categoryId: 1
   };
 
+
+  closeHandler = (e) => {
+    e.preventDefault();
+    this.props.closedEventForm()
+  }
   // changeHandler = e => {
   //   console.log('event value:', e.target.value);
   //   this.setState({ [e.target.name]: e.target.value });
@@ -33,8 +40,9 @@ class ScheduleForm extends Component {
     const { grabbedCategory } = this.state;
 
     return (
-      <div className="events-form">
+      <div className="component-container events-form">
         <form className="form-container" onSubmit={this.submitHandler}>
+        <button className="closeButton" onClick={this.closeHandler}>X</button>
           <label className="events-heading">Schedule An Event</label>
           <select name="" onChange={this.changedCategory} >
             {this.props.categories.map(category => {
@@ -75,11 +83,13 @@ const mapStateToProps = state => {
     error: state.error,
     fetchingUsers: state.fetching,
     categories: state.categories,
-    exercises: state.exercises
+    exercises: state.exercises,
+    dateClicked: state.dateClicked
+
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getData, postCategory, postExercise }
+  { closedEventForm }
 )(ScheduleForm);
