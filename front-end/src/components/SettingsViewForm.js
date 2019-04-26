@@ -76,7 +76,13 @@ class SettingsViewForm extends Component {
             placeholder="Enter new email"
             data-property="email"
           />
-          <button type="text" onClick={this.submitHandlerEmail}>
+          <button 
+            type="text" 
+            onClick={this.submitHandlerEmail}
+            style={{
+              backgroundColor:
+                this.state.buttonText1 === "Saved" ? "lightgreen" : "lightgrey"
+            }}>>
             {this.state.buttonText1}
           </button>
           <label>Update Username:</label>
@@ -86,7 +92,13 @@ class SettingsViewForm extends Component {
             placeholder="Enter new username"
             data-property="username"
           />
-          <button type="text" onClick={this.submitHandlerUsername}>
+          <button 
+            type="text" 
+            onClick={this.submitHandlerUsername}
+            style={{
+              backgroundColor:
+                this.state.buttonText2 === "Saved" ? "lightgreen" : "lightgrey"
+            }}>
           {this.state.buttonText2}
           </button>
           <label className="container">Emails?</label>
@@ -100,7 +112,13 @@ class SettingsViewForm extends Component {
             placeholder="Enter new password"
             data-property="newpass"
           />
-          <button type="text" onClick={this.submitHandlerPassword}>
+          <button 
+            type="text" 
+            onClick={this.submitHandlerPassword}
+            style={{
+              backgroundColor:
+                this.state.buttonText3 === "Saved" ? "lightgreen" : "lightgrey"
+            }}>>
           {this.state.buttonText3}
           </button>
         </form>
