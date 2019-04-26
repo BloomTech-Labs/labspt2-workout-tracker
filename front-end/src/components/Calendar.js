@@ -7,6 +7,7 @@ import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClic
 import "@fullcalendar/core/main.css";
 import {clickedDate} from "../actions/actions.js"
 import listWeek from "@fullcalendar/list"
+import moment from "moment"
 
 import './styles/Calendar.scss'
 
@@ -46,7 +47,9 @@ class Calendar extends React.Component {
   };
 
   handleDateClick = ({date}) => {
-    this.props.clickedDate(date)
+    console.log(moment(date))
+    console.log(moment(date).format("h:mm a"))
+    this.props.clickedDate(date.toISOString())
   };
 
   render() {
@@ -73,6 +76,7 @@ class Calendar extends React.Component {
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
             selectable={true}
+
             editable={true}
             eventLimit={true} // for all non-TimeGrid views
             eventLimit={2}

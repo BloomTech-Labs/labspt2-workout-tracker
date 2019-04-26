@@ -44,6 +44,8 @@ class ScheduleForm extends Component {
         <form className="form-container" onSubmit={this.submitHandler}>
         <button className="closeButton" onClick={this.closeHandler}>X</button>
           <label className="events-heading">Schedule An Event</label>
+          <input type="text" name="name" placeholder="Start Time" />
+          <input type="text" name="name" placeholder="End Time" />
           <select name="" onChange={this.changedCategory} >
             {this.props.categories.map(category => {
 
@@ -70,6 +72,10 @@ class ScheduleForm extends Component {
                 )
             
               })}
+    
+
+
+
           <button className="submit" type="text">Submit</button>
         </form>
       </div>
