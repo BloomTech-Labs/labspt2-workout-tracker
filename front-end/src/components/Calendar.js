@@ -47,8 +47,8 @@ class Calendar extends React.Component {
   };
 
   handleDateClick = ({date}) => {
-    console.log(moment(date))
-    console.log(moment(date).format("h:mm a"))
+    let time = '3:15 pm'
+    console.log(moment(time , "h:mm a").format())
     this.props.clickedDate(date.toISOString())
   };
 
