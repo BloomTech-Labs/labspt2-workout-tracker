@@ -13,7 +13,10 @@ class SettingsViewForm extends Component {
       email: "",
       username: "",
       newpass: "",
-      userinfo: []
+      userinfo: [],
+      buttonText1: 'Save',
+      buttonText2: 'Save',
+      buttonText3: 'Save'
     };
   }
 
@@ -34,6 +37,9 @@ class SettingsViewForm extends Component {
       email: this.state.email
     };
     this.props.updateUser(userUpdates);
+    this.setState({
+      buttonText1: "Saved"
+    })
   };
 
   submitHandlerUsername = e => {
@@ -42,6 +48,9 @@ class SettingsViewForm extends Component {
       username: this.state.username
     };
     this.props.updateUser(userUpdates);
+    this.setState({
+      buttonText2: "Saved"
+    })
   };
 
   submitHandlerPassword = e => {
@@ -50,7 +59,11 @@ class SettingsViewForm extends Component {
       password: this.state.password
     };
     this.props.updateUser(userUpdates);
+    this.setState({
+      buttonText3: "Saved"
+    })
   };
+  
 
   render() {
     return (
@@ -64,7 +77,7 @@ class SettingsViewForm extends Component {
             data-property="email"
           />
           <button type="text" onClick={this.submitHandlerEmail}>
-            Save
+            {this.state.buttonText1}
           </button>
           <label>Update Username:</label>
           <input
@@ -74,7 +87,7 @@ class SettingsViewForm extends Component {
             data-property="username"
           />
           <button type="text" onClick={this.submitHandlerUsername}>
-            Save
+          {this.state.buttonText2}
           </button>
           <label className="container">Emails?</label>
           <Checkbox />
@@ -88,7 +101,7 @@ class SettingsViewForm extends Component {
             data-property="newpass"
           />
           <button type="text" onClick={this.submitHandlerPassword}>
-            Save
+          {this.state.buttonText3}
           </button>
         </form>
       </div>
