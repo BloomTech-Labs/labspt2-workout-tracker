@@ -6,7 +6,6 @@ import Checkbox from './Checkbox.jsx'
 import {closedEventForm} from "../actions/actions.js"
 
 
-
 class ScheduleForm extends Component {
   state = {
     checked: false,
@@ -15,7 +14,7 @@ class ScheduleForm extends Component {
     start: '',
     end: '',
     allDay: null,
-    exercises: []
+    exercises: [...this.props.exercises]
   };
 
 
@@ -33,14 +32,33 @@ class ScheduleForm extends Component {
   // };
 
   changedCategory = (e) => {
-    console.log(typeof e.target.options[e.target.selectedIndex].value)
     this.setState({ categoryId: Number(e.target.options[e.target.selectedIndex].value) });
-    console.log(typeof e.target.options[e.target.selectedIndex].value)
+    console.log(this.props.exercises.filter( exercise => {
+
+      return exercise.categoryId === this.state.categoryId} ).map( item => {
+        return (
+
+          <div className="event-full">
+
+          <Checkbox name={item.exerciseName} />
+
+        </div>
+
+        )
+    
+      }))
 
   };
 
-  Selected = (event) => {
-      console.log(event.target.getAttribute("value"))
+
+  Update = () => {
+    this.forceUpdate()
+  }
+
+  sendData = (e) => {
+    let selectedExercises= this.state.exercises.filter(exercise => {return exercise.checked === true})
+    e.preventDefault()
+    this.setState({exercises: selectedExercises})
   }
 
 
@@ -48,14 +66,18 @@ class ScheduleForm extends Component {
   render() {
     const { data } = this.props;
     const { grabbedCategory } = this.state;
+    
+    console.log(this.state.exercises)
+    console.log(this.props.exercises)
 
     return (
+      
       <div className="component-container events-form">
         <form className="form-container" onSubmit={this.submitHandler}>
         <button className="closeButton" onClick={this.closeHandler}>X</button>
           <label className="events-heading">Schedule An Event</label>
           <div className='allDay' checkValue={false} onClick={this.Selected}>
-          <Checkbox name={"All Day"} value={false} />
+          <Checkbox name={"All Day"} Selected={this.Selected} />
           </div>
           <input type="text" name="name" placeholder="Start Time" />
           <input type="text" name="name" placeholder="End Time" />
@@ -72,12 +94,12 @@ class ScheduleForm extends Component {
           </select>
             {this.props.exercises.filter( exercise => {
 
-              return exercise.categoryId === this.state.categoryId} ).map( item => {
+              return exercise.categoryId === this.state.categoryId} ).map( (item,index) => {
                 return (
 
                   <div className="event-full">
 
-                  <Checkbox name={item.exerciseName} value={false} />
+                  <Checkbox Update={this.Update} name={item.exerciseName} item={item} key={item+index} value={this.sendOff} />
 
                 </div>
 
@@ -88,7 +110,7 @@ class ScheduleForm extends Component {
 
 
 
-          <button className="submit" type="text">Submit</button>
+          <button onClick={this.sendData} className="submit" type="text">Submit</button>
         </form>
       </div>
     );

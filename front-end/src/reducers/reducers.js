@@ -100,14 +100,16 @@ const initialState = {
   { id: 3, categoryName: "Legs", userId: 1 },],
   exercises: [  {
     exerciseName: "Lunges",
+    checked: false,
     reps: "6",
     weight: "150 lbs",
     sets: "4",
-    categoryId: 1,
+    categoryId: 2,
     userId: 1
   },
   {
     exerciseName: "Bicep Curls",
+    checked: false,
     reps: "5",
     weight: "100 lbs",
     sets: "5",
@@ -116,6 +118,7 @@ const initialState = {
   },
   {
     exerciseName: "Preacher Curls",
+    checked: false,
     reps: "4",
     weight: "100 lbs",
     sets: "4",
@@ -124,10 +127,11 @@ const initialState = {
   },
   {
     exerciseName: "Blast Off",
+    checked: false,
     reps: "4",
     weight: "100 lbs",
     sets: "4",
-    categoryId: 3,
+    categoryId: 2,
     userId: 1
   }],
   userid: null,

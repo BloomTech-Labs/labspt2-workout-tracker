@@ -18,16 +18,29 @@ class Checkbox extends Component {
       }
 
       checkHandler = () => {
+            let changedName = this.props.item["exerciseName"]
+
           if (this.state.clicked === false) {
+
               this.setState({clicked: true, checkbox: 'checkbox-checked', smallhexagon: 'small-hexagon-checked', check: 'check-checked'
               })
-              this.props.checkValue = true
+                changedName = 'true'
+                Object.assign(this.props.item, {checked: true})
+                this.props.Update()
+                console.log(this.props.item)
               }
           else {
+
             this.setState({clicked: false, checkbox: 'checkbox' , smallhexagon: 'small-hexagon', check: 'check'})
 
+            changedName = 'false'
+            Object.assign(this.props.item, {checked: false})
+            
+            this.props.Update()
+            console.log(this.props.item)
 
-          }
+        }
+
           }
 
 
