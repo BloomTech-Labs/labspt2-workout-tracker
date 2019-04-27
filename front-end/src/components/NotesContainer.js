@@ -51,7 +51,6 @@ const mapStateToProps = state => {
     error: state.error,
     fetchingUsers: state.fetching,
     notes: state.notes,
-    premium: state.premium
   };
 };
 

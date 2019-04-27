@@ -25,9 +25,13 @@ class ProgressView extends Component {
 
   postNote = e => {
     e.preventDefault();
-    const { weight, waist, arms } = this.state;
-    this.props.postNote({ weight, waist, arms });
-    this.setState({ weight: '', waist: '', arms: '' });
+    if (this.state.notes.length < 5 || this.props.premium) {
+      const { weight, waist, arms } = this.state;
+      this.props.postNote({ weight, waist, arms });
+      this.setState({ weight: '', waist: '', arms: '' });
+    } else {
+      alert('Go premium to add more notes!');
+    }
   };
 
   render() {
@@ -74,7 +78,8 @@ const mapStateToProps = state => {
   return {
     data: state.data,
     error: state.error,
-    fetchingUsers: state.fetching
+    fetchingUsers: state.fetching,
+    premium: state.premium
   };
 };
 
