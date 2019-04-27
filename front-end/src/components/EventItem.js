@@ -15,10 +15,8 @@ class EventItem extends Component {
         <div className='event-full'>
         {/* <h1 className='cat'>{this.props.item["category"]}</h1> */}
         <div className='event-check'>
-        <Checkbox />
+        <Checkbox name={this.props.exercise} value={false} />
 
-      {/* <p>{moment(this.props.time).format("h:mm a")}</p> */}
-       <p>{this.props.exercise}</p>
        
         </div>
         </div>
