@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { defaultNotes } from '../defaults/index';
+import ExampleNote from './ExampleNote';
 import { getNotes } from '../actions/actions';
 import './styles/ProgressNotes.sass';
 import CustomModal from './CustomModal';
@@ -22,6 +22,7 @@ class ProgressNotes extends Component {
   render() {
     return (
       <div className="notes-container">
+        <ExampleNote />
         {this.props.notes.map(note => {
           return (
             <div className="note" key={note.id}>
