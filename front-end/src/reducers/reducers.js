@@ -28,7 +28,24 @@ const initialState = {
     start: '2019-11-21T10:15:00',
     end: '2019-11-21T10:30:00',
     allDay: false,
-    exercises: ['A', 'B']
+    exercises: [{
+      exerciseName: "Lunges",
+      checked: false,
+      reps: "6",
+      weight: "150 lbs",
+      sets: "4",
+      categoryId: 2,
+      userId: 1
+    },
+    {
+      exerciseName: "Bicep Curls",
+      checked: false,
+      reps: "5",
+      weight: "100 lbs",
+      sets: "5",
+      categoryId: 2,
+      userId: 1
+    }]
   },
   {
     id: 2,

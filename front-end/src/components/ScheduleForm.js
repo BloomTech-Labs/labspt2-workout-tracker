@@ -8,12 +8,11 @@ import {closedEventForm} from "../actions/actions.js"
 
 class ScheduleForm extends Component {
   state = {
-    checked: false,
+    allDay: [{name: "allDay", checked:false}],
     categoryId: 1,
     title  : 'Core',
     start: '',
     end: '',
-    allDay: null,
     exercises: [...this.props.exercises]
   };
 
@@ -67,17 +66,13 @@ class ScheduleForm extends Component {
     const { data } = this.props;
     const { grabbedCategory } = this.state;
     
-    console.log(this.state.exercises)
-    console.log(this.props.exercises)
-
     return (
-      
       <div className="component-container events-form">
         <form className="form-container" onSubmit={this.submitHandler}>
         <button className="closeButton" onClick={this.closeHandler}>X</button>
           <label className="events-heading">Schedule An Event</label>
           <div className='allDay' checkValue={false} onClick={this.Selected}>
-          <Checkbox name={"All Day"} Selected={this.Selected} />
+          <Checkbox name={"All Day"} Update={this.Update} item={this.state.allDay} Selected={this.Selected} />
           </div>
           <input type="text" name="name" placeholder="Start Time" />
           <input type="text" name="name" placeholder="End Time" />
