@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { defaultNotes } from '../defaults/index';
+import { defaultNote } from '../defaults/index';
 import { getNotes } from '../actions/actions';
 import './styles/NotesContainer.sass';
 import styles from './styles/custom-styling.css';
@@ -10,13 +10,13 @@ import axios from 'axios';
 
 class NotesContainer extends Component {
   state = {
-    notes: defaultNotes
+    notes: defaultNote
   };
 
   componentDidMount() {
     this.props.getNotes();
     this.setState({ notes: [...this.props.notes] });
-  };
+  }
 
   placeholder = () => {
     return alert('This is a place holder function');
@@ -25,7 +25,6 @@ class NotesContainer extends Component {
   render() {
     return (
       <div className="notes-container">
-        <div />
         {this.props.notes.map(note => {
           return (
             <div className="note" key={note.id}>
@@ -54,4 +53,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getNotes })(NotesContainer);
+export default connect(
+  mapStateToProps,
+  { getNotes }
+)(NotesContainer);

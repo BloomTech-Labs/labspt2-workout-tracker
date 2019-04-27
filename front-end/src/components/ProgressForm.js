@@ -3,16 +3,14 @@ import { connect } from 'react-redux';
 import { postNote } from '../actions/actions';
 import { defaultNotes } from '../defaults/index';
 import NotesContainer from './NotesContainer';
-import './styles/ProgressView.sass';
 
-class ProgressView extends Component {
+class ProgressForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       weight: null,
       waist: null,
-      arms: null,
-      notes: defaultNotes
+      arms: null
     };
   }
   componentDidMount() {
@@ -32,30 +30,27 @@ class ProgressView extends Component {
 
   render() {
     return (
-      <div className="main progress-view">
-        <form className="form-container progress-form" onSubmit={this.postNote}>
-          <input
-            name="weight"
-            text="name"
-            onChange={this.onChange}
-            placeholder="Weight"
-          />
-          <input
-            name="waist"
-            text="name"
-            onChange={this.onChange}
-            placeholder="Waist"
-          />
-          <input
-            name="arms"
-            text="name"
-            onChange={this.onChange}
-            placeholder="Arms"
-          />
-          <button className="submit">Submit</button>
-        </form>
-        <NotesContainer />
-      </div>
+      <form className="form-container progress-form" onSubmit={this.postNote}>
+        <input
+          name="weight"
+          text="name"
+          onChange={this.onChange}
+          placeholder="Weight"
+        />
+        <input
+          name="waist"
+          text="name"
+          onChange={this.onChange}
+          placeholder="Waist"
+        />
+        <input
+          name="arms"
+          text="name"
+          onChange={this.onChange}
+          placeholder="Arms"
+        />
+        <button className="submit">Submit</button>
+      </form>
 
       /* {this.props.fetchingUsers ? (
           <h3>Loading...</h3>
@@ -81,4 +76,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { postNote }
-)(ProgressView);
+)(ProgressForm);
