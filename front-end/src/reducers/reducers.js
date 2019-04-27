@@ -159,7 +159,7 @@ const initialState = {
   fetching: false,
   dateClicked: false,
   error: '',
-  premium: ''
+  premium: true
 };
 
 export default (state = initialState, action) => {

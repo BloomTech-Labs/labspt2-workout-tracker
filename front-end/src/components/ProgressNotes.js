@@ -45,7 +45,8 @@ class ProgressNotes extends Component {
 const mapStateToProps = state => {
   return {
     notes: state.notes,
-    error: state.error
+    error: state.error,
+    premium: state.premium
   };
 };
 
