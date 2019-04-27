@@ -50,7 +50,8 @@ const mapStateToProps = state => {
     data: state.data,
     error: state.error,
     fetchingUsers: state.fetching,
-    notes: state.notes
+    notes: state.notes,
+    premium: state.premium
   };
 };
 
