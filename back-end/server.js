@@ -133,6 +133,7 @@ server.get('/api/users', checkJwt, (req, res) => {
     .first()
     .then(id => {
 <<<<<<< HEAD
+<<<<<<< HEAD
       db("categories as c")
         .join("users as u", "u.id", "c.userId")
         .select("c.id", "c.categoryName")
@@ -141,6 +142,18 @@ server.get('/api/users', checkJwt, (req, res) => {
         .then(categories => {
           db("exercises as e")
             .join("categories as c", "c.id", "e.categoryId")
+=======
+      console.log(id);
+      db('categories as c')
+        .join('users as u', 'u.id', 'c.userId')
+        .select('c.id', 'c.categoryName')
+        .whereIn('c.userId', [1, id.id])
+        .pluck('c.id')
+        .then(categories => {
+          console.log(categories);
+          db('exercises as e')
+            .join('categories as c', 'c.id', 'e.categoryId')
+>>>>>>> added fetch premium action
 =======
       console.log(id);
       db('categories as c')
@@ -247,6 +260,7 @@ server.post('/api/users', checkJwt, (req, res) => {
     .then(rows => {
       if (rows.length === 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         db("users")
           .returning("id")
           .insert(user)
@@ -265,6 +279,16 @@ server.post('/api/users', checkJwt, (req, res) => {
           .returning('id')
           .insert(user)
           .then(id => {
+=======
+        console.log('this is the row');
+        console.log(rows);
+        console.log('this is the user');
+        console.log(user);
+        db('users')
+          .returning('id')
+          .insert(user)
+          .then(id => {
+>>>>>>> added fetch premium action
             console.log('this is the id');
             console.log(id);
             db('categories as c')
@@ -272,6 +296,9 @@ server.post('/api/users', checkJwt, (req, res) => {
               .select('c.id', 'c.categoryName')
               .whereIn('c.userId', [1, id[0]])
               .pluck('c.id')
+<<<<<<< HEAD
+>>>>>>> added fetch premium action
+=======
 >>>>>>> added fetch premium action
               .then(categories => {
                 db('exercises as e')
@@ -313,6 +340,7 @@ server.post('/api/users', checkJwt, (req, res) => {
           .first()
           .then(id => {
 <<<<<<< HEAD
+<<<<<<< HEAD
             db("categories as c")
               .join("users as u", "u.id", "c.userId")
               .select("c.id", "c.categoryName")
@@ -321,6 +349,18 @@ server.post('/api/users', checkJwt, (req, res) => {
               .then(categories => {
                 db("exercises as e")
                   .join("categories as c", "c.id", "e.categoryId")
+=======
+            console.log(id);
+            db('categories as c')
+              .join('users as u', 'u.id', 'c.userId')
+              .select('c.id', 'c.categoryName')
+              .whereIn('c.userId', [1, id.id])
+              .pluck('c.id')
+              .then(categories => {
+                console.log(categories);
+                db('exercises as e')
+                  .join('categories as c', 'c.id', 'e.categoryId')
+>>>>>>> added fetch premium action
 =======
             console.log(id);
             db('categories as c')
@@ -382,6 +422,10 @@ server.get('/api/userid', checkJwt, (req, res) => {
     .then(id => {
       if (!id) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        console.log('null');
+>>>>>>> added fetch premium action
 =======
         console.log('null');
 >>>>>>> added fetch premium action
@@ -391,8 +435,11 @@ server.get('/api/userid', checkJwt, (req, res) => {
     })
     .catch(err => {
 <<<<<<< HEAD
+<<<<<<< HEAD
       console.log("error", err);
 =======
+=======
+>>>>>>> added fetch premium action
       console.log('error', err);
       console.log(id.id);
 >>>>>>> added fetch premium action
@@ -411,18 +458,24 @@ server.get('/api/categories', checkJwt, (req, res) => {
     .first()
     .then(id => {
 <<<<<<< HEAD
+<<<<<<< HEAD
       db("categories as c")
         .orderBy("id")
         .join("users as u", "u.id", "c.userId")
         .select("c.id", "c.categoryName")
         .whereIn("c.userId", [1, id.id])
 =======
+=======
+>>>>>>> added fetch premium action
       console.log(id);
       db('categories as c')
         .join('users as u', 'u.id', 'c.userId')
         .select('c.id', 'c.categoryName')
         .whereIn('c.userId', [1, id.id])
         .pluck('c.id')
+<<<<<<< HEAD
+>>>>>>> added fetch premium action
+=======
 >>>>>>> added fetch premium action
         .then(categories => {
           checkForResource(req, res, categories);
@@ -455,17 +508,23 @@ server.post('/api/categories', checkJwt, (req, res) => {
         .insert({ categoryName: categoryName, userId: id.id })
         .then(userId => {
 <<<<<<< HEAD
+<<<<<<< HEAD
           db("categories as c")
             .orderBy("id")
             .join("users as u", "u.id", "c.userId")
             .select("c.id", "c.categoryName")
             .whereIn("c.userId", [1, userId[0]])
 =======
+=======
+>>>>>>> added fetch premium action
           console.log(userId);
           db('categories as c')
             .join('users as u', 'u.id', 'c.userId')
             .select('c.id', 'c.categoryName')
             .whereIn('c.userId', [1, userId[0]])
+<<<<<<< HEAD
+>>>>>>> added fetch premium action
+=======
 >>>>>>> added fetch premium action
             .then(categories => {
               checkForResource(req, res, categories);
