@@ -12,6 +12,7 @@ class CalendarEvent extends Component {
   
   
     render() {
+      
       return (
         <div className='form-container event-card'>
         <h1 className="date-heading">{moment(`${this.props.scheduleDay}`).format("ddd, MMM Do")}</h1>

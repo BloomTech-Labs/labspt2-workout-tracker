@@ -18,22 +18,34 @@ class Checkbox extends Component {
       }
 
       checkHandler = () => {
-          if (this.state.clicked === false) {
-              this.setState({clicked: true, checkbox: 'checkbox-checked', smallhexagon: 'small-hexagon-checked', check: 'check-checked'
 
+          if (this.state.clicked === false) {
+
+              this.setState({clicked: true, checkbox: 'checkbox-checked', smallhexagon: 'small-hexagon-checked', check: 'check-checked'
               })
+                Object.assign(this.props.item, {checked: true})
+                this.props.Update()
+                console.log(this.props.item)
               }
           else {
+
             this.setState({clicked: false, checkbox: 'checkbox' , smallhexagon: 'small-hexagon', check: 'check'})
 
+            Object.assign(this.props.item, {checked: false})
+            
+            this.props.Update()
+            console.log(this.props.item)
+
+        }
 
           }
-          }
+
 
           render() {
 
             return (
-                   <svg onClick={this.checkHandler} className={this.state.checkbox} width="100%" height="100%" viewBox="0 0 780 681" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" xmlnsserif="http://www.serif.com/" styles="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+                    <div className='checkedGroup'>
+                   <svg onClick={this.checkHandler}  className={this.state.checkbox} width="100%" height="100%" viewBox="0 0 780 681" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" xmlnsserif="http://www.serif.com/" styles="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                       <g transform="matrix(1,0,0,1,-3.50613,-0.660289)">
                           <g transform="matrix(0.874332,0,0,0.758116,0,0)">
                               <g transform="matrix(1.14373,0,0,1.31906,-51.8587,-123.292)">
@@ -52,6 +64,9 @@ class Checkbox extends Component {
                           </g>
                       </g>
                   </svg>
+                    <p className="check-text"> {this.props.name}</p>
+                </div>
+
             );
           }
 

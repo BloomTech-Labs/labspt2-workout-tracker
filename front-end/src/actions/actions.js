@@ -1,18 +1,20 @@
 import axios from 'axios';
 import auth from '../Auth';
 
-export const FETCHED = 'FETCHED';
-export const FETCHING = 'FETCHING';
-export const FETCHED_USERDATA = 'FETCHED_USERDATA';
-export const FETCHING_USERDATA = 'FETCHING_USERDATA';
-export const FETCHED_USERID = 'FETCHED_USERID';
-export const FETCHING_USERID = 'FETCHING_USERID';
-export const FETCHED_USERINFO = 'FETCHED_USERINFO';
-export const FETCHING_USERINFO = 'FETCHING_USERINFO';
-export const FETCHED_NOTES = 'FETCHED_NOTES';
-export const FETCHING_NOTES = 'FETCHING_NOTES';
-export const FETCHING_ERROR = 'FETCHING_ERROR';
-export const DATE_CLICKED = 'DATE_CLICKED';
+export const FETCHED = "FETCHED";
+export const FETCHING = "FETCHING";
+export const FETCHED_USERDATA = "FETCHED_USERDATA";
+export const FETCHING_USERDATA = "FETCHING_USERDATA";
+export const FETCHED_USERID = "FETCHED_USERID";
+export const FETCHING_USERID = "FETCHING_USERID";
+export const FETCHED_USERINFO = "FETCHED_USERINFO";
+export const FETCHING_USERINFO = "FETCHING_USERINFO";
+export const FETCHED_NOTES = "FETCHED_NOTES";
+export const FETCHING_NOTES = "FETCHING_NOTES";
+export const FETCHING_ERROR = "FETCHING_ERROR";
+export const DATE_CLICKED = "DATE_CLICKED";
+export const EVENTSFORM_CLOSED = "EVENTSFORM_CLOSED"
+
 
 const DEPLOYED = 'https://workout-tracker-pt2.herokuapp.com';
 const LOCAL = 'http://localhost:3333';
@@ -167,6 +169,16 @@ export const clickedDate = date => {
     dispatch({
       type: DATE_CLICKED,
       payload: date
+    });
+  };
+};
+
+export const closedEventForm = () => {
+  return dispatch => {
+    dispatch({
+      type: EVENTSFORM_CLOSED,
+      payload: null
+
     });
   };
 };

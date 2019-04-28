@@ -9,16 +9,22 @@ import Checkbox from './Checkbox.jsx'
 import './styles/ScheduleView.sass'
 
 class EventItem extends Component {
+
+
+
   render() {
     return (
         
         <div className='event-full'>
         {/* <h1 className='cat'>{this.props.item["category"]}</h1> */}
         <div className='event-check'>
-        <Checkbox />
+        <Checkbox name={this.props.item.exerciseName} Update={this.props.Update} item={this.props.item} value={false} />
 
-      {/* <p>{moment(this.props.time).format("h:mm a")}</p> */}
-       <p>{this.props.exercise}</p>
+        <p className="indented-item">Weight: {this.props.item.weight}</p>
+
+        <p className="indented-item">Reps: {this.props.item.reps}</p>
+        <p className="indented-item">Sets: {this.props.item.sets}</p>
+
        
         </div>
         </div>

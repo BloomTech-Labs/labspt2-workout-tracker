@@ -6,10 +6,12 @@ import Calendar from './Calendar.js'
 import CalendarEvents from './CalendarEvents.js'
 import ScheduleForm from './ScheduleForm'
 
-import "./styles/ScheduleView.sass";
 import "./styles/Calendar.scss";
 
 class ScheduleView extends Component {
+
+
+
   render() {
     let ScheduledEvents = ''
     if (this.props.dateClicked){
