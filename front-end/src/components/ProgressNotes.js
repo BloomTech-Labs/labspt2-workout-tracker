@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { defaultNotes } from '../defaults/index';
+import ExampleNote from './ExampleNote';
 import { getNotes } from '../actions/actions';
-import './styles/NotesContainer.sass';
-import styles from './styles/custom-styling.css';
-import Modal from 'react-responsive-modal';
+import './styles/ProgressNotes.sass';
 import CustomModal from './CustomModal';
-import axios from 'axios';
 
-class NotesContainer extends Component {
+class ProgressNotes extends Component {
   state = {
-    notes: defaultNotes
+    notes: []
   };
 
   componentDidMount() {
     this.props.getNotes();
     this.setState({ notes: [...this.props.notes] });
-  };
+  }
 
   placeholder = () => {
     return alert('This is a place holder function');
@@ -25,7 +22,7 @@ class NotesContainer extends Component {
   render() {
     return (
       <div className="notes-container">
-        <div />
+        <ExampleNote />
         {this.props.notes.map(note => {
           return (
             <div className="note" key={note.id}>
@@ -47,11 +44,12 @@ class NotesContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    data: state.data,
-    error: state.error,
-    fetchingUsers: state.fetching,
-    notes: state.notes
+    notes: state.notes,
+    error: state.error
   };
 };
 
-export default connect(mapStateToProps, { getNotes })(NotesContainer);
+export default connect(
+  mapStateToProps,
+  { getNotes }
+)(ProgressNotes);
