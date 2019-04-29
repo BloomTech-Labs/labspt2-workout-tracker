@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { exerciseDefaults } from '../defaults/index';
-import { getData, postCategory, postExercise } from '../actions/actions';
-import { connect } from 'react-redux';
-import Collapsible from 'react-collapsible';
+import React, { Component } from "react";
+import { exerciseDefaults } from "../defaults/index";
+import { getData, postCategory, postExercise } from "../actions/actions";
+import { connect } from "react-redux";
+import Collapsible from "react-collapsible";
 
 class WorkoutsDropdowns extends Component {
   state = {
@@ -10,7 +10,7 @@ class WorkoutsDropdowns extends Component {
   };
 
   componentDidMount() {
-    this.props.getData();
+    // this.props.getData();
   }
 
   // takes in a categoryName as a callback
@@ -32,7 +32,7 @@ class WorkoutsDropdowns extends Component {
 
     return (
       <div className="workouts-dropdowns">
-        {['Arms', 'Legs', 'Cardio', 'Abs'].map(type => {
+        {["Arms", "Legs", "Cardio", "Abs"].map(type => {
           return (
             <Collapsible trigger={type}>
               {this.renderExerciseNames(type)}

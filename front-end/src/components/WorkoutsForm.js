@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   getData,
   postCategory,
   postExercise,
   getCategories
-} from '../actions/actions';
-import { connect } from 'react-redux';
+} from "../actions/actions";
+import { connect } from "react-redux";
 
 class WorkoutsForm extends Component {
   state = {
-    exerciseName: '',
-    reps: '',
-    weight: '',
-    sets: '',
+    exerciseName: "",
+    reps: "",
+    weight: "",
+    sets: "",
     categoryId: null,
-    category: '',
-    selectedCategoryID: '',
+    category: "",
+    selectedCategoryID: "",
     grabbedCategory: null,
     categories: []
   };
@@ -23,9 +23,8 @@ class WorkoutsForm extends Component {
   async componentDidMount() {
     try {
       await this.props.getCategories();
+      console.log(this.props.categories);
       await this.setState({
-        categoryId: this.props.categories[0].id,
-        category: this.props.categories[0].categoryName,
         categories: this.props.categories
       });
     } catch (err) {
@@ -38,11 +37,11 @@ class WorkoutsForm extends Component {
   };
 
   selectChange = e => {
-    document.getElementById('myText').value = e.target.value;
+    document.getElementById("myText").value = e.target.value;
     this.setState({
       category: e.target.options[e.target.selectedIndex].value,
       categoryId: Number(
-        e.target.options[e.target.selectedIndex].getAttribute('categoryId')
+        e.target.options[e.target.selectedIndex].getAttribute("categoryId")
       )
     });
   };
@@ -63,20 +62,20 @@ class WorkoutsForm extends Component {
     const newCategory = {
       categoryName: this.state.category
     };
-    console.log('newCategory body in submitHandler:', newCategory);
+    console.log("newCategory body in submitHandler:", newCategory);
     this.props.postCategory(newCategory);
 
     console.log(
-      'this.props.categories in submitHandler:',
+      "this.props.categories in submitHandler:",
       this.props.categories
     );
 
     const createdCategory = this.props.categories[
       this.props.categories.length - 1
     ].id;
-    console.log('createdCategory in submitHandler:', createdCategory);
-    console.log('createdCategory in submitHandler:', createdCategory);
-    console.log('newExercise body in submitHandler:', newExercise);
+    console.log("createdCategory in submitHandler:", createdCategory);
+    console.log("createdCategory in submitHandler:", createdCategory);
+    console.log("newExercise body in submitHandler:", newExercise);
 
     this.props.postExercise(newExercise.categoryId || createdCategory);
   };
@@ -85,7 +84,7 @@ class WorkoutsForm extends Component {
     const { data } = this.props;
     const { grabbedCategory } = this.state;
     const { categories } = this.props;
-    console.log('category props in render:', categories);
+    console.log("category props in render:", categories);
 
     return (
       <div className="form-container workouts-form">
@@ -145,7 +144,7 @@ class WorkoutsForm extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state:', state);
+  console.log("state:", state);
   return {
     data: state.data,
     categories: state.categories,
