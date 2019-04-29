@@ -14,7 +14,7 @@ export const FETCHING_NOTES = "FETCHING_NOTES";
 export const FETCHING_ERROR = "FETCHING_ERROR";
 export const DATE_CLICKED = "DATE_CLICKED";
 export const EVENTSFORM_CLOSED = "EVENTSFORM_CLOSED"
-
+export const EVENT_SCHEDULED = "EVENT_SCHEDULED"
 
 const DEPLOYED = 'https://workout-tracker-pt2.herokuapp.com';
 const LOCAL = 'http://localhost:3333';
@@ -22,7 +22,7 @@ const LOCAL = 'http://localhost:3333';
 export const getData = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/users`, { headers });
+  const promise = axios.get(`${LOCAL}/api/users`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
@@ -38,7 +38,7 @@ export const getData = () => {
 export const getUserId = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/userid`, { headers });
+  const promise = axios.get(`${LOCAL}/api/userid`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
@@ -55,7 +55,7 @@ export const postUser = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
   const promise = axios.post(
-    `${DEPLOYED}/api/users`,
+    `${LOCAL}/api/users`,
     {},
     {
       headers
@@ -76,7 +76,7 @@ export const postUser = () => {
 export const postCategory = categoryName => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/categories`, categoryName, {
+  const promise = axios.post(`${LOCAL}/api/categories`, categoryName, {
     headers
   });
   return dispatch => {
@@ -94,7 +94,7 @@ export const postCategory = categoryName => {
 export const postExercise = exerciseBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/exercises`, exerciseBody, {
+  const promise = axios.post(`${LOCAL}/api/exercises`, exerciseBody, {
     headers
   });
   return dispatch => {
@@ -112,7 +112,7 @@ export const postExercise = exerciseBody => {
 export const postNote = noteBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/notes`, noteBody, {
+  const promise = axios.post(`${LOCAL}/api/notes`, noteBody, {
     headers
   });
   return dispatch => {
@@ -130,7 +130,7 @@ export const postNote = noteBody => {
 export const getNotes = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/notes`, { headers });
+  const promise = axios.get(`${LOCAL}/api/notes`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_NOTES });
     promise
@@ -146,7 +146,7 @@ export const getNotes = () => {
 export const updateUser = userUpdates => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.patch(`${DEPLOYED}/userupdate`, userUpdates, {
+  const promise = axios.patch(`${LOCAL}/userupdate`, userUpdates, {
     headers
   });
   return dispatch => {
@@ -178,6 +178,16 @@ export const closedEventForm = () => {
     dispatch({
       type: EVENTSFORM_CLOSED,
       payload: null
+
+    });
+  };
+};
+
+export const eventScheduled = (events) => {
+  return dispatch => {
+    dispatch({
+      type: EVENT_SCHEDULED,
+      payload: events
 
     });
   };

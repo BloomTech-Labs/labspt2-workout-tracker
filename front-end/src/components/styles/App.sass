@@ -37,7 +37,21 @@ form
     width: 100%
 
 input[type=text]
-    @include form-input-dm()
+  background-color: $background-gray
+  font-size: $paragraph-size
+  color: $main-background
+  width: 80%
+  margin-bottom: 10px
+  border: 0.5px solid $text-color
+
+input[type=text]:disabled
+  background-color: salmon
+  font-size: $paragraph-size
+  width: 80%
+  margin-bottom: 10px
+  border: 2px solid red
+  
+
 
 input[type=text]:focus
     @include form-input-focus-dm()

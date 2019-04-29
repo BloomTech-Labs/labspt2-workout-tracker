@@ -12,7 +12,8 @@ import {
   FETCHED_NOTES,
   FETCHING_ERROR,
   DATE_CLICKED,
-  EVENTSFORM_CLOSED
+  EVENTSFORM_CLOSED,
+  EVENT_SCHEDULED
 } from "../actions/actions";
 
 const initialState = {
@@ -105,8 +106,8 @@ const initialState = {
   {
     id: 8,
     title  : 'Abs',
-    start: '2019-01-04T09:30:00',
-    end: '2019-01-04T09:30:00',
+    start: '2019-04-03T07:30:00',
+    end: '2019-04-03T08:30:00',
     allDay: false,
     exercises: ['Sweats', 'Headaches', 'Face Plants']
 
@@ -139,7 +140,7 @@ const initialState = {
     reps: "4",
     weight: "100 lbs",
     sets: "4",
-    categoryId: 2,
+    categoryId: 3,
     userId: 1
   },
   {
@@ -150,6 +151,14 @@ const initialState = {
     sets: "4",
     categoryId: 2,
     userId: 1
+  },  {
+    exerciseName: "Blast Off",
+    checked: false,
+    reps: "4",
+    weight: "100 lbs",
+    sets: "4",
+    categoryId: 1,
+    userId: 2
   }],
   userid: null,
   fetching: false,
@@ -207,6 +216,10 @@ export default (state = initialState, action) => {
     return Object.assign({}, state, {
       dateClicked: null
     });
+    case EVENT_SCHEDULED:
+      return Object.assign({}, state, {
+        events: action.payload
+      });
 
     // case FETCHING_EVENTS:
     // return Object.assign({}, state, { fetching: true });
