@@ -14,7 +14,7 @@ const server = express();
 
 const whitelist = [
   'https://workout-tracker-pt2.netlify.com',
-  'http://localhost:3000'
+  'http://localhost:3333'
 ];
 
 const corsOptions = {
@@ -64,6 +64,8 @@ const checkJwt = jwt({
     jwksRequestsPerMinute: 5,
     jwksUri: 'https://workout-tracker-pt2.auth0.com/.well-known/jwks.json'
   }),
+
+  //
 
   // Validate the audience and the issuer.
   audience: 'https://workout-tracker-pt2.herokuapp.com/',
@@ -695,7 +697,7 @@ server.get('/api/notes', checkJwt, (req, res) => {
 
 // ENDPOINT TO UPDATE PREMIUM STATUS
 
-server.get('/api/users', checkJwt, (req, res) => {
+server.get('/api/users/premium', checkJwt, (req, res) => {
   db('users')
     .where('user_id', req.user.sub)
     .first()
@@ -707,9 +709,7 @@ server.get('/api/users', checkJwt, (req, res) => {
     })
     .catch(err => {
       console.log('error', err);
-      res
-        .status(500)
-        .json({ error: 'The notes information could not be retrieved.' });
+      res.status(500).json({ error: 'Could not set user to premium.' });
     });
 });
 
