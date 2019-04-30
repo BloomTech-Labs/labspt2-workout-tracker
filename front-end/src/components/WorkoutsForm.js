@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  getData,
-  postCategory,
-  postExercise,
-  getCategories
-} from "../actions/actions";
+import { postCategory, postExercise, getCategories } from "../actions/actions";
 import { connect } from "react-redux";
 
 class WorkoutsForm extends Component {
@@ -21,15 +16,6 @@ class WorkoutsForm extends Component {
   };
 
   componentDidMount() {
-    // try {
-    //   await this.props.getCategories();
-    //   console.log(this.props.categories);
-    //   await this.setState({
-    //     categories: this.props.categories
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    // }
     this.props.getCategories();
   }
 
@@ -67,37 +53,19 @@ class WorkoutsForm extends Component {
     const newCategory = {
       categoryName: this.state.category
     };
-    console.log("newCategory body in submitHandler:", newCategory);
-    // this.props.postCategory(newCategory);
 
-    console.log(
-      "this.props.categories in submitHandler:",
-      this.props.categories
-    );
-
-    // const createdCategory = this.props.categories[
-    //   this.props.categories.length - 1
-    // ].id;
-    // console.log("createdCategory in submitHandler:", createdCategory);
-    console.log("newExercise body in submitHandler:", newExercise);
     if (newExercise.categoryId) {
       this.props.postExercise(newExercise);
     } else {
       const newCategories = await this.props.postCategory(newCategory);
-      // await this.props.getCategories();
-      console.log(newCategories);
       let createdCategory = newCategories[newCategories.length - 1].id;
       newExercise.categoryId = createdCategory;
       this.props.postExercise(newExercise);
     }
-    // this.props.postExercise(newExercise.categoryId || createdCategory);
   };
 
   render() {
-    const { data } = this.props;
-    const { grabbedCategory } = this.state;
     const { categories } = this.props;
-    console.log("category props in render:", categories);
 
     return (
       <div className="form-container workouts-form">
@@ -105,7 +73,7 @@ class WorkoutsForm extends Component {
           <label>Workout Creator:</label>
 
           <select name="" onChange={this.selectChange}>
-            {this.props.categories.map(category => {
+            {categories.map(category => {
               return (
                 <option
                   key={category.id}
@@ -157,17 +125,14 @@ class WorkoutsForm extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state:", state);
   return {
-    data: state.data,
     categories: state.categories,
     exercises: state.exercises,
-    error: state.error,
-    fetchingUsers: state.fetching
+    error: state.error
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getData, postCategory, postExercise, getCategories }
+  { postCategory, postExercise, getCategories }
 )(WorkoutsForm);
