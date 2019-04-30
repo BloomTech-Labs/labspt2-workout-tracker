@@ -131,7 +131,7 @@ const initialState = {
   fetching: false,
   dateClicked: false,
   error: '',
-  premium: false
+  premium: true
 };
 
 export default (state = initialState, action) => {
@@ -189,9 +189,7 @@ export default (state = initialState, action) => {
       return Object.assign(
         {},
         state,
-        {
-          premium: action.payload
-        },
+        { premium: action.payload },
         console.log('Welcome to premium!')
       );
 
