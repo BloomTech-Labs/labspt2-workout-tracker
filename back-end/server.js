@@ -132,14 +132,12 @@ server.get("/api/users", checkJwt, (req, res) => {
     .where("user_id", req.user.sub)
     .first()
     .then(id => {
-      console.log(id);
       db("categories as c")
         .join("users as u", "u.id", "c.userId")
         .select("c.id", "c.categoryName")
         .whereIn("c.userId", [1, id.id])
         .pluck("c.id")
         .then(categories => {
-          console.log(categories);
           db("exercises as e")
             .join("categories as c", "c.id", "e.categoryId")
             .select(
@@ -150,7 +148,6 @@ server.get("/api/users", checkJwt, (req, res) => {
             )
             .whereIn("e.categoryId", categories)
             .then(exercises => {
-              console.log(exercises);
               checkForResource(req, res, exercises);
             })
             .catch(err => {
@@ -236,16 +233,10 @@ server.post("/api/users", checkJwt, (req, res) => {
     .where("user_id", req.user.sub)
     .then(rows => {
       if (rows.length === 0) {
-        console.log("this is the row");
-        console.log(rows);
-        console.log("this is the user");
-        console.log(user);
         db("users")
           .returning("id")
           .insert(user)
           .then(id => {
-            console.log("this is the id");
-            console.log(id);
             db("categories as c")
               .join("users as u", "u.id", "c.userId")
               .select("c.id", "c.categoryName")
@@ -290,14 +281,12 @@ server.post("/api/users", checkJwt, (req, res) => {
           .where("user_id", req.user.sub)
           .first()
           .then(id => {
-            console.log(id);
             db("categories as c")
               .join("users as u", "u.id", "c.userId")
               .select("c.id", "c.categoryName")
               .whereIn("c.userId", [1, id.id])
               .pluck("c.id")
               .then(categories => {
-                console.log(categories);
                 db("exercises as e")
                   .join("categories as c", "c.id", "e.categoryId")
                   .select(
@@ -308,7 +297,6 @@ server.post("/api/users", checkJwt, (req, res) => {
                   )
                   .whereIn("e.categoryId", categories)
                   .then(exercises => {
-                    console.log(exercises);
                     checkForResource(req, res, exercises);
                   })
                   .catch(err => {
@@ -349,15 +337,12 @@ server.get("/api/userid", checkJwt, (req, res) => {
     .first()
     .then(id => {
       if (!id) {
-        console.log("null");
       } else {
-        console.log(id.id);
         res.status(200).json(id.id);
       }
     })
     .catch(err => {
       console.log("error", err);
-      console.log(id.id);
       res
         .status(500)
         .json({ error: "The specified user info could not be retrieved" });
@@ -372,12 +357,11 @@ server.get("/api/categories", checkJwt, (req, res) => {
     .where("user_id", req.user.sub)
     .first()
     .then(id => {
-      console.log(id);
       db("categories as c")
+        .orderBy("id")
         .join("users as u", "u.id", "c.userId")
         .select("c.id", "c.categoryName")
         .whereIn("c.userId", [1, id.id])
-        .pluck("c.id")
         .then(categories => {
           checkForResource(req, res, categories);
         })
@@ -408,8 +392,8 @@ server.post("/api/categories", checkJwt, (req, res) => {
         .returning("userId")
         .insert({ categoryName: categoryName, userId: id.id })
         .then(userId => {
-          console.log(userId);
           db("categories as c")
+            .orderBy("id")
             .join("users as u", "u.id", "c.userId")
             .select("c.id", "c.categoryName")
             .whereIn("c.userId", [1, userId[0]])
@@ -464,6 +448,7 @@ server.post("/api/exercises", checkJwt, (req, res) => {
             .where("c.id", categoryId[0])
             .first()
             .then(category => {
+              console.log("Category");
               console.log(category);
               db("exercises as e")
                 .join("categories as c", "c.id", "e.categoryId")
@@ -475,6 +460,7 @@ server.post("/api/exercises", checkJwt, (req, res) => {
                 )
                 .where("e.categoryId", category.id)
                 .then(exercises => {
+                  console.log("Exercises:");
                   console.log(exercises);
                   checkForResource(req, res, exercises);
                 })

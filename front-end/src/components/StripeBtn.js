@@ -14,11 +14,9 @@ const stripeBtn = () => {
     axios
       .post('https://workout-tracker-pt2.herokuapp.com/api/payment', body)
       .then(response => {
-        console.log(response);
         alert('Payment Success');
       })
       .catch(error => {
-        console.log('Payment Error: ', error);
         alert('Payment Error');
       });
   };

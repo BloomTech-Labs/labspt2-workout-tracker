@@ -1,65 +1,87 @@
-import React, { Component } from 'react';
-import { getData, postCategory, postExercise } from '../actions/actions';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { postCategory, postExercise, getCategories } from "../actions/actions";
+import { connect } from "react-redux";
 
 class WorkoutsForm extends Component {
   state = {
-    title: '',
-    name: '',
-    weight: '',
-    sets: '',
-    reps: '',
-    category: '',
-    selectedCategoryID: '',
-    grabbedCategory: null
+    exerciseName: "",
+    reps: "",
+    weight: "",
+    sets: "",
+    categoryId: null,
+    category: "",
+    selectedCategoryID: "",
+    grabbedCategory: null,
+    categories: []
   };
 
+  componentDidMount() {
+    this.props.getCategories();
+  }
+
   changeHandler = e => {
-    console.log('event value:', e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  categoryChangeHandler = e => {
+    this.setState({ [e.target.name]: e.target.value, categoryId: null });
+  };
+
   selectChange = e => {
-    document.getElementById('myText').value = e.target.value;
+    document.getElementById("myText").value = e.target.value;
+    this.setState({
+      category: e.target.options[e.target.selectedIndex].value,
+      categoryId: Number(
+        e.target.options[e.target.selectedIndex].getAttribute("categoryid")
+      )
+    });
   };
 
   onClick = (grabbedCategory, e) => {
     this.setState({ grabbedCategory: e.target.value });
   };
 
-  submitHandler = e => {
+  submitHandler = async e => {
     e.preventDefault();
     const newExercise = {
-      selectedCategoryID: this.state.selectedCategoryID,
-      title: this.state.title,
-      name: this.state.name,
+      exerciseName: this.state.exerciseName,
+      reps: this.state.reps,
       weight: this.state.weight,
       sets: this.state.sets,
-      reps: this.state.reps
+      categoryId: this.state.categoryId
     };
     const newCategory = {
       categoryName: this.state.category
     };
-    console.log('new category:', newCategory);
-    this.props.postCategory(newCategory);
-    const createdCategory = this.props.data[this.props.data.length - 1];
-    this.props.postExercise(newExercise.selectedCategoryID || createdCategory);
+
+    if (newExercise.categoryId) {
+      this.props.postExercise(newExercise);
+    } else {
+      const newCategories = await this.props.postCategory(newCategory);
+      let createdCategory = newCategories[newCategories.length - 1].id;
+      newExercise.categoryId = createdCategory;
+      this.props.postExercise(newExercise);
+    }
   };
 
   render() {
-    const { data } = this.props;
-    const { grabbedCategory } = this.state;
+    const { categories } = this.props;
 
     return (
       <div className="form-container workouts-form">
         <form onSubmit={this.submitHandler}>
           <label>Workout Creator:</label>
-          <input type="text" name="title" placeholder="Workout Title" />
+
           <select name="" onChange={this.selectChange}>
-            {data.map(data => {
+            {categories.map(category => {
               return (
-                <option value={grabbedCategory} onClick={this.onClick}>
-                  {data.category || data.categoryName}
+                <option
+                  key={category.id}
+                  value={category.categoryName}
+                  categoryid={category.id}
+                  onClick={this.onClick}
+                >
+                  {category.categoryName}
                 </option>
               );
             })}
@@ -68,13 +90,33 @@ class WorkoutsForm extends Component {
             id="myText"
             type="text"
             name="category"
-            onChange={this.changeHandler}
+            onChange={this.categoryChangeHandler}
             placeholder="Add Category"
           />
-          <input type="text" name="name" placeholder="Exercise Name" />
-          <input type="text" name="weight" placeholder="Weight" />
-          <input type="text" name="sets" placeholder="Sets" />
-          <input type="text" name="reps" placeholder="Reps" />
+          <input
+            onChange={this.changeHandler}
+            type="text"
+            name="exerciseName"
+            placeholder="Exercise Name"
+          />
+          <input
+            onChange={this.changeHandler}
+            type="text"
+            name="weight"
+            placeholder="Weight"
+          />
+          <input
+            onChange={this.changeHandler}
+            type="text"
+            name="sets"
+            placeholder="Sets"
+          />
+          <input
+            onChange={this.changeHandler}
+            type="text"
+            name="reps"
+            placeholder="Reps"
+          />
           <button type="text">Submit</button>
         </form>
       </div>
@@ -83,15 +125,14 @@ class WorkoutsForm extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state:', state);
   return {
-    data: state.data,
-    error: state.error,
-    fetchingUsers: state.fetching
+    categories: state.categories,
+    exercises: state.exercises,
+    error: state.error
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getData, postCategory, postExercise }
+  { postCategory, postExercise, getCategories }
 )(WorkoutsForm);

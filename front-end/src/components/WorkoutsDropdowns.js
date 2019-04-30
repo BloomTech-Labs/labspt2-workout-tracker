@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { exerciseDefaults } from '../defaults/index';
-import { getData } from '../actions/actions';
-import { connect } from 'react-redux';
-import Collapsible from 'react-collapsible';
+import React, { Component } from "react";
+import { exerciseDefaults } from "../defaults/index";
+import { getData, postCategory, postExercise } from "../actions/actions";
+import { connect } from "react-redux";
+import Collapsible from "react-collapsible";
 
 class WorkoutsDropdowns extends Component {
   state = {
@@ -10,7 +10,7 @@ class WorkoutsDropdowns extends Component {
   };
 
   componentDidMount() {
-    this.props.getData();
+    // this.props.getData();
   }
 
   // takes in a categoryName as a callback
@@ -21,8 +21,10 @@ class WorkoutsDropdowns extends Component {
     const filteredExercises = exercises.filter(exercises => {
       return exercises.categoryName === category;
     });
-    const mappedExerciseNames = filteredExercises.map(exerciseType => (
-      <p className="drop-down">{exerciseType.exerciseName}</p>
+    const mappedExerciseNames = filteredExercises.map((exerciseType, index) => (
+      <p key={index} className="drop-down">
+        {exerciseType.exerciseName}
+      </p>
     ));
     return mappedExerciseNames;
   };
@@ -32,7 +34,7 @@ class WorkoutsDropdowns extends Component {
 
     return (
       <div className="workouts-dropdowns">
-        {['Arms', 'Legs', 'Cardio', 'Abs'].map(type => {
+        {["Arms", "Legs", "Cardio", "Abs"].map(type => {
           return (
             <Collapsible trigger={type}>
               {this.renderExerciseNames(type)}
@@ -54,6 +56,8 @@ class WorkoutsDropdowns extends Component {
 const mapStateToProps = state => {
   return {
     data: state.data,
+    categories: state.categories,
+    exercises: state.exercises,
     error: state.error,
     fetchingUsers: state.fetching
   };
@@ -61,5 +65,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getData }
+  { getData, postCategory, postExercise }
 )(WorkoutsDropdowns);

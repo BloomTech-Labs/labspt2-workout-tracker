@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { postNote } from '../actions/actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { postNote } from "../actions/actions";
 
 class ProgressForm extends Component {
   state = {
-    weight: null,
-    waist: null,
-    arms: null
+    weight: "",
+    waist: "",
+    arms: ""
   };
 
   onChange = event => {
@@ -17,7 +17,7 @@ class ProgressForm extends Component {
     e.preventDefault();
     const { weight, waist, arms } = this.state;
     this.props.postNote({ weight, waist, arms });
-    this.setState({ weight: '', waist: '', arms: '' });
+    this.setState({ weight: "", waist: "", arms: "" });
   };
 
   render() {
@@ -28,18 +28,21 @@ class ProgressForm extends Component {
           text="name"
           onChange={this.onChange}
           placeholder="Weight"
+          value={this.state.weight}
         />
         <input
           name="waist"
           text="name"
           onChange={this.onChange}
           placeholder="Waist"
+          value={this.state.waist}
         />
         <input
           name="arms"
           text="name"
           onChange={this.onChange}
           placeholder="Arms"
+          value={this.state.arms}
         />
         <button className="submit">Submit</button>
       </form>
