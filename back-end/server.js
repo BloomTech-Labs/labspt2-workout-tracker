@@ -393,6 +393,7 @@ server.post("/api/categories", checkJwt, (req, res) => {
         .insert({ categoryName: categoryName, userId: id.id })
         .then(userId => {
           db("categories as c")
+            .orderBy("id")
             .join("users as u", "u.id", "c.userId")
             .select("c.id", "c.categoryName")
             .whereIn("c.userId", [1, userId[0]])

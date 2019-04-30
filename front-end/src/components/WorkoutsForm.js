@@ -20,19 +20,24 @@ class WorkoutsForm extends Component {
     categories: []
   };
 
-  async componentDidMount() {
-    try {
-      await this.props.getCategories();
-      console.log(this.props.categories);
-      await this.setState({
-        categories: this.props.categories
-      });
-    } catch (err) {
-      console.log(err);
-    }
+  componentDidMount() {
+    // try {
+    //   await this.props.getCategories();
+    //   console.log(this.props.categories);
+    //   await this.setState({
+    //     categories: this.props.categories
+    //   });
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    this.props.getCategories();
   }
 
   changeHandler = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  categoryChangeHandler = e => {
     this.setState({ [e.target.name]: e.target.value, categoryId: null });
   };
 
@@ -41,7 +46,7 @@ class WorkoutsForm extends Component {
     this.setState({
       category: e.target.options[e.target.selectedIndex].value,
       categoryId: Number(
-        e.target.options[e.target.selectedIndex].getAttribute("categoryId")
+        e.target.options[e.target.selectedIndex].getAttribute("categoryid")
       )
     });
   };
@@ -50,7 +55,7 @@ class WorkoutsForm extends Component {
     this.setState({ grabbedCategory: e.target.value });
   };
 
-  submitHandler = e => {
+  submitHandler = async e => {
     e.preventDefault();
     const newExercise = {
       exerciseName: this.state.exerciseName,
@@ -63,21 +68,29 @@ class WorkoutsForm extends Component {
       categoryName: this.state.category
     };
     console.log("newCategory body in submitHandler:", newCategory);
-    this.props.postCategory(newCategory);
+    // this.props.postCategory(newCategory);
 
     console.log(
       "this.props.categories in submitHandler:",
       this.props.categories
     );
 
-    const createdCategory = this.props.categories[
-      this.props.categories.length - 1
-    ].id;
-    console.log("createdCategory in submitHandler:", createdCategory);
-    console.log("createdCategory in submitHandler:", createdCategory);
+    // const createdCategory = this.props.categories[
+    //   this.props.categories.length - 1
+    // ].id;
+    // console.log("createdCategory in submitHandler:", createdCategory);
     console.log("newExercise body in submitHandler:", newExercise);
-
-    this.props.postExercise(newExercise.categoryId || createdCategory);
+    if (newExercise.categoryId) {
+      this.props.postExercise(newExercise);
+    } else {
+      const newCategories = await this.props.postCategory(newCategory);
+      // await this.props.getCategories();
+      console.log(newCategories);
+      let createdCategory = newCategories[newCategories.length - 1].id;
+      newExercise.categoryId = createdCategory;
+      this.props.postExercise(newExercise);
+    }
+    // this.props.postExercise(newExercise.categoryId || createdCategory);
   };
 
   render() {
@@ -97,7 +110,7 @@ class WorkoutsForm extends Component {
                 <option
                   key={category.id}
                   value={category.categoryName}
-                  categoryId={category.id}
+                  categoryid={category.id}
                   onClick={this.onClick}
                 >
                   {category.categoryName}
@@ -109,7 +122,7 @@ class WorkoutsForm extends Component {
             id="myText"
             type="text"
             name="category"
-            onChange={this.changeHandler}
+            onChange={this.categoryChangeHandler}
             placeholder="Add Category"
           />
           <input

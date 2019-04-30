@@ -84,10 +84,11 @@ export const postCategory = categoryName => {
     headers
   });
   return dispatch => {
-    dispatch({ type: FETCHING });
-    promise
+    dispatch({ type: FETCHING_CATEGORIES });
+    return promise
       .then(response => {
-        dispatch({ type: FETCHED, payload: response.data });
+        dispatch({ type: FETCHED_CATEGORIES, payload: response.data });
+        return response.data;
       })
       .catch(err => {
         dispatch({ type: FETCHING_ERROR, payload: err });
