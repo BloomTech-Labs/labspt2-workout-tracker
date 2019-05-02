@@ -213,16 +213,12 @@ export const eventScheduled = events => {
   };
 };
 
-export const getPremium = getPremium => {
+export const getPremium = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(
-    `${LOCAL}/api/users/premium`,
-    {},
-    {
-      headers
-    }
-  );
+  const promise = axios.get(`${LOCAL}/api/users/premium`, {
+    headers
+  });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise

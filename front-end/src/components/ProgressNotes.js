@@ -13,6 +13,7 @@ class ProgressNotes extends Component {
   componentDidMount() {
     this.props.getNotes();
     this.setState({ notes: [...this.props.notes] });
+    console.log(`IN THE NOTESCONTAINER ${this.state.notes.length}`);
   }
 
   placeholder = () => {

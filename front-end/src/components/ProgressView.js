@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postNote } from '../actions/actions';
+import { postNote, getNotes } from '../actions/actions';
 import { defaultNotes } from '../defaults/index';
 import NotesContainer from './NotesContainer';
 import './styles/ProgressView.sass';
@@ -12,11 +12,21 @@ class ProgressView extends Component {
       weight: null,
       waist: null,
       arms: null,
-      notes: defaultNotes
+      notes: []
     };
   }
   componentDidMount() {
-    // this.props.getData();
+    this.props.getNotes();
+    this.setState({ notes: [...this.props.notes] });
+    console.log(`IN THE PROGRESSVIEW ${this.state.notes.length}`);
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState.notes.length !== this.state.notes.length) {
+      this.props.getNotes();
+      this.setState({ notes: [...this.props.notes] });
+      console.log(`IN THE PROGRESSVIEW ${this.state.notes.length}`);
+    }
   }
 
   onChange = event => {
@@ -25,11 +35,13 @@ class ProgressView extends Component {
 
   postNote = e => {
     e.preventDefault();
-    if (this.state.notes.length < 5 || this.props.premium) {
+    if (this.state.notes.length < 5) {
+      console.log(this.state.notes.length);
       const { weight, waist, arms } = this.state;
       this.props.postNote({ weight, waist, arms });
       this.setState({ weight: '', waist: '', arms: '' });
     } else {
+      console.log(this.state.notes.length);
       alert('Go premium to add more notes!');
     }
   };
@@ -79,11 +91,12 @@ const mapStateToProps = state => {
     data: state.data,
     error: state.error,
     fetchingUsers: state.fetching,
-    premium: state.premium
+    premium: state.premium,
+    notes: state.notes
   };
 };
 
 export default connect(
   mapStateToProps,
-  { postNote }
+  { postNote, getNotes }
 )(ProgressView);
