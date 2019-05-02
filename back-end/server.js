@@ -252,6 +252,7 @@ server.post("/api/users", checkJwt, (req, res) => {
                     "c.categoryName as category"
                   )
                   .whereIn("e.categoryId", categories)
+                  .whereIn("e.userId", [1, id[0]])
                   .then(exercises => {
                     checkForResource(req, res, exercises);
                   })
@@ -296,6 +297,7 @@ server.post("/api/users", checkJwt, (req, res) => {
                     "c.categoryName as category"
                   )
                   .whereIn("e.categoryId", categories)
+                  .whereIn("e.userId", [1, id.id])
                   .then(exercises => {
                     checkForResource(req, res, exercises);
                   })

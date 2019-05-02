@@ -37,7 +37,7 @@ class ScheduleForm extends Component {
         "categoryName"
       )
     });
-    console.log(this.props.categories[0].categoryName);
+    // console.log(this.props.categories[0].categoryName);
   };
 
   inputHandler = event => {
