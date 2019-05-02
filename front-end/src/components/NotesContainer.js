@@ -10,13 +10,14 @@ import axios from 'axios';
 
 class NotesContainer extends Component {
   state = {
-    notes: defaultNotes
+    notes: []
   };
 
   componentDidMount() {
     this.props.getNotes();
     this.setState({ notes: [...this.props.notes] });
-  };
+    console.log(`IN THE NOTESCONTAINER ${this.state.notes.length}`);
+  }
 
   placeholder = () => {
     return alert('This is a place holder function');
@@ -50,8 +51,11 @@ const mapStateToProps = state => {
     data: state.data,
     error: state.error,
     fetchingUsers: state.fetching,
-    notes: state.notes,
+    notes: state.notes
   };
 };
 
-export default connect(mapStateToProps, { getNotes })(NotesContainer);
+export default connect(
+  mapStateToProps,
+  { getNotes }
+)(NotesContainer);

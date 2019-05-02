@@ -14,7 +14,7 @@ const server = express();
 
 const whitelist = [
   'https://workout-tracker-pt2.netlify.com',
-  'http://localhost:3333'
+  'http://localhost:3000'
 ];
 
 const corsOptions = {
