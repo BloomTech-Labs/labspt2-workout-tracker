@@ -9,14 +9,9 @@ import CustomModal from './CustomModal';
 import axios from 'axios';
 
 class NotesContainer extends Component {
-  state = {
-    notes: []
-  };
 
   componentDidMount() {
     this.props.getNotes();
-    this.setState({ notes: [...this.props.notes] });
-    console.log(`IN THE NOTESCONTAINER ${this.state.notes.length}`);
   }
 
   placeholder = () => {
