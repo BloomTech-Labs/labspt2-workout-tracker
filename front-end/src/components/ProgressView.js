@@ -11,23 +11,20 @@ class ProgressView extends Component {
     this.state = {
       weight: null,
       waist: null,
-      arms: null,
-      notes: []
+      arms: null
     };
   }
   componentDidMount() {
     this.props.getNotes();
-    this.setState({ notes: [...this.props.notes] });
-    console.log(`IN THE PROGRESSVIEW ${this.state.notes.length}`);
   }
 
-  componentDidUpdate(prevState) {
-    if (prevState.notes.length !== this.state.notes.length) {
-      this.props.getNotes();
-      this.setState({ notes: [...this.props.notes] });
-      console.log(`IN THE PROGRESSVIEW ${this.state.notes.length}`);
-    }
-  }
+  // componentDidUpdate(prevState) {
+  //   if (prevState.notes.length !== this.state.notes.length) {
+  //     this.props.getNotes();
+  //     this.setState({ notes: [...this.props.notes] });
+  //     console.log(`IN THE PROGRESSVIEW ${this.state.notes.length}`);
+  //   }
+  // }
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -35,13 +32,11 @@ class ProgressView extends Component {
 
   postNote = e => {
     e.preventDefault();
-    if (this.state.notes.length < 5) {
-      console.log(this.state.notes.length);
+    if (this.props.notes.length < 5 || this.props.premium) {
       const { weight, waist, arms } = this.state;
       this.props.postNote({ weight, waist, arms });
       this.setState({ weight: '', waist: '', arms: '' });
     } else {
-      console.log(this.state.notes.length);
       alert('Go premium to add more notes!');
     }
   };

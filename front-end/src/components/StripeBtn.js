@@ -22,7 +22,7 @@ const stripeBtn = () => {
         alert('Payment Error');
       });
     console.log('made it this far');
-    getPremium(true);
+    getPremium();
   };
   return (
     <StripeCheckout

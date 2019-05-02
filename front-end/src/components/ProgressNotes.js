@@ -5,15 +5,10 @@ import { getNotes } from '../actions/actions';
 import './styles/ProgressNotes.sass';
 import CustomModal from './CustomModal';
 
-class ProgressNotes extends Component {
-  state = {
-    notes: []
-  };
+class NotesContainer extends Component {
 
   componentDidMount() {
     this.props.getNotes();
-    this.setState({ notes: [...this.props.notes] });
-    console.log(`IN THE NOTESCONTAINER ${this.state.notes.length}`);
   }
 
   placeholder = () => {
