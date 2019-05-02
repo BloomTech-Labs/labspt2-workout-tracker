@@ -21,18 +21,21 @@ class Calendar extends React.Component {
     calendarEvents: [
       // initial event data
       {
+                  id: 1,
                   title: "Arms",
                   start: "2019-04-12T13:30:00",
                   end: "2019-04-12T14:30:00",
                   allDay: false
                 },
                 {
+                  id: 2,
                   title: "Legs",
                   start: "2019-04-12T15:30:00",
                   end: "2019-04-12T16:30:00",
                   allDay: false
                 },
                 {
+                  id: 3,
                   title: "Core",
                   start: "2019-04-12T20:30:00",
                   end: "2019-04-12T21:30:00",
@@ -51,6 +54,16 @@ class Calendar extends React.Component {
     console.log(date.toISOString())
     this.props.clickedDate(date.toISOString())
   };
+
+  handleDragAndDrop = (obj) => {
+    console.log(obj.event.title)
+    Object.defineProperty(obj.event, obj.event.title, {
+      value: 'Muscles!',
+      writable: true,
+    })
+    console.log(obj.event.title)
+
+  }
 
   render() {
     return (
@@ -71,12 +84,14 @@ class Calendar extends React.Component {
             }}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             ref={this.calendarComponentRef}
+            getView={this.handleDragAndDrop}
             weekends={this.state.calendarWeekends}
             events={this.state.calendarEvents}
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
             selectable={true}
-
+            droppable={true}
+            eventDrop={this.handleDragAndDrop}
             editable={true}
             eventLimit={true} // for all non-TimeGrid views
             eventLimit={2}
