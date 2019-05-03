@@ -1,22 +1,28 @@
-import React, { Component } from "react";
-import { postCategory, postExercise, getCategories } from "../actions/actions";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import {
+  postCategory,
+  postExercise,
+  getCategories,
+  getExercises
+} from '../actions/actions';
+import { connect } from 'react-redux';
 
 class WorkoutsForm extends Component {
   state = {
-    exerciseName: "",
-    reps: "",
-    weight: "",
-    sets: "",
+    exerciseName: '',
+    reps: '',
+    weight: '',
+    sets: '',
     categoryId: null,
-    category: "",
-    selectedCategoryID: "",
+    category: '',
+    selectedCategoryID: '',
     grabbedCategory: null,
     categories: []
   };
 
   componentDidMount() {
     this.props.getCategories();
+    this.props.getExercises();
   }
 
   changeHandler = e => {
@@ -28,11 +34,11 @@ class WorkoutsForm extends Component {
   };
 
   selectChange = e => {
-    document.getElementById("myText").value = e.target.value;
+    document.getElementById('myText').value = e.target.value;
     this.setState({
       category: e.target.options[e.target.selectedIndex].value,
       categoryId: Number(
-        e.target.options[e.target.selectedIndex].getAttribute("categoryid")
+        e.target.options[e.target.selectedIndex].getAttribute('categoryid')
       )
     });
   };
@@ -68,11 +74,11 @@ class WorkoutsForm extends Component {
     const { categories } = this.props;
 
     return (
-      <div className="form-container workouts-form">
+      <div className='form-container workouts-form'>
         <form onSubmit={this.submitHandler}>
           <label>Workout Creator:</label>
 
-          <select name="" onChange={this.selectChange}>
+          <select name='' onChange={this.selectChange}>
             {categories.map(category => {
               return (
                 <option
@@ -87,37 +93,37 @@ class WorkoutsForm extends Component {
             })}
           </select>
           <input
-            id="myText"
-            type="text"
-            name="category"
+            id='myText'
+            type='text'
+            name='category'
             onChange={this.categoryChangeHandler}
-            placeholder="Add Category"
+            placeholder='Add Category'
           />
           <input
             onChange={this.changeHandler}
-            type="text"
-            name="exerciseName"
-            placeholder="Exercise Name"
+            type='text'
+            name='exerciseName'
+            placeholder='Exercise Name'
           />
           <input
             onChange={this.changeHandler}
-            type="text"
-            name="weight"
-            placeholder="Weight"
+            type='text'
+            name='weight'
+            placeholder='Weight'
           />
           <input
             onChange={this.changeHandler}
-            type="text"
-            name="sets"
-            placeholder="Sets"
+            type='text'
+            name='sets'
+            placeholder='Sets'
           />
           <input
             onChange={this.changeHandler}
-            type="text"
-            name="reps"
-            placeholder="Reps"
+            type='text'
+            name='reps'
+            placeholder='Reps'
           />
-          <button type="text">Submit</button>
+          <button type='text'>Submit</button>
         </form>
       </div>
     );
@@ -134,5 +140,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { postCategory, postExercise, getCategories }
+  { postCategory, postExercise, getCategories, getExercises }
 )(WorkoutsForm);

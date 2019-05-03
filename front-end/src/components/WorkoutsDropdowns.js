@@ -1,12 +1,18 @@
-import React, { Component } from "react";
-import { exerciseDefaults } from "../defaults/index";
-import { getData, postCategory, postExercise } from "../actions/actions";
-import { connect } from "react-redux";
-import Collapsible from "react-collapsible";
+import React, { Component } from 'react';
+import { exerciseDefaults } from '../defaults/index';
+import {
+  getData,
+  postCategory,
+  postExercise,
+  getCategories
+} from '../actions/actions';
+import { connect } from 'react-redux';
+import Collapsible from 'react-collapsible';
 
 class WorkoutsDropdowns extends Component {
   state = {
-    exercises: exerciseDefaults
+    exercises: exerciseDefaults,
+    categories: []
   };
 
   componentDidMount() {
@@ -22,29 +28,31 @@ class WorkoutsDropdowns extends Component {
       return exercises.categoryName === category;
     });
     const mappedExerciseNames = filteredExercises.map((exerciseType, index) => (
-      <p key={index} className="drop-down">
+      <p key={index} className='drop-down'>
         {exerciseType.exerciseName}
       </p>
     ));
     return mappedExerciseNames;
   };
 
+  renderCategories = array => {
+    const { categories } = this.props;
+    const mappedCategoryArray = categories.map(array => {
+      return array.categoryName;
+    });
+    return mappedCategoryArray;
+  };
+
   render() {
     const { data } = this.props;
+    const { categories } = this.props;
 
     return (
-      <div className="workouts-dropdowns">
-        {["Arms", "Legs", "Cardio", "Abs"].map(type => {
+      <div className='workouts-dropdowns'>
+        {this.renderCategories(categories).map((type, i) => {
           return (
-            <Collapsible trigger={type}>
-              {this.renderExerciseNames(type)}
-            </Collapsible>
-          );
-        })}
-        {data.map(data => {
-          return (
-            <Collapsible trigger={data.category || data.categoryName}>
-              <p className="drop-down">{data.exercise}</p>
+            <Collapsible key={i} trigger={type}>
+              {type}
             </Collapsible>
           );
         })}
