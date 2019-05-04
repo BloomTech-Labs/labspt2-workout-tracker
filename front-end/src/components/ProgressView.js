@@ -18,14 +18,6 @@ class ProgressView extends Component {
     this.props.getNotes();
   }
 
-  // componentDidUpdate(prevState) {
-  //   if (prevState.notes.length !== this.state.notes.length) {
-  //     this.props.getNotes();
-  //     this.setState({ notes: [...this.props.notes] });
-  //     console.log(`IN THE PROGRESSVIEW ${this.state.notes.length}`);
-  //   }
-  // }
-
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };

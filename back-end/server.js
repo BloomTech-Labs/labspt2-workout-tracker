@@ -136,6 +136,7 @@ server.get('/api/users', checkJwt, (req, res) => {
     .then(id => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       db("categories as c")
         .join("users as u", "u.id", "c.userId")
         .select("c.id", "c.categoryName")
@@ -146,13 +147,16 @@ server.get('/api/users', checkJwt, (req, res) => {
             .join("categories as c", "c.id", "e.categoryId")
 =======
       console.log(id);
+=======
+      console.log('log at 137', id);
+>>>>>>> Whoa boy, sizable commit.
       db('categories as c')
         .join('users as u', 'u.id', 'c.userId')
         .select('c.id', 'c.categoryName')
         .whereIn('c.userId', [1, id.id])
         .pluck('c.id')
         .then(categories => {
-          console.log(categories);
+          console.log('log at 144', categories);
           db('exercises as e')
             .join('categories as c', 'c.id', 'e.categoryId')
 >>>>>>> added fetch premium action
@@ -176,17 +180,21 @@ server.get('/api/users', checkJwt, (req, res) => {
             )
             .whereIn('e.categoryId', categories)
             .then(exercises => {
+<<<<<<< HEAD
+=======
+              console.log('log at 155', exercises);
+>>>>>>> Whoa boy, sizable commit.
               checkForResource(req, res, exercises);
             })
             .catch(err => {
-              console.log('error', err);
+              console.log('error log at 159', err);
               res.status(500).json({
                 error: 'The exercise information could not be retrieved.'
               });
             });
         })
         .catch(err => {
-          console.log('error', err);
+          console.log('error log at 166', err);
           res.status(500).json({
             error: 'The categories information could not be retrieved.'
           });
@@ -705,11 +713,27 @@ server.get('/api/users/premium', checkJwt, (req, res) => {
       premium: true
     })
     .then(user => {
-      checkForResource(req, res, user);
+      res.status(200).json(user);
     })
     .catch(err => {
       console.log('error', err);
       res.status(500).json({ error: 'Could not set user to premium.' });
+    });
+});
+
+// ENDPOINT TO CHECK IF USER IS PREMIUM
+
+server.get('/api/user/ispremium', checkJwt, (req, res) => {
+  db('users')
+    .where('user_id', req.user.sub)
+    .first()
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'User provided either not found or not Premium' });
     });
 });
 
