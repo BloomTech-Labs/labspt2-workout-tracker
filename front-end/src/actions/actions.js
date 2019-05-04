@@ -182,11 +182,34 @@ export const getPremium = () => {
     dispatch({ type: FETCHING });
     promise
       .then(response => {
-        dispatch({ type: FETCHED_PREMIUM, payload: response.data });
+        console.log('log at 185', response.data);
+        dispatch({ type: FETCHED_PREMIUM });
       })
       .catch(err => {
-        dispatch({ type: FETCHING_USERDATA, payload: err });
+        dispatch({ type: FETCHING_ERROR, payload: err });
       });
-    console.log('Welcome to premium!');
+  };
+};
+
+export const checkPremium = () => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.get(`${LOCAL}/api/user/ispremium`, {
+    headers
+  });
+  return dispatch => {
+    dispatch({ type: FETCHING });
+    promise
+      .then(response => {
+        console.log('log at 185', response.data.premium);
+        if (response.data.premium) {
+          dispatch({ type: FETCHED_PREMIUM });
+        } else {
+          dispatch({ type: FETCHING_ERROR, payload: response.data });
+        }
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_ERROR, payload: err });
+      });
   };
 };

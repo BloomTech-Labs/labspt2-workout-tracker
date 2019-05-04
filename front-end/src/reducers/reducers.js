@@ -141,25 +141,23 @@ export default (state = initialState, action) => {
     case FETCHED:
       return Object.assign({}, state, {
         data: [...action.payload],
+        premium: [...action.payload.premium],
         fetching: false
       });
+
     case FETCHING_USERDATA:
       return Object.assign({}, state, { fetching: true });
     case FETCHED_USERDATA:
-      return Object.assign(
-        {},
-        state,
-        {
-          userdata: [action.payload],
-          fetching: false
-        },
-        console.log('IN THE FETCHED USERDATA', action)
-      );
+      return Object.assign({}, state, {
+        userdata: [action.payload],
+        fetching: false
+      });
     case FETCHING_USERID:
       return Object.assign({}, state, { fetching: true });
     case FETCHED_USERID:
       return Object.assign({}, state, {
         userid: action.payload,
+        premium: action.payload.premium,
         fetching: false
       });
     case FETCHING_USERINFO:
@@ -186,12 +184,9 @@ export default (state = initialState, action) => {
         dateClicked: action.payload
       });
     case FETCHED_PREMIUM:
-      return Object.assign(
-        {},
-        state,
-        { premium: action.payload },
-        console.log('Welcome to premium!')
-      );
+      return Object.assign({}, state, {
+        premium: true
+      });
 
     // case FETCHING_EVENTS:
     // return Object.assign({}, state, { fetching: true });
