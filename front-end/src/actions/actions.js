@@ -11,8 +11,14 @@ export const FETCHED_USERINFO = 'FETCHED_USERINFO';
 export const FETCHING_USERINFO = 'FETCHING_USERINFO';
 export const FETCHED_NOTES = 'FETCHED_NOTES';
 export const FETCHING_NOTES = 'FETCHING_NOTES';
+export const FETCHED_CATEGORIES = 'FETCHED_CATEGORIES';
+export const FETCHING_CATEGORIES = 'FETCHING_CATEGORIES';
+export const FETCHED_EXERCISES = 'FETCHED_EXERCISES';
+export const FETCHING_EXERCISES = 'FETCHING_EXERCISES';
 export const FETCHING_ERROR = 'FETCHING_ERROR';
 export const DATE_CLICKED = 'DATE_CLICKED';
+export const EVENTSFORM_CLOSED = 'EVENTSFORM_CLOSED';
+export const EVENT_SCHEDULED = 'EVENT_SCHEDULED';
 export const FETCHED_PREMIUM = 'FETCHED_PREMIUM';
 
 const DEPLOYED = 'https://workout-tracker-pt2.herokuapp.com';
@@ -185,6 +191,24 @@ export const clickedDate = date => {
     dispatch({
       type: DATE_CLICKED,
       payload: date
+    });
+  };
+};
+
+export const closedEventForm = () => {
+  return dispatch => {
+    dispatch({
+      type: EVENTSFORM_CLOSED,
+      payload: null
+    });
+  };
+};
+
+export const eventScheduled = events => {
+  return dispatch => {
+    dispatch({
+      type: EVENT_SCHEDULED,
+      payload: events
     });
   };
 };
