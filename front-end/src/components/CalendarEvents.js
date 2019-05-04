@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import "./styles/CalendarEvents.sass";
+import './styles/CalendarEvents.sass';
 
-import CalendarEvent from "./CalendarEvent";
+import CalendarEvent from './CalendarEvent';
 
 class CalendarEvents extends Component {
   constructor(props) {
@@ -42,13 +42,15 @@ class CalendarEvents extends Component {
     }
 
     return (
-      <div className="component-container events-container">
+      <div className='component-container events-container'>
         {Object.entries(byDate).map((event, index) => {
+          console.log('this is the event');
+          console.log(event);
           return (
             <CalendarEvent
-              scheduleDay={event["0"]}
-              eventGroup={event["1"]}
-              key={event["0"] + index}
+              scheduleDay={event['0']}
+              eventGroup={event['1']}
+              key={event['0'] + index}
             />
           );
         })}

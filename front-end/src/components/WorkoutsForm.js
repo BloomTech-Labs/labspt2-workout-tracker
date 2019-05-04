@@ -21,8 +21,8 @@ class WorkoutsForm extends Component {
   };
 
   componentDidMount() {
-    this.props.getCategories();
-    this.props.getExercises();
+    // this.props.getCategories();
+    // this.props.getExercises();
   }
 
   changeHandler = e => {
