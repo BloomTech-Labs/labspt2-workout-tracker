@@ -49,4 +49,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getNotes }
-)(ProgressNotes);
+)(NotesContainer);

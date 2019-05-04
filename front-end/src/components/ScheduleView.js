@@ -8,6 +8,7 @@ import ScheduleForm from './ScheduleForm';
 import { checkPremium } from '../actions/actions';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import "./styles/Calendar.scss";
 
 class ScheduleView extends Component {
@@ -22,6 +23,15 @@ class ScheduleView extends Component {
     this.props.checkPremium();
   }
 >>>>>>> Whoa boy, sizable commit.
+=======
+import './styles/ScheduleView.sass';
+import './styles/Calendar.scss';
+
+class ScheduleView extends Component {
+  componentDidMount() {
+    this.props.checkPremium();
+  }
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
 
   render() {
     let ScheduledEvents = '';

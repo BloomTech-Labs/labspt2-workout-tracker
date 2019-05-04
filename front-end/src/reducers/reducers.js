@@ -16,8 +16,6 @@ import {
   FETCHING_EXERCISES,
   FETCHING_ERROR,
   DATE_CLICKED,
-  EVENTSFORM_CLOSED,
-  EVENT_SCHEDULED,
   FETCHED_PREMIUM
 } from '../actions/actions';
 
@@ -35,26 +33,7 @@ const initialState = {
       start: '2019-11-21T10:15:00',
       end: '2019-11-21T10:30:00',
       allDay: false,
-      exercises: [
-        {
-          exerciseName: 'Lunges',
-          checked: false,
-          reps: '6',
-          weight: '150 lbs',
-          sets: '4',
-          categoryId: 2,
-          userId: 1
-        },
-        {
-          exerciseName: 'Bicep Curls',
-          checked: false,
-          reps: '5',
-          weight: '100 lbs',
-          sets: '5',
-          categoryId: 2,
-          userId: 1
-        }
-      ]
+      exercises: ['A', 'B']
     },
     {
       id: 2,
@@ -224,14 +203,6 @@ export default (state = initialState, action) => {
     case DATE_CLICKED:
       return Object.assign({}, state, {
         dateClicked: action.payload
-      });
-    case EVENTSFORM_CLOSED:
-      return Object.assign({}, state, {
-        dateClicked: null
-      });
-    case EVENT_SCHEDULED:
-      return Object.assign({}, state, {
-        events: action.payload
       });
     case FETCHED_PREMIUM:
       return Object.assign({}, state, {

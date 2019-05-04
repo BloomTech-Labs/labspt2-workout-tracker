@@ -137,6 +137,7 @@ server.get('/api/users', checkJwt, (req, res) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       db("categories as c")
         .join("users as u", "u.id", "c.userId")
         .select("c.id", "c.categoryName")
@@ -172,6 +173,18 @@ server.get('/api/users', checkJwt, (req, res) => {
           db('exercises as e')
             .join('categories as c', 'c.id', 'e.categoryId')
 >>>>>>> added fetch premium action
+=======
+      console.log('log at 137', id);
+      db('categories as c')
+        .join('users as u', 'u.id', 'c.userId')
+        .select('c.id', 'c.categoryName')
+        .whereIn('c.userId', [1, id.id])
+        .pluck('c.id')
+        .then(categories => {
+          console.log('log at 144', categories);
+          db('exercises as e')
+            .join('categories as c', 'c.id', 'e.categoryId')
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
             .select(
               'e.id as excerciseId',
               'e.exerciseName as exercise',
@@ -181,9 +194,13 @@ server.get('/api/users', checkJwt, (req, res) => {
             .whereIn('e.categoryId', categories)
             .then(exercises => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
               console.log('log at 155', exercises);
 >>>>>>> Whoa boy, sizable commit.
+=======
+              console.log('log at 155', exercises);
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
               checkForResource(req, res, exercises);
             })
             .catch(err => {
@@ -271,6 +288,7 @@ server.post('/api/users', checkJwt, (req, res) => {
       if (rows.length === 0) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         db("users")
           .returning("id")
           .insert(user)
@@ -299,6 +317,16 @@ server.post('/api/users', checkJwt, (req, res) => {
           .insert(user)
           .then(id => {
 >>>>>>> added fetch premium action
+=======
+        console.log('this is the row');
+        console.log(rows);
+        console.log('this is the user');
+        console.log(user);
+        db('users')
+          .returning('id')
+          .insert(user)
+          .then(id => {
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
             console.log('this is the id');
             console.log(id);
             db('categories as c')
@@ -307,9 +335,12 @@ server.post('/api/users', checkJwt, (req, res) => {
               .whereIn('c.userId', [1, id[0]])
               .pluck('c.id')
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> added fetch premium action
 =======
 >>>>>>> added fetch premium action
+=======
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
               .then(categories => {
                 db('exercises as e')
                   .join('categories as c', 'c.id', 'e.categoryId')
@@ -351,6 +382,7 @@ server.post('/api/users', checkJwt, (req, res) => {
           .then(id => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             db("categories as c")
               .join("users as u", "u.id", "c.userId")
               .select("c.id", "c.categoryName")
@@ -383,6 +415,18 @@ server.post('/api/users', checkJwt, (req, res) => {
                 db('exercises as e')
                   .join('categories as c', 'c.id', 'e.categoryId')
 >>>>>>> added fetch premium action
+=======
+            console.log(id);
+            db('categories as c')
+              .join('users as u', 'u.id', 'c.userId')
+              .select('c.id', 'c.categoryName')
+              .whereIn('c.userId', [1, id.id])
+              .pluck('c.id')
+              .then(categories => {
+                console.log(categories);
+                db('exercises as e')
+                  .join('categories as c', 'c.id', 'e.categoryId')
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
                   .select(
                     'e.id as excerciseId',
                     'e.exerciseName as exercise',
@@ -433,12 +477,16 @@ server.get('/api/userid', checkJwt, (req, res) => {
       if (!id) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         console.log('null');
 >>>>>>> added fetch premium action
 =======
         console.log('null');
 >>>>>>> added fetch premium action
+=======
+        console.log('null');
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
       } else {
         res.status(200).json(id.id);
       }
@@ -446,10 +494,13 @@ server.get('/api/userid', checkJwt, (req, res) => {
     .catch(err => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       console.log("error", err);
 =======
 =======
 >>>>>>> added fetch premium action
+=======
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
       console.log('error', err);
       console.log(id.id);
 >>>>>>> added fetch premium action
@@ -469,6 +520,7 @@ server.get('/api/categories', checkJwt, (req, res) => {
     .then(id => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       db("categories as c")
         .orderBy("id")
         .join("users as u", "u.id", "c.userId")
@@ -477,6 +529,8 @@ server.get('/api/categories', checkJwt, (req, res) => {
 =======
 =======
 >>>>>>> added fetch premium action
+=======
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
       console.log(id);
       db('categories as c')
         .join('users as u', 'u.id', 'c.userId')
@@ -484,9 +538,12 @@ server.get('/api/categories', checkJwt, (req, res) => {
         .whereIn('c.userId', [1, id.id])
         .pluck('c.id')
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> added fetch premium action
 =======
 >>>>>>> added fetch premium action
+=======
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
         .then(categories => {
           checkForResource(req, res, categories);
         })
@@ -519,6 +576,7 @@ server.post('/api/categories', checkJwt, (req, res) => {
         .then(userId => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           db("categories as c")
             .orderBy("id")
             .join("users as u", "u.id", "c.userId")
@@ -527,15 +585,20 @@ server.post('/api/categories', checkJwt, (req, res) => {
 =======
 =======
 >>>>>>> added fetch premium action
+=======
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
           console.log(userId);
           db('categories as c')
             .join('users as u', 'u.id', 'c.userId')
             .select('c.id', 'c.categoryName')
             .whereIn('c.userId', [1, userId[0]])
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> added fetch premium action
 =======
 >>>>>>> added fetch premium action
+=======
+>>>>>>> 978ca28565bee424f2ac61a906ee4c6fb96d2c40
             .then(categories => {
               checkForResource(req, res, categories);
             })
