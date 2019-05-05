@@ -5,7 +5,8 @@ import "./styles/CalendarEvents.sass";
 
 import CalendarEvent from "./CalendarEvent";
 
-import {objCreate} from '../actions/actions.js'
+import {objCreate, deleteEvent} from '../actions/actions.js'
+
 
 class CalendarEvents extends Component {
   constructor(props) {
@@ -32,14 +33,14 @@ class CalendarEvents extends Component {
   //   }
 
   closeEvent = (obj,eventDate) => {
-    console.log(this.props.byDate)
 
-    console.log(obj)
-    delete obj[eventDate]
-    console.log(obj)
-    this.props.objCreate(obj)
+    console.log(this.props.events)
 
-    this.forceUpdate()
+    let restOfEvents = this.props.events.filter(event => {return event.start.substring(0, 10) !== eventDate})
+    this.props.deleteEvent(restOfEvents)
+
+    
+
 
 }
 
@@ -63,10 +64,18 @@ eventObjectCreated = () => {
 
 
 componentDidMount() {
-
   this.eventObjectCreated()
 
 }
+
+componentDidUpdate(prevProps) {
+  if (this.props.events.length !== prevProps.events.length) {this.eventObjectCreated()}
+
+}
+
+
+
+
 
 
 
@@ -108,4 +117,5 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {objCreate})(CalendarEvents);
+
+export default connect(mapStateToProps, {objCreate , deleteEvent})(CalendarEvents);

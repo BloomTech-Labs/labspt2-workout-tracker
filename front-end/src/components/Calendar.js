@@ -86,7 +86,7 @@ class Calendar extends React.Component {
             ref={this.calendarComponentRef}
             getView={this.handleDragAndDrop}
             weekends={this.state.calendarWeekends}
-            events={this.state.calendarEvents}
+            events={this.props.events}
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
             selectable={true}

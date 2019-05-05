@@ -18,7 +18,8 @@ import {
   DATE_CLICKED,
   EVENTSFORM_CLOSED,
   EVENT_SCHEDULED,
-  EVENT_OBJECT
+  EVENT_OBJECT,
+  EVENT_DELETE
 } from "../actions/actions";
 
 const initialState = {
@@ -225,6 +226,10 @@ export default (state = initialState, action) => {
     case EVENT_OBJECT:
       return Object.assign({}, state, {
         byDate: action.payload
+      });
+    case EVENT_DELETE:
+      return Object.assign({}, state, {
+        events: action.payload
       });
 
     // case FETCHING_EVENTS:
