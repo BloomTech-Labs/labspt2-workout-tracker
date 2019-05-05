@@ -17,7 +17,8 @@ import {
   FETCHING_ERROR,
   DATE_CLICKED,
   EVENTSFORM_CLOSED,
-  EVENT_SCHEDULED
+  EVENT_SCHEDULED,
+  EVENT_OBJECT
 } from "../actions/actions";
 
 const initialState = {
@@ -54,14 +55,6 @@ const initialState = {
           userId: 1
         }
       ]
-    },
-    {
-      id: 2,
-      title: "Legs",
-      start: "2019-11-21T11:15:00",
-      end: "2019-11-21T11:30:00",
-      allDay: false,
-      exercises: ["C", "D", "E", "F", "G"]
     },
     {
       id: 4,
@@ -155,6 +148,7 @@ const initialState = {
       userId: 1
     }
   ],
+  byDate: {},
   fetching: false,
   dateClicked: false,
   error: ""
@@ -227,6 +221,10 @@ export default (state = initialState, action) => {
     case EVENT_SCHEDULED:
       return Object.assign({}, state, {
         events: action.payload
+      });
+    case EVENT_OBJECT:
+      return Object.assign({}, state, {
+        byDate: action.payload
       });
 
     // case FETCHING_EVENTS:

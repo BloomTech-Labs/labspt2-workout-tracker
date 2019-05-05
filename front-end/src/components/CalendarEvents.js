@@ -5,10 +5,13 @@ import "./styles/CalendarEvents.sass";
 
 import CalendarEvent from "./CalendarEvent";
 
+import {objCreate} from '../actions/actions.js'
+
 class CalendarEvents extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    }
   }
 
   // changeDate(arr, day) {
@@ -28,27 +31,66 @@ class CalendarEvents extends Component {
   //   return eDate.replace ('/', ', ')
   //   }
 
-  render() {
-    let byDate = new Object();
+  closeEvent = (obj,eventDate) => {
+    console.log(this.props.byDate)
 
-    this.props.events.map(event => {
-      byDate[event.start.substring(0, 10)] = [];
+    console.log(obj)
+    delete obj[eventDate]
+    console.log(obj)
+    this.props.objCreate(obj)
+
+    this.forceUpdate()
+
+}
+
+eventObjectCreated = () => {
+
+  let byDate = new Object();
+
+  this.props.events.map(event => {
+    byDate[event.start.substring(0, 10)] = [];
+  });
+
+  for (let property in byDate) {
+    byDate[property] = this.props.events.filter(event => {
+      return event.start.substring(0, 10) === property;
     });
+  }
 
-    for (let property in byDate) {
-      byDate[property] = this.props.events.filter(event => {
-        return event.start.substring(0, 10) === property;
-      });
-    }
+  this.props.objCreate(byDate)
+
+}
+
+
+componentDidMount() {
+
+  this.eventObjectCreated()
+
+}
+
+
+
+
+  render() {
+  
+
 
     return (
+
+      
       <div className="component-container events-container">
-        {Object.entries(byDate).map((event, index) => {
+      
+        {Object.entries(this.props.byDate).map((event, index) => {
+
           return (
             <CalendarEvent
-              scheduleDay={event["0"]}
+              fullOb={this.props.byDate}
+              closeEvent={this.closeEvent}
+              Update={this.Update}
+              scheduleday={event["0"]}
               eventGroup={event["1"]}
               key={event["0"] + index}
+              event={event}
             />
           );
         })}
@@ -61,8 +103,9 @@ const mapStateToProps = state => {
   return {
     users: state.users,
     error: state.error,
-    events: state.events
+    events: state.events,
+    byDate: state.byDate
   };
 };
 
-export default connect(mapStateToProps)(CalendarEvents);
+export default connect(mapStateToProps, {objCreate})(CalendarEvents);

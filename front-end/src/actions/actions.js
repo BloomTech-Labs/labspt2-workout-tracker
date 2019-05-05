@@ -19,6 +19,7 @@ export const FETCHING_ERROR = "FETCHING_ERROR";
 export const DATE_CLICKED = "DATE_CLICKED";
 export const EVENTSFORM_CLOSED = "EVENTSFORM_CLOSED";
 export const EVENT_SCHEDULED = "EVENT_SCHEDULED";
+export const EVENT_OBJECT = "EVENT_OBJECT";
 
 const DEPLOYED = "https://workout-tracker-pt2.herokuapp.com";
 const LOCAL = "http://localhost:3333";
@@ -208,6 +209,15 @@ export const eventScheduled = events => {
     dispatch({
       type: EVENT_SCHEDULED,
       payload: events
+    });
+  };
+};
+
+export const objCreate = obj => {
+  return dispatch => {
+    dispatch({
+      type: EVENT_OBJECT,
+      payload: obj
     });
   };
 };
