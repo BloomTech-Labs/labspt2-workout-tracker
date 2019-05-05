@@ -104,9 +104,10 @@ export const postExercise = exerciseBody => {
   });
   return dispatch => {
     dispatch({ type: FETCHED_EXERCISES });
-    promise
+    return promise
       .then(response => {
         dispatch({ type: FETCHED_EXERCISES, payload: response.data });
+        return response.data;
       })
       .catch(err => {
         dispatch({ type: FETCHING_ERROR, payload: err });
