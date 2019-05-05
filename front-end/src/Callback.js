@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postUser, getCategories, getExercises } from './actions/actions';
+import {
+  postUser,
+  getCategories,
+  getExercises,
+  getUserInfo
+} from './actions/actions';
 import auth from './Auth';
 
 class Callback extends Component {
@@ -9,6 +14,7 @@ class Callback extends Component {
     try {
       await auth.handleAuthentication();
       await this.props.postUser();
+      await this.props.getUserInfo();
       this.props.getCategories();
       this.props.getExercises();
       this.props.history.push('/schedule');
@@ -25,6 +31,6 @@ class Callback extends Component {
 export default withRouter(
   connect(
     null,
-    { postUser, getCategories, getExercises }
+    { postUser, getCategories, getExercises, getUserInfo }
   )(Callback)
 );

@@ -203,6 +203,25 @@ export const updateUser = userUpdates => {
   };
 };
 
+export const getUserInfo = () => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.get(`${LOCAL}/userinfo`, { headers });
+  return dispatch => {
+    dispatch({ type: FETCHING_USERINFO });
+    return promise
+      .then(response => {
+        dispatch({
+          type: FETCHED_USERINFO,
+          payload: JSON.parse(response.data.text)
+        });
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_ERROR, payload: err });
+      });
+  };
+};
+
 export const clickedDate = date => {
   return dispatch => {
     dispatch({
