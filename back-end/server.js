@@ -603,6 +603,40 @@ server.get("/api/:id/categories", checkJwt, (req, res) => {
     });
 });
 
+// ENDPOINT TO UPDATE PREMIUM STATUS
+
+server.get('/api/users/premium', checkJwt, (req, res) => {
+  db('users')
+    .where('user_id', req.user.sub)
+    .first()
+    .update({
+      premium: true
+    })
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      console.log('error', err);
+      res.status(500).json({ error: 'Could not set user to premium.' });
+    });
+});
+
+// ENDPOINT TO CHECK IF USER IS PREMIUM
+
+server.get('/api/user/ispremium', checkJwt, (req, res) => {
+  db('users')
+    .where('user_id', req.user.sub)
+    .first()
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'User provided either not found or not Premium' });
+    });
+});
+
 //ENDPOINTS BELOW NOT YET FUNCTIONAL AND/OR REDUNDANT
 
 server.get("/api/users/:id/workouts", (req, res) => {

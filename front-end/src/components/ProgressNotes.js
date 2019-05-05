@@ -5,14 +5,10 @@ import { getNotes } from '../actions/actions';
 import './styles/ProgressNotes.sass';
 import CustomModal from './CustomModal';
 
-class ProgressNotes extends Component {
-  state = {
-    notes: []
-  };
+class NotesContainer extends Component {
 
   componentDidMount() {
     this.props.getNotes();
-    this.setState({ notes: [...this.props.notes] });
   }
 
   placeholder = () => {
@@ -45,11 +41,12 @@ class ProgressNotes extends Component {
 const mapStateToProps = state => {
   return {
     notes: state.notes,
-    error: state.error
+    error: state.error,
+    premium: state.premium
   };
 };
 
 export default connect(
   mapStateToProps,
   { getNotes }
-)(ProgressNotes);
+)(NotesContainer);
