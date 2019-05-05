@@ -189,12 +189,13 @@ export const updateUser = userUpdates => {
   });
   return dispatch => {
     dispatch({ type: FETCHING_USERINFO });
-    promise
+    return promise
       .then(response => {
         dispatch({
           type: FETCHED_USERINFO,
           payload: JSON.parse(response.data.text)
         });
+        return response.data.text;
       })
       .catch(err => {
         dispatch({ type: FETCHING_ERROR, payload: err });

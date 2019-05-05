@@ -187,7 +187,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, { fetching: true });
     case FETCHED_USERINFO:
       return Object.assign({}, state, {
-        userinfo: [action.payload],
+        userinfo: action.payload,
         fetching: false
       });
     case FETCHING_NOTES:
