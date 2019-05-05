@@ -56,7 +56,7 @@ class SettingsViewForm extends Component {
   submitHandlerPassword = e => {
     e.preventDefault();
     const userUpdates = {
-      password: this.state.password
+      password: this.state.newpass
     };
     this.props.updateUser(userUpdates);
     this.setState({
