@@ -171,58 +171,6 @@ server.get('/api/users', checkJwt, (req, res) => {
     });
 });
 
-//ENDPOINT TO CREATE A USER
-
-// server.post("/api/users", checkJwt, (req, res) => {
-//   req.body.user_id = req.user.sub;
-//   const user = req.body;
-//   db("users")
-//     .returning("id")
-//     .insert(user)
-//     .then(id => {
-//       console.log(id);
-//       db("categories as c")
-//         .join("users as u", "u.id", "c.userId")
-//         .select("c.id", "c.categoryName")
-//         .whereIn("c.userId", [1, id[0]])
-//         .pluck("c.id")
-//         .then(categories => {
-//           console.log(categories);
-//           db("exercises as e")
-//             .join("categories as c", "c.id", "e.categoryId")
-//             .select(
-//               "e.id",
-//               "e.exerciseName as exercise",
-//               "c.id",
-//               "c.categoryName as category"
-//             )
-//             .whereIn("e.categoryId", categories)
-//             .then(exercises => {
-//               console.log(exercises);
-//               checkForResource(req, res, exercises);
-//             })
-//             .catch(err => {
-//               console.log("error", err);
-//               res.status(500).json({
-//                 error: "The exercise information could not be retrieved."
-//               });
-//             });
-//         })
-//         .catch(err => {
-//           console.log("error", err);
-//           res.status(500).json({
-//             error: "The categories information could not be retrieved."
-//           });
-//         });
-//     })
-//     .catch(err => {
-//       console.log("error", err);
-//       res.status(500).json({
-//         error: "There was an error saving the user to the database."
-//       });
-//     });
-// });
-
 //ENDPOINT TO CREATE A USER V2
 
 server.post('/api/users', checkJwt, (req, res) => {
@@ -471,7 +419,7 @@ server.post('/api/exercises', checkJwt, (req, res) => {
     .first()
     .then(id => {
       db('exercises')
-        .returning('categoryId')
+        .returning('userId')
         .insert({
           exerciseName: exerciseName,
           reps: reps,
@@ -480,39 +428,25 @@ server.post('/api/exercises', checkJwt, (req, res) => {
           categoryId: categoryId,
           userId: id.id
         })
-        .then(categoryId => {
-          db('categories as c')
-            .select('c.id', 'c.categoryName')
-            .where('c.id', categoryId[0])
-            .first()
-            .then(category => {
-              console.log('Category');
-              console.log(category);
-              db('exercises as e')
-                .join('categories as c', 'c.id', 'e.categoryId')
-                .select(
-                  'e.id as excerciseId',
-                  'e.exerciseName as exercise',
-                  'c.id as categoryId',
-                  'c.categoryName as category'
-                )
-                .where('e.categoryId', category.id)
-                .then(exercises => {
-                  console.log('Exercises:');
-                  console.log(exercises);
-                  checkForResource(req, res, exercises);
-                })
-                .catch(err => {
-                  console.log('error', err);
-                  res.status(500).json({
-                    error: 'The exercise information could not be retrieved.'
-                  });
-                });
+        .then(userId => {
+          db('exercises as e')
+            .orderBy('e.userId')
+            .select(
+              'e.id as excerciseId',
+              'e.exerciseName as exerciseName',
+              'e.reps as reps',
+              'e.weight as weight',
+              'e.sets as sets',
+              'e.categoryId as categoryId'
+            )
+            .whereIn('e.userId', [1, userId[0]])
+            .then(exercises => {
+              checkForResource(req, res, exercises);
             })
             .catch(err => {
               console.log('error', err);
               res.status(500).json({
-                error: 'The categories information could not be retrieved.'
+                error: 'The exercises information could not be retrieved.'
               });
             });
         });
