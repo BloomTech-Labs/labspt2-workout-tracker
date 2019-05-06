@@ -24,7 +24,7 @@ class Callback extends Component {
   }
 
   render() {
-    return <p>Loading profile...</p>;
+    return <p>Loading app...</p>;
   }
 }
 

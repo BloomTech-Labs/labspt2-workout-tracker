@@ -38,10 +38,10 @@ function NavBar(props) {
               Sign Out
               <br />
               {/* {auth.getProfile().nickname} */}
-              {props.userinfo.username}
-              {/* {props.userinfo.username
+              {/* {props.userinfo.username} */}
+              {props.userinfo.username
                 ? props.userinfo.username
-                : auth.getProfile().nickname} */}
+                : auth.getProfile().nickname}
             </button>
           </div>
           <NavLink activeClassName='active' to='/schedule'>
@@ -70,7 +70,8 @@ function NavBar(props) {
 const mapStateToProps = state => {
   return {
     userinfo: state.userinfo,
-    error: state.error
+    error: state.error,
+    fetching: state.fetching
   };
 };
 

@@ -20,15 +20,19 @@ class SettingsViewForm extends Component {
     };
   }
 
+  // inputHandler = event => {
+  //   let value = event.target.value;
+  //   let property = event.target.dataset.property;
+
+  //   this.setState({
+  //     [property]: value
+  //   });
+
+  //   console.log(value);
+  // };
+
   inputHandler = event => {
-    let value = event.target.value;
-    let property = event.target.dataset.property;
-
-    this.setState({
-      [property]: value
-    });
-
-    console.log(value);
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   submitHandlerEmail = e => {
@@ -38,7 +42,8 @@ class SettingsViewForm extends Component {
     };
     this.props.updateUser(userUpdates);
     this.setState({
-      buttonText1: 'Saved'
+      buttonText1: 'Saved',
+      email: ''
     });
   };
 
@@ -49,7 +54,8 @@ class SettingsViewForm extends Component {
     };
     this.props.updateUser(userUpdates);
     this.setState({
-      buttonText2: 'Saved'
+      buttonText2: 'Saved',
+      username: ''
     });
   };
 
@@ -77,7 +83,8 @@ class SettingsViewForm extends Component {
             onChange={this.inputHandler}
             type='text'
             placeholder='Enter new email'
-            data-property='email'
+            name='email'
+            value={this.state.email}
           />
           <button
             type='text'
@@ -94,7 +101,8 @@ class SettingsViewForm extends Component {
             onChange={this.inputHandler}
             type='text'
             placeholder='Enter new username'
-            data-property='username'
+            name='username'
+            value={this.state.username}
           />
           <button
             type='text'
@@ -115,7 +123,8 @@ class SettingsViewForm extends Component {
             onChange={this.inputHandler}
             type='text'
             placeholder='Enter new password'
-            data-property='newpass'
+            name='newpass'
+            value={this.state.newpass}
           />
           <button
             type='text'
