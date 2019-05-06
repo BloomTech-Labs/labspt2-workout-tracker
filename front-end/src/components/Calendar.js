@@ -5,7 +5,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import "@fullcalendar/core/main.css";
-import {clickedDate} from "../actions/actions.js"
+import {clickedDate, updateEvent} from "../actions/actions.js"
 import listWeek from "@fullcalendar/list"
 import moment from "moment"
 
@@ -56,12 +56,20 @@ class Calendar extends React.Component {
   };
 
   handleDragAndDrop = (obj) => {
-    console.log(obj.event.title)
-    Object.defineProperty(obj.event, obj.event.title, {
-      value: 'Muscles!',
-      writable: true,
-    })
-    console.log(obj.event.title)
+
+
+
+    let singleEvent = this.props.events.filter( event => {return event.id.toString() === obj.event.id.toString()})[0]
+
+    let exceptOne = this.props.events.filter( event => {return event.id.toString() !== obj.event.id.toString()})
+    this.props.updateEvent(exceptOne)
+
+    singleEvent.start = moment(obj.event.start).format().substring(0,19)
+    singleEvent.end = moment(obj.event.end).format().substring(0,19)
+
+    let updatedEvents = [singleEvent , ...exceptOne]
+
+    this.props.updateEvent(updatedEvents)
 
   }
 
@@ -127,5 +135,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(
-  mapStateToProps, {clickedDate}
+  mapStateToProps, {clickedDate, updateEvent}
 )(Calendar);

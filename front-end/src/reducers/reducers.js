@@ -19,7 +19,8 @@ import {
   EVENTSFORM_CLOSED,
   EVENT_SCHEDULED,
   EVENT_OBJECT,
-  EVENT_DELETE
+  EVENT_DELETE,
+  EVENT_UPDATE
 } from "../actions/actions";
 
 const initialState = {
@@ -69,7 +70,7 @@ const initialState = {
       id: 3,
       title: "Cardio",
       start: "2019-03-13T09:30:00",
-      end: "2019-03-13T09:30:00",
+      end: "2019-03-13T10:30:00",
       allDay: false,
       exercises: ["Bicept Curls", "Tricept Pulldowns"]
     },
@@ -102,6 +103,14 @@ const initialState = {
       title: "Abs",
       start: "2019-01-04T09:30:00",
       end: "2019-01-04T09:30:00",
+      allDay: false,
+      exercises: ["Sweats", "Headaches", "Face Plants"]
+    },
+    {
+      id: 10,
+      title: "Brains",
+      start: "2019-06-24T10:30:00",
+      end: "2019-06-24T011:30:00",
       allDay: false,
       exercises: ["Sweats", "Headaches", "Face Plants"]
     }
@@ -228,6 +237,10 @@ export default (state = initialState, action) => {
         byDate: action.payload
       });
     case EVENT_DELETE:
+      return Object.assign({}, state, {
+        events: action.payload
+      });
+    case EVENT_UPDATE:
       return Object.assign({}, state, {
         events: action.payload
       });

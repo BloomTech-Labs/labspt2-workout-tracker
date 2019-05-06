@@ -69,7 +69,10 @@ componentDidMount() {
 }
 
 componentDidUpdate(prevProps) {
-  if (this.props.events.length !== prevProps.events.length) {this.eventObjectCreated()}
+  if (this.props.events.length !== prevProps.events.length ) {
+
+    this.eventObjectCreated()
+  }
 
 }
 
@@ -81,15 +84,19 @@ componentDidUpdate(prevProps) {
 
 
   render() {
-  
 
+    
 
     return (
 
       
       <div className="component-container events-container">
       
-        {Object.entries(this.props.byDate).map((event, index) => {
+        {Object.entries(this.props.byDate).sort(function (x,y) {
+      if (x[0]<y[0]) {return -1}
+      if (x[0]>y[0]) {return 1}
+
+    }).map((event, index) => {
 
           return (
             <CalendarEvent

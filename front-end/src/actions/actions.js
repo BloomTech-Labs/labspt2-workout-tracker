@@ -21,6 +21,8 @@ export const EVENTSFORM_CLOSED = "EVENTSFORM_CLOSED";
 export const EVENT_SCHEDULED = "EVENT_SCHEDULED";
 export const EVENT_OBJECT = "EVENT_OBJECT";
 export const EVENT_DELETE = "EVENT_DELETE";
+export const EVENT_UPDATE = "EVENT_UPDATE";
+
 
 
 const DEPLOYED = "https://workout-tracker-pt2.herokuapp.com";
@@ -228,6 +230,15 @@ export const deleteEvent = arr => {
   return dispatch => {
     dispatch({
       type: EVENT_DELETE,
+      payload: arr
+    });
+  };
+};
+
+export const updateEvent = arr => {
+  return dispatch => {
+    dispatch({
+      type: EVENT_UPDATE,
       payload: arr
     });
   };
