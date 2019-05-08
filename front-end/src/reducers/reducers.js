@@ -17,7 +17,8 @@ import {
   FETCHING_ERROR,
   DATE_CLICKED,
   EVENTSFORM_CLOSED,
-  EVENT_SCHEDULED
+  EVENT_SCHEDULED,
+  FETCHED_PREMIUM
 } from '../actions/actions';
 
 const initialState = {

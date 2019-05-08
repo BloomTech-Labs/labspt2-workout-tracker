@@ -1,3 +1,10 @@
+import React, { Fragment } from 'react';
+import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
+import logo from '../images/workout-logo.svg';
+import { getPremium } from '../actions/actions';
+import { connect } from 'react-redux';
+
 class stripeBtn extends React.Component {
   constructor(props) {
     super(props);
