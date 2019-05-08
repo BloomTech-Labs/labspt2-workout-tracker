@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { getData, postCategory, postExercise } from "../actions/actions";
-import { connect } from "react-redux";
-import "./styles/ScheduleForm.sass";
-import Checkbox from "./Checkbox.jsx";
-import { closedEventForm, eventScheduled } from "../actions/actions.js";
-import moment from "moment";
-import CalendarEvents from "./CalendarEvents";
+import React, { Component } from 'react';
+import { getData, postCategory, postExercise } from '../actions/actions';
+import { connect } from 'react-redux';
+import './styles/ScheduleForm.sass';
+import Checkbox from './Checkbox.jsx';
+import { closedEventForm, eventScheduled } from '../actions/actions.js';
+import moment from 'moment';
+import CalendarEvents from './CalendarEvents';
 
 class ScheduleForm extends Component {
   state = {
-    allDay: { name: "allDay", checked: false },
+    allDay: { name: 'allDay', checked: false },
     categoryId: 1,
     title: this.props.categories[0].categoryName,
     start: this.props.dateClicked,
@@ -34,10 +34,10 @@ class ScheduleForm extends Component {
     this.setState({
       categoryId: Number(e.target.options[e.target.selectedIndex].value),
       title: e.target.options[e.target.selectedIndex].getAttribute(
-        "categoryName"
+        'categoryname'
       )
     });
-    console.log(this.props.categories[0].categoryName);
+    // console.log(this.props.categories[0].categoryName);
   };
 
   inputHandler = event => {
@@ -45,7 +45,7 @@ class ScheduleForm extends Component {
     let property = event.target.dataset.property;
     let date = this.props.dateClicked.replace(
       this.props.dateClicked.substring(11),
-      moment(value, "h:mm a")
+      moment(value, 'h:mm a')
         .format()
         .substring(11, 19)
     );
@@ -86,41 +86,41 @@ class ScheduleForm extends Component {
     const { grabbedCategory } = this.state;
 
     return (
-      <div className="component-container events-form">
-        <form className="form-container" onSubmit={this.submitHandler}>
-          <button className="closeButton" onClick={this.closeHandler}>
+      <div className='component-container events-form'>
+        <form className='form-container' onSubmit={this.submitHandler}>
+          <button className='closeButton' onClick={this.closeHandler}>
             X
           </button>
-          <label className="events-heading">Schedule An Event</label>
-          <div className="allDay" onClick={this.Selected}>
+          <label className='events-heading'>Schedule An Event</label>
+          <div className='allDay' onClick={this.Selected}>
             <Checkbox
-              name={"All Day"}
+              name={'All Day'}
               Update={this.Update}
               item={this.state.allDay}
               Selected={this.Selected}
             />
           </div>
           <input
-            type="text"
+            type='text'
             onChange={this.inputHandler}
             disabled={this.state.allDay.checked}
-            data-property="start"
-            placeholder="Start Time"
+            data-property='start'
+            placeholder='Start Time'
           />
           <input
-            type="text"
+            type='text'
             onChange={this.inputHandler}
             disabled={this.state.allDay.checked}
-            data-property="end"
-            placeholder="End Time"
+            data-property='end'
+            placeholder='End Time'
           />
-          <select name="" onChange={this.changedCategory}>
+          <select name='' onChange={this.changedCategory}>
             {this.props.categories.map(category => {
               return (
                 <option
                   key={category.id}
                   value={category.id}
-                  categoryName={category.categoryName}
+                  categoryname={category.categoryName}
                 >
                   {category.categoryName}
                 </option>
@@ -133,19 +133,18 @@ class ScheduleForm extends Component {
             })
             .map((item, index) => {
               return (
-                <div className="event-full">
+                <div key={item + index} className='event-full'>
                   <Checkbox
                     Update={this.Update}
                     name={item.exerciseName}
                     item={item}
-                    key={item + index}
                     value={this.sendOff}
                   />
                 </div>
               );
             })}
 
-          <button onClick={this.sendData} className="submit" type="text">
+          <button onClick={this.sendData} className='submit' type='text'>
             Submit
           </button>
         </form>

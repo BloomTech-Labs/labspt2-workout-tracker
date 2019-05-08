@@ -1,53 +1,42 @@
-import React, { Component } from "react";
-import { exerciseDefaults } from "../defaults/index";
-import { getData, postCategory, postExercise } from "../actions/actions";
-import { connect } from "react-redux";
-import Collapsible from "react-collapsible";
+import React, { Component } from 'react';
+import { exerciseDefaults } from '../defaults/index';
+import {
+  getData,
+  postCategory,
+  postExercise,
+  getCategories
+} from '../actions/actions';
+import { connect } from 'react-redux';
+import Collapsible from 'react-collapsible';
 
 class WorkoutsDropdowns extends Component {
-  state = {
-    exercises: exerciseDefaults
-  };
+  state = {};
 
-  componentDidMount() {
-    // this.props.getData();
-  }
-
-  // takes in a categoryName as a callback
-  // if you want to know what categoryNames we have available
-  // take a look at the exerciseDefaults array in'../defaults/index.js'
-  renderExerciseNames = category => {
-    const exercises = this.state.exercises;
-    const filteredExercises = exercises.filter(exercises => {
-      return exercises.categoryName === category;
-    });
-    const mappedExerciseNames = filteredExercises.map((exerciseType, index) => (
-      <p key={index} className="drop-down">
-        {exerciseType.exerciseName}
-      </p>
-    ));
-    return mappedExerciseNames;
-  };
+  componentDidMount() {}
 
   render() {
-    const { data } = this.props;
-
+    const { categories } = this.props;
+    const { exercises } = this.props;
+    console.log('exercises:');
+    console.log(exercises);
     return (
-      <div className="workouts-dropdowns">
-        {["Arms", "Legs", "Cardio", "Abs"].map(type => {
-          return (
-            <Collapsible trigger={type}>
-              {this.renderExerciseNames(type)}
-            </Collapsible>
-          );
-        })}
-        {data.map(data => {
-          return (
-            <Collapsible trigger={data.category || data.categoryName}>
-              <p className="drop-down">{data.exercise}</p>
-            </Collapsible>
-          );
-        })}
+      <div className='workouts-dropdowns'>
+        {categories !== undefined &&
+          categories.map((category, i) => {
+            return (
+              <Collapsible key={i} trigger={category.categoryName}>
+                {exercises !== undefined &&
+                  exercises.length > 0 &&
+                  exercises
+                    .filter(exercise => {
+                      return exercise.categoryId === category.id;
+                    })
+                    .map((exercise, index) => {
+                      return <p key={index}> {exercise.exerciseName} </p>;
+                    })}
+              </Collapsible>
+            );
+          })}
       </div>
     );
   }
