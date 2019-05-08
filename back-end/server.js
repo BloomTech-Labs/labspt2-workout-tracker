@@ -539,13 +539,30 @@ server.get('/api/notes', checkJwt, (req, res) => {
 // ENDPOINT TO DELETE A NOTE
 
 server.delete('/api/notes', checkJwt, (req, res) => {
-  const { id } = req.body;
+  const { notesId } = req.body;
   db('users')
     .select('id')
     .where('user_id', req.user.sub)
     .first()
     .then(id => {
-      db('notes');
+      db('notes')
+        .where('id', notesId)
+        .del()
+        .then(notes => {
+          checkForResource(req, res, notes);
+        })
+        .catch(err => {
+          console.log('error', err);
+          res.status(500).json({
+            error: 'The notes information could not be retrieved.'
+          });
+        });
+    })
+    .catch(err => {
+      console.log('error', err);
+      res
+        .status(500)
+        .json({ error: 'The notes information could not be retrieved.' });
     });
 });
 
@@ -649,16 +666,5 @@ server.get('/api/users/:id/notes', checkJwt, (req, res) => {
         .json({ error: 'The specified note could not be retrieved.' });
     });
 });
-
-server.get('/api/users/:id/notes', checkJwt, (req, res) => {
-  const { id } = req.params;
-  db('users').where('id', id);
-});
-
-server.post('/api/users/:id/notes/create', checkJwt, (req, res) => {});
-
-server.put('/api/users/:id/notes/:id/create', checkJwt, (req, res) => {});
-
-server.delete('/api/users/:id/notes/:id/create', checkJwt, (req, res) => {});
 
 module.exports = server;
