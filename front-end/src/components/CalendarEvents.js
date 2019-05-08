@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import "./styles/CalendarEvents.sass";
+import './styles/CalendarEvents.sass';
 
-import CalendarEvent from "./CalendarEvent";
+import CalendarEvent from './CalendarEvent';
 
 import {objCreate, deleteEvent} from '../actions/actions.js'
 

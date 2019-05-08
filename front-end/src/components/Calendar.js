@@ -9,14 +9,12 @@ import {clickedDate, updateEvent} from "../actions/actions.js"
 import listWeek from "@fullcalendar/list"
 import moment from "moment"
 
-import './styles/Calendar.scss'
+import "./styles/Calendar.scss";
 
 class Calendar extends React.Component {
   calendarComponentRef = React.createRef();
 
-
   state = {
-
     calendarWeekends: true,
     calendarEvents: [
       // initial event data
@@ -44,15 +42,16 @@ class Calendar extends React.Component {
     ]
   };
 
-  handleEventClick = (info) => {
-    this.setState({eventClicked:true})
-    console.log(this.state.eventClicked)
+  handleEventClick = info => {
+    this.setState({ eventClicked: true });
+    console.log(this.state.eventClicked);
   };
 
-  handleDateClick = ({date}) => {
-    let time = '11:36 pm'
-    console.log(date.toISOString())
-    this.props.clickedDate(date.toISOString())
+  handleDateClick = ({ date }) => {
+    let time = "11:36 pm";
+    console.log("this is the date:");
+    console.log(date);
+    this.props.clickedDate(date.toISOString());
   };
 
   handleDragAndDrop = (obj) => {
@@ -85,7 +84,6 @@ class Calendar extends React.Component {
           <FullCalendar
             defaultView="dayGridMonth"
             header={{
-            
               left: "prevYear, prev,next, nextYear today",
               center: "title",
               right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
@@ -122,8 +120,6 @@ class Calendar extends React.Component {
     let calendarApi = this.calendarComponentRef.current.getApi();
     calendarApi.gotoDate("2000-01-01"); // call a method on the Calendar object
   };
-
-  
 }
 
 const mapStateToProps = state => {

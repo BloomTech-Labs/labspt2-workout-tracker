@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './styles/CalendarEvent.sass'
+import './styles/CalendarEvent.sass';
 import Collapsible from 'react-collapsible';
-import Checkbox from './Checkbox.jsx'
-import EventGroup from './EventGroup.js'
-import moment from "moment";
+import Checkbox from './Checkbox.jsx';
+import EventGroup from './EventGroup.js';
+import moment from 'moment';
 
 class CalendarEvent extends Component {
 
@@ -36,11 +36,11 @@ class CalendarEvent extends Component {
               })}
             </div>
             </Collapsible>
-            </div>
-          </form>        
-        </div>
-      );
-    }
+          </div>
+        </form>
+      </div>
+    );
   }
+}
 
-  export default CalendarEvent
+export default CalendarEvent;
