@@ -157,7 +157,8 @@ const initialState = {
   ],
   fetching: false,
   dateClicked: false,
-  error: ''
+  error: '',
+  premium: false
 };
 
 export default (state = initialState, action) => {
@@ -227,6 +228,10 @@ export default (state = initialState, action) => {
     case EVENT_SCHEDULED:
       return Object.assign({}, state, {
         events: action.payload
+      });
+    case FETCHED_PREMIUM:
+      return Object.assign({}, state, {
+        premium: true
       });
 
     // case FETCHING_EVENTS:
