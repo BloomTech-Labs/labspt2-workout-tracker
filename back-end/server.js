@@ -509,6 +509,7 @@ server.post('/api/notes', checkJwt, (req, res) => {
 //ENDPOINT TO GET PROGRESS NOTES
 
 server.get('/api/notes', checkJwt, (req, res) => {
+  const { id } = req.body;
   db('users')
     .select('id')
     .where('user_id', req.user.sub)
@@ -535,6 +536,20 @@ server.get('/api/notes', checkJwt, (req, res) => {
         .json({ error: 'The notes information could not be retrieved.' });
     });
 });
+
+// ENDPOINT TO DELETE A NOTE
+
+server.delete('/api/notes', checkJwt, (req, res) => {
+  db('users')
+    .select('id')
+    .where('user_id', req.user.sub)
+    .first()
+    .then(id => {
+      db('notes')
+        
+    })
+})
+
 
 //WARNING, FOLLOWING ENDPOINT FOR TEST PURPOSES ONLY: GET ALL USERS CATEGORIES AND EXERCISES BY ID
 
