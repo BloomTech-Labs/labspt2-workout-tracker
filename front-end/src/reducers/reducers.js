@@ -17,10 +17,7 @@ import {
   FETCHING_ERROR,
   DATE_CLICKED,
   EVENTSFORM_CLOSED,
-  EVENT_SCHEDULED,
-  EVENT_OBJECT,
-  EVENT_DELETE,
-  EVENT_UPDATE
+  EVENT_SCHEDULED
 } from "../actions/actions";
 
 const initialState = {
@@ -59,6 +56,14 @@ const initialState = {
       ]
     },
     {
+      id: 2,
+      title: "Legs",
+      start: "2019-11-21T11:15:00",
+      end: "2019-11-21T11:30:00",
+      allDay: false,
+      exercises: ["C", "D", "E", "F", "G"]
+    },
+    {
       id: 4,
       title: "Core",
       start: "2019-03-12T04:30:00",
@@ -70,7 +75,7 @@ const initialState = {
       id: 3,
       title: "Cardio",
       start: "2019-03-13T09:30:00",
-      end: "2019-03-13T10:30:00",
+      end: "2019-03-13T09:30:00",
       allDay: false,
       exercises: ["Bicept Curls", "Tricept Pulldowns"]
     },
@@ -103,14 +108,6 @@ const initialState = {
       title: "Abs",
       start: "2019-01-04T09:30:00",
       end: "2019-01-04T09:30:00",
-      allDay: false,
-      exercises: ["Sweats", "Headaches", "Face Plants"]
-    },
-    {
-      id: 10,
-      title: "Brains",
-      start: "2019-06-24T10:30:00",
-      end: "2019-06-24T011:30:00",
       allDay: false,
       exercises: ["Sweats", "Headaches", "Face Plants"]
     }
@@ -158,7 +155,6 @@ const initialState = {
       userId: 1
     }
   ],
-  byDate: {},
   fetching: false,
   dateClicked: false,
   error: ""
@@ -229,18 +225,6 @@ export default (state = initialState, action) => {
         dateClicked: null
       });
     case EVENT_SCHEDULED:
-      return Object.assign({}, state, {
-        events: action.payload
-      });
-    case EVENT_OBJECT:
-      return Object.assign({}, state, {
-        byDate: action.payload
-      });
-    case EVENT_DELETE:
-      return Object.assign({}, state, {
-        events: action.payload
-      });
-    case EVENT_UPDATE:
       return Object.assign({}, state, {
         events: action.payload
       });
