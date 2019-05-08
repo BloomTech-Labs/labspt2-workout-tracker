@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link, NavLink, withRouter } from 'react-router-dom';
-import auth from '../Auth';
-import './styles/Nav.sass';
-import logo from '../images/workout-logo.svg';
+import React from "react";
+import { Link, NavLink, withRouter } from "react-router-dom";
+import auth from "../Auth";
+import "./styles/Nav.sass";
+import logo from "../images/workout-logo.svg";
 
 function NavBar(props) {
   const logout = () => {

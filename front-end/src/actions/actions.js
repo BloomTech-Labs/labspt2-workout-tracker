@@ -1,28 +1,27 @@
-import axios from 'axios';
-import auth from '../Auth';
+import axios from "axios";
+import auth from "../Auth";
 
-export const FETCHED = 'FETCHED';
-export const FETCHING = 'FETCHING';
-export const FETCHED_USERDATA = 'FETCHED_USERDATA';
-export const FETCHING_USERDATA = 'FETCHING_USERDATA';
-export const FETCHED_USERID = 'FETCHED_USERID';
-export const FETCHING_USERID = 'FETCHING_USERID';
-export const FETCHED_USERINFO = 'FETCHED_USERINFO';
-export const FETCHING_USERINFO = 'FETCHING_USERINFO';
-export const FETCHED_NOTES = 'FETCHED_NOTES';
-export const FETCHING_NOTES = 'FETCHING_NOTES';
-export const FETCHED_CATEGORIES = 'FETCHED_CATEGORIES';
-export const FETCHING_CATEGORIES = 'FETCHING_CATEGORIES';
-export const FETCHED_EXERCISES = 'FETCHED_EXERCISES';
-export const FETCHING_EXERCISES = 'FETCHING_EXERCISES';
-export const FETCHING_ERROR = 'FETCHING_ERROR';
-export const DATE_CLICKED = 'DATE_CLICKED';
-export const EVENTSFORM_CLOSED = 'EVENTSFORM_CLOSED';
-export const EVENT_SCHEDULED = 'EVENT_SCHEDULED';
-export const FETCHED_PREMIUM = 'FETCHED_PREMIUM';
+export const FETCHED = "FETCHED";
+export const FETCHING = "FETCHING";
+export const FETCHED_USERDATA = "FETCHED_USERDATA";
+export const FETCHING_USERDATA = "FETCHING_USERDATA";
+export const FETCHED_USERID = "FETCHED_USERID";
+export const FETCHING_USERID = "FETCHING_USERID";
+export const FETCHED_USERINFO = "FETCHED_USERINFO";
+export const FETCHING_USERINFO = "FETCHING_USERINFO";
+export const FETCHED_NOTES = "FETCHED_NOTES";
+export const FETCHING_NOTES = "FETCHING_NOTES";
+export const FETCHED_CATEGORIES = "FETCHED_CATEGORIES";
+export const FETCHING_CATEGORIES = "FETCHING_CATEGORIES";
+export const FETCHED_EXERCISES = "FETCHED_EXERCISES";
+export const FETCHING_EXERCISES = "FETCHING_EXERCISES";
+export const FETCHING_ERROR = "FETCHING_ERROR";
+export const DATE_CLICKED = "DATE_CLICKED";
+export const EVENTSFORM_CLOSED = "EVENTSFORM_CLOSED";
+export const EVENT_SCHEDULED = "EVENT_SCHEDULED";
 
-const DEPLOYED = 'https://workout-tracker-pt2.herokuapp.com';
-const LOCAL = 'http://localhost:3333';
+const DEPLOYED = "https://workout-tracker-pt2.herokuapp.com";
+const LOCAL = "http://localhost:3333";
 
 export const getData = () => {
   const { getAccessToken } = auth;
@@ -210,47 +209,5 @@ export const eventScheduled = events => {
       type: EVENT_SCHEDULED,
       payload: events
     });
-  };
-};
-
-export const getPremium = () => {
-  const { getAccessToken } = auth;
-  const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/users/premium`, {
-    headers
-  });
-  return dispatch => {
-    dispatch({ type: FETCHING });
-    promise
-      .then(response => {
-        console.log('log at 185', response.data);
-        dispatch({ type: FETCHED_PREMIUM });
-      })
-      .catch(err => {
-        dispatch({ type: FETCHING_ERROR, payload: err });
-      });
-  };
-};
-
-export const checkPremium = () => {
-  const { getAccessToken } = auth;
-  const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/user/ispremium`, {
-    headers
-  });
-  return dispatch => {
-    dispatch({ type: FETCHING });
-    promise
-      .then(response => {
-        console.log('log at 185', response.data.premium);
-        if (response.data.premium) {
-          dispatch({ type: FETCHED_PREMIUM });
-        } else {
-          dispatch({ type: FETCHING_ERROR, payload: response.data });
-        }
-      })
-      .catch(err => {
-        dispatch({ type: FETCHING_ERROR, payload: err });
-      });
   };
 };
