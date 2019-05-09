@@ -1,14 +1,16 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
 import styles from './styles/custom-styling.css';
+import { connect } from 'react-redux';
+import { deleteNote } from '../actions/actions';
 
-export default class CustomModal extends React.Component {
+class CustomModal extends React.Component {
   state = {
     open: false
   };
 
   deleteNote = () => {
-    //this.props.deleteNote();
+    this.props.deleteNote();
   };
 
   toggleModal = () => {
@@ -39,3 +41,16 @@ export default class CustomModal extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    notes: state.notes,
+    error: state.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {deleteNote}
+)(CustomModal);
+
