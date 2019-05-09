@@ -150,6 +150,23 @@ export const getNotes = () => {
   };
 };
 
+export const deleteNote = noteId => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  console.log(headers);
+  const promise = axios.delete(`${DEPLOYED}/api/notes`, { data: noteId, headers });
+  return dispatch => {
+    dispatch({ type: FETCHING_NOTES });
+    return promise
+      .then(() => {
+        getNotes();
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_ERROR, payload: err });
+      });
+  };
+}
+
 export const getCategories = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };

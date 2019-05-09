@@ -4,9 +4,10 @@ import { postNote } from '../actions/actions';
 
 class ProgressForm extends Component {
   state = {
-    weight: '',
-    waist: '',
-    arms: ''
+    weight: "",
+    waist: "",
+    arms: "",
+    legs: ""
   };
 
   onChange = event => {
@@ -15,13 +16,9 @@ class ProgressForm extends Component {
 
   postNote = e => {
     e.preventDefault();
-    if (this.props.notes.length < 5 || this.props.premium) {
-      const { weight, waist, arms } = this.state;
-      this.props.postNote({ weight, waist, arms });
-      this.setState({ weight: '', waist: '', arms: '' });
-    } else {
-      alert('Go premium to add more notes!');
-    }
+    const { weight, waist, arms, legs } = this.state;
+    this.props.postNote({ weight, waist, arms, legs });
+    this.setState({ weight: "", waist: "", arms: "", legs: "" });
   };
 
   render() {
@@ -47,6 +44,13 @@ class ProgressForm extends Component {
           onChange={this.onChange}
           placeholder="Arms"
           value={this.state.arms}
+        />
+        <input
+          name="legs"
+          text="name"
+          onChange={this.onChange}
+          placeholder="Legs"
+          value={this.state.legs}
         />
         <button className="submit">Submit</button>
       </form>

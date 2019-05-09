@@ -461,7 +461,7 @@ server.post('/api/exercises', checkJwt, (req, res) => {
 //ENDPOINT TO POST A NEW PROGRESS NOTE
 
 server.post('/api/notes', checkJwt, (req, res) => {
-  const { weight, waist, arms } = req.body;
+  const { weight, waist, arms, legs } = req.body;
   db('users')
     .select('id')
     .where('user_id', req.user.sub)
@@ -473,13 +473,14 @@ server.post('/api/notes', checkJwt, (req, res) => {
           weight: weight,
           waist: waist,
           arms: arms,
+          legs: legs,
           userId: id.id
         })
         .then(userId => {
           console.log(userId);
           db('notes as n')
             .join('users as u', 'u.id', 'n.userId')
-            .select('n.id', 'n.weight', 'n.waist', 'n.arms')
+            .select('n.id', 'n.weight', 'n.waist', 'n.arms', 'n.legs')
             .where('n.userId', userId[0])
             .then(notes => {
               checkForResource(req, res, notes);
@@ -516,10 +517,10 @@ server.get('/api/notes', checkJwt, (req, res) => {
     .then(id => {
       db('notes as n')
         .join('users as u', 'u.id', 'n.userId')
-        .select('n.id', 'n.weight', 'n.waist', 'n.arms')
+        .select('n.id', 'n.weight', 'n.waist', 'n.arms', 'n.legs')
         .where('n.userId', id.id)
         .then(notes => {
-          checkForResource(req, res, notes);
+          res.status(200).json(notes);
         })
         .catch(err => {
           console.log('error', err);

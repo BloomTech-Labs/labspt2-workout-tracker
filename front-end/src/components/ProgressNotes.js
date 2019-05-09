@@ -15,11 +15,8 @@ class ProgressNotes extends Component {
     this.setState({ notes: [...this.props.notes] });
   }
 
-  placeholder = () => {
-    return alert('This is a place holder function');
-  };
-
   render() {
+    console.log(this.props.notes);
     return (
       <div className="notes-container">
         <ExampleNote />
@@ -27,8 +24,8 @@ class ProgressNotes extends Component {
           return (
             <div className="note" key={note.id}>
               <div>
-                <p onClick={this.placeholder}>Edit</p>
-                <CustomModal />
+                <p>Edit</p>
+                <CustomModal noteId={note.id} />
               </div>
               <p>Weight: {note.weight}</p>
               <p>Waist: {note.waist}</p>
