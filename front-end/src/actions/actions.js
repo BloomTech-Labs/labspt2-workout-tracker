@@ -153,18 +153,13 @@ export const getNotes = () => {
 export const deleteNote = noteId => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.delete(`${LOCAL}/api/notes`, noteId, {
-    headers
-  });
+  console.log(headers);
+  const promise = axios.delete(`${LOCAL}/api/notes`, { data: noteId, headers });
   return dispatch => {
     dispatch({ type: FETCHING_NOTES });
     return promise
-      .then(response => {
-        dispatch({
-          type: FETCHED_NOTES,
-          payload: JSON.parse(response.data.text)
-        });
-        return response.data.text;
+      .then(() => {
+        getNotes();
       })
       .catch(err => {
         dispatch({ type: FETCHING_ERROR, payload: err });

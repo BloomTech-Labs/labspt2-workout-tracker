@@ -519,7 +519,7 @@ server.get('/api/notes', checkJwt, (req, res) => {
         .select('n.id', 'n.weight', 'n.waist', 'n.arms')
         .where('n.userId', id.id)
         .then(notes => {
-          checkForResource(req, res, notes);
+          res.status(200).json(notes);
         })
         .catch(err => {
           console.log('error', err);

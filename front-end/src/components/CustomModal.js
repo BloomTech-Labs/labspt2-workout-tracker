@@ -2,15 +2,18 @@ import React from 'react';
 import Modal from 'react-responsive-modal';
 import styles from './styles/custom-styling.css';
 import { connect } from 'react-redux';
-import { deleteNote } from '../actions/actions';
+import { deleteNote, getNotes} from '../actions/actions';
+
 
 class CustomModal extends React.Component {
   state = {
     open: false
   };
 
-  deleteNote = () => {
-    this.props.deleteNote();
+  deleteNote = async () => {
+    await this.props.deleteNote({notesId: this.props.noteId});
+    await this.props.getNotes();
+    this.setState({ open: !this.state.open });
   };
 
   toggleModal = () => {
@@ -51,6 +54,6 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {deleteNote}
+  {deleteNote, getNotes}
 )(CustomModal);
 

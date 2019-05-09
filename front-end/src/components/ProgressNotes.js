@@ -25,7 +25,7 @@ class ProgressNotes extends Component {
             <div className="note" key={note.id}>
               <div>
                 <p>Edit</p>
-                <CustomModal />
+                <CustomModal noteId={note.id} />
               </div>
               <p>Weight: {note.weight}</p>
               <p>Waist: {note.waist}</p>
