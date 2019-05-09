@@ -27,7 +27,7 @@ const LOCAL = 'http://localhost:3333';
 export const getData = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${LOCAL}/api/users`, { headers });
+  const promise = axios.get(`${DEPLOYED}/api/users`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
@@ -43,7 +43,7 @@ export const getData = () => {
 export const getUserId = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${LOCAL}/api/userid`, { headers });
+  const promise = axios.get(`${DEPLOYED}/api/userid`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
@@ -60,7 +60,7 @@ export const postUser = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
   const promise = axios.post(
-    `${LOCAL}/api/users`,
+    `${DEPLOYED}/api/users`,
     {},
     {
       headers
@@ -81,7 +81,7 @@ export const postUser = () => {
 export const postCategory = categoryName => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${LOCAL}/api/categories`, categoryName, {
+  const promise = axios.post(`${DEPLOYED}/api/categories`, categoryName, {
     headers
   });
   return dispatch => {
@@ -100,7 +100,7 @@ export const postCategory = categoryName => {
 export const postExercise = exerciseBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${LOCAL}/api/exercises`, exerciseBody, {
+  const promise = axios.post(`${DEPLOYED}/api/exercises`, exerciseBody, {
     headers
   });
   return dispatch => {
@@ -119,7 +119,7 @@ export const postExercise = exerciseBody => {
 export const postNote = noteBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${LOCAL}/api/notes`, noteBody, {
+  const promise = axios.post(`${DEPLOYED}/api/notes`, noteBody, {
     headers
   });
   return dispatch => {
@@ -137,7 +137,7 @@ export const postNote = noteBody => {
 export const getNotes = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${LOCAL}/api/notes`, { headers });
+  const promise = axios.get(`${DEPLOYED}/api/notes`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_NOTES });
     promise
@@ -154,7 +154,7 @@ export const deleteNote = noteId => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
   console.log(headers);
-  const promise = axios.delete(`${LOCAL}/api/notes`, { data: noteId, headers });
+  const promise = axios.delete(`${DEPLOYED}/api/notes`, { data: noteId, headers });
   return dispatch => {
     dispatch({ type: FETCHING_NOTES });
     return promise
@@ -170,7 +170,7 @@ export const deleteNote = noteId => {
 export const getCategories = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${LOCAL}/api/categories`, { headers });
+  const promise = axios.get(`${DEPLOYED}/api/categories`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_CATEGORIES });
     promise
@@ -186,7 +186,7 @@ export const getCategories = () => {
 export const getExercises = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${LOCAL}/api/exercises`, { headers });
+  const promise = axios.get(`${DEPLOYED}/api/exercises`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_EXERCISES });
     promise
@@ -202,7 +202,7 @@ export const getExercises = () => {
 export const updateUser = userUpdates => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.patch(`${LOCAL}/userupdate`, userUpdates, {
+  const promise = axios.patch(`${DEPLOYED}/userupdate`, userUpdates, {
     headers
   });
   return dispatch => {
@@ -224,7 +224,7 @@ export const updateUser = userUpdates => {
 export const getUserInfo = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${LOCAL}/userinfo`, { headers });
+  const promise = axios.get(`${DEPLOYED}/userinfo`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_USERINFO });
     return promise
