@@ -4,10 +4,10 @@ import { postNote } from '../actions/actions';
 
 class ProgressForm extends Component {
   state = {
-    weight: "",
-    waist: "",
-    arms: "",
-    legs: ""
+    weight: '',
+    waist: '',
+    arms: '',
+    legs: ''
   };
 
   onChange = event => {
@@ -16,9 +16,13 @@ class ProgressForm extends Component {
 
   postNote = e => {
     e.preventDefault();
-    const { weight, waist, arms, legs } = this.state;
-    this.props.postNote({ weight, waist, arms, legs });
-    this.setState({ weight: "", waist: "", arms: "", legs: "" });
+    if (this.props.notes.length < 5 || this.props.premium) {
+      const { weight, waist, arms, legs } = this.state;
+      this.props.postNote({ weight, waist, arms, legs });
+      this.setState({ weight: '', waist: '', arms: '', legs: '' });
+    } else {
+      alert('Go premium to add more notes!');
+    }
   };
 
   render() {
