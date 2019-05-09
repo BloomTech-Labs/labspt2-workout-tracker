@@ -537,9 +537,7 @@ server.get('/api/notes', checkJwt, (req, res) => {
     });
 });
 
-
 // ENDPOINT TO UPDATE PREMIUM STATUS
-
 
 server.get('/api/users/premium', checkJwt, (req, res) => {
   db('users')
@@ -557,9 +555,7 @@ server.get('/api/users/premium', checkJwt, (req, res) => {
     });
 });
 
-
 // ENDPOINT TO CHECK IF USER IS PREMIUM
-
 
 server.get('/api/user/ispremium', checkJwt, (req, res) => {
   db('users')
@@ -602,7 +598,37 @@ server.delete('/api/notes', checkJwt, (req, res) => {
       res
         .status(500)
         .json({ error: 'The notes information could not be retrieved.' });
+    });
+});
 
+// ENDPOINT TO EDIT NOTE
+
+server.put('/api/notes', checkJwt, (req, res) => {
+  const { notesId } = req.body;
+  const body = req.body;
+  db('users')
+    .select('id')
+    .where('user_id', req.user.sub)
+    .first()
+    .then(id => {
+      db('notes')
+        .where('id', notesId)
+        .update(body)
+        .then(notes => {
+          checkForResource(req, res, notes);
+        })
+        .catch(err => {
+          console.log('error', err);
+          res.status(500).json({
+            error: 'The notes information could not be retrieved.'
+          });
+        });
+    })
+    .catch(err => {
+      console.log('error', err);
+      res
+        .status(500)
+        .json({ error: 'The notes information could not be retrieved.' });
     });
 });
 
