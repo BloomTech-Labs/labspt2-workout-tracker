@@ -7,6 +7,27 @@ import CalendarEvent from './CalendarEvent';
 
 import {objCreate, deleteEvent} from '../actions/actions.js'
 
+// events: [
+//   {
+//     id: 1,
+//     title: 'Arms',
+//     start: '2019-11-21T10:15:00',
+//     end: '2019-11-21T10:30:00',
+//     allDay: false,
+//     exercises: [
+//       {
+//         id: 1,
+//         checked: false,
+//         categoryId: 2,
+//       },
+//       {
+//         id: 2,
+//         checked: false,
+//         categoryId: 2,
+//       }
+//     ]
+//   },]
+
 
 class CalendarEvents extends Component {
   constructor(props) {
@@ -34,7 +55,6 @@ class CalendarEvents extends Component {
 
   closeEvent = (obj,eventDate) => {
 
-    console.log(this.props.events)
 
     let restOfEvents = this.props.events.filter(event => {return event.start.substring(0, 10) !== eventDate})
     this.props.deleteEvent(restOfEvents)
@@ -83,9 +103,9 @@ componentDidUpdate(prevProps) {
 
 
 
-  render() {
 
-    
+  render() {
+  
 
     return (
 
@@ -120,7 +140,8 @@ const mapStateToProps = state => {
     users: state.users,
     error: state.error,
     events: state.events,
-    byDate: state.byDate
+    byDate: state.byDate,
+    exercises: state.exercises
   };
 };
 

@@ -11,22 +11,24 @@ import './styles/ScheduleView.sass'
 
 class EventGroup extends Component {
   state = {
-    checked: false,
-    categoryId: 1,
-    title  : 'Core',
-    start: '',
-    end: '',
-    allDay: null,
-    exercises: [...this.props.exercises]
+    
   };
 
   Update = () => {
     this.forceUpdate()
   }
 
+  // exerciseReplace = () => {
+  //   this.props.exerciseProp.map( exer => {return this.props.exercises.filter( EXERCISE => {return EXERCISE.id === exer.id}  ) })
+  //   }
+
   
 
   render() {
+    
+  let final = this.props.exerciseProp.map( exer => {return this.props.exercises.filter( EXERCISE => {return EXERCISE.id === exer.id}  )[0] })
+
+
     return (
         
         <div className='event-all'>
@@ -38,8 +40,9 @@ class EventGroup extends Component {
         </div>
         <div className="scheduled">
 
-       {this.props.exercises.map((exercise,index) => {
-          return <EventItem key={exercise+index} category={this.props.category} onClick={this.Done} Update={this.Update} item={exercise} />
+       {final.map((exercise) => {
+
+          return <EventItem key={exercise.id} category={this.props.category} onClick={this.Done} Update={this.Update} item={exercise} />
 
        })}
         </div>
@@ -49,12 +52,14 @@ class EventGroup extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     auth: state.auth
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    users: state.users,
+    error: state.error,
+    events: state.events,
+    byDate: state.byDate,
+    exercises: state.exercises
+  };
+};
 
-// export default connect(mapStateToProps)(ScheduleView);
-
-export default EventGroup;
+export default connect(mapStateToProps)(EventGroup);
