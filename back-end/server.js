@@ -571,7 +571,7 @@ server.get('/api/user/ispremium', checkJwt, (req, res) => {
       res
         .status(500)
         .json({ error: 'User provided either not found or not Premium' });
-    }
+    });
 });
 
 // ENDPOINT TO DELETE A NOTE
