@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { postNote } from "../actions/actions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { postNote } from '../actions/actions';
 
 class ProgressForm extends Component {
   state = {
-    weight: "",
-    waist: "",
-    arms: ""
+    weight: '',
+    waist: '',
+    arms: ''
   };
 
   onChange = event => {
@@ -15,9 +15,13 @@ class ProgressForm extends Component {
 
   postNote = e => {
     e.preventDefault();
-    const { weight, waist, arms } = this.state;
-    this.props.postNote({ weight, waist, arms });
-    this.setState({ weight: "", waist: "", arms: "" });
+    if (this.props.notes.length < 5 || this.props.premium) {
+      const { weight, waist, arms } = this.state;
+      this.props.postNote({ weight, waist, arms });
+      this.setState({ weight: '', waist: '', arms: '' });
+    } else {
+      alert('Go premium to add more notes!');
+    }
   };
 
   render() {
@@ -52,7 +56,9 @@ class ProgressForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    error: state.error
+    error: state.error,
+    notes: state.notes,
+    premium: state.premium
   };
 };
 

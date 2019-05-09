@@ -17,7 +17,8 @@ import {
   FETCHING_ERROR,
   DATE_CLICKED,
   EVENTSFORM_CLOSED,
-  EVENT_SCHEDULED
+  EVENT_SCHEDULED,
+  FETCHED_PREMIUM
 } from '../actions/actions';
 
 const initialState = {
@@ -157,7 +158,8 @@ const initialState = {
   ],
   fetching: false,
   dateClicked: false,
-  error: ''
+  error: '',
+  premium: false
 };
 
 export default (state = initialState, action) => {
@@ -227,6 +229,10 @@ export default (state = initialState, action) => {
     case EVENT_SCHEDULED:
       return Object.assign({}, state, {
         events: action.payload
+      });
+    case FETCHED_PREMIUM:
+      return Object.assign({}, state, {
+        premium: true
       });
 
     // case FETCHING_EVENTS:
