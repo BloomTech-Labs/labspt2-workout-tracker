@@ -25,8 +25,10 @@ class EventGroup extends Component {
   
 
   render() {
+
+  let final = this.props.exerciseProp.map( exer => {
     
-  let final = this.props.exerciseProp.map( exer => {return this.props.exercises.filter( EXERCISE => {return EXERCISE.id === exer.id}  )[0] })
+    return this.props.exercises.filter( EXERCISE => {return EXERCISE.id === exer.id}  )[0] })
 
 
     return (
@@ -41,7 +43,6 @@ class EventGroup extends Component {
         <div className="scheduled">
 
        {final.map((exercise) => {
-
           return <EventItem key={exercise.id} category={this.props.category} onClick={this.Done} Update={this.Update} item={exercise} />
 
        })}

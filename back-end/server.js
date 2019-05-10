@@ -141,8 +141,8 @@ server.get('/api/users', checkJwt, (req, res) => {
           db('exercises as e')
             .join('categories as c', 'c.id', 'e.categoryId')
             .select(
-              'e.id as excerciseId',
-              'e.exerciseName as exercise',
+              'e.id as id',
+              'e.exerciseName as exerciseName',
               'c.id as categoryId',
               'c.categoryName as category'
             )
@@ -194,9 +194,9 @@ server.post('/api/users', checkJwt, (req, res) => {
                 db('exercises as e')
                   .join('categories as c', 'c.id', 'e.categoryId')
                   .select(
-                    'e.id',
-                    'e.exerciseName as exercise',
-                    'c.id',
+                    'e.id as id',
+                    'e.exerciseName as exerciseName',
+                    'c.id as categoryId',
                     'c.categoryName as category'
                   )
                   .whereIn('e.categoryId', categories)
@@ -239,8 +239,8 @@ server.post('/api/users', checkJwt, (req, res) => {
                 db('exercises as e')
                   .join('categories as c', 'c.id', 'e.categoryId')
                   .select(
-                    'e.id as excerciseId',
-                    'e.exerciseName as exercise',
+                    'e.id as id',
+                    'e.exerciseName as exerciseName',
                     'c.id as categoryId',
                     'c.categoryName as category'
                   )
@@ -383,7 +383,7 @@ server.get('/api/exercises', checkJwt, (req, res) => {
         .orderBy('e.categoryId')
         .join('users as u', 'u.id', 'e.userId')
         .select(
-          'e.id as excerciseId',
+          'e.id as id',
           'e.exerciseName as exerciseName',
           'e.reps as reps',
           'e.weight as weight',
@@ -432,7 +432,7 @@ server.post('/api/exercises', checkJwt, (req, res) => {
           db('exercises as e')
             .orderBy('e.userId')
             .select(
-              'e.id as excerciseId',
+              'e.id as id',
               'e.exerciseName as exerciseName',
               'e.reps as reps',
               'e.weight as weight',
@@ -580,9 +580,9 @@ server.get('/api/:id/categories', checkJwt, (req, res) => {
       db('exercises as e')
         .join('categories as c', 'c.id', 'e.categoryId')
         .select(
-          'e.id',
-          'e.exerciseName as exercise',
-          'c.id',
+          'e.id as id',
+          'e.exerciseName as exerciseName',
+          'c.id as categoryId',
           'c.categoryName as category'
         )
         .whereIn('e.categoryId', categories)

@@ -20,8 +20,8 @@ import {
   EVENT_SCHEDULED,
   EVENT_OBJECT,
   EVENT_DELETE,
-  EVENT_UPDATE
-
+  EVENT_UPDATE,
+  FETCHED_PREMIUM
 } from '../actions/actions';
 
 const initialState = {
@@ -179,7 +179,8 @@ const initialState = {
 
   fetching: false,
   dateClicked: false,
-  error: ''
+  error: '',
+  premium: false
 };
 
 export default (state = initialState, action) => {
@@ -260,7 +261,10 @@ export default (state = initialState, action) => {
       });
     case EVENT_UPDATE:
       return Object.assign({}, state, {
-        events: action.payload
+        events: action.payload});  
+    case FETCHED_PREMIUM:
+      return Object.assign({}, state, {
+        premium: true
       });
 
     // case FETCHING_EVENTS:
