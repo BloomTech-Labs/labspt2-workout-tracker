@@ -604,18 +604,24 @@ server.delete('/api/notes', checkJwt, (req, res) => {
 // ENDPOINT TO EDIT NOTE
 
 server.put('/api/notes', checkJwt, (req, res) => {
-  const { notesId } = req.body;
-  const body = req.body;
+  //const noteId = req.body.id;
+  const { weight, waist, arms, legs, id } = req.body;
   db('users')
     .select('id')
     .where('user_id', req.user.sub)
     .first()
-    .then(id => {
+    .then(note => {
       db('notes')
-        .where('id', notesId)
-        .update(body)
-        .then(notes => {
-          checkForResource(req, res, notes);
+        .where('id', id)
+        .update({
+          weight: weight,
+          waist: waist,
+          arms: arms,
+          legs: legs
+        })
+        .then(note => {
+          console.log('UPDATED NOTE: ', note);
+          res.status(200).json(note);
         })
         .catch(err => {
           console.log('error', err);
