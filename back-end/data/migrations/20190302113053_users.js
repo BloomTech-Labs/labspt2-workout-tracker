@@ -1,15 +1,19 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable("users", function(table) {
+  return knex.schema.createTable('users', function(table) {
     table.increments();
     table
-      .string("user_id")
+      .string('user_id')
       .notNullable()
       .unique();
-    table.timestamp("created_at").defaultTo(knex.fn.now());
-    table.timestamp("updated_at").defaultTo(knex.fn.now());
+    table
+      .boolean('premium')
+      .notNull()
+      .defaultTo(false);
+    table.timestamp('created_at').defaultTo(knex.fn.now());
+    table.timestamp('updated_at').defaultTo(knex.fn.now());
   });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable("users");
+  return knex.schema.dropTable('users');
 };

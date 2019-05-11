@@ -251,7 +251,8 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         events: action.payload
       });
-      case EVENT_OBJECT:
+
+    case EVENT_OBJECT:
       return Object.assign({}, state, {
         byDate: action.payload
       });
@@ -262,6 +263,7 @@ export default (state = initialState, action) => {
     case EVENT_UPDATE:
       return Object.assign({}, state, {
         events: action.payload});  
+
     case FETCHED_PREMIUM:
       return Object.assign({}, state, {
         premium: true
