@@ -5,9 +5,9 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import "@fullcalendar/core/main.css";
-import { clickedDate } from "../actions/actions.js";
-import listWeek from "@fullcalendar/list";
-import moment from "moment";
+import {clickedDate, updateEvent} from "../actions/actions.js"
+import listWeek from "@fullcalendar/list"
+import moment from "moment"
 
 import "./styles/Calendar.scss";
 
@@ -19,23 +19,26 @@ class Calendar extends React.Component {
     calendarEvents: [
       // initial event data
       {
-        title: "Arms",
-        start: "2019-04-12T13:30:00",
-        end: "2019-04-12T14:30:00",
-        allDay: false
-      },
-      {
-        title: "Legs",
-        start: "2019-04-12T15:30:00",
-        end: "2019-04-12T16:30:00",
-        allDay: false
-      },
-      {
-        title: "Core",
-        start: "2019-04-12T20:30:00",
-        end: "2019-04-12T21:30:00",
-        allDay: false
-      }
+                  id: 1,
+                  title: "Arms",
+                  start: "2019-04-12T13:30:00",
+                  end: "2019-04-12T14:30:00",
+                  allDay: false
+                },
+                {
+                  id: 2,
+                  title: "Legs",
+                  start: "2019-04-12T15:30:00",
+                  end: "2019-04-12T16:30:00",
+                  allDay: false
+                },
+                {
+                  id: 3,
+                  title: "Core",
+                  start: "2019-04-12T20:30:00",
+                  end: "2019-04-12T21:30:00",
+                  allDay: false
+                }
     ]
   };
 
@@ -50,6 +53,24 @@ class Calendar extends React.Component {
     console.log(date);
     this.props.clickedDate(date.toISOString());
   };
+
+  handleDragAndDrop = (obj) => {
+
+
+
+    let singleEvent = this.props.events.filter( event => {return event.id.toString() === obj.event.id.toString()})[0]
+
+    let exceptOne = this.props.events.filter( event => {return event.id.toString() !== obj.event.id.toString()})
+    this.props.updateEvent(exceptOne)
+
+    singleEvent.start = moment(obj.event.start).format().substring(0,19)
+    singleEvent.end = moment(obj.event.end).format().substring(0,19)
+
+    let updatedEvents = [singleEvent , ...exceptOne]
+
+    this.props.updateEvent(updatedEvents)
+
+  }
 
   render() {
     return (
@@ -69,11 +90,14 @@ class Calendar extends React.Component {
             }}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             ref={this.calendarComponentRef}
+            getView={this.handleDragAndDrop}
             weekends={this.state.calendarWeekends}
-            events={this.state.calendarEvents}
+            events={this.props.events}
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
             selectable={true}
+            droppable={true}
+            eventDrop={this.handleDragAndDrop}
             editable={true}
             eventLimit={true} // for all non-TimeGrid views
             eventLimit={2}
@@ -107,6 +131,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(
-  mapStateToProps,
-  { clickedDate }
+  mapStateToProps, {clickedDate, updateEvent}
 )(Calendar);

@@ -13,6 +13,8 @@ class EventItem extends Component {
 
 
   render() {
+
+    
     return (
         
         <div className='event-full'>
