@@ -537,9 +537,7 @@ server.get('/api/notes', checkJwt, (req, res) => {
     });
 });
 
-
 // ENDPOINT TO UPDATE PREMIUM STATUS
-
 
 server.get('/api/users/premium', checkJwt, (req, res) => {
   db('users')
@@ -557,9 +555,7 @@ server.get('/api/users/premium', checkJwt, (req, res) => {
     });
 });
 
-
 // ENDPOINT TO CHECK IF USER IS PREMIUM
-
 
 server.get('/api/user/ispremium', checkJwt, (req, res) => {
   db('users')
@@ -602,7 +598,43 @@ server.delete('/api/notes', checkJwt, (req, res) => {
       res
         .status(500)
         .json({ error: 'The notes information could not be retrieved.' });
+    });
+});
 
+// ENDPOINT TO EDIT NOTE
+
+server.put('/api/notes', checkJwt, (req, res) => {
+  //const noteId = req.body.id;
+  const { weight, waist, arms, legs, id } = req.body;
+  db('users')
+    .select('id')
+    .where('user_id', req.user.sub)
+    .first()
+    .then(note => {
+      db('notes')
+        .where('id', id)
+        .update({
+          weight: weight,
+          waist: waist,
+          arms: arms,
+          legs: legs
+        })
+        .then(note => {
+          console.log('UPDATED NOTE: ', note);
+          res.status(200).json(note);
+        })
+        .catch(err => {
+          console.log('error', err);
+          res.status(500).json({
+            error: 'The notes information could not be retrieved.'
+          });
+        });
+    })
+    .catch(err => {
+      console.log('error', err);
+      res
+        .status(500)
+        .json({ error: 'The notes information could not be retrieved.' });
     });
 });
 
