@@ -106,6 +106,7 @@ componentDidUpdate(prevProps) {
 
   render() {
   
+    console.log(this.props.categories, this.props.exercises)
 
     return (
 
@@ -141,7 +142,8 @@ const mapStateToProps = state => {
     error: state.error,
     events: state.events,
     byDate: state.byDate,
-    exercises: state.exercises
+    exercises: state.exercises,
+    categories: state.categories
   };
 };
 

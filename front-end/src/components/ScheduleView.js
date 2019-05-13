@@ -17,7 +17,7 @@ class ScheduleView extends Component {
   render() {
     let ScheduledEvents = '';
     if (this.props.dateClicked) {
-      ScheduledEvents = <ScheduleForm />;
+      ScheduledEvents = <ScheduleForm className='component-container events-form'/>;
     }
     return (
       <div className="main scheduleView">
