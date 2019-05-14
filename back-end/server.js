@@ -458,6 +458,42 @@ server.post('/api/exercises', checkJwt, (req, res) => {
     });
 });
 
+//ENDPOINT TO GET USER EVENTS
+server.get('/api/events', checkJwt, (req, res) => {
+  db('users')
+    .select('id')
+    .where('user_id', req.user.sub)
+    .first()
+    .then(id => {
+      db('events as e')
+        .orderBy('e.id')
+        .join('users as u', 'u.id', 'e.userId')
+        .select(
+          'e.id as eventId',
+          'e.start as start',
+          'e.end as end',
+          'e.allDay as allDay',
+          'e.exercises as exercises',
+          'e.categoryId as categoryId'
+        )
+        .whereIn('e.userId', [1, id.id])
+        .then(events => {
+          checkForResource(req, res, events);
+        })
+        .catch(err => {
+          console.log('error', err);
+          res.status(500).json({
+            error: 'The events information could not be retrieved.'
+          });
+        });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'The specified user info could not be retrieved' });
+    });
+});
+
 //ENDPOINT TO POST A NEW EVENT
 
 server.post('/api/events', checkJwt, (req, res) => {
