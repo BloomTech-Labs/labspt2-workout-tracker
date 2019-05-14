@@ -13,8 +13,8 @@ exports.up = function(knex, Promise) {
       .notNullable()
       .references('id')
       .inTable('categories');
-    table.timestamp('start').notNullable();
-    table.timestamp('end').notNullable();
+    table.timestamp('start', { useTz: false }).notNullable();
+    table.timestamp('end', { useTz: false }).notNullable();
     table.boolean('allDay').defaultTo(false);
     table.json('exercises');
   });
