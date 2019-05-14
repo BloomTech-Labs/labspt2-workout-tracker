@@ -16,7 +16,9 @@ class ProgressNoteEditForm extends React.Component {
   };
 
   clickHandler = () => {
-    this.setState({ isMenuShowing: !this.state.isMenuShowing });
+    this.setState({
+      isMenuShowing: !this.state.isMenuShowing
+    });
   };
 
   editNote = e => {

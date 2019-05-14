@@ -14,15 +14,27 @@ class ProgressNotes extends Component {
         {this.props.notes.map(note => {
           return (
             <div className="note" key={note.id}>
-              <div className="progress-note-button-container">
+              <div>
                 <ProgressNoteEditForm noteId={note.id} />
                 <ProgressNoteDeleteModal noteId={note.id} />
               </div>
               <div className="progress-note-info-container">
-                <p className="progress-note-p-tag">Weight: {note.weight}</p>
-                <p className="progress-note-p-tag">Waist: {note.waist}</p>
-                <p className="progress-note-p-tag">Arms: {note.arms}</p>
-                <p className="progress-note-p-tag">Legs: {note.legs}</p>
+                <p className="progress-note-p-tag">
+                  <span style={{ textDecoration: 'underline' }}>Weight</span>:{' '}
+                  {note.weight}
+                </p>
+                <p className="progress-note-p-tag">
+                  <span style={{ textDecoration: 'underline' }}>Waist</span>:{' '}
+                  {note.waist}
+                </p>
+                <p className="progress-note-p-tag">
+                  <span style={{ textDecoration: 'underline' }}>Arms</span>:{' '}
+                  {note.arms}
+                </p>
+                <p className="progress-note-p-tag">
+                  <span style={{ textDecoration: 'underline' }}>Legs</span>:{' '}
+                  {note.legs}
+                </p>
               </div>
             </div>
           );
