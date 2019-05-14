@@ -383,7 +383,7 @@ server.get('/api/exercises', checkJwt, (req, res) => {
         .orderBy('e.categoryId')
         .join('users as u', 'u.id', 'e.userId')
         .select(
-          'e.id as excerciseId',
+          'e.id as exerciseId',
           'e.exerciseName as exerciseName',
           'e.reps as reps',
           'e.weight as weight',
@@ -447,6 +447,55 @@ server.post('/api/exercises', checkJwt, (req, res) => {
               console.log('error', err);
               res.status(500).json({
                 error: 'The exercises information could not be retrieved.'
+              });
+            });
+        });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'The specified user info could not be retrieved' });
+    });
+});
+
+//ENDPOINT TO POST A NEW EVENT
+
+server.post('/api/events', checkJwt, (req, res) => {
+  const { categoryId, start, end, allDay, exercises } = req.body;
+  db('users')
+    .select('id')
+    .where('user_id', req.user.sub)
+    .first()
+    .then(id => {
+      db('events')
+        .returning('userId')
+        .insert({
+          start: start,
+          end: end,
+          allDay: allDay,
+          exercises: JSON.stringify(exercises),
+          categoryId: categoryId,
+          userId: id.id
+        })
+        .then(userId => {
+          db('events as e')
+            .orderBy('e.id')
+            .select(
+              'e.id as eventId',
+              'e.start as start',
+              'e.end as end',
+              'e.allDay as allDay',
+              'e.exercises as exercises',
+              'e.categoryId as categoryId'
+            )
+            .whereIn('e.userId', [1, userId[0]])
+            .then(events => {
+              checkForResource(req, res, events);
+            })
+            .catch(err => {
+              console.log('error', err);
+              res.status(500).json({
+                error: 'The events information could not be retrieved.'
               });
             });
         });
