@@ -1,23 +1,25 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable("events", function(table) {
+  return knex.schema.createTable('events', function(table) {
     table.increments();
     table
-      .integer("userId")
+      .integer('userId')
       .unsigned()
       .notNullable()
-      .references("id")
-      .inTable("users");
+      .references('id')
+      .inTable('users');
     table
-      .integer("categoryId")
+      .integer('categoryId')
       .unsigned()
       .notNullable()
-      .references("id")
-      .inTable("categories");
-    table.date("date").notNullable();
-    table.json("exercises");
+      .references('id')
+      .inTable('categories');
+    table.timestamp('start').notNullable();
+    table.timestamp('end').notNullable();
+    table.boolean('allDay').defaultTo(false);
+    table.json('exercises');
   });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable("events");
+  return knex.schema.dropTable('events');
 };
