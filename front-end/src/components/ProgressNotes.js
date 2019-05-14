@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ExampleNote from './ExampleNote';
 import { getNotes } from '../actions/actions';
 import './styles/ProgressNotes.sass';
-import CustomModal from './CustomModal';
+import ProgressNoteDeleteModal from './ProgressNoteDeleteModal';
 import ProgressNoteEditForm from './ProgressNoteEditForm';
 
 class ProgressNotes extends Component {
@@ -16,7 +16,7 @@ class ProgressNotes extends Component {
             <div className="note" key={note.id}>
               <div className="progress-note-button-container">
                 <ProgressNoteEditForm noteId={note.id} />
-                <CustomModal noteId={note.id} />
+                <ProgressNoteDeleteModal noteId={note.id} />
               </div>
               <div className="progress-note-info-container">
                 <p className="progress-note-p-tag">Weight: {note.weight}</p>

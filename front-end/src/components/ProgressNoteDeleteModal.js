@@ -1,10 +1,8 @@
 import React from 'react';
-import Modal from 'react-responsive-modal';
-import styles from './styles/custom-styling.css';
 import { connect } from 'react-redux';
 import { deleteNote, getNotes } from '../actions/actions';
 
-class CustomModal extends React.Component {
+class ProgressNoteDeleteModal extends React.Component {
   state = {
     open: false
   };
@@ -42,4 +40,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { deleteNote, getNotes }
-)(CustomModal);
+)(ProgressNoteDeleteModal);
