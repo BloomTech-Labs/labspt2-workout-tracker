@@ -25,11 +25,9 @@ class CustomModal extends React.Component {
   render() {
     const { open } = this.state;
     return (
-      <div className="example">
-        <button className="btn btn-action" onClick={this.toggleModal}>
-          Delete
-        </button>
-      </div>
+      <button className="delete-button" onClick={this.toggleModal}>
+        Delete
+      </button>
     );
   }
 }

@@ -1,39 +1,36 @@
-import axios from "axios";
-import auth from "../Auth";
+import axios from 'axios';
+import auth from '../Auth';
 
-export const FETCHED = "FETCHED";
-export const FETCHING = "FETCHING";
-export const FETCHED_USERDATA = "FETCHED_USERDATA";
-export const FETCHING_USERDATA = "FETCHING_USERDATA";
-export const FETCHED_USERID = "FETCHED_USERID";
-export const FETCHING_USERID = "FETCHING_USERID";
-export const FETCHED_USERINFO = "FETCHED_USERINFO";
-export const FETCHING_USERINFO = "FETCHING_USERINFO";
-export const FETCHED_NOTES = "FETCHED_NOTES";
-export const FETCHING_NOTES = "FETCHING_NOTES";
-export const FETCHED_CATEGORIES = "FETCHED_CATEGORIES";
-export const FETCHING_CATEGORIES = "FETCHING_CATEGORIES";
-export const FETCHED_EXERCISES = "FETCHED_EXERCISES";
-export const FETCHING_EXERCISES = "FETCHING_EXERCISES";
-export const FETCHING_ERROR = "FETCHING_ERROR";
-export const DATE_CLICKED = "DATE_CLICKED";
-export const EVENTSFORM_CLOSED = "EVENTSFORM_CLOSED";
-export const EVENT_SCHEDULED = "EVENT_SCHEDULED";
-export const EVENT_OBJECT = "EVENT_OBJECT";
-export const EVENT_DELETE = "EVENT_DELETE";
-export const EVENT_UPDATE = "EVENT_UPDATE";
+export const FETCHED = 'FETCHED';
+export const FETCHING = 'FETCHING';
+export const FETCHED_USERDATA = 'FETCHED_USERDATA';
+export const FETCHING_USERDATA = 'FETCHING_USERDATA';
+export const FETCHED_USERID = 'FETCHED_USERID';
+export const FETCHING_USERID = 'FETCHING_USERID';
+export const FETCHED_USERINFO = 'FETCHED_USERINFO';
+export const FETCHING_USERINFO = 'FETCHING_USERINFO';
+export const FETCHED_NOTES = 'FETCHED_NOTES';
+export const FETCHING_NOTES = 'FETCHING_NOTES';
+export const FETCHED_CATEGORIES = 'FETCHED_CATEGORIES';
+export const FETCHING_CATEGORIES = 'FETCHING_CATEGORIES';
+export const FETCHED_EXERCISES = 'FETCHED_EXERCISES';
+export const FETCHING_EXERCISES = 'FETCHING_EXERCISES';
+export const FETCHING_ERROR = 'FETCHING_ERROR';
+export const DATE_CLICKED = 'DATE_CLICKED';
+export const EVENTSFORM_CLOSED = 'EVENTSFORM_CLOSED';
+export const EVENT_SCHEDULED = 'EVENT_SCHEDULED';
+export const EVENT_OBJECT = 'EVENT_OBJECT';
+export const EVENT_DELETE = 'EVENT_DELETE';
+export const EVENT_UPDATE = 'EVENT_UPDATE';
 export const FETCHED_PREMIUM = 'FETCHED_PREMIUM';
 
-
-
-const DEPLOYED = "https://workout-tracker-pt2.herokuapp.com";
-const LOCAL = "http://localhost:3333";
-
+const DEPLOYED = 'https://workout-tracker-pt2.herokuapp.com';
+const LOCAL = 'http://localhost:3333';
 
 export const getData = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/users`, { headers });
+  const promise = axios.get(`${LOCAL}/api/users`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
@@ -49,7 +46,7 @@ export const getData = () => {
 export const getUserId = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/userid`, { headers });
+  const promise = axios.get(`${LOCAL}/api/userid`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
@@ -66,7 +63,7 @@ export const postUser = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
   const promise = axios.post(
-    `${DEPLOYED}/api/users`,
+    `${LOCAL}/api/users`,
     {},
     {
       headers
@@ -87,7 +84,7 @@ export const postUser = () => {
 export const postCategory = categoryName => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/categories`, categoryName, {
+  const promise = axios.post(`${LOCAL}/api/categories`, categoryName, {
     headers
   });
   return dispatch => {
@@ -106,7 +103,7 @@ export const postCategory = categoryName => {
 export const postExercise = exerciseBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/exercises`, exerciseBody, {
+  const promise = axios.post(`${LOCAL}/api/exercises`, exerciseBody, {
     headers
   });
   return dispatch => {
@@ -125,7 +122,7 @@ export const postExercise = exerciseBody => {
 export const postNote = noteBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/notes`, noteBody, {
+  const promise = axios.post(`${LOCAL}/api/notes`, noteBody, {
     headers
   });
   return dispatch => {
@@ -143,7 +140,7 @@ export const postNote = noteBody => {
 export const editNote = noteBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.put(`${DEPLOYED}/api/notes`, noteBody, {
+  const promise = axios.put(`${LOCAL}/api/notes`, noteBody, {
     headers
   });
   return dispatch => {
@@ -161,7 +158,7 @@ export const editNote = noteBody => {
 export const getNotes = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/notes`, { headers });
+  const promise = axios.get(`${LOCAL}/api/notes`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_NOTES });
     promise
@@ -178,7 +175,7 @@ export const deleteNote = noteId => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
   console.log(headers);
-  const promise = axios.delete(`${DEPLOYED}/api/notes`, {
+  const promise = axios.delete(`${LOCAL}/api/notes`, {
     data: noteId,
     headers
   });
@@ -197,7 +194,7 @@ export const deleteNote = noteId => {
 export const getCategories = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/categories`, { headers });
+  const promise = axios.get(`${LOCAL}/api/categories`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_CATEGORIES });
     promise
@@ -213,7 +210,7 @@ export const getCategories = () => {
 export const getExercises = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/exercises`, { headers });
+  const promise = axios.get(`${LOCAL}/api/exercises`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_EXERCISES });
     promise
@@ -229,7 +226,7 @@ export const getExercises = () => {
 export const updateUser = userUpdates => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.patch(`${DEPLOYED}/userupdate`, userUpdates, {
+  const promise = axios.patch(`${LOCAL}/userupdate`, userUpdates, {
     headers
   });
   return dispatch => {
@@ -251,7 +248,7 @@ export const updateUser = userUpdates => {
 export const getUserInfo = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/userinfo`, { headers });
+  const promise = axios.get(`${LOCAL}/userinfo`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_USERINFO });
     return promise
@@ -324,7 +321,7 @@ export const updateEvent = arr => {
 export const getPremium = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/users/premium`, {
+  const promise = axios.get(`${LOCAL}/api/users/premium`, {
     headers
   });
   return dispatch => {
@@ -343,7 +340,7 @@ export const getPremium = () => {
 export const checkPremium = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/user/ispremium`, {
+  const promise = axios.get(`${LOCAL}/api/user/ispremium`, {
     headers
   });
   return dispatch => {

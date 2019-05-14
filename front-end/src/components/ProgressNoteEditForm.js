@@ -1,10 +1,8 @@
 import React from 'react';
-import Modal from 'react-responsive-modal';
-import styles from './styles/custom-styling.css';
 import { connect } from 'react-redux';
 import { editNote, getNotes } from '../actions/actions';
 
-class EditModal extends React.Component {
+class ProgressNoteEditForm extends React.Component {
   state = {
     weight: '',
     waist: '',
@@ -43,39 +41,59 @@ class EditModal extends React.Component {
   render() {
     const isMenuShowing = this.state.isMenuShowing;
     if (!isMenuShowing) {
-      return <button onClick={this.clickHandler}>Edit</button>;
+      return (
+        <button
+          className="editButton progress-edit-button"
+          onClick={this.clickHandler}
+        >
+          Edit
+        </button>
+      );
     } else {
       return (
-        <div className="example">
-          <button onClick={this.clickHandler}>X</button>
+        <div className="events-form">
+          <button
+            className="closeButton progress-close-button"
+            onClick={this.clickHandler}
+          >
+            X
+          </button>
           <form
-            className="form-container progress-form"
+            className="editForm progress-edit-form"
             onSubmit={this.editNote}
           >
             <input
+              className="edit"
               name="weight"
               text="name"
+              type="text"
               onChange={this.onChange}
               placeholder="Weight"
               value={this.state.weight}
             />
             <input
+              className="edit"
               name="waist"
               text="name"
+              type="text"
               onChange={this.onChange}
               placeholder="Waist"
               value={this.state.waist}
             />
             <input
+              className="edit"
               name="arms"
               text="name"
+              type="text"
               onChange={this.onChange}
               placeholder="Arms"
               value={this.state.arms}
             />
             <input
+              className="edit"
               name="legs"
               text="name"
+              type="text"
               onChange={this.onChange}
               placeholder="Legs"
               value={this.state.legs}
@@ -98,4 +116,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { editNote, getNotes }
-)(EditModal);
+)(ProgressNoteEditForm);

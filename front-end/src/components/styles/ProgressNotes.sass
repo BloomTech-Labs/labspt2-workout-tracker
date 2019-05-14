@@ -2,21 +2,68 @@
 @import 'mixins.sass'
 
 .notes-container
-    display: flex
-    justify-content: flex-start
-    flex-wrap: wrap
-    margin-top: 13px
-
+  display: flex
+  justify-content: flex-start
+  flex-wrap: wrap
+  margin-top: 13px
 
 .note
-    display: flex;
-    flex-direction: column
-    align-items: center
-    box-sizing: border-box
-    max-width: 220px
-    background-color: $dark-gray
-    width: 100%
-    margin: 2.5%
-    padding: 2.5%
-    border: 2px solid $dark-gray
-   
+  display: flex;
+  flex-direction: column
+  align-items: center
+  box-sizing: border-box
+  max-width: 220px
+  background-color: $dark-gray
+  width: 100%
+  margin: 2.5%
+  padding: 2.5%
+  border: 2px solid $dark-gray
+
+.progress-note-button-container
+
+.progress-note-info-container
+
+.editForm progress-edit-form
+  display: flex;
+  flex-direction: column
+  align-items: center
+  box-sizing: border-box
+  max-width: 450px
+  background-color: $background-gray
+  width: 80%
+  font-size: 1rem
+  margin: 2.5%
+  padding: 2.5%
+  border: 1px solid black
+
+.closeButton progress-close-button
+  align-self: flex-end
+  background-color: transparent
+  color: $secondary-color
+  font-weight: bold
+  font-size: 1.75em
+  border: 0
+
+.closeButton progress-close-button:hover
+  text-decoration: underline
+  color: white
+
+.editButton progress-edit-button
+  color: $secondary-color
+  background-color: transparent
+  border: none
+  margin: 0
+
+.editButton progress-edit-button:hover
+  text-decoration: underline
+  color: white
+
+.delete-button
+  color: $secondary-color
+  background-color: transparent
+  border: none
+  margin: 0
+
+.delete-button:hover
+  text-decoration: underline
+  color: white
