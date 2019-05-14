@@ -14,6 +14,8 @@ import {
   FETCHING_CATEGORIES,
   FETCHED_EXERCISES,
   FETCHING_EXERCISES,
+  FETCHED_EVENTS,
+  FETCHING_EVENTS,
   FETCHING_ERROR,
   DATE_CLICKED,
   EVENTSFORM_CLOSED,
@@ -28,89 +30,89 @@ const initialState = {
   notes: [],
   dateClicked: null,
   events: [
-    {
-      id: 1,
-      title: 'Arms',
-      start: '2019-11-21T10:15:00',
-      end: '2019-11-21T10:30:00',
-      allDay: false,
-      exercises: [
-        {
-          exerciseName: 'Lunges',
-          checked: false,
-          reps: '6',
-          weight: '150 lbs',
-          sets: '4',
-          categoryId: 2,
-          userId: 1
-        },
-        {
-          exerciseName: 'Bicep Curls',
-          checked: false,
-          reps: '5',
-          weight: '100 lbs',
-          sets: '5',
-          categoryId: 2,
-          userId: 1
-        }
-      ]
-    },
-    {
-      id: 2,
-      title: 'Legs',
-      start: '2019-11-21T11:15:00',
-      end: '2019-11-21T11:30:00',
-      allDay: false,
-      exercises: ['C', 'D', 'E', 'F', 'G']
-    },
-    {
-      id: 4,
-      title: 'Core',
-      start: '2019-03-12T04:30:00',
-      end: '2019-03-12T04:30:00',
-      allDay: false,
-      exercises: ['H']
-    },
-    {
-      id: 3,
-      title: 'Cardio',
-      start: '2019-03-13T09:30:00',
-      end: '2019-03-13T09:30:00',
-      allDay: false,
-      exercises: ['Bicept Curls', 'Tricept Pulldowns']
-    },
-    {
-      id: 5,
-      title: 'Shoulders',
-      start: '2019-01-01T09:30:00',
-      end: '2019-01-01T010:30:00',
-      allDay: false,
-      exercises: ['Lifts (2 sets) 10 reps', 'Extensions']
-    },
-    {
-      id: 6,
-      title: 'Chest',
-      start: '2019-01-01T10:45:00',
-      end: '2019-01-01T11:45:00',
-      allDay: false,
-      exercises: ['Bicept Curls', 'Tricept Pulldowns']
-    },
-    {
-      id: 7,
-      title: 'Back',
-      start: '2019-01-03T09:30:00',
-      end: '2019-01-03T09:30:00',
-      allDay: false,
-      exercises: ['Bicept Curls', 'Tricept Pulldowns']
-    },
-    {
-      id: 8,
-      title: 'Abs',
-      start: '2019-01-04T09:30:00',
-      end: '2019-01-04T09:30:00',
-      allDay: false,
-      exercises: ['Sweats', 'Headaches', 'Face Plants']
-    }
+    // {
+    //   id: 1,
+    //   title: 'Arms',
+    //   start: '2019-11-21T10:15:00',
+    //   end: '2019-11-21T10:30:00',
+    //   allDay: false,
+    //   exercises: [
+    //     {
+    //       exerciseName: 'Lunges',
+    //       checked: false,
+    //       reps: '6',
+    //       weight: '150 lbs',
+    //       sets: '4',
+    //       categoryId: 2,
+    //       userId: 1
+    //     },
+    //     {
+    //       exerciseName: 'Bicep Curls',
+    //       checked: false,
+    //       reps: '5',
+    //       weight: '100 lbs',
+    //       sets: '5',
+    //       categoryId: 2,
+    //       userId: 1
+    //     }
+    //   ]
+    // },
+    // {
+    //   id: 2,
+    //   title: 'Legs',
+    //   start: '2019-11-21T11:15:00',
+    //   end: '2019-11-21T11:30:00',
+    //   allDay: false,
+    //   exercises: ['C', 'D', 'E', 'F', 'G']
+    // },
+    // {
+    //   id: 4,
+    //   title: 'Core',
+    //   start: '2019-03-12T04:30:00',
+    //   end: '2019-03-12T04:30:00',
+    //   allDay: false,
+    //   exercises: ['H']
+    // },
+    // {
+    //   id: 3,
+    //   title: 'Cardio',
+    //   start: '2019-03-13T09:30:00',
+    //   end: '2019-03-13T09:30:00',
+    //   allDay: false,
+    //   exercises: ['Bicept Curls', 'Tricept Pulldowns']
+    // },
+    // {
+    //   id: 5,
+    //   title: 'Shoulders',
+    //   start: '2019-01-01T09:30:00',
+    //   end: '2019-01-01T010:30:00',
+    //   allDay: false,
+    //   exercises: ['Lifts (2 sets) 10 reps', 'Extensions']
+    // },
+    // {
+    //   id: 6,
+    //   title: 'Chest',
+    //   start: '2019-01-01T10:45:00',
+    //   end: '2019-01-01T11:45:00',
+    //   allDay: false,
+    //   exercises: ['Bicept Curls', 'Tricept Pulldowns']
+    // },
+    // {
+    //   id: 7,
+    //   title: 'Back',
+    //   start: '2019-01-03T09:30:00',
+    //   end: '2019-01-03T09:30:00',
+    //   allDay: false,
+    //   exercises: ['Bicept Curls', 'Tricept Pulldowns']
+    // },
+    // {
+    //   id: 8,
+    //   title: 'Abs',
+    //   start: '2019-01-04T09:30:00',
+    //   end: '2019-01-04T09:30:00',
+    //   allDay: false,
+    //   exercises: ['Sweats', 'Headaches', 'Face Plants']
+    // }
   ],
   categories: [
     // { id: 1, categoryName: "Glutes", userId: 1 },
@@ -209,6 +211,13 @@ export default (state = initialState, action) => {
     case FETCHED_EXERCISES:
       return Object.assign({}, state, {
         exercises: action.payload,
+        fetching: false
+      });
+    case FETCHING_EVENTS:
+      return Object.assign({}, state, { fetching: true });
+    case FETCHED_EVENTS:
+      return Object.assign({}, state, {
+        events: action.payload,
         fetching: false
       });
     case FETCHING_ERROR:

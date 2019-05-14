@@ -15,6 +15,8 @@ export const FETCHED_CATEGORIES = 'FETCHED_CATEGORIES';
 export const FETCHING_CATEGORIES = 'FETCHING_CATEGORIES';
 export const FETCHED_EXERCISES = 'FETCHED_EXERCISES';
 export const FETCHING_EXERCISES = 'FETCHING_EXERCISES';
+export const FETCHED_EVENTS = 'FETCHED_EVENTS';
+export const FETCHING_EVENTS = 'FETCHING_EVENTS';
 export const FETCHING_ERROR = 'FETCHING_ERROR';
 export const DATE_CLICKED = 'DATE_CLICKED';
 export const EVENTSFORM_CLOSED = 'EVENTSFORM_CLOSED';
@@ -174,6 +176,22 @@ export const getExercises = () => {
     promise
       .then(response => {
         dispatch({ type: FETCHED_EXERCISES, payload: response.data });
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_ERROR, payload: err });
+      });
+  };
+};
+
+export const getEvents = () => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.get(`${LOCAL}/api/events`, { headers });
+  return dispatch => {
+    dispatch({ type: FETCHING_EVENTS });
+    promise
+      .then(response => {
+        dispatch({ type: FETCHED_EVENTS, payload: response.data });
       })
       .catch(err => {
         dispatch({ type: FETCHING_ERROR, payload: err });
