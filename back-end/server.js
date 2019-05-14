@@ -516,6 +516,7 @@ server.get('/api/notes', checkJwt, (req, res) => {
     .first()
     .then(id => {
       db('notes as n')
+        .orderBy('id')
         .join('users as u', 'u.id', 'n.userId')
         .select('n.id', 'n.weight', 'n.waist', 'n.arms', 'n.legs')
         .where('n.userId', id.id)

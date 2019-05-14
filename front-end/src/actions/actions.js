@@ -140,6 +140,24 @@ export const postNote = noteBody => {
   };
 };
 
+export const editNote = noteBody => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.put(`${DEPLOYED}/api/notes`, noteBody, {
+    headers
+  });
+  return dispatch => {
+    dispatch({ type: FETCHING_NOTES });
+    promise
+      .then(response => {
+        dispatch(getNotes());
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_ERROR, payload: err });
+      });
+  };
+};
+
 export const getNotes = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
@@ -160,7 +178,10 @@ export const deleteNote = noteId => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
   console.log(headers);
-  const promise = axios.delete(`${DEPLOYED}/api/notes`, { data: noteId, headers });
+  const promise = axios.delete(`${DEPLOYED}/api/notes`, {
+    data: noteId,
+    headers
+  });
   return dispatch => {
     dispatch({ type: FETCHING_NOTES });
     return promise
@@ -171,7 +192,7 @@ export const deleteNote = noteId => {
         dispatch({ type: FETCHING_ERROR, payload: err });
       });
   };
-}
+};
 
 export const getCategories = () => {
   const { getAccessToken } = auth;

@@ -4,6 +4,8 @@ import ExampleNote from './ExampleNote';
 import { getNotes } from '../actions/actions';
 import './styles/ProgressNotes.sass';
 import CustomModal from './CustomModal';
+import EditModal from './EditModal';
+import ProgressForm from './ProgressForm';
 
 class ProgressNotes extends Component {
   state = {
@@ -16,7 +18,7 @@ class ProgressNotes extends Component {
   }
 
   render() {
-    console.log(this.props.notes);
+    const isMenuShowing = this.state.isMenuShowing;
     return (
       <div className="notes-container">
         <ExampleNote />
@@ -24,7 +26,7 @@ class ProgressNotes extends Component {
           return (
             <div className="note" key={note.id}>
               <div>
-                <p>Edit</p>
+                <EditModal noteId={note.id} />
                 <CustomModal noteId={note.id} />
               </div>
               <p>Weight: {note.weight}</p>
