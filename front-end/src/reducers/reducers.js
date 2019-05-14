@@ -40,17 +40,17 @@ const initialState = {
       allDay: false,
       exercises: [
         {
-          id: 1,
-          checked: false,
-          categoryId: 2,
-        },
-        {
           id: 2,
           checked: false,
           categoryId: 2,
         },
         {
           id: 3,
+          checked: false,
+          categoryId: 2,
+        },
+        {
+          id: 4,
           checked: false,
           categoryId: 2,
         },
@@ -65,7 +65,7 @@ const initialState = {
     allDay: false,
     exercises: [
     {
-      id: 4,
+      id: 1,
       checked: false,
       categoryId: 1
     }
@@ -129,9 +129,7 @@ const initialState = {
     // }
   
   categories: [
-    { id: 1, categoryName: "Glutes", userId: 1 },
-    { id: 2, categoryName: "Arms", userId: 1 },
-    { id: 3, categoryName: "Legs", userId: 1 }
+    
   ],
   exercises: [
     {

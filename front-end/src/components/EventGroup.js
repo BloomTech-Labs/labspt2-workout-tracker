@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from "moment";
+import './styles/CalendarEvent.sass';
+import {clickedDate} from '../actions/actions.js'
+import EditScheduleForm from './EditScheduleForm';
+import './styles/ScheduleForm.sass';
+
 
 
 import Checkbox from './Checkbox.jsx'
@@ -22,9 +27,17 @@ class EventGroup extends Component {
   //   this.props.exerciseProp.map( exer => {return this.props.exercises.filter( EXERCISE => {return EXERCISE.id === exer.id}  ) })
   //   }
 
+  handleEditEvent = (e) => {
+    e.preventDefault();
+    this.props.clickedDate(moment(Date.now()).format());
+  };
   
 
   render() {
+    let ScheduledEvents = '';
+    if (this.props.dateClicked) {
+      ScheduledEvents = <EditScheduleForm className="editScheduleForm" />;
+    }
 
   let final = this.props.exerciseProp.map( exer => {
     
@@ -34,11 +47,13 @@ class EventGroup extends Component {
     return (
         
         <div className='event-all'>
+        {ScheduledEvents}
         {/* <h1 className='cat'>{this.props.item["category"]}</h1> */}
         <div className='event-group'>
         <div className="schedule-header">
        <p className="head">{this.props.title}</p>
        <p className="head">{moment(this.props.time).format("h:mm a")}</p>
+       <button onClick={this.handleEditEvent} className="editButton"> Edit </button>
         </div>
         <div className="scheduled">
 
@@ -59,8 +74,9 @@ const mapStateToProps = state => {
     error: state.error,
     events: state.events,
     byDate: state.byDate,
-    exercises: state.exercises
+    exercises: state.exercises,
+    dateClicked: state.dateClicked
   };
 };
 
-export default connect(mapStateToProps)(EventGroup);
+export default connect(mapStateToProps, {clickedDate})(EventGroup);
