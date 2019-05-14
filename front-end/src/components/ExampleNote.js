@@ -23,30 +23,6 @@ export default class ExampleNote extends Component {
             and hit Submit
           </p>
         </div>
-        {this.state.exampleNote.map((note, index) => {
-          return (
-            <div key={index} className="note">
-              <p className="example-note-p-tag">Example Note:</p>
-
-              <h5 className="example-note-h5-tag">
-                <span style={{ textDecoration: 'underline' }}>Weight</span>:{' '}
-                {note.weight}
-              </h5>
-              <h5 className="example-note-h5-tag">
-                <span style={{ textDecoration: 'underline' }}>Waist</span>:{' '}
-                {note.waist}
-              </h5>
-              <h5 className="example-note-h5-tag">
-                <span style={{ textDecoration: 'underline' }}>Arms</span>:{' '}
-                {note.arms}
-              </h5>
-              <h5 className="example-note-h5-tag">
-                <span style={{ textDecoration: 'underline' }}>Legs</span>:{' '}
-                {note.legs}
-              </h5>
-            </div>
-          );
-        })}
       </>
     );
   }
