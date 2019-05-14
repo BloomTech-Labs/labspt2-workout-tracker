@@ -1,15 +1,15 @@
-import { connect } from "react-redux";
-import React from "react";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
-import "@fullcalendar/core/main.css";
-import { clickedDate } from "../actions/actions.js";
-import listWeek from "@fullcalendar/list";
-import moment from "moment";
+import { connect } from 'react-redux';
+import React from 'react';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
+import '@fullcalendar/core/main.css';
+import { clickedDate } from '../actions/actions.js';
+import listWeek from '@fullcalendar/list';
+import moment from 'moment';
 
-import "./styles/Calendar.scss";
+import './styles/Calendar.scss';
 
 class Calendar extends React.Component {
   calendarComponentRef = React.createRef();
@@ -19,21 +19,21 @@ class Calendar extends React.Component {
     calendarEvents: [
       // initial event data
       {
-        title: "Arms",
-        start: "2019-04-12T13:30:00",
-        end: "2019-04-12T14:30:00",
+        title: 'Arms',
+        start: '2019-04-12T13:30:00',
+        end: '2019-04-12T14:30:00',
         allDay: false
       },
       {
-        title: "Legs",
-        start: "2019-04-12T15:30:00",
-        end: "2019-04-12T16:30:00",
+        title: 'Legs',
+        start: '2019-04-12T15:30:00',
+        end: '2019-04-12T16:30:00',
         allDay: false
       },
       {
-        title: "Core",
-        start: "2019-04-12T20:30:00",
-        end: "2019-04-12T21:30:00",
+        title: 'Core',
+        start: '2019-04-12T20:30:00',
+        end: '2019-04-12T21:30:00',
         allDay: false
       }
     ]
@@ -45,32 +45,32 @@ class Calendar extends React.Component {
   };
 
   handleDateClick = ({ date }) => {
-    let time = "11:36 pm";
-    console.log("this is the date:");
+    let time = '11:36 pm';
+    console.log('this is the date:');
     console.log(date);
     this.props.clickedDate(date.toISOString());
   };
 
   render() {
     return (
-      <div className="demo-app">
+      <div className='demo-app'>
         {/* <div className="demo-app-top">
           <button onClick={this.toggleWeekends}>toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast}>go to a date in the past</button>
           &nbsp; (also, click a date/time to add an event)
         </div> */}
-        <div className="demo-app-calendar">
+        <div className='demo-app-calendar'>
           <FullCalendar
-            defaultView="dayGridMonth"
+            defaultView='dayGridMonth'
             header={{
-              left: "prevYear, prev,next, nextYear today",
-              center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+              left: 'prevYear, prev,next, nextYear today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
             }}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             ref={this.calendarComponentRef}
             weekends={this.state.calendarWeekends}
-            events={this.state.calendarEvents}
+            events={this.props.events}
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
             selectable={true}
@@ -94,7 +94,7 @@ class Calendar extends React.Component {
 
   gotoPast = () => {
     let calendarApi = this.calendarComponentRef.current.getApi();
-    calendarApi.gotoDate("2000-01-01"); // call a method on the Calendar object
+    calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
   };
 }
 
