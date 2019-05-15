@@ -470,6 +470,7 @@ server.get('/api/events', checkJwt, (req, res) => {
         .join('users as u', 'u.id', 'e.userId')
         .select(
           'e.id as eventId',
+          'e.title as title',
           'e.start as start',
           'e.end as end',
           'e.allDay as allDay',
@@ -497,7 +498,7 @@ server.get('/api/events', checkJwt, (req, res) => {
 //ENDPOINT TO POST A NEW EVENT
 
 server.post('/api/events', checkJwt, (req, res) => {
-  const { categoryId, start, end, allDay, exercises } = req.body;
+  const { categoryId, start, end, allDay, exercises, title } = req.body;
   db('users')
     .select('id')
     .where('user_id', req.user.sub)
@@ -506,6 +507,7 @@ server.post('/api/events', checkJwt, (req, res) => {
       db('events')
         .returning('userId')
         .insert({
+          title: title,
           start: start,
           end: end,
           allDay: allDay,
@@ -518,6 +520,7 @@ server.post('/api/events', checkJwt, (req, res) => {
             .orderBy('e.id')
             .select(
               'e.id as eventId',
+              'e.title as title',
               'e.start as start',
               'e.end as end',
               'e.allDay as allDay',

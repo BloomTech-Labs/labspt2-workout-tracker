@@ -40,7 +40,11 @@ class CalendarEvents extends Component {
         return event.start.substring(0, 10) === property;
       });
     }
-
+    if (this.props.dateClicked) {
+      //change byDate to include only the events in dateClicked
+    } else {
+      //show everything
+    }
     return (
       <div className='component-container events-container'>
         {Object.entries(byDate).map((event, index) => {

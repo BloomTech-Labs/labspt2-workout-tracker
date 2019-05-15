@@ -12,9 +12,9 @@ class ScheduleForm extends Component {
     allDay: { name: 'allDay', checked: false },
     categoryId: 1,
     title: this.props.categories[0].categoryName,
-    start: this.props.dateClicked,
-    end: this.props.dateClicked,
-    exercises: [...this.props.exercises]
+    start: '',
+    end: '',
+    exercises: []
   };
 
   closeHandler = e => {

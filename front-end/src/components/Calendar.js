@@ -42,13 +42,20 @@ class Calendar extends React.Component {
   handleEventClick = info => {
     this.setState({ eventClicked: true });
     console.log(this.state.eventClicked);
+    console.log(info.event.start.toISOString());
+    const date = info.event.start.toISOString();
+    this.props.clickedDate(date);
   };
 
   handleDateClick = ({ date }) => {
     let time = '11:36 pm';
     console.log('this is the date:');
     console.log(date);
-    this.props.clickedDate(date.toISOString());
+    if (date.toISOString() === this.props.dateClicked) {
+      this.props.clickedDate('');
+    } else {
+      this.props.clickedDate(date.toISOString());
+    }
   };
 
   render() {
