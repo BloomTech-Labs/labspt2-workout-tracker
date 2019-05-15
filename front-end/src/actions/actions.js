@@ -30,7 +30,7 @@ const LOCAL = 'http://localhost:3333';
 export const getData = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/users`, { headers });
+  const promise = axios.get(`${LOCAL}/api/users`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
@@ -46,7 +46,7 @@ export const getData = () => {
 export const getUserId = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/userid`, { headers });
+  const promise = axios.get(`${LOCAL}/api/userid`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
@@ -63,7 +63,7 @@ export const postUser = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
   const promise = axios.post(
-    `${DEPLOYED}/api/users`,
+    `${LOCAL}/api/users`,
     {},
     {
       headers
@@ -84,7 +84,7 @@ export const postUser = () => {
 export const postCategory = categoryName => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/categories`, categoryName, {
+  const promise = axios.post(`${LOCAL}/api/categories`, categoryName, {
     headers
   });
   return dispatch => {
@@ -103,7 +103,7 @@ export const postCategory = categoryName => {
 export const postExercise = exerciseBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/exercises`, exerciseBody, {
+  const promise = axios.post(`${LOCAL}/api/exercises`, exerciseBody, {
     headers
   });
   return dispatch => {
@@ -122,7 +122,7 @@ export const postExercise = exerciseBody => {
 export const postNote = noteBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.post(`${DEPLOYED}/api/notes`, noteBody, {
+  const promise = axios.post(`${LOCAL}/api/notes`, noteBody, {
     headers
   });
   return dispatch => {
@@ -140,7 +140,7 @@ export const postNote = noteBody => {
 export const editNote = noteBody => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.put(`${DEPLOYED}/api/notes`, noteBody, {
+  const promise = axios.put(`${LOCAL}/api/notes`, noteBody, {
     headers
   });
   return dispatch => {
@@ -158,7 +158,7 @@ export const editNote = noteBody => {
 export const getNotes = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/notes`, { headers });
+  const promise = axios.get(`${LOCAL}/api/notes`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_NOTES });
     promise
@@ -174,8 +174,7 @@ export const getNotes = () => {
 export const deleteNote = noteId => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  console.log(headers);
-  const promise = axios.delete(`${DEPLOYED}/api/notes`, {
+  const promise = axios.delete(`${LOCAL}/api/notes`, {
     data: noteId,
     headers
   });
@@ -194,7 +193,7 @@ export const deleteNote = noteId => {
 export const getCategories = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/categories`, { headers });
+  const promise = axios.get(`${LOCAL}/api/categories`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_CATEGORIES });
     promise
@@ -210,7 +209,7 @@ export const getCategories = () => {
 export const getExercises = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/exercises`, { headers });
+  const promise = axios.get(`${LOCAL}/api/exercises`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_EXERCISES });
     promise
@@ -226,7 +225,7 @@ export const getExercises = () => {
 export const updateUser = userUpdates => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.patch(`${DEPLOYED}/userupdate`, userUpdates, {
+  const promise = axios.patch(`${LOCAL}/userupdate`, userUpdates, {
     headers
   });
   return dispatch => {
@@ -248,7 +247,7 @@ export const updateUser = userUpdates => {
 export const getUserInfo = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/userinfo`, { headers });
+  const promise = axios.get(`${LOCAL}/userinfo`, { headers });
   return dispatch => {
     dispatch({ type: FETCHING_USERINFO });
     return promise
@@ -321,14 +320,13 @@ export const updateEvent = arr => {
 export const getPremium = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/users/premium`, {
+  const promise = axios.get(`${LOCAL}/api/users/premium`, {
     headers
   });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
       .then(response => {
-        console.log('log at 185', response.data);
         dispatch({ type: FETCHED_PREMIUM });
       })
       .catch(err => {
@@ -340,14 +338,13 @@ export const getPremium = () => {
 export const checkPremium = () => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  const promise = axios.get(`${DEPLOYED}/api/user/ispremium`, {
+  const promise = axios.get(`${LOCAL}/api/user/ispremium`, {
     headers
   });
   return dispatch => {
     dispatch({ type: FETCHING });
     promise
       .then(response => {
-        console.log('log at 185', response.data.premium);
         if (response.data.premium) {
           dispatch({ type: FETCHED_PREMIUM });
         } else {
