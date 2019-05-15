@@ -102,6 +102,8 @@ const mapStateToProps = state => {
   return {
     users: state.users,
     events: state.events,
+    categories: state.categories,
+    exercises: state.exercises,
     dateClicked: state.dateClicked
   };
 };

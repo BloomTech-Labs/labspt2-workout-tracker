@@ -13,6 +13,7 @@ exports.up = function(knex, Promise) {
       .notNullable()
       .references('id')
       .inTable('categories');
+    table.string('title').notNullable();
     table.timestamp('start', { useTz: false }).notNullable();
     table.timestamp('end', { useTz: false }).notNullable();
     table.boolean('allDay').defaultTo(false);
