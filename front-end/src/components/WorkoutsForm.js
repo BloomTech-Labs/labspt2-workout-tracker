@@ -60,13 +60,19 @@ class WorkoutsForm extends Component {
       categoryName: this.state.category
     };
 
-    if (newExercise.categoryId) {
-      this.props.postExercise(newExercise);
+    if (this.state.category) {
+      if (newExercise.categoryId) {
+        this.props.postExercise(newExercise);
+      } else {
+        const newCategories = await this.props.postCategory(newCategory);
+        let createdCategory = newCategories[newCategories.length - 1].id;
+        newExercise.categoryId = createdCategory;
+        this.props.postExercise(newExercise);
+      }
     } else {
-      const newCategories = await this.props.postCategory(newCategory);
-      let createdCategory = newCategories[newCategories.length - 1].id;
-      newExercise.categoryId = createdCategory;
-      this.props.postExercise(newExercise);
+      alert(
+        'Add a new Category or select an existing Category from the dropdown menu!'
+      );
     }
   };
 
@@ -74,11 +80,11 @@ class WorkoutsForm extends Component {
     const { categories } = this.props;
 
     return (
-      <div className='form-container workouts-form'>
+      <div className="form-container workouts-form">
         <form onSubmit={this.submitHandler}>
           <label>Workout Creator:</label>
 
-          <select name='' onChange={this.selectChange}>
+          <select name="" onChange={this.selectChange}>
             {categories.map(category => {
               return (
                 <option
@@ -93,37 +99,37 @@ class WorkoutsForm extends Component {
             })}
           </select>
           <input
-            id='myText'
-            type='text'
-            name='category'
+            id="myText"
+            type="text"
+            name="category"
             onChange={this.categoryChangeHandler}
-            placeholder='Add Category'
+            placeholder="Add Category"
           />
           <input
             onChange={this.changeHandler}
-            type='text'
-            name='exerciseName'
-            placeholder='Exercise Name'
+            type="text"
+            name="exerciseName"
+            placeholder="Exercise Name"
           />
           <input
             onChange={this.changeHandler}
-            type='text'
-            name='weight'
-            placeholder='Weight'
+            type="text"
+            name="weight"
+            placeholder="Weight"
           />
           <input
             onChange={this.changeHandler}
-            type='text'
-            name='sets'
-            placeholder='Sets'
+            type="text"
+            name="sets"
+            placeholder="Sets"
           />
           <input
             onChange={this.changeHandler}
-            type='text'
-            name='reps'
-            placeholder='Reps'
+            type="text"
+            name="reps"
+            placeholder="Reps"
           />
-          <button type='text'>Submit</button>
+          <button type="text">Submit</button>
         </form>
       </div>
     );
