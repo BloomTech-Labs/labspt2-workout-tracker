@@ -16,15 +16,9 @@ class WorkoutsDropdowns extends Component {
 
   componentDidMount() {}
 
-  // deleteCategory = () => {
-
-  // };
-
   render() {
     const { categories } = this.props;
     const { exercises } = this.props;
-    console.log('categories:');
-    console.log(categories);
     return (
       <div>
         {categories !== undefined &&
