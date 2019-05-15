@@ -3,6 +3,7 @@ import { getData, postCategory, postExercise } from '../actions/actions';
 import { connect } from 'react-redux';
 import './styles/ScheduleForm.sass';
 import Checkbox from './Checkbox.jsx';
+import AddExerciseCheckbox from './AddExerciseCheckbox';
 import { closedEventForm, eventScheduled } from '../actions/actions.js';
 import moment from 'moment';
 import CalendarEvents from './CalendarEvents';
@@ -54,6 +55,15 @@ class ScheduleForm extends Component {
 
   Update = () => {
     this.forceUpdate();
+  };
+
+  addExercise = exercise => {
+    this.setState(state => {
+      const exercises = [...state.exercises, exercise];
+      return {
+        exercises
+      };
+    });
   };
 
   sendData = e => {
@@ -134,11 +144,12 @@ class ScheduleForm extends Component {
             .map((item, index) => {
               return (
                 <div key={item + index} className='event-full'>
-                  <Checkbox
+                  <AddExerciseCheckbox
                     Update={this.Update}
                     name={item.exerciseName}
                     item={item}
                     value={this.sendOff}
+                    addExercise={this.addExercise}
                   />
                 </div>
               );
