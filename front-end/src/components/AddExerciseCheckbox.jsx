@@ -6,12 +6,23 @@ class AddExerciseCheckbox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: false,
-      checkbox: 'checkbox',
+      clicked: this.props.clicked,
+      checkbox: this.props.checkbox,
       largehexagon: 'large-hexagon',
-      smallhexagon: 'small-hexagon',
-      check: 'check'
+      smallhexagon: this.props.smallHexagon,
+      check: this.props.check
     };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.item.exerciseId !== prevProps.item.exerciseId) {
+      this.setState({
+        clicked: false,
+        checkbox: 'checkbox',
+        smallhexagon: 'small-hexagon',
+        check: 'check'
+      });
+    }
   }
 
   checkHandler = () => {

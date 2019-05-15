@@ -15,7 +15,11 @@ class ScheduleForm extends Component {
     title: this.props.categories[0].categoryName,
     start: '',
     end: '',
-    exercises: []
+    exercises: [],
+    clicked: false,
+    checkbox: 'checkbox',
+    smallhexagon: 'small-hexagon',
+    check: 'check'
   };
 
   closeHandler = e => {
@@ -36,7 +40,12 @@ class ScheduleForm extends Component {
       categoryId: Number(e.target.options[e.target.selectedIndex].value),
       title: e.target.options[e.target.selectedIndex].getAttribute(
         'categoryname'
-      )
+      ),
+      exercises: [],
+      clicked: false,
+      checkbox: 'checkbox',
+      smallhexagon: 'small-hexagon',
+      check: 'check'
     });
     // console.log(this.props.categories[0].categoryName);
   };
@@ -65,6 +74,8 @@ class ScheduleForm extends Component {
       };
     });
   };
+
+  removeExercise = exercise => {};
 
   sendData = e => {
     console.log(this.props.events);
@@ -150,6 +161,10 @@ class ScheduleForm extends Component {
                     item={item}
                     value={this.sendOff}
                     addExercise={this.addExercise}
+                    clicked={this.state.clicked}
+                    checkbox={this.state.checkbox}
+                    smallHexagon={this.state.smallhexagon}
+                    check={this.state.check}
                   />
                 </div>
               );
