@@ -31,13 +31,6 @@ class WorkoutsDropdowns extends Component {
           categories.map((category, i) => {
             return (
               <div className="form-container events-card">
-                <button
-                  onClick={() => {
-                    console.log(this.props.categories[i].id);
-                  }}
-                >
-                  X
-                </button>
                 <Collapsible key={i} trigger={category.categoryName}>
                   {exercises !== undefined &&
                     exercises.length > 0 &&
