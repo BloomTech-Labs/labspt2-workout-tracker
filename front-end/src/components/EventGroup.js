@@ -34,10 +34,7 @@ class EventGroup extends Component {
   
 
   render() {
-    let ScheduledEvents = '';
-    if (this.props.dateClicked) {
-      ScheduledEvents = <EditScheduleForm className="editScheduleForm" />;
-    }
+
 
   let final = this.props.exerciseProp.map( exer => {
     
@@ -47,13 +44,12 @@ class EventGroup extends Component {
     return (
         
         <div className='event-all'>
-        {ScheduledEvents}
-        {/* <h1 className='cat'>{this.props.item["category"]}</h1> */}
+        <EditScheduleForm exercises={this.props.exercises} dateClicked={this.props.dateClicked} categories={this.props.categories} className="editScheduleForm" />        {/* <h1 className='cat'>{this.props.item["category"]}</h1> */}
+
         <div className='event-group'>
         <div className="schedule-header">
        <p className="head">{this.props.title}</p>
        <p className="head">{moment(this.props.time).format("h:mm a")}</p>
-       <button onClick={this.handleEditEvent} className="editButton"> Edit </button>
         </div>
         <div className="scheduled">
 
@@ -75,7 +71,8 @@ const mapStateToProps = state => {
     events: state.events,
     byDate: state.byDate,
     exercises: state.exercises,
-    dateClicked: state.dateClicked
+    dateClicked: state.dateClicked,
+    categories: state.categories
   };
 };
 
