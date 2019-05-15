@@ -24,20 +24,26 @@ class ProgressNoteEditForm extends React.Component {
   editNote = e => {
     e.preventDefault();
     const { weight, waist, arms, legs } = this.state;
-    this.props.editNote({
-      weight: weight,
-      waist: waist,
-      arms: arms,
-      legs: legs,
-      id: this.props.noteId
-    });
-    this.setState({
-      weight: '',
-      waist: '',
-      arms: '',
-      legs: '',
-      isMenuShowing: false
-    });
+    if ((weight, waist, arms, legs)) {
+      this.props.editNote({
+        weight: weight,
+        waist: waist,
+        arms: arms,
+        legs: legs,
+        id: this.props.noteId
+      });
+      this.setState({
+        weight: '',
+        waist: '',
+        arms: '',
+        legs: '',
+        isMenuShowing: false
+      });
+    } else {
+      window.confirm(
+        'Please make sure to fill out all the text fields before hitting submit!'
+      );
+    }
   };
 
   render() {

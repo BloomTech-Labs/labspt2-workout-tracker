@@ -16,9 +16,9 @@ function NavBar(props) {
         <a> Home </a>
       </Link> */}
       {!auth.isAuthenticated() && (
-        <div className='login'>
-          <img src={logo} alt='logo' />
-          <button className='signin' onClick={auth.login}>
+        <div className="login">
+          <img src={logo} alt="logo" />
+          <button className="signin" onClick={auth.login}>
             Sign In
             <br />
             Sign Up
@@ -27,10 +27,10 @@ function NavBar(props) {
       )}
       {auth.isAuthenticated() && (
         <>
-          <div className='logout'>
-            <img src={logo} alt='logo' />
+          <div className="logout">
+            <img src={logo} alt="logo" />
             <button
-              className='signout'
+              className="signout"
               onClick={() => {
                 logout();
               }}
@@ -44,20 +44,17 @@ function NavBar(props) {
                 : auth.getProfile().nickname}
             </button>
           </div>
-          <NavLink activeClassName='active' to='/schedule'>
+          <NavLink activeClassName="active" to="/schedule">
             Your Calendar
           </NavLink>
-          <NavLink activeClassName='active' to='/workouts'>
+          <NavLink activeClassName="active" to="/workouts">
             Workout Creator
           </NavLink>
-          <NavLink activeClassName='active' to='/progress'>
+          <NavLink activeClassName="active" to="/progress">
             Progress Notes
           </NavLink>
-          <NavLink activeClassName='active' to='/billing'>
-            Billing
-          </NavLink>
-          <NavLink activeClassName='active' to='/settings'>
-            Settings
+          <NavLink activeClassName="active" to="/settings">
+            Settings/Billing
           </NavLink>
         </>
       )}

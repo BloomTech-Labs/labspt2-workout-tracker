@@ -23,11 +23,9 @@ class stripeBtn extends React.Component {
           if (response) {
             this.props.getPremium();
           }
-          console.log('AXIOS RESPONSE', response);
           alert('Payment Success');
         })
         .catch(error => {
-          console.log('Payment Error: ', error);
           alert('Payment Error');
         });
     };

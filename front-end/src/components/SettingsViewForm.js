@@ -20,17 +20,6 @@ class SettingsViewForm extends Component {
     };
   }
 
-  // inputHandler = event => {
-  //   let value = event.target.value;
-  //   let property = event.target.dataset.property;
-
-  //   this.setState({
-  //     [property]: value
-  //   });
-
-  //   console.log(value);
-  // };
-
   inputHandler = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -76,18 +65,18 @@ class SettingsViewForm extends Component {
 
   render() {
     return (
-      <div className='form-container'>
+      <div className="form-container">
         <form>
           <label>Update Email:</label>
           <input
             onChange={this.inputHandler}
-            type='text'
-            placeholder='Enter new email'
-            name='email'
+            type="text"
+            placeholder="Enter new email"
+            name="email"
             value={this.state.email}
           />
           <button
-            type='text'
+            type="text"
             onClick={this.submitHandlerEmail}
             style={{
               backgroundColor:
@@ -99,13 +88,13 @@ class SettingsViewForm extends Component {
           <label>Update Username:</label>
           <input
             onChange={this.inputHandler}
-            type='text'
-            placeholder='Enter new username'
-            name='username'
+            type="text"
+            placeholder="Enter new username"
+            name="username"
             value={this.state.username}
           />
           <button
-            type='text'
+            type="text"
             onClick={this.submitHandlerUsername}
             style={{
               backgroundColor:
@@ -114,20 +103,20 @@ class SettingsViewForm extends Component {
           >
             {this.state.buttonText2}
           </button>
-          <label className='container'>Emails?</label>
+          <label className="container">Emails?</label>
           <Checkbox />
-          <label className='container'>Texts?</label>
+          <label className="container">Texts?</label>
           <Checkbox />
           <label>Update Password:</label>
           <input
             onChange={this.inputHandler}
-            type='text'
-            placeholder='Enter new password'
-            name='newpass'
+            type="text"
+            placeholder="Enter new password"
+            name="newpass"
             value={this.state.newpass}
           />
           <button
-            type='text'
+            type="text"
             onClick={this.submitHandlerPassword}
             style={{
               backgroundColor:

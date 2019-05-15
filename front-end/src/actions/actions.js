@@ -174,7 +174,6 @@ export const getNotes = () => {
 export const deleteNote = noteId => {
   const { getAccessToken } = auth;
   const headers = { Authorization: `Bearer ${getAccessToken()}` };
-  console.log(headers);
   const promise = axios.delete(`${DEPLOYED}/api/notes`, {
     data: noteId,
     headers
@@ -328,7 +327,6 @@ export const getPremium = () => {
     dispatch({ type: FETCHING });
     promise
       .then(response => {
-        console.log('log at 185', response.data);
         dispatch({ type: FETCHED_PREMIUM });
       })
       .catch(err => {
@@ -347,7 +345,6 @@ export const checkPremium = () => {
     dispatch({ type: FETCHING });
     promise
       .then(response => {
-        console.log('log at 185', response.data.premium);
         if (response.data.premium) {
           dispatch({ type: FETCHED_PREMIUM });
         } else {
