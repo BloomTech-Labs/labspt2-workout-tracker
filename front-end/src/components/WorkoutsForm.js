@@ -20,11 +20,6 @@ class WorkoutsForm extends Component {
     categories: []
   };
 
-  componentDidMount() {
-    // this.props.getCategories();
-    // this.props.getExercises();
-  }
-
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };

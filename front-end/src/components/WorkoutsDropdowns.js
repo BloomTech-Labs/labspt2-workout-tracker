@@ -20,7 +20,7 @@ class WorkoutsDropdowns extends Component {
     const { categories } = this.props;
     const { exercises } = this.props;
     return (
-      <div>
+      <div className="workouts-dropdowns-container">
         {categories !== undefined &&
           categories.map((category, i) => {
             return (

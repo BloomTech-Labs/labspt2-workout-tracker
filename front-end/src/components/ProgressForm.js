@@ -16,12 +16,18 @@ class ProgressForm extends Component {
 
   postNote = e => {
     e.preventDefault();
-    if (this.props.notes.length < 5 || this.props.premium) {
-      const { weight, waist, arms, legs } = this.state;
-      this.props.postNote({ weight, waist, arms, legs });
-      this.setState({ weight: '', waist: '', arms: '', legs: '' });
+    const { weight, waist, arms, legs } = this.state;
+    if ((weight, waist, arms, legs)) {
+      if (this.props.notes.length < 5 || this.props.premium) {
+        this.props.postNote({ weight, waist, arms, legs });
+        this.setState({ weight: '', waist: '', arms: '', legs: '' });
+      } else {
+        alert('Go premium to add more notes!');
+      }
     } else {
-      alert('Go premium to add more notes!');
+      window.confirm(
+        'Please make sure to fill out all the text fields before hitting submit!'
+      );
     }
   };
 
