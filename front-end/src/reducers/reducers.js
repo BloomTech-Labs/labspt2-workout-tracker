@@ -129,7 +129,9 @@ const initialState = {
     // }
   
   categories: [
-    
+    { id: 1, categoryName: "Glutes", userId: 1 },
+    { id: 2, categoryName: "Arms", userId: 1 },
+    { id: 3, categoryName: "Legs", userId: 1 }
   ],
   exercises: [
     {

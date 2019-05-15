@@ -14,12 +14,13 @@ class EditScheduleForm extends Component {
     title: this.props.categories[0].categoryName,
     start: this.props.dateClicked,
     end: this.props.dateClicked,
-    exercises: [...this.props.exercises]
+    exercises: [...this.props.exercises],
+    edit: false
   };
 
   closeHandler = e => {
     e.preventDefault();
-    this.props.closedEventForm();
+    this.setState({edit: false})
   };
   // changeHandler = e => {
   //   console.log('event value:', e.target.value);
@@ -81,10 +82,20 @@ class EditScheduleForm extends Component {
     this.props.eventScheduled(this.props.events);
   };
 
+  handleEditEvent = (e) => {
+    e.preventDefault();
+    this.setState({edit: true})
+  };
+
   render() {
     const { data } = this.props;
     const { grabbedCategory } = this.state;
 
+    if (!this.state.edit) {
+        return <button onClick={this.handleEditEvent} className="editButton"> Edit </button>
+    }
+
+    else {
     return (
         <div className='component-container events-form'>
         <form className="editForm" onSubmit={this.submitHandler}>
@@ -153,6 +164,7 @@ class EditScheduleForm extends Component {
         </form>
         </div>
     );
+    }
   }
 }
 
