@@ -1,10 +1,8 @@
 import React from 'react';
-import Modal from 'react-responsive-modal';
-import styles from './styles/custom-styling.css';
 import { connect } from 'react-redux';
 import { deleteNote, getNotes } from '../actions/actions';
 
-class CustomModal extends React.Component {
+class ProgressNoteDeleteModal extends React.Component {
   state = {
     open: false
   };
@@ -25,11 +23,9 @@ class CustomModal extends React.Component {
   render() {
     const { open } = this.state;
     return (
-      <div className="example">
-        <button className="btn btn-action" onClick={this.toggleModal}>
-          Delete
-        </button>
-      </div>
+      <button className="delete-button" onClick={this.toggleModal}>
+        Delete
+      </button>
     );
   }
 }
@@ -44,4 +40,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { deleteNote, getNotes }
-)(CustomModal);
+)(ProgressNoteDeleteModal);

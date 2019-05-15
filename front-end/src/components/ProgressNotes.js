@@ -3,22 +3,11 @@ import { connect } from 'react-redux';
 import ExampleNote from './ExampleNote';
 import { getNotes } from '../actions/actions';
 import './styles/ProgressNotes.sass';
-import CustomModal from './CustomModal';
-import EditModal from './EditModal';
-import ProgressForm from './ProgressForm';
+import ProgressNoteDeleteModal from './ProgressNoteDeleteModal';
+import ProgressNoteEditForm from './ProgressNoteEditForm';
 
 class ProgressNotes extends Component {
-  state = {
-    notes: []
-  };
-
-  componentDidMount() {
-    this.props.getNotes();
-    this.setState({ notes: [...this.props.notes] });
-  }
-
   render() {
-    const isMenuShowing = this.state.isMenuShowing;
     return (
       <div className="notes-container">
         <ExampleNote />
@@ -26,13 +15,27 @@ class ProgressNotes extends Component {
           return (
             <div className="note" key={note.id}>
               <div>
-                <EditModal noteId={note.id} />
-                <CustomModal noteId={note.id} />
+                <ProgressNoteEditForm noteId={note.id} />
+                <ProgressNoteDeleteModal noteId={note.id} />
               </div>
-              <p>Weight: {note.weight}</p>
-              <p>Waist: {note.waist}</p>
-              <p>Arms: {note.arms}</p>
-              <p>Legs: {note.legs}</p>
+              <div className="progress-note-info-container">
+                <p className="progress-note-p-tag">
+                  <span style={{ textDecoration: 'underline' }}>Weight</span>:{' '}
+                  {note.weight}
+                </p>
+                <p className="progress-note-p-tag">
+                  <span style={{ textDecoration: 'underline' }}>Waist</span>:{' '}
+                  {note.waist}
+                </p>
+                <p className="progress-note-p-tag">
+                  <span style={{ textDecoration: 'underline' }}>Arms</span>:{' '}
+                  {note.arms}
+                </p>
+                <p className="progress-note-p-tag">
+                  <span style={{ textDecoration: 'underline' }}>Legs</span>:{' '}
+                  {note.legs}
+                </p>
+              </div>
             </div>
           );
         })}
