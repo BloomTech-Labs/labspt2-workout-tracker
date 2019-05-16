@@ -2,8 +2,12 @@
 @import 'mixins.sass'
 
 
-.progress-view 
-  margin-top: 150px;
+.progress-view
+  @include main-dm(row)
+  position: absolute
+  top: 130px
+  padding: 0% 2.5% 0% 2.5%
+  margin-left: 3%
   display: flex
   align-self: flex-start
 
@@ -16,7 +20,6 @@
   flex-wrap: wrap
   border: solid 1px $secondary-color
 
-  
 .progress-form
   display: flex
   align-self: flex-start

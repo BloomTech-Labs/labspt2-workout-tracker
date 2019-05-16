@@ -4,10 +4,10 @@ import { editNote, getNotes } from '../actions/actions';
 
 class ProgressNoteEditForm extends React.Component {
   state = {
-    weight: '',
-    waist: '',
-    arms: '',
-    legs: '',
+    weight: this.props.weight,
+    waist: this.props.waist,
+    arms: this.props.arms,
+    legs: this.props.legs,
     isMenuShowing: false
   };
 
@@ -21,7 +21,7 @@ class ProgressNoteEditForm extends React.Component {
     });
   };
 
-  editNote = e => {
+  editNoteSubmitHandler = e => {
     e.preventDefault();
     const { weight, waist, arms, legs } = this.state;
     if ((weight, waist, arms, legs)) {
@@ -33,10 +33,6 @@ class ProgressNoteEditForm extends React.Component {
         id: this.props.noteId
       });
       this.setState({
-        weight: '',
-        waist: '',
-        arms: '',
-        legs: '',
         isMenuShowing: false
       });
     } else {
@@ -68,7 +64,7 @@ class ProgressNoteEditForm extends React.Component {
           </button>
           <form
             className="editForm progress-edit-form"
-            onSubmit={this.editNote}
+            onSubmit={this.editNoteSubmitHandler}
           >
             <input
               className="edit"
