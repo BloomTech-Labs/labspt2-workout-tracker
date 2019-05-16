@@ -18,8 +18,7 @@ import {
   FETCHING_EVENTS,
   FETCHING_ERROR,
   DATE_CLICKED,
-  EVENTSFORM_CLOSED,
-  EVENT_SCHEDULED
+  EVENTSFORM_CLOSED
 } from '../actions/actions';
 
 const initialState = {
@@ -232,10 +231,6 @@ export default (state = initialState, action) => {
     case EVENTSFORM_CLOSED:
       return Object.assign({}, state, {
         dateClicked: null
-      });
-    case EVENT_SCHEDULED:
-      return Object.assign({}, state, {
-        events: action.payload
       });
 
     // case FETCHING_EVENTS:

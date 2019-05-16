@@ -31,9 +31,12 @@ class CalendarEvents extends Component {
   render() {
     let byDate = new Object();
 
-    this.props.events.map(event => {
-      byDate[event.start.substring(0, 10)] = [];
-    });
+    {
+      this.props.events !== undefined &&
+        this.props.events.map(event => {
+          byDate[event.start.substring(0, 10)] = [];
+        });
+    }
 
     for (let property in byDate) {
       byDate[property] = this.props.events.filter(event => {

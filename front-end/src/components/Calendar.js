@@ -58,7 +58,16 @@ class Calendar extends React.Component {
     }
   };
 
+  handleSelect = selectionInfo => {
+    // console.log(selectionInfo);
+    console.log('this is the start:');
+    console.log(selectionInfo.start.toISOString());
+    console.log('this is the end:');
+    console.log(selectionInfo.end.toISOString());
+  };
+
   render() {
+    const events = this.props.events !== undefined && this.props.events;
     return (
       <div className='demo-app'>
         {/* <div className="demo-app-top">
@@ -72,15 +81,17 @@ class Calendar extends React.Component {
             header={{
               left: 'prevYear, prev,next, nextYear today',
               center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+              right: ''
             }}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             ref={this.calendarComponentRef}
+            fixedWeekCount={false}
             weekends={this.state.calendarWeekends}
-            events={this.props.events}
+            events={events}
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
             selectable={true}
+            select={this.handleSelect}
             editable={true}
             eventLimit={true} // for all non-TimeGrid views
             eventLimit={2}

@@ -20,7 +20,6 @@ export const FETCHING_EVENTS = 'FETCHING_EVENTS';
 export const FETCHING_ERROR = 'FETCHING_ERROR';
 export const DATE_CLICKED = 'DATE_CLICKED';
 export const EVENTSFORM_CLOSED = 'EVENTSFORM_CLOSED';
-export const EVENT_SCHEDULED = 'EVENT_SCHEDULED';
 
 const DEPLOYED = 'https://workout-tracker-pt2.herokuapp.com';
 const LOCAL = 'http://localhost:3333';
@@ -105,10 +104,29 @@ export const postExercise = exerciseBody => {
     headers
   });
   return dispatch => {
-    dispatch({ type: FETCHED_EXERCISES });
+    dispatch({ type: FETCHING_EXERCISES });
     return promise
       .then(response => {
         dispatch({ type: FETCHED_EXERCISES, payload: response.data });
+        return response.data;
+      })
+      .catch(err => {
+        dispatch({ type: FETCHING_ERROR, payload: err });
+      });
+  };
+};
+
+export const postEvent = eventBody => {
+  const { getAccessToken } = auth;
+  const headers = { Authorization: `Bearer ${getAccessToken()}` };
+  const promise = axios.post(`${LOCAL}/api/events`, eventBody, {
+    headers
+  });
+  return dispatch => {
+    dispatch({ type: FETCHING_EVENTS });
+    return promise
+      .then(response => {
+        dispatch({ type: FETCHED_EVENTS, payload: response.data });
         return response.data;
       })
       .catch(err => {
@@ -254,15 +272,6 @@ export const closedEventForm = () => {
     dispatch({
       type: EVENTSFORM_CLOSED,
       payload: null
-    });
-  };
-};
-
-export const eventScheduled = events => {
-  return dispatch => {
-    dispatch({
-      type: EVENT_SCHEDULED,
-      payload: events
     });
   };
 };

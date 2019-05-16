@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './styles/ScheduleForm.sass';
 import Checkbox from './Checkbox.jsx';
 import AddExerciseCheckbox from './AddExerciseCheckbox';
-import { closedEventForm, eventScheduled } from '../actions/actions.js';
+import { closedEventForm, postEvent } from '../actions/actions.js';
 import moment from 'moment';
 import CalendarEvents from './CalendarEvents';
 
@@ -85,29 +85,28 @@ class ScheduleForm extends Component {
     });
   };
 
-  sendData = e => {
-    console.log(this.props.events);
+  submitEvent = async e => {
+    // console.log(this.props.events);
 
-    let selectedExercises = this.state.exercises.filter(exercise => {
-      return exercise.checked === true;
-    });
+    // let selectedExercises = this.state.exercises.filter(exercise => {
+    //   return exercise.checked === true;
+    // });
     e.preventDefault();
-    this.setState({
-      exercises: selectedExercises,
-      allDay: this.state.allDay.checked
-    });
-    let packagedEvent = {
+    // this.setState({
+    //   exercises: selectedExercises,
+    //   allDay: this.state.allDay.checked
+    // });
+    let newEvent = {
       title: this.state.title,
+      categoryId: this.state.categoryId,
       start: this.state.start,
       end: this.state.end,
-      allDay: this.state.allDay.checked,
-      exercises: selectedExercises
+      allDay: false,
+      exercises: this.state.exercises
     };
-    console.log(packagedEvent);
-    this.props.events.push(packagedEvent);
-    console.log(this.props.events);
 
-    this.props.eventScheduled(this.props.events);
+    await this.props.postEvent(newEvent);
+    this.props.closedEventForm();
   };
 
   render() {
@@ -116,19 +115,20 @@ class ScheduleForm extends Component {
 
     return (
       <div className='component-container events-form'>
-        <form className='form-container' onSubmit={this.submitHandler}>
+        <form className='form-container' onSubmit={this.submitEvent}>
           <button className='closeButton' onClick={this.closeHandler}>
             X
           </button>
           <label className='events-heading'>Schedule An Event</label>
-          <div className='allDay' onClick={this.Selected}>
+          <p>{moment.utc(this.props.dateClicked).format('MMMM Do YYYY')}</p>
+          {/* <div className='allDay' onClick={this.Selected}>
             <Checkbox
               name={'All Day'}
               Update={this.Update}
               item={this.state.allDay}
               Selected={this.Selected}
             />
-          </div>
+          </div> */}
           <input
             type='text'
             onChange={this.inputHandler}
@@ -179,7 +179,7 @@ class ScheduleForm extends Component {
               );
             })}
 
-          <button onClick={this.sendData} className='submit' type='text'>
+          <button className='submit' type='text'>
             Submit
           </button>
         </form>
@@ -202,5 +202,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { closedEventForm, eventScheduled }
+  { closedEventForm, postEvent }
 )(ScheduleForm);
