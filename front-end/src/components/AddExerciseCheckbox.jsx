@@ -43,7 +43,7 @@ class AddExerciseCheckbox extends Component {
         smallhexagon: 'small-hexagon',
         check: 'check'
       });
-
+      this.props.removeExercise(this.props.item.exerciseId);
       this.props.Update();
     }
   };

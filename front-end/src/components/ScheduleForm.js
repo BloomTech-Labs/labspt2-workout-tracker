@@ -75,7 +75,15 @@ class ScheduleForm extends Component {
     });
   };
 
-  removeExercise = exercise => {};
+  removeExercise = id => {
+    this.setState(state => {
+      const exercises = state.exercises.filter(exercise => exercise.id !== id);
+
+      return {
+        exercises
+      };
+    });
+  };
 
   sendData = e => {
     console.log(this.props.events);
@@ -161,6 +169,7 @@ class ScheduleForm extends Component {
                     item={item}
                     value={this.sendOff}
                     addExercise={this.addExercise}
+                    removeExercise={this.removeExercise}
                     clicked={this.state.clicked}
                     checkbox={this.state.checkbox}
                     smallHexagon={this.state.smallhexagon}
