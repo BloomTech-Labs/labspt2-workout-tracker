@@ -88,6 +88,11 @@ class Calendar extends React.Component {
             fixedWeekCount={false}
             weekends={this.state.calendarWeekends}
             events={events}
+            dayPopoverFormat={{
+              month: 'short',
+              day: 'numeric'
+            }}
+            displayEventTime={false}
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
             selectable={true}
