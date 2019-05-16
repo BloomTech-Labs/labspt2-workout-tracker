@@ -15,7 +15,13 @@ class ProgressNotes extends Component {
           return (
             <div className="note" key={note.id}>
               <div>
-                <ProgressNoteEditForm noteId={note.id} />
+                <ProgressNoteEditForm
+                  noteId={note.id}
+                  weight={note.weight}
+                  waist={note.waist}
+                  arms={note.arms}
+                  legs={note.legs}
+                />
                 <ProgressNoteDeleteModal noteId={note.id} />
               </div>
               <div className="progress-note-info-container">
