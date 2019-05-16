@@ -29,7 +29,7 @@ class CalendarEvent extends Component {
         <h1 className="date-heading">{moment(`${this.props.scheduleday}`).format("ddd, MMM Do")}</h1>
           <form>
             <div>
-            <Collapsible className='schedule-collapse' trigger={'↓'}>
+            <Collapsible className='schedule-collapse'  trigger={'↓'}>
             <div>
               {this.props.eventGroup.map((item,index) => {
                 return <EventGroup key={item+index} changeTime={this.props.changeTime} time={this.props.scheduleday} time={item["start"]}  category={this.props.category} exerciseProp={item["exercises"]} title={item["title"]} />

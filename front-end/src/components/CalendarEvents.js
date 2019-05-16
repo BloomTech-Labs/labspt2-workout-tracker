@@ -7,6 +7,10 @@ import CalendarEvent from './CalendarEvent';
 
 import {objCreate, deleteEvent} from '../actions/actions.js'
 
+import moment from "moment"
+
+
+
 // events: [
 //   {
 //     id: 1,
@@ -33,6 +37,7 @@ class CalendarEvents extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      eventClicked:false
     }
   }
 
@@ -104,16 +109,29 @@ componentDidUpdate(prevProps) {
 
 
 
+
+
   render() {
-  
+    let searchedEvents = Object.entries(this.props.byDate)
     console.log(this.props.categories, this.props.exercises)
+    console.log(Object.keys(this.props.byDate),moment(this.props.dateClicked).format("YYYY-MM-DD"))
+    if (this.props.dateClicked) {
+      const index = Object.keys(this.props.byDate).indexOf(moment(this.props.dateClicked).format("YYYY-MM-DD"))
+      console.log(index)
+      if (index !== -1) {
+        searchedEvents = [Object.entries(this.props.byDate)[index]]
+      }
+      console.log(searchedEvents)
+    }
+
+
 
     return (
 
       
       <div className="component-container events-container">
       
-        {Object.entries(this.props.byDate).sort(function (x,y) {
+        {searchedEvents.sort(function (x,y) {
       if (x[0]<y[0]) {return -1}
       if (x[0]>y[0]) {return 1}
 
@@ -128,6 +146,7 @@ componentDidUpdate(prevProps) {
               eventGroup={event["1"]}
               key={event["0"] + index}
               event={event}
+              eventClicked={this.props.eventClicked}
             />
           );
         })}
@@ -143,7 +162,8 @@ const mapStateToProps = state => {
     events: state.events,
     byDate: state.byDate,
     exercises: state.exercises,
-    categories: state.categories
+    categories: state.categories,
+    dateClicked: state.dateClicked
   };
 };
 
