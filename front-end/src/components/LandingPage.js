@@ -13,7 +13,7 @@ class LandingPage extends Component {
       <div>
         <Coverflow
           displayQuantityOfSide={2}
-          navigation={false}
+          navigation={true}
           enableHeading={false}
           infiniteScroll={true}
           media={{
