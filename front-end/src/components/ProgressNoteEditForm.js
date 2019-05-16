@@ -33,10 +33,6 @@ class ProgressNoteEditForm extends React.Component {
         id: this.props.noteId
       });
       this.setState({
-        weight: '',
-        waist: '',
-        arms: '',
-        legs: '',
         isMenuShowing: false
       });
     } else {
