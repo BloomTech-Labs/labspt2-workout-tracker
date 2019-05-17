@@ -42,14 +42,8 @@ class Calendar extends React.Component {
     ]
   };
 
-  handleEventClick = info => {
-    this.setState({ eventClicked: true });
-    console.log(this.state.eventClicked);
-  };
 
-  handleDateClick = ({ date }) => {
-    this.props.clickedDate(date.toISOString());
-  };
+
 
   handleDragAndDrop = (obj) => {
 
@@ -90,8 +84,8 @@ class Calendar extends React.Component {
             getView={this.handleDragAndDrop}
             weekends={this.state.calendarWeekends}
             events={this.props.events}
-            dateClick={this.handleDateClick}
-            eventClick={this.handleEventClick}
+            dateClick={this.props.handleDateClick}
+            eventClick={this.props.handleEventClick}
             selectable={true}
             droppable={true}
             eventDrop={this.handleDragAndDrop}
@@ -123,7 +117,8 @@ const mapStateToProps = state => {
   return {
     users: state.users,
     events: state.events,
-    dateClicked: state.dateClicked
+    dateClicked: state.dateClicked,
+    byDate: state.byDate
   };
 };
 

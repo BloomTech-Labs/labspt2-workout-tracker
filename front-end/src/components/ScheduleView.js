@@ -5,14 +5,30 @@ import { connect } from 'react-redux';
 import Calendar from './Calendar.js';
 import CalendarEvents from './CalendarEvents.js';
 import ScheduleForm from './ScheduleForm';
-import { checkPremium } from '../actions/actions';
+import { checkPremium, clickedDate } from '../actions/actions';
 
 import './styles/Calendar.scss';
 
 class ScheduleView extends Component {
+
+
+  state={
+  }
+
   componentDidMount() {
     this.props.checkPremium();
   }
+
+  handleEventClick = info => {
+    this.setState({ eventClicked: true });
+    const date = info.event.start.toISOString();
+    this.props.clickedDate(date);
+  };
+
+  handleDateClick = ({ date }) => {
+    this.props.clickedDate(date.toISOString());
+
+  };
 
   render() {
     let ScheduledEvents = '';
@@ -22,10 +38,10 @@ class ScheduleView extends Component {
     return (
       <div className="main scheduleView">
         {/* <button onClick={this.props.auth.logout}>Logout</button> */}
-        <Calendar />
+        <Calendar handleEventClick={this.handleEventClick} handleDateClick={this.handleDateClick} />
         <div className="schedule-items">
           {ScheduledEvents}
-          <CalendarEvents className="events" />
+          <CalendarEvents eventClicked={this.state.eventClicked} className="events" />
         </div>
       </div>
     );
@@ -36,7 +52,8 @@ const mapStateToProps = state => {
   return {
     auth: state.auth,
     events: state.events,
-    dateClicked: state.dateClicked
+    dateClicked: state.dateClicked,
+    byDate: state.byDate
   };
 };
 
@@ -44,5 +61,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { checkPremium }
+  { checkPremium, clickedDate }
 )(ScheduleView);
