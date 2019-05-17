@@ -23,7 +23,7 @@ class EventGroup extends Component {
   };
 
   render() {
-    console.log('excercises');
+    console.log('scheduledExercises');
     console.log(this.props.scheduledExercises);
     const filteredExercises = this.props.scheduledExercises.map(
       scheduledExercise => {
@@ -43,8 +43,10 @@ class EventGroup extends Component {
             <p className='head'>{moment(this.props.time).format('h:mm a')}</p>
           </div>
           <div className='scheduled'>
-            {this.props.filteredExercises !== undefined &&
-              this.props.filteredExercises.map((exercise, index) => {
+            {filteredExercises[0].length > 0 &&
+              filteredExercises.map((exercise, index) => {
+                console.log('exercise1');
+                console.log(exercise[index]);
                 return (
                   <EventItem
                     key={exercise + index}
@@ -65,7 +67,8 @@ class EventGroup extends Component {
 const mapStateToProps = state => {
   return {
     exercises: state.exercises,
-    error: state.error
+    error: state.error,
+    fetching: state.fetching
   };
 };
 
