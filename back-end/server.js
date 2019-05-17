@@ -466,7 +466,7 @@ server.get('/api/events', checkJwt, (req, res) => {
     .first()
     .then(id => {
       db('events as e')
-        .orderBy('e.id')
+        .orderBy('e.start')
         .join('users as u', 'u.id', 'e.userId')
         .select(
           'e.id as eventId',
@@ -517,7 +517,7 @@ server.post('/api/events', checkJwt, (req, res) => {
         })
         .then(userId => {
           db('events as e')
-            .orderBy('e.id')
+            .orderBy('e.start')
             .select(
               'e.id as eventId',
               'e.title as title',
