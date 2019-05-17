@@ -24,7 +24,7 @@ class CalendarEvent extends Component {
                       time={this.props.scheduleDay}
                       time={item['start']}
                       category={this.props.category}
-                      exercises={item['exercises']}
+                      scheduledExercises={item['exercises']}
                       title={item['title']}
                     />
                   );

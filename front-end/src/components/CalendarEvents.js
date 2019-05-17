@@ -51,8 +51,6 @@ class CalendarEvents extends Component {
     return (
       <div className='component-container events-container'>
         {Object.entries(byDate).map((event, index) => {
-          console.log('this is the event');
-          console.log(event);
           return (
             <CalendarEvent
               scheduleDay={event['0']}
