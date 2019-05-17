@@ -43,17 +43,18 @@ class EventGroup extends Component {
             <p className='head'>{moment(this.props.time).format('h:mm a')}</p>
           </div>
           <div className='scheduled'>
-            {this.props.scheduledExercises.map((exercise, index) => {
-              return (
-                <EventItem
-                  key={exercise + index}
-                  category={this.props.category}
-                  onClick={this.Done}
-                  Update={this.Update}
-                  item={exercise}
-                />
-              );
-            })}
+            {this.props.filteredExercises !== undefined &&
+              this.props.filteredExercises.map((exercise, index) => {
+                return (
+                  <EventItem
+                    key={exercise + index}
+                    category={this.props.category}
+                    onClick={this.Done}
+                    Update={this.Update}
+                    item={exercise}
+                  />
+                );
+              })}
           </div>
         </div>
       </div>
