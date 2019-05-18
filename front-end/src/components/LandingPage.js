@@ -28,7 +28,7 @@ class LandingPage extends Component {
           }}
         >
           {appDetails.map(i => {
-            return <Card details={i} key={i} />;
+            return <Card className="card-component" details={i} key={i} />;
           })}
         </Coverflow>
       </div>
