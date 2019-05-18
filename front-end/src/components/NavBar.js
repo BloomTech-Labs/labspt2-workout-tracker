@@ -42,7 +42,9 @@ function NavBar(props) {
               {props.userinfo.username
                 ? props.userinfo.username
                 : auth.getProfile().nickname}
+                
             </button>
+            
           </div>
           <NavLink activeClassName="active" to="/schedule">
             Your Calendar
@@ -58,6 +60,7 @@ function NavBar(props) {
           </NavLink>
         </>
       )}
+      <h1 className='premium'>{props.premium ? 'Premium!' : false}</h1>
     </nav>
   );
 }
@@ -68,7 +71,8 @@ const mapStateToProps = state => {
   return {
     userinfo: state.userinfo,
     error: state.error,
-    fetching: state.fetching
+    fetching: state.fetching,
+    premium: state.premium
   };
 };
 
