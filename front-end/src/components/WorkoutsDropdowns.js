@@ -23,7 +23,7 @@ class WorkoutsDropdowns extends Component {
         {categories !== undefined &&
           categories.map((category, i) => {
             return (
-              <div className="form-container events-card">
+              <div className="form-container workouts-card">
               <h1 className="category-heading">{category.categoryName}</h1>
                 <Collapsible key={i} trigger={'↓'}>
                   {exercises !== undefined &&

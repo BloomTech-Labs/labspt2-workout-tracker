@@ -1,8 +1,16 @@
 @import 'variables.sass';
 
+.schedule-calendar {
+  transform: scale(0.95);
+  transform-origin: top left;
+
+}
+
+
+
 #calendar {
   width: 80%;
-  margin: 5% 2.5%;
+
 }
 div {
   margin: 0;
@@ -385,7 +393,8 @@ temporary rendered events).
 .fc-scroller > .fc-time-grid {
   position: relative;
   /* re-scope all positions */
-  width: 100%;
+  width: 102%;
+  
   /* hack to force re-sizing this inner element when scrollbars appear/disappear */
 }
 
@@ -592,6 +601,7 @@ be a descendant of the grid when it is being dragged.
   margin: 1px 2px 0;
   /* spacing between events and edges */
   padding: 0 1px;
+  
 }
 
 tr:first-child > td > .fc-day-grid-event {
@@ -1085,12 +1095,11 @@ NOTE: use percentage font sizes or else old IE chokes
 .fc-day-number {
   font-size: 1.25rem;
   margin: 15px;
-  margin-bottom: 150px;
-
   color: $secondary-color;
 }
 
 .fc-day-top.fc-other-month {
+  
   opacity: 0.3;
 }
 
@@ -1128,11 +1137,12 @@ NOTE: use percentage font sizes or else old IE chokes
   text-align: center;
   background-color: #f2f2f2;
   color: #808080;
+  
 }
 
 /* when week/day number have own column */
 .fc-basic-view td.fc-week-number {
-  text-align: center;
+  text-align: end;
 }
 
 .fc-basic-view td.fc-week-number > * {

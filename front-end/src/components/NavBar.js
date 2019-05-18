@@ -4,7 +4,7 @@ import auth from '../Auth';
 import { connect } from 'react-redux';
 import './styles/Nav.sass';
 import logo from '../images/workout-logo.svg';
-// import logopremium from '../images/workout-logo-premium.svg';
+import logopremium from '../images/workout-logo-premium.svg';
 
 
 function NavBar(props) {
@@ -33,6 +33,8 @@ function NavBar(props) {
         <>
           <div className="logout">
             <img src={logo} alt="logo" />
+            {/* <img src={logopremium} className="premium" alt="logo-premium" /> */}
+
             <button
               className="signout"
               onClick={() => {

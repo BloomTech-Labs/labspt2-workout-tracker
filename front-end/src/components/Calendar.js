@@ -65,13 +65,13 @@ class Calendar extends React.Component {
 
   render() {
     return (
-      <div className="demo-app">
-        {/* <div className="demo-app-top">
+      <div className="schedule-calendar">
+      {/* <div className="demo-app-top">
           <button onClick={this.toggleWeekends}>toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast}>go to a date in the past</button>
           &nbsp; (also, click a date/time to add an event)
         </div> */}
-        <div className="demo-app-calendar">
+        <div className="calendar">
           <FullCalendar
             defaultView="dayGridMonth"
             header={{
@@ -93,7 +93,7 @@ class Calendar extends React.Component {
             eventLimit={true} // for all non-TimeGrid views
             eventLimit={2}
             aspectRatio={1}
-            height={1100}
+            height={750}
           />
         </div>
       </div>
