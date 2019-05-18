@@ -3,12 +3,12 @@ import auth from '../Auth';
 
 // ---------DEPLOYED PATH-------------
 // Uncomment the code on line 7 to run app on the deployed server.
-// Code on line 12 must be commented out to avoid errors.
+// ALL OTHER PATHS MUST BE COMMENTED OUT TO AVOID ERRORS
 const PATH = 'https://workout-tracker-pt2.herokuapp.com';
 
 //----------LOCAL PATH----------------
 // Uncomment the code on line 12 to run app on the local server.
-// Code on line 7 must be commented out to avoid errors.
+// ALL OTHER PATHS MUST BE COMMENTED OUT TO AVOID ERRORS
 // const PATH = 'http://localhost:3333';
 
 export const FETCHED = 'FETCHED';
