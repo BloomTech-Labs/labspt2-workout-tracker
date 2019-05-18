@@ -42,8 +42,9 @@ function NavBar(props) {
               {props.userinfo.username
                 ? props.userinfo.username
                 : auth.getProfile().nickname}
-                <h1>{props.premium ? '*123' : false}</h1>
+                
             </button>
+            
           </div>
           <NavLink activeClassName="active" to="/schedule">
             Your Calendar
@@ -59,6 +60,7 @@ function NavBar(props) {
           </NavLink>
         </>
       )}
+      <h1 className='premium'>{props.premium ? 'Premium!' : false}</h1>
     </nav>
   );
 }
