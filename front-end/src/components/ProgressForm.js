@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postNote } from '../actions/actions';
+import './styles/ProgressView.sass';
+
 
 class ProgressForm extends Component {
   state = {
@@ -33,8 +35,10 @@ class ProgressForm extends Component {
 
   render() {
     return (
+      <div className='component-container progress-container'>
       <form className="form-container progress-form" onSubmit={this.postNote}>
         <input
+          type='text'
           name="weight"
           text="name"
           onChange={this.onChange}
@@ -42,6 +46,7 @@ class ProgressForm extends Component {
           value={this.state.weight}
         />
         <input
+          type='text'
           name="waist"
           text="name"
           onChange={this.onChange}
@@ -49,6 +54,7 @@ class ProgressForm extends Component {
           value={this.state.waist}
         />
         <input
+          type='text'
           name="arms"
           text="name"
           onChange={this.onChange}
@@ -56,6 +62,7 @@ class ProgressForm extends Component {
           value={this.state.arms}
         />
         <input
+          type='text'
           name="legs"
           text="name"
           onChange={this.onChange}
@@ -64,6 +71,7 @@ class ProgressForm extends Component {
         />
         <button className="submit">Submit</button>
       </form>
+      </div>
     );
   }
 }

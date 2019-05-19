@@ -4,7 +4,7 @@ import logo from '../images/workout-logo.svg';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Coverflow from 'react-coverflow';
-import { appDetails } from '../defaults/index';
+import { appDetails } from '../defaults/index.js';
 import Card from './CarouselCard';
 
 class LandingPage extends Component {
@@ -29,7 +29,7 @@ class LandingPage extends Component {
         >
 
           {appDetails.map(i => {
-            return <Card className="card-component" details={i} key={i} />;
+            return <Card screenshot={i.screenshot} className="card-component" details={i} key={i} />;
           })}
         </Coverflow>
       </div>

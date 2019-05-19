@@ -1,3 +1,11 @@
+
+import schedule from '../images/schedule.png'
+import premium from '../images/workouts-premium-logo.png'
+import workoutscreator from '../images/workouts.png'
+import settings from '../images/settings-view.png'
+import frustration from '../images/frustrated-user.png'
+import notes from '../images/progress-notes.png'
+
 export const defaultNote = [{
   id: 0,
   weight: '135 lbs',
@@ -8,32 +16,32 @@ export const defaultNote = [{
 
 export const appDetails = [{
     title: 'Schedule Workouts!',
-    screenshot: '../images/workouts-view.png',
+    screenshot: schedule,
     details: 'Schedule a workout to be completed in the future on the Calendar page!'
   },
   {
     title: 'Go Premium!',
-    screenshot: '../images/workouts-premium-logo.png',
+    screenshot: premium,
     details: 'Pay us and your muscles will grow at least twice as fast!'
   },
   {
     title: 'Create your own workouts and routines!',
-    screenshot: '../images/workouts.png',
+    screenshot: workoutscreator,
     details: 'Get creative with your workouts!'
   },
   {
     title: 'Check your progress!',
-    screenshot: '../images/progress-notes.png',
+    screenshot: notes,
     details: 'Keep track of your progress on the Progress page.'
   },
   {
     title: 'Settings!',
-    screenshot: '../images/settings-view.png',
+    screenshot: settings,
     details: "Change your email! That's helpful, right?"
   },
   {
     title: 'Not happy with this product?',
-    screenshot: '../images/frustrated-user.png',
+    screenshot: frustration,
     details: 'Not happy with this product? Contact us at 303-814-2244, and we will make it right.'
   }
 ];
