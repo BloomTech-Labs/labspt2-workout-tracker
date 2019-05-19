@@ -3,8 +3,8 @@ import React from 'react';
 
 function Card(props) {
   return (
-    <div className="main card">
-      <div>{props.details.title}</div>
+    <div className="card">
+      <div>Help</div>
       <div>{props.details.details}</div>
     </div>
   );

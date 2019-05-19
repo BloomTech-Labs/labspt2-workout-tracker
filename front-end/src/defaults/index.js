@@ -1,38 +1,44 @@
-export const defaultNote = [
-  { id: 0, weight: '135 lbs', waist: '39 in', arms: '25 lb', legs: '50 lb' }
-];
+export const defaultNote = [{
+  id: 0,
+  weight: '135 lbs',
+  waist: '39 in',
+  arms: '25 lb',
+  legs: '50 lb'
+}];
 
-export const appDetails = [
-  {
+export const appDetails = [{
     title: 'Schedule Workouts!',
-    details:
-      'Schedule a workout to be completed in the future on the Calendar page!'
+    screenshot: '../images/premium-logo.jpg',
+    details: 'Schedule a workout to be completed in the future on the Calendar page!'
   },
   {
     title: 'Go Premium!',
+    screenshot: '../images/workouts-premium-logo.png',
     details: 'Pay us and your muscles will grow at least twice as fast!'
   },
   {
     title: 'Create your own workouts and routines!',
+    screenshot: '../images/workouts.png',
     details: 'Get creative with your workouts!'
   },
   {
     title: 'Check your progress!',
+    screenshot: '../images/progress-notes.png',
     details: 'Keep track of your progress on the Progress page.'
   },
   {
     title: 'Settings!',
+    screenshot: '',
     details: "Change your email! That's helpful, right?"
   },
   {
     title: 'Not happy with this product?',
-    details:
-      'Contact Emmanuel on github at https://github.com/Emmanium to air your grievences!'
+    screenshot: '',
+    details: 'Contact Emmanuel on github at https://github.com/Emmanium to air your grievences!'
   }
 ];
 
-export const exerciseDefaults = [
-  {
+export const exerciseDefaults = [{
     categoryName: 'Arms',
     subCategories: ['Biceps'],
     exerciseName: 'Bicep Curls with Dumbells',
@@ -56,8 +62,7 @@ export const exerciseDefaults = [
     instructions: `Hold the Barbell shoulder-wide, the back is straight, the shoulders slightly back, the arms are streched. 
     Bend the arms, bringing the weight up, with a fast movement. Without pausing, let down the bar with a slow and controlled movement.
     Don't allow your body to swing during the exercise, all work is done by the biceps, which are the only mucles that should move (pay attention to the elbows).`,
-    tips:
-      'Fluid movements with no pauses at the top or bottom, keep your upper body straight and tight',
+    tips: 'Fluid movements with no pauses at the top or bottom, keep your upper body straight and tight',
     reps: '5-15',
     sets: '3',
     weight: '10 lb'
@@ -70,8 +75,7 @@ export const exerciseDefaults = [
     description: `A Dip is a compound, push-type exercise which works a large number of muscles in your chest, shoulders, and arms at the same time.`,
     instructions: `Hold onto the bars at a narrow place (if they are not parallel) and press yourself up, but don't stretch the arms completely, so the muscles stay during the whole exercise under tension. 
     Now bend the arms and go down as much as you can, keeping the elbows always pointing back, At this point, you can make a short pause before repeating the movement.`,
-    tips:
-      'Keep your core tight, be careful not too dip down too far, make sure to come up all the way.',
+    tips: 'Keep your core tight, be careful not too dip down too far, make sure to come up all the way.',
     reps: '5-12',
     sets: '3',
     weight: 'Bodyweight'
@@ -87,8 +91,7 @@ export const exerciseDefaults = [
     Slowly breathe in as you bend your elbows and lower your upper body toward the wall in a slow, controlled motion. Keep your feet flat on the floor.
     Hold the position for 1 second.
     Breathe out and slowly push yourself back until your arms are straight.`,
-    tips:
-      'Keep your body straight, keep your core and glutes tight, and go as low as you can.',
+    tips: 'Keep your body straight, keep your core and glutes tight, and go as low as you can.',
     reps: '5-12',
     sets: '3',
     weight: 'Bodyweight'
@@ -101,8 +104,7 @@ export const exerciseDefaults = [
     description: `The Push-up may just be the perfect exercise that builds both upper body and core strength. Done properly, it is a compound exercise that uses muscles in the chest, shoulders, triceps, back, abs, and even the legs.`,
     instructions: `Start with your body streched, your hands are shoulder-wide appart on the ground. Push yourself off the ground till you strech your arms. 
     The back is always straight and as well as the neck (always look to the ground). Lower yourself to the initial position and repeat.`,
-    tips:
-      'Keep your body straight, keep your core and glutes tight, and go as low as you can.',
+    tips: 'Keep your body straight, keep your core and glutes tight, and go as low as you can.',
     reps: '5-12',
     sets: '3',
     weight: 'Bodyweight'

@@ -28,6 +28,7 @@ class LandingPage extends Component {
           }}
         >
           {appDetails.map(i => {
+            console.log(i)
             return <Card className="card-component" details={i} key={i} />;
           })}
         </Coverflow>

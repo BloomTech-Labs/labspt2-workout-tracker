@@ -1,6 +1,6 @@
 import auth0 from 'auth0-js';
 
-// change variable on redirectUri accordingly, LOCAL if you are working off localhost:3000, and LOCAL if you are ready to make a pull request!
+// change variable on redirectUri accordingly, DEPLOYED if you are working off localhost:3000, and DEPLOYED if you are ready to make a pull request!
 const DEPLOYED = 'https://workout-tracker-pt2.netlify.com';
 const LOCAL = 'http://localhost:3000';
 const TESTING = 'https://testing-testing.netlify.com';
@@ -14,7 +14,7 @@ class Auth {
     this.auth0 = new auth0.WebAuth({
       domain: 'workout-tracker-pt2.auth0.com',
       clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO',
-      redirectUri: `${LOCAL}/callback`,
+      redirectUri: `${DEPLOYED}/callback`,
       audience: 'https://workout-tracker-pt2.herokuapp.com/',
       responseType: 'token id_token',
       scope: 'openid profile'
@@ -90,10 +90,10 @@ class Auth {
 
     localStorage.removeItem('isLoggedIn');
 
-    //Make sure to change LOCAL to LOCAL before merging to MASTER!
+    //Make sure to change DEPLOYED to DEPLOYED before merging to MASTER!
 
     this.auth0.logout({
-      returnTo: `${LOCAL}`,
+      returnTo: `${DEPLOYED}`,
       clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO'
     });
   }
