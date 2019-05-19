@@ -76,14 +76,15 @@ class SettingsViewForm extends Component {
             value={this.state.email}
           />
           <button
+          className='save-button'
             type="text"
             onClick={this.submitHandlerEmail}
             style={{
               backgroundColor:
-                this.state.buttonText1 === 'Saved' ? 'lightgreen' : 'lightgrey'
+                this.state.buttonText1 === 'Saved' ? 'green' : '#313131'
             }}
           >
-            >{this.state.buttonText1}
+            {this.state.buttonText1}
           </button>
           <label>Update Username:</label>
           <input
@@ -94,11 +95,12 @@ class SettingsViewForm extends Component {
             value={this.state.username}
           />
           <button
+          className='save-button'
             type="text"
             onClick={this.submitHandlerUsername}
             style={{
               backgroundColor:
-                this.state.buttonText2 === 'Saved' ? 'lightgreen' : 'lightgrey'
+                this.state.buttonText2 === 'Saved' ? 'green' : '#313131'
             }}
           >
             {this.state.buttonText2}
@@ -116,14 +118,15 @@ class SettingsViewForm extends Component {
             value={this.state.newpass}
           />
           <button
+          className='save-button'
             type="text"
             onClick={this.submitHandlerPassword}
             style={{
               backgroundColor:
-                this.state.buttonText3 === 'Saved' ? 'lightgreen' : 'lightgrey'
+                this.state.buttonText3 === 'Saved' ? 'green' : '#313131',
             }}
           >
-            >{this.state.buttonText3}
+            {this.state.buttonText3}
           </button>
         </form>
       </div>

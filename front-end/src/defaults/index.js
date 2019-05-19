@@ -8,7 +8,7 @@ export const defaultNote = [{
 
 export const appDetails = [{
     title: 'Schedule Workouts!',
-    screenshot: '../images/premium-logo.jpg',
+    screenshot: '../images/workouts-view.png',
     details: 'Schedule a workout to be completed in the future on the Calendar page!'
   },
   {
@@ -28,13 +28,13 @@ export const appDetails = [{
   },
   {
     title: 'Settings!',
-    screenshot: '',
+    screenshot: '../images/settings-view.png',
     details: "Change your email! That's helpful, right?"
   },
   {
     title: 'Not happy with this product?',
-    screenshot: '',
-    details: 'Contact Emmanuel on github at https://github.com/Emmanium to air your grievences!'
+    screenshot: '../images/frustrated-user.png',
+    details: 'Not happy with this product? Contact us at 303-814-2244, and we will make it right.'
   }
 ];
 

@@ -4,7 +4,7 @@ import React from 'react';
 function Card(props) {
   return (
     <div className="card">
-      <div>Help</div>
+      <img src={props.details.screenshot} alt="logo" />
       <div>{props.details.details}</div>
     </div>
   );

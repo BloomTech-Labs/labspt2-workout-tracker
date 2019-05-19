@@ -8,7 +8,7 @@ const SettingsView = () => (
     <SettingsViewForm />
     <div className="stripe-checkout-container">
       <h1>Stripe Checkout</h1>
-      <StripeBtn />
+      <StripeBtn className="stripe-button" />
     </div>
   </div>
 );

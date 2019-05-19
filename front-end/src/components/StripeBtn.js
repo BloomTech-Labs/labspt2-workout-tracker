@@ -4,6 +4,8 @@ import axios from 'axios';
 import logo from '../images/workout-logo.svg';
 import { getPremium } from '../actions/actions';
 import { connect } from 'react-redux';
+import './styles/SettingsView.sass';
+
 
 class stripeBtn extends React.Component {
   constructor(props) {
