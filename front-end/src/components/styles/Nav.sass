@@ -14,12 +14,12 @@ nav
     a
         color: $secondary-color
         font-size: 1.5rem
-        margin: 0
+        margin-bottom: 25px
     a:hover
         text-decoration: none
         color: $main-background
         font-size: 1.5rem
-        margin: 0
+        margin-bottom: 25px
 
     .login
         display: flex
@@ -31,6 +31,12 @@ nav
         img 
             padding-top: 20px
             width: 8%
+            z-index: 1
+
+        .premium 
+            padding-top: 20px
+            width: 12%
+            z-index: 1
         .signin
             display: flex
             justify-items: flex-end
@@ -38,6 +44,7 @@ nav
             background-color: transparent
             margin-bottom: 0
             width: 100%
+            z-index: 1
             border: 0
             color: $main-background
             font-size: 2rem
@@ -45,7 +52,6 @@ nav
     
     .logout
             display: flex
-
             align-items: flex-end
             justify-items: center
             width: 20%
@@ -53,7 +59,10 @@ nav
             padding: 0
             img 
                 padding-top: 20px
-                width: 20%
+                width: 30%
+            .premium 
+                padding-top: 20px
+                width: 40%
             .signout
                 display: flex
                 justify-items: flex-end
@@ -87,8 +96,6 @@ nav
     border-bottom: 1px solid $secondary-color
     box-shadow: 0 0 0 6px $background-gray, 0 4px 0 5px $secondary-color;
     color: white
-.premium
-    padding-top: 50px
 
 @media (max-width: 1024px)
     nav 
@@ -118,6 +125,3 @@ nav
         width: 94%
         align-items: center
         margin-left: 0
-
-    .premium
-        padding-top: 0px
