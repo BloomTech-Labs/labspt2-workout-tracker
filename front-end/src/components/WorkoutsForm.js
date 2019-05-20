@@ -20,11 +20,6 @@ class WorkoutsForm extends Component {
     categories: []
   };
 
-  componentDidMount() {
-    // this.props.getCategories();
-    // this.props.getExercises();
-  }
-
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -79,6 +74,9 @@ class WorkoutsForm extends Component {
           <label>Workout Creator:</label>
 
           <select name='' onChange={this.selectChange}>
+            <option value='' selected disabled hidden>
+              Choose category
+            </option>
             {categories.map(category => {
               return (
                 <option

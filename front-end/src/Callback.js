@@ -6,7 +6,8 @@ import {
   getCategories,
   getExercises,
   getUserInfo,
-  getEvents
+  getEvents,
+  getNotes
 } from './actions/actions';
 import auth from './Auth';
 
@@ -19,6 +20,7 @@ class Callback extends Component {
       await this.props.getEvents();
       this.props.getCategories();
       this.props.getExercises();
+      this.props.getNotes();
       this.props.history.push('/schedule');
     } catch (err) {
       console.log(err);
@@ -33,6 +35,6 @@ class Callback extends Component {
 export default withRouter(
   connect(
     null,
-    { postUser, getCategories, getExercises, getUserInfo, getEvents }
+    { postUser, getCategories, getExercises, getUserInfo, getEvents, getNotes }
   )(Callback)
 );

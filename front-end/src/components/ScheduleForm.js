@@ -59,6 +59,7 @@ class ScheduleForm extends Component {
         .format()
         .substring(11, 19)
     );
+    console.log('date', date);
     this.setState({ [property]: date });
   };
 

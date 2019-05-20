@@ -141,7 +141,7 @@ server.get('/api/users', checkJwt, (req, res) => {
           db('exercises as e')
             .join('categories as c', 'c.id', 'e.categoryId')
             .select(
-              'e.id as excerciseId',
+              'e.id as exerciseId',
               'e.exerciseName as exercise',
               'c.id as categoryId',
               'c.categoryName as category'
@@ -194,9 +194,9 @@ server.post('/api/users', checkJwt, (req, res) => {
                 db('exercises as e')
                   .join('categories as c', 'c.id', 'e.categoryId')
                   .select(
-                    'e.id',
+                    'e.id as exerciseId',
                     'e.exerciseName as exercise',
-                    'c.id',
+                    'c.id as categoryId',
                     'c.categoryName as category'
                   )
                   .whereIn('e.categoryId', categories)
@@ -239,7 +239,7 @@ server.post('/api/users', checkJwt, (req, res) => {
                 db('exercises as e')
                   .join('categories as c', 'c.id', 'e.categoryId')
                   .select(
-                    'e.id as excerciseId',
+                    'e.id as exerciseId',
                     'e.exerciseName as exercise',
                     'c.id as categoryId',
                     'c.categoryName as category'
@@ -432,7 +432,7 @@ server.post('/api/exercises', checkJwt, (req, res) => {
           db('exercises as e')
             .orderBy('e.userId')
             .select(
-              'e.id as excerciseId',
+              'e.id as exerciseId',
               'e.exerciseName as exerciseName',
               'e.reps as reps',
               'e.weight as weight',
@@ -479,6 +479,7 @@ server.get('/api/events', checkJwt, (req, res) => {
         )
         .whereIn('e.userId', [1, id.id])
         .then(events => {
+          console.log(events);
           checkForResource(req, res, events);
         })
         .catch(err => {
@@ -549,7 +550,7 @@ server.post('/api/events', checkJwt, (req, res) => {
 //ENDPOINT TO POST A NEW PROGRESS NOTE
 
 server.post('/api/notes', checkJwt, (req, res) => {
-  const { weight, waist, arms } = req.body;
+  const { weight, waist, arms, legs } = req.body;
   db('users')
     .select('id')
     .where('user_id', req.user.sub)
@@ -561,13 +562,14 @@ server.post('/api/notes', checkJwt, (req, res) => {
           weight: weight,
           waist: waist,
           arms: arms,
+          legs: legs,
           userId: id.id
         })
         .then(userId => {
-          console.log(userId);
           db('notes as n')
+            .orderBy('id')
             .join('users as u', 'u.id', 'n.userId')
-            .select('n.id', 'n.weight', 'n.waist', 'n.arms')
+            .select('n.id', 'n.weight', 'n.waist', 'n.arms', 'n.legs')
             .where('n.userId', userId[0])
             .then(notes => {
               checkForResource(req, res, notes);
@@ -603,8 +605,9 @@ server.get('/api/notes', checkJwt, (req, res) => {
     .first()
     .then(id => {
       db('notes as n')
+        .orderBy('id')
         .join('users as u', 'u.id', 'n.userId')
-        .select('n.id', 'n.weight', 'n.waist', 'n.arms')
+        .select('n.id', 'n.weight', 'n.waist', 'n.arms', 'n.legs')
         .where('n.userId', id.id)
         .then(notes => {
           checkForResource(req, res, notes);
@@ -620,7 +623,96 @@ server.get('/api/notes', checkJwt, (req, res) => {
       console.log('error', err);
       res
         .status(500)
+        .json({ error: 'The user information could not be retrieved.' });
+    });
+});
+
+// ENDPOINT TO DELETE A NOTE
+
+server.delete('/api/notes', checkJwt, (req, res) => {
+  const { notesId } = req.body;
+  db('users')
+    .select('id')
+    .where('user_id', req.user.sub)
+    .first()
+    .then(id => {
+      db('notes')
+        .where('id', notesId)
+        .del()
+        .then(notes => {
+          checkForResource(req, res, notes);
+        });
+    });
+});
+
+// ENDPOINT TO EDIT NOTE
+
+server.put('/api/notes', checkJwt, (req, res) => {
+  //const noteId = req.body.id;
+  const { weight, waist, arms, legs, id } = req.body;
+  db('users')
+    .select('id')
+    .where('user_id', req.user.sub)
+    .first()
+    .then(note => {
+      db('notes')
+        .where('id', id)
+        .update({
+          weight: weight,
+          waist: waist,
+          arms: arms,
+          legs: legs
+        })
+        .then(note => {
+          console.log('UPDATED NOTE: ', note);
+          res.status(200).json(note);
+        })
+        .catch(err => {
+          console.log('error', err);
+          res.status(500).json({
+            error: 'The notes information could not be retrieved.'
+          });
+        });
+    })
+    .catch(err => {
+      console.log('error', err);
+      res
+        .status(500)
         .json({ error: 'The notes information could not be retrieved.' });
+    });
+});
+
+// ENDPOINT TO UPDATE PREMIUM STATUS
+
+server.get('/api/users/premium', checkJwt, (req, res) => {
+  db('users')
+    .where('user_id', req.user.sub)
+    .first()
+    .update({
+      premium: true
+    })
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      console.log('error', err);
+      res.status(500).json({ error: 'Could not set user to premium.' });
+    });
+});
+
+// ENDPOINT TO CHECK IF USER IS PREMIUM
+
+server.get('/api/user/ispremium', checkJwt, (req, res) => {
+  db('users')
+    .where('user_id', req.user.sub)
+    .first()
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'User provided either not found or not Premium' });
     });
 });
 
@@ -638,9 +730,9 @@ server.get('/api/:id/categories', checkJwt, (req, res) => {
       db('exercises as e')
         .join('categories as c', 'c.id', 'e.categoryId')
         .select(
-          'e.id',
+          'e.id as exerciseId',
           'e.exerciseName as exercise',
-          'c.id',
+          'c.id as categoryId',
           'c.categoryName as category'
         )
         .whereIn('e.categoryId', categories)

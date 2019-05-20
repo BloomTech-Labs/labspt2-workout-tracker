@@ -1,11 +1,21 @@
 @import 'variables.sass'
 @import 'mixins.sass'
 
-
-.progress-view 
-  margin-top: 150px;
+.progress-view
+  @include main-dm(row)
+  position: absolute
+  top: 130px
+  padding: 0% 2.5% 0% 2.5%
+  margin-left: 3%
   display: flex
   align-self: flex-start
+
+.progress-form-container
+  display: flex
+  flex-flow: column no-wrap
+  padding-top: 33px
+  max-width: 1670px
+  width: 100%
 
 .formBox
   display: flex
@@ -16,10 +26,25 @@
   flex-wrap: wrap
   border: solid 1px $secondary-color
 
-  
 .progress-form
+  @include form-container-dm()
   display: flex
-  align-self: flex-start
+  align-self: center
+  margin: 0 auto
 
-.progress-form .form-container 
-  margin-top: 0px
+.progress-form-p-tag
+  align-self: flex-start
+  font-size: .75rem
+  color: white
+  font-weight: bold
+  font-family: Tahoma, Verdana, sans-serif
+  letter-spacing: 0.1rem
+
+.progress-form-p-tag-3
+  align-self: flex-start
+  font-size: .75rem
+  color: white
+  font-weight: bold
+  font-family: Tahoma, Verdana, sans-serif
+  letter-spacing: 0.1rem
+  padding-bottom: 13px

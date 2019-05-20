@@ -19,7 +19,11 @@ class LandingPage extends Component {
           media={{
             '@media (max-width: 900px)': {
               width: '600px',
-              height: '300px'
+              height: '600px'
+            },
+            '@media (max-width: 500px)': {
+              width: '300px',
+              height: '600px'
             },
             '@media (min-width: 900px)': {
               width: '1024px',

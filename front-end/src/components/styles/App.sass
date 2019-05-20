@@ -1,6 +1,17 @@
 @import 'variables'
 @import 'mixins'
 
+html
+  height: 100%
+  background-color: $background-gray
+
+body
+  height: 100%
+  background-color: $background-gray
+
+#root
+  height: 100%
+  background-color: $background-gray
 
 .App 
   text-align: center
@@ -11,7 +22,7 @@
   align-self: center
   box-sizing: border-box
   width: 100%
-  max-width: 1366px
+  height: 100%
   background-color: $background-gray
   margin: 0 auto
 
@@ -20,6 +31,9 @@
 
 .main
     @include main-dm(row)
+    position: absolute
+    top: 130px
+    padding: 0% 2.5% 0% 2.5%
     
 h1
     @include heading-dm()
@@ -74,10 +88,24 @@ input[type=text]:focus
 select
   @include select-dm()
 
+
+.editButton
+  color: $secondary-color
+  background-color: transparent
+  border: none
+  margin: 0
+
+.editButton:hover
+    text-decoration: underline
+    color: white
+
+
 @media (max-width: 1024px)
 
   .main
     flex-direction: column
+    position: absolute
+    top: 720px
 
   .component-container
     width: 80%
@@ -90,10 +118,13 @@ select
     font-size: 2rem
 
 
+
 @media (max-width: 750px)
 
   .main
     flex-direction: column
+    position: absolute
+    top: 720px
 
   .component-container
     width: 100%
@@ -130,5 +161,3 @@ select
     color: green
     justify-content: flex-end
     font-size: 2rem
-
-      

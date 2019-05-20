@@ -17,11 +17,14 @@ class CalendarEvent extends Component {
             <Collapsible className='schedule-collapse' trigger={'↓'}>
               <div>
                 {this.props.eventGroup.map((item, index) => {
+                  console.log('this.props.scheduleDay');
+                  console.log(this.props.scheduleDay);
+                  console.log("item['start']");
+                  console.log(item['start']);
                   return (
                     <EventGroup
                       key={item + index}
                       changeTime={this.props.changeTime}
-                      time={this.props.scheduleDay}
                       time={item['start']}
                       category={this.props.category}
                       scheduledExercises={item['exercises']}

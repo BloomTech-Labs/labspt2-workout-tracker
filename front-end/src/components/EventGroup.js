@@ -23,8 +23,6 @@ class EventGroup extends Component {
   };
 
   render() {
-    console.log('scheduledExercises');
-    console.log(this.props.scheduledExercises);
     const filteredExercises = this.props.scheduledExercises.map(
       scheduledExercise => {
         return this.props.exercises.filter(exercise => {
@@ -32,8 +30,7 @@ class EventGroup extends Component {
         });
       }
     );
-    console.log('filteredExercises');
-    console.log(filteredExercises);
+
     return (
       <div className='event-all'>
         {/* <h1 className='cat'>{this.props.item["category"]}</h1> */}

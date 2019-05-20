@@ -20,17 +20,6 @@ class SettingsViewForm extends Component {
     };
   }
 
-  // inputHandler = event => {
-  //   let value = event.target.value;
-  //   let property = event.target.dataset.property;
-
-  //   this.setState({
-  //     [property]: value
-  //   });
-
-  //   console.log(value);
-  // };
-
   inputHandler = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -94,7 +83,7 @@ class SettingsViewForm extends Component {
                 this.state.buttonText1 === 'Saved' ? 'lightgreen' : 'lightgrey'
             }}
           >
-            >{this.state.buttonText1}
+            {this.state.buttonText1}
           </button>
           <label>Update Username:</label>
           <input
@@ -134,7 +123,7 @@ class SettingsViewForm extends Component {
                 this.state.buttonText3 === 'Saved' ? 'lightgreen' : 'lightgrey'
             }}
           >
-            >{this.state.buttonText3}
+            {this.state.buttonText3}
           </button>
         </form>
       </div>

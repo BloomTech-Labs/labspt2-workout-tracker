@@ -4,10 +4,12 @@
 
 
 nav
-    width: 95%
+    width: 90%
+    position: absolute
+    top: -6px
     display: flex
     flex-direction: row
-    justify-content: space-around
+    justify-content: space-between
     align-items: flex-end
     a
         color: $secondary-color
@@ -39,6 +41,7 @@ nav
             border: 0
             color: $main-background
             font-size: 2rem
+            padding-left: 3%
     
     .logout
             display: flex
@@ -50,7 +53,7 @@ nav
             padding: 0
             img 
                 padding-top: 20px
-                width: 40%
+                width: 20%
             .signout
                 display: flex
                 justify-items: flex-end
@@ -59,6 +62,7 @@ nav
                 margin-bottom: 0
                 width: 100%
                 border: 0
+                padding-left: 25px;
                 color: $main-background
                 font-size: 1.25rem
  
@@ -83,6 +87,8 @@ nav
     border-bottom: 1px solid $secondary-color
     box-shadow: 0 0 0 6px $background-gray, 0 4px 0 5px $secondary-color;
     color: white
+.premium
+    padding-top: 50px
 
 @media (max-width: 1024px)
     nav 
@@ -102,13 +108,16 @@ nav
             display: flex
             align-items: flex-end
             justify-items: center
-            width: 50%
+            width: 75%
             .signout
                 font-size: 2.5rem
 
 
 @media (max-width: 750px)
     nav 
+        width: 94%
         align-items: center
         margin-left: 0
 
+    .premium
+        padding-top: 0px

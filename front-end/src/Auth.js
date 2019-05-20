@@ -1,9 +1,16 @@
 import auth0 from 'auth0-js';
 
-// change variable on redirectUri accordingly, DEPLOYED if you are working off localhost:3000, and DEPLOYED if you are ready to make a pull request!
-const DEPLOYED = 'https://workout-tracker-pt2.netlify.com';
-const LOCAL = 'http://localhost:3000';
-const TESTING = 'https://testing-testing.netlify.com';
+//------DEPLOYED PATH--------------
+// ALL OTHER PATHS MUST BE COMMENTED OUT TO AVOID ERRORS
+// const PATH = 'https://workout-tracker-pt2.netlify.com';
+
+//------LOCAL PATH-----------------
+// ALL OTHER PATHS MUST BE COMMENTED OUT TO AVOID ERRORS
+const PATH = 'http://localhost:3000';
+
+//------TESTING PATH---------------
+// ALL OTHER PATHS MUST BE COMMENTED OUT TO AVOID ERRORS
+// const PATH = 'https://testing-testing.netlify.com';
 
 class Auth {
   accessToken;
@@ -14,7 +21,7 @@ class Auth {
     this.auth0 = new auth0.WebAuth({
       domain: 'workout-tracker-pt2.auth0.com',
       clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO',
-      redirectUri: `${LOCAL}/callback`,
+      redirectUri: `${PATH}/callback`,
       audience: 'https://workout-tracker-pt2.herokuapp.com/',
       responseType: 'token id_token',
       scope: 'openid profile'
@@ -94,7 +101,7 @@ class Auth {
     //Make sure to change DEPLOYED to DEPLOYED before merging to MASTER!
 
     this.auth0.logout({
-      returnTo: `${LOCAL}`,
+      returnTo: `${PATH}`,
       clientID: 'hoc1jpgL2TX2BkA1Q92gImRj7M90MjlO'
     });
   }

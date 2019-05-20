@@ -53,14 +53,12 @@ function NavBar(props) {
           <NavLink activeClassName='active' to='/progress'>
             Progress Notes
           </NavLink>
-          <NavLink activeClassName='active' to='/billing'>
-            Billing
-          </NavLink>
           <NavLink activeClassName='active' to='/settings'>
-            Settings
+            Settings/Billing
           </NavLink>
         </>
       )}
+      <h1 className='premium'>{props.premium ? 'Premium!' : false}</h1>
     </nav>
   );
 }
@@ -71,7 +69,8 @@ const mapStateToProps = state => {
   return {
     userinfo: state.userinfo,
     error: state.error,
-    fetching: state.fetching
+    fetching: state.fetching,
+    premium: state.premium
   };
 };
 

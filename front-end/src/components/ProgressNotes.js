@@ -1,39 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ExampleNote from './ExampleNote';
 import { getNotes } from '../actions/actions';
 import './styles/ProgressNotes.sass';
-import CustomModal from './CustomModal';
+import ProgressNoteDeleteModal from './ProgressNoteDeleteModal';
+import ProgressNoteEditForm from './ProgressNoteEditForm';
 
 class ProgressNotes extends Component {
-  state = {
-    notes: []
-  };
-
-  componentDidMount() {
-    this.props.getNotes();
-    this.setState({ notes: [...this.props.notes] });
-  }
-
-  placeholder = () => {
-    return alert('This is a place holder function');
-  };
-
   render() {
     return (
-      <div className="notes-container">
-        <ExampleNote />
+      <div className='notes-container'>
         {this.props.notes.map(note => {
           return (
-            <div className="note" key={note.id}>
+            <div className='note' key={note.id}>
               <div>
-                <p onClick={this.placeholder}>Edit</p>
-                <CustomModal />
+                <ProgressNoteEditForm
+                  noteId={note.id}
+                  weight={note.weight}
+                  waist={note.waist}
+                  arms={note.arms}
+                  legs={note.legs}
+                />
+                <ProgressNoteDeleteModal noteId={note.id} />
               </div>
-              <p>Weight: {note.weight}</p>
-              <p>Waist: {note.waist}</p>
-              <p>Arms: {note.arms}</p>
-              <p>Legs: {note.legs}</p>
+              <div className='progress-note-info-container'>
+                <p className='progress-note-p-tag'>
+                  <span style={{ textDecoration: 'underline' }}>Weight</span>:{' '}
+                  {note.weight}
+                </p>
+                <p className='progress-note-p-tag'>
+                  <span style={{ textDecoration: 'underline' }}>Waist</span>:{' '}
+                  {note.waist}
+                </p>
+                <p className='progress-note-p-tag'>
+                  <span style={{ textDecoration: 'underline' }}>Arms</span>:{' '}
+                  {note.arms}
+                </p>
+                <p className='progress-note-p-tag'>
+                  <span style={{ textDecoration: 'underline' }}>Legs</span>:{' '}
+                  {note.legs}
+                </p>
+              </div>
             </div>
           );
         })}
