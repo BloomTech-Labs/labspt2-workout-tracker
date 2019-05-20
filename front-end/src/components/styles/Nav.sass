@@ -27,11 +27,11 @@ nav
         align-items: flex-end
         align-self: flex-end
         justify-items: center
-        width: 25%
+        width: 50%
         margin-right: 0
         img 
             padding-top: 20px
-            width: 30%
+            width: 15%
             z-index: 1
 
         .premium 
@@ -102,6 +102,7 @@ nav
     flex-direction: column
     align-items: center
     margin-top: 10px
+    z-index: 1
 
     .login
         justify-content: center
@@ -116,16 +117,26 @@ nav
     nav 
         flex-direction: column
         justify-content: center
-        align-items: flex-start
-        margin-left: 50px
+        align-items: center
         a
             font-size: 4rem
             margin: 10px 0
+            border-bottom: 1px solid red
+            border-top: 1px solid red
+            width: 100%
+        .active
+            box-shadow: none
+            border-bottom: 5px solid $secondary-color
+            border-top: 5px solid $secondary-color
+            box-shadow: 0;
+
+
         a:hover
             text-decoration: none
             color: $main-background
             font-size: 4rem
             margin: 0
+        
         .logout
             display: flex
             align-items: flex-end
@@ -133,11 +144,22 @@ nav
             width: 75%
             .signout
                 font-size: 2.5rem
+        .login-container
+            width: 100%
 
 
 @media (max-width: 750px)
     nav 
-        width: 94%
+        width: 100%
         align-items: center
+        justify-content: center
         margin-left: 0
+        .logout
+            justify-content: center
+            .signout
+                width: 10%
 
+        a
+            font-size: 4rem
+            margin: 10px 0
+       
