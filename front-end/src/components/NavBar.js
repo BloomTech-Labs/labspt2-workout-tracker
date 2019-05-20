@@ -18,15 +18,19 @@ function NavBar(props) {
         <a> Home </a>
       </Link> */}
       {!auth.isAuthenticated() && (
+        <div className='login-container'>
         <div className="login">
-          <img src={logo} alt="logo" />
           {/* <img src={logopremium} className="premium" alt="logo-premium" /> */}
 
           <button className="signin" onClick={auth.login}>
             Sign In
-            <br />
+          </button>
+          <img className='login-logo' src={logo} alt="logo" />
+          <button className="signin" onClick={auth.login}>
             Sign Up
           </button>
+        </div>
+        <h1>TRACTION</h1>
         </div>
       )}
       {auth.isAuthenticated() && (

@@ -10,7 +10,7 @@ import Card from './CarouselCard';
 class LandingPage extends Component {
   render() {
     return (
-      <div>
+      <div className='carousel'>
         <Coverflow
           displayQuantityOfSide={2}
           navigation={true}
@@ -23,7 +23,7 @@ class LandingPage extends Component {
             },
             '@media (min-width: 900px)': {
               width: '1024px',
-              height: '600px'
+              height: '700px'
             }
           }}
         >

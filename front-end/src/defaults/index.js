@@ -17,32 +17,32 @@ export const defaultNote = [{
 export const appDetails = [{
     title: 'Schedule Workouts!',
     screenshot: schedule,
-    details: 'Schedule a workout to be completed in the future on the Calendar page!'
+    details: 'Schedule A Workout!'
   },
   {
     title: 'Go Premium!',
     screenshot: premium,
-    details: 'Pay us and your muscles will grow at least twice as fast!'
+    details: 'Go Premium!'
   },
   {
     title: 'Create your own workouts and routines!',
     screenshot: workoutscreator,
-    details: 'Get creative with your workouts!'
+    details: 'Get Creative With Your Workouts!'
   },
   {
     title: 'Check your progress!',
     screenshot: notes,
-    details: 'Keep track of your progress on the Progress page.'
+    details: 'Keep Track Of Your Progress!'
   },
   {
     title: 'Settings!',
     screenshot: settings,
-    details: "Change your email! That's helpful, right?"
+    details: "Change Your Settings!"
   },
   {
-    title: 'Not happy with this product?',
+    title: 'Not appy with this product?',
     screenshot: frustration,
-    details: 'Not happy with this product? Contact us at 303-814-2244, and we will make it right.'
+    details: 'Not Happy? We Will Make It Right!'
   }
 ];
 

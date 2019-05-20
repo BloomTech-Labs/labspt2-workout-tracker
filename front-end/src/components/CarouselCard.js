@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 //import { Link } from 'react-router-dom';
+import './styles/LandingPage.sass';
 
 class Card extends Component {
 
@@ -13,7 +14,7 @@ console.log(typeof this.props.screenshot)
           display: 'block',
           width: '100%',
         }} alt="logo" />
-        <div>{this.props.details.details}</div>
+        <div className='description'>{this.props.details.details}</div>
       </div>
     );
 
