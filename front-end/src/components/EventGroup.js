@@ -42,8 +42,6 @@ class EventGroup extends Component {
           <div className='scheduled'>
             {filteredExercises[0].length > 0 &&
               filteredExercises.map((exercise, index) => {
-                console.log('exercise1');
-                console.log(exercise[index]);
                 return (
                   <EventItem
                     key={exercise + index}

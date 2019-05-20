@@ -1,28 +1,28 @@
 @import 'variables.sass'
 @import 'mixins.sass'
 
+
+
 .notes-container
   display: flex
   justify-content: flex-start
   flex-wrap: wrap
-  margin-top: -155px
-  @media (max-width: 1024px)
-    margin-top: 0px
+  width: 90%
+  margin-top: 13px
   @media (max-width: 750px)
     justify-content: center
-    margin-top: 18px
 
-.note
-  display: flex
-  flex-direction: column
-  align-items: center
-  box-sizing: border-box
-  max-width: 220px
-  background-color: $dark-gray
-  width: 100%
-  margin: 2.5%
-  padding: 2.5%
-  border: 2px solid $dark-gray
+
+  .note
+    display: flex
+    flex-direction: column
+    align-items: center
+    box-sizing: border-box
+    background-color: $dark-gray
+    width: 40%
+    margin: 2.5%
+    padding: 2.5%
+    border: 2px solid $secondary-color
 
 .progress-note-button-container
   display: flex
@@ -67,7 +67,7 @@
   color: white
 
 .progress-edit-button
-  font-size: 1.5625rem
+  font-size: 1.4rem
   font-weight: bold
   letter-spacing: 0.1rem
   color: $secondary-color
@@ -80,7 +80,7 @@
   color: white
 
 .delete-button
-  font-size: 1.5625rem
+  font-size: 1.4rem
   font-weight: bold
   letter-spacing: 0.1rem
   color: $secondary-color
@@ -91,3 +91,13 @@
 .delete-button:hover
   text-decoration: underline
   color: white
+
+@media (max-width: 1024px)
+  .note
+    align-self: center
+    width: 100%
+  .notes-container
+    flex-direction: column
+    width: 100%
+  .progress-container
+  width: 100%

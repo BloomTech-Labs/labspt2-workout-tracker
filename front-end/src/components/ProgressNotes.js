@@ -24,20 +24,16 @@ class ProgressNotes extends Component {
               </div>
               <div className='progress-note-info-container'>
                 <p className='progress-note-p-tag'>
-                  <span style={{ textDecoration: 'underline' }}>Weight</span>:{' '}
-                  {note.weight}
+                  <span>Weight</span>: {note.weight}
                 </p>
                 <p className='progress-note-p-tag'>
-                  <span style={{ textDecoration: 'underline' }}>Waist</span>:{' '}
-                  {note.waist}
+                  <span>Waist</span>: {note.waist}
                 </p>
                 <p className='progress-note-p-tag'>
-                  <span style={{ textDecoration: 'underline' }}>Arms</span>:{' '}
-                  {note.arms}
+                  <span>Arms</span>: {note.arms}
                 </p>
                 <p className='progress-note-p-tag'>
-                  <span style={{ textDecoration: 'underline' }}>Legs</span>:{' '}
-                  {note.legs}
+                  <span>Legs</span>: {note.legs}
                 </p>
               </div>
             </div>

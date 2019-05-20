@@ -17,9 +17,9 @@ class Callback extends Component {
       await auth.handleAuthentication();
       await this.props.postUser();
       await this.props.getUserInfo();
+      await this.props.getCategories();
+      await this.props.getExercises();
       await this.props.getEvents();
-      this.props.getCategories();
-      this.props.getExercises();
       this.props.getNotes();
       this.props.history.push('/schedule');
     } catch (err) {

@@ -5,7 +5,7 @@ import '../components/styles/ProgressView.sass';
 
 const ProgressView = () => (
   <div className='main progress-view'>
-    <ProgressForm />
+    <ProgressForm className='progress-form' />
     <ProgressNotes />
   </div>
 );

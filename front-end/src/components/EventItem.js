@@ -8,11 +8,8 @@ import './styles/ScheduleView.sass';
 
 class EventItem extends Component {
   render() {
-    console.log('item');
-    console.log(this.props.item[0]);
     return (
       <div className='event-full'>
-        {/* <h1 className='cat'>{this.props.item["category"]}</h1> */}
         <div className='event-check'>
           <Checkbox
             name={this.props.item[0].exerciseName}

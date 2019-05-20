@@ -1,4 +1,3 @@
-import auth from '../Auth';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -23,11 +22,14 @@ class ScheduleView extends Component {
     }
     return (
       <div className='main scheduleView'>
-        {/* <button onClick={this.props.auth.logout}>Logout</button> */}
         <Calendar />
         <div className='schedule-items'>
           {ScheduledEvents}
-          <CalendarEvents className='events' />
+          {this.props.events.length === 0 && !this.props.dateClicked ? (
+            <p>Schedule workouts here...</p>
+          ) : (
+            <CalendarEvents className='events' />
+          )}
         </div>
       </div>
     );

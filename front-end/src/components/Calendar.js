@@ -96,11 +96,7 @@ class Calendar extends React.Component {
     const events = this.props.events !== undefined && this.props.events;
     return (
       <div className='schedule-calendar'>
-        {/* <div className="demo-app-top">
-          <button onClick={this.toggleWeekends}>toggle weekends</button>&nbsp;
-          <button onClick={this.gotoPast}>go to a date in the past</button>
-          &nbsp; (also, click a date/time to add an event)
-        </div> */}
+
         <div className='calendar'>
           <FullCalendar
             defaultView='dayGridMonth'

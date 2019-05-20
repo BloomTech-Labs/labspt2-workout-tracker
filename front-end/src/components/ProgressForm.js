@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postNote } from '../actions/actions';
+import './styles/ProgressView.sass';
 
 class ProgressForm extends Component {
   state = {
@@ -33,48 +34,54 @@ class ProgressForm extends Component {
 
   render() {
     return (
-      <form className='form-container progress-form' onSubmit={this.postNote}>
-        <p className='progress-form-p-tag'>
-          Use the form on this page to create a note
-        </p>
-        <p className='progress-form-p-tag'>
-          This is a simple way to keep track of your progress
-        </p>
-        <p className='progress-form-p-tag-3'>
-          Enter in your your Weight, Waist Size (in inches or however your
-          prefer to measure it), the weight you lifted with your Arms and Legs,
-          and hit Submit
-        </p>
-        <input
-          name='weight'
-          text='name'
-          onChange={this.onChange}
-          placeholder='Weight'
-          value={this.state.weight}
-        />
-        <input
-          name='waist'
-          text='name'
-          onChange={this.onChange}
-          placeholder='Waist'
-          value={this.state.waist}
-        />
-        <input
-          name='arms'
-          text='name'
-          onChange={this.onChange}
-          placeholder='Arms'
-          value={this.state.arms}
-        />
-        <input
-          name='legs'
-          text='name'
-          onChange={this.onChange}
-          placeholder='Legs'
-          value={this.state.legs}
-        />
-        <button className='submit'>Submit</button>
-      </form>
+      <div className='component-container progress-container'>
+        <form className='form-container progress-form' onSubmit={this.postNote}>
+          <p className='progress-container-p-tag'>
+            Use the form on this page to create a note
+          </p>
+          <p className='progress-container-p-tag'>
+            This is a simple way to keep track of your progress
+          </p>
+          <p className='progress-container-p-tag'>
+            Enter in your your Weight, Waist Size (in inches or however your
+            prefer to measure it), the weight you lifted with your Arms and
+            Legs, and hit Submit
+          </p>
+          <input
+            type='text'
+            name='weight'
+            text='name'
+            onChange={this.onChange}
+            placeholder='Weight'
+            value={this.state.weight}
+          />
+          <input
+            type='text'
+            name='waist'
+            text='name'
+            onChange={this.onChange}
+            placeholder='Waist'
+            value={this.state.waist}
+          />
+          <input
+            type='text'
+            name='arms'
+            text='name'
+            onChange={this.onChange}
+            placeholder='Arms'
+            value={this.state.arms}
+          />
+          <input
+            type='text'
+            name='legs'
+            text='name'
+            onChange={this.onChange}
+            placeholder='Legs'
+            value={this.state.legs}
+          />
+          <button className='submit'>Submit</button>
+        </form>
+      </div>
     );
   }
 }

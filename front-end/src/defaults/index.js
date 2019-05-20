@@ -1,33 +1,50 @@
+import schedule from '../images/schedule.png';
+import premium from '../images/workouts-premium-logo.png';
+import workoutscreator from '../images/workouts.png';
+import settings from '../images/settings-view.png';
+import frustration from '../images/frustrated-user.png';
+import notes from '../images/progress-notes.png';
+
 export const defaultNote = [
-  { id: 0, weight: '135 lbs', waist: '39 in', arms: '25 lb', legs: '50 lb' }
+  {
+    id: 0,
+    weight: '135 lbs',
+    waist: '39 in',
+    arms: '25 lb',
+    legs: '50 lb'
+  }
 ];
 
 export const appDetails = [
   {
     title: 'Schedule Workouts!',
-    details:
-      'Schedule a workout to be completed in the future on the Calendar page!'
+    screenshot: schedule,
+    details: 'Schedule A Workout!'
   },
   {
     title: 'Go Premium!',
-    details: 'Pay us and your muscles will grow at least twice as fast!'
+    screenshot: premium,
+    details: 'Go Premium!'
   },
   {
     title: 'Create your own workouts and routines!',
-    details: 'Get creative with your workouts!'
+    screenshot: workoutscreator,
+    details: 'Get Creative With Your Workouts!'
   },
   {
     title: 'Check your progress!',
-    details: 'Keep track of your progress on the Progress page.'
+    screenshot: notes,
+    details: 'Keep Track Of Your Progress!'
   },
   {
     title: 'Settings!',
-    details: "Change your email! That's helpful, right?"
+    screenshot: settings,
+    details: 'Change Your Settings!'
   },
   {
-    title: 'Not happy with this product?',
-    details:
-      'Contact Emmanuel on github at https://github.com/Emmanium to air your grievences!'
+    title: 'Not appy with this product?',
+    screenshot: frustration,
+    details: 'Not Happy? We Will Make It Right!'
   }
 ];
 

@@ -1,13 +1,23 @@
-import React from 'react';
-//import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import './styles/LandingPage.sass';
 
-function Card(props) {
-  return (
-    <div className="main card">
-      <div>{props.details.title}</div>
-      <div>{props.details.details}</div>
-    </div>
-  );
+class Card extends Component {
+  render() {
+    console.log(typeof this.props.screenshot);
+    return (
+      <div className='card'>
+        <img
+          src={this.props.screenshot}
+          style={{
+            display: 'block',
+            width: '100%'
+          }}
+          alt='logo'
+        />
+        <div className='description'>{this.props.details.details}</div>
+      </div>
+    );
+  }
 }
 
 export default Card;

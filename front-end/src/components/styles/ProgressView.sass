@@ -7,7 +7,6 @@
   position: absolute
   top: 130px
   padding: 0% 2.5% 0% 2.5%
-  margin-left: 3%
   align-items: flex-start
   display: flex
 
@@ -23,6 +22,30 @@
 .progress-container
   display: flex
   margin-top: 30px
-
+  width: 100%
+  
+.progress-container-p-tag
+  align-self: center
+  font-size: .75rem
+  color: white
+  font-weight: bold
+  font-family: Tahoma, Verdana, sans-serif
+  letter-spacing: 0.1rem
 
 .progress-form .form-container 
+
+@media (max-width: 1024px)
+  .progress-view
+    flex-direction: column
+    align-items: center
+    margin-top: 650px
+    z-index: -1
+
+  .notes-container
+    align-self: center
+    width: 50%
+  .progress-container
+    display: flex
+    margin-top: 30px
+    width: 100%
+  .progress-form

@@ -9,7 +9,6 @@ import {
 import { connect } from 'react-redux';
 import Collapsible from 'react-collapsible';
 import './styles/WorkoutsView.sass';
-import './styles/Style.sass';
 
 class WorkoutsDropdowns extends Component {
   state = {};
@@ -24,8 +23,9 @@ class WorkoutsDropdowns extends Component {
         {categories !== undefined &&
           categories.map((category, i) => {
             return (
-              <div key={i} className='form-container events-card'>
-                <Collapsible trigger={category.categoryName}>
+              <div className='form-container workouts-card'>
+                <h1 className='category-heading'>{category.categoryName}</h1>
+                <Collapsible key={i} trigger={'↓'}>
                   {exercises !== undefined &&
                     exercises.length > 0 &&
                     exercises
@@ -33,7 +33,15 @@ class WorkoutsDropdowns extends Component {
                         return exercise.categoryId === category.id;
                       })
                       .map((exercise, index) => {
-                        return <p key={index}> {exercise.exerciseName} </p>;
+                        return (
+                          <div className='workouts-div'>
+                            {' '}
+                            <h1 className='bullet-point'>⬣</h1>{' '}
+                            <h1 className='workouts-exercises' key={index}>
+                              {exercise.exerciseName}
+                            </h1>
+                          </div>
+                        );
                       })}
                 </Collapsible>
               </div>

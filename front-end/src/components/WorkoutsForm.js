@@ -7,6 +7,8 @@ import {
 } from '../actions/actions';
 import { connect } from 'react-redux';
 
+import './styles/WorkoutsView.sass';
+
 class WorkoutsForm extends Component {
   state = {
     exerciseName: '',
@@ -69,8 +71,8 @@ class WorkoutsForm extends Component {
     const { categories } = this.props;
 
     return (
-      <div className='form-container workouts-form'>
-        <form onSubmit={this.submitHandler}>
+      <div className='component-container workouts-form'>
+        <form className='form-container' onSubmit={this.submitHandler}>
           <label>Workout Creator:</label>
 
           <select name='' onChange={this.selectChange}>
@@ -121,7 +123,9 @@ class WorkoutsForm extends Component {
             name='reps'
             placeholder='Reps'
           />
-          <button type='text'>Submit</button>
+          <button className='submit' type='text'>
+            Submit
+          </button>
         </form>
       </div>
     );
