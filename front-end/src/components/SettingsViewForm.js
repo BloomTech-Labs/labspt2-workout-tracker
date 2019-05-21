@@ -36,12 +36,13 @@ class SettingsViewForm extends Component {
     });
   };
 
-  submitHandlerUsername = e => {
+  submitHandlerUsername = async e => {
     e.preventDefault();
     const userUpdates = {
       username: this.state.username
     };
-    this.props.updateUser(userUpdates);
+    await this.props.updateUser(userUpdates);
+    alert(`Username successfully updated!`);
     this.setState({
       buttonText2: 'Saved',
       username: ''
